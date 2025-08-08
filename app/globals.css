@@ -1,5 +1,24 @@
 @import 'tailwindcss';
 
+:root {
+  --dark-blue: #1e2939;
+}
+
+.header-burger {
+  display: none;
+}
+
+@media (max-width: 799px) {
+  .nav-links-container,
+  .nav-button {
+    display: none;
+  }
+
+  .header-burger {
+    display: block;
+  }
+}
+
 @layer components {
   .nav-link {
     @apply flex items-center text-white text-right font-light text-base leading-[28.8px] whitespace-nowrap px-0 py-[1.6px];
