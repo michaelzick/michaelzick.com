@@ -1,6 +1,9 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Poppins } from 'next/font/google'
+
+const poppins = Poppins({ subsets: ['latin'], weight: ['300'] })
 
 export const metadata: Metadata = {
   title: 'Michael Zick | Peak Performance Coach',
@@ -10,17 +13,23 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col">
-        <header className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur z-50">
-          <nav className="max-w-screen-xl mx-auto flex items-center justify-between p-4">
-            <Link href="/" className="font-medium">Michael Zick</Link>
+      <body className={`${poppins.className} min-h-screen flex flex-col`}>
+        <header className="fixed top-0 w-full z-50 px-[70px] bg-transparent">
+          <nav className="flex w-full items-center justify-between py-4 text-white">
+            <Link href="/" className="nav-link text-[32px]">Michael Zick</Link>
             <div className="hidden md:flex space-x-6">
-              <Link href="/work-with-me">Work With Me</Link>
-              <Link href="/about">About</Link>
-              <Link href="/testimonials">Testimonials</Link>
-              <Link href="/contact">Contact</Link>
+              <Link href="/work-with-me" className="nav-link">Work With Me</Link>
+              <Link href="/about" className="nav-link">About</Link>
+              <Link href="/testimonials" className="nav-link">Testimonials</Link>
+              <Link href="/contact" className="nav-link">Contact</Link>
             </div>
-            <a href="https://www.zickonezero.com/" className="btn" target="_blank">Product Management</a>
+            <a
+              href="https://www.zickonezero.com/"
+              className="btn nav-link border-white"
+              target="_blank"
+            >
+              Product Management
+            </a>
           </nav>
         </header>
         <main className="flex-1 pt-20">{children}</main>
