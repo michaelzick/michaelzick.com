@@ -21,8 +21,11 @@ export default function NavBar() {
         scrolled ? 'bg-[var(--dark-blue)]' : 'bg-transparent'
       }`}
     >
-      <nav className="flex w-full items-center justify-between py-4 text-white">
-        <Link href="/" className="nav-link text-[32px]">
+      <nav className="relative z-50 flex w-full items-center justify-between py-4 text-white">
+        <Link
+          href="/"
+          className={`nav-link text-[32px] ${menuOpen ? '!text-[var(--dark-blue)]' : ''}`}
+        >
           Michael Zick
         </Link>
         <div className="nav-links-container flex space-x-6">
@@ -55,18 +58,6 @@ export default function NavBar() {
             data-test="header-burger"
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            <span
-              className="js-header-burger-open-title visually-hidden"
-              hidden={menuOpen}
-            >
-              Open Menu
-            </span>
-            <span
-              className="js-header-burger-close-title visually-hidden"
-              hidden={!menuOpen}
-            >
-              Close Menu
-            </span>
             <div className="burger-box">
               <div
                 className={`burger-inner header-menu-icon-doubleLineHamburger ${
@@ -85,22 +76,39 @@ export default function NavBar() {
           menuOpen ? 'translate-x-0' : 'translate-x-full pointer-events-none'
         }`}
       >
-        <Link href="/work-with-me" className="nav-link text-[var(--dark-blue)]">
+        <Link
+          href="/work-with-me"
+          className="nav-link text-[var(--dark-blue)]"
+          onClick={() => setMenuOpen(false)}
+        >
           Work With Me
         </Link>
-        <Link href="/about" className="nav-link text-[var(--dark-blue)]">
+        <Link
+          href="/about"
+          className="nav-link text-[var(--dark-blue)]"
+          onClick={() => setMenuOpen(false)}
+        >
           About
         </Link>
-        <Link href="/testimonials" className="nav-link text-[var(--dark-blue)]">
+        <Link
+          href="/testimonials"
+          className="nav-link text-[var(--dark-blue)]"
+          onClick={() => setMenuOpen(false)}
+        >
           Testimonials
         </Link>
-        <Link href="/contact" className="nav-link text-[var(--dark-blue)]">
+        <Link
+          href="/contact"
+          className="nav-link text-[var(--dark-blue)]"
+          onClick={() => setMenuOpen(false)}
+        >
           Contact
         </Link>
         <a
           href="https://www.zickonezero.com/"
           className="nav-link btn border-[var(--dark-blue)] text-[var(--dark-blue)] hover:bg-[var(--dark-blue)] hover:text-white"
           target="_blank"
+          onClick={() => setMenuOpen(false)}
         >
           Product Management
         </a>

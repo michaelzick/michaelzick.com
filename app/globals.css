@@ -31,8 +31,8 @@
   left: 0;
   width: 24px;
   height: 2px;
-  background-color: var(--dark-blue);
-  transition: transform 0.3s ease;
+  background-color: #fff;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .burger-inner .top-bun {
@@ -45,10 +45,12 @@
 
 .burger-inner.open .top-bun {
   transform: translateY(6px) rotate(45deg);
+  background-color: var(--dark-blue);
 }
 
 .burger-inner.open .bottom-bun {
   transform: translateY(-6px) rotate(-45deg);
+  background-color: var(--dark-blue);
 }
 
 @layer components {
