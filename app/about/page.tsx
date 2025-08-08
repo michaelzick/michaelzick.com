@@ -1,7 +1,7 @@
 export default function About() {
   return (
     <div className="flex flex-col">
-      <section className="bg-[var(--dark-blue)] text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32">
+      <section className="bg-[var(--default-grey)] text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32">
         <div className="max-w-[1400px] mx-auto">
           <h1 className="text-[64px] font-semibold mb-6">About</h1>
           <h3 className="text-[35px] font-light">

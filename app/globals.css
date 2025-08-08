@@ -2,6 +2,7 @@
 
 :root {
   --dark-blue: #1e2939;
+  --default-grey: #38383b;
 }
 
 .header-burger {
@@ -43,15 +44,15 @@
   bottom: 6px;
 }
 
-.burger-inner.open .top-bun {
-  transform: translateY(6px) rotate(45deg);
-  background-color: var(--dark-blue);
-}
+  .burger-inner.open .top-bun {
+    transform: translateY(6px) rotate(45deg);
+    background-color: var(--default-grey);
+  }
 
-.burger-inner.open .bottom-bun {
-  transform: translateY(-6px) rotate(-45deg);
-  background-color: var(--dark-blue);
-}
+  .burger-inner.open .bottom-bun {
+    transform: translateY(-6px) rotate(-45deg);
+    background-color: var(--default-grey);
+  }
 
 @layer components {
   .nav-link {
