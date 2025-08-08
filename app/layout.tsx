@@ -17,13 +17,28 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${poppins.className} min-h-screen flex flex-col`}>
         <NavBar />
         <main className="flex-1">{children}</main>
-        <footer className="bg-black text-white py-8">
-          <div className="max-w-screen-xl mx-auto text-center space-y-4 text-sm">
-            <p>Michael Zick Coaching | Peak Performance Coach</p>
-            <div className="flex justify-center space-x-4">
-              <Link href="/work-with-me">Work With Me</Link>
-              <Link href="/testimonials">Testimonials</Link>
-              <Link href="/about">About</Link>
+        <footer className="bg-black text-white py-8 text-sm">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-8 grid md:grid-cols-12 gap-8 items-start">
+            <div className="md:col-span-5">
+              <p>Michael Zick Coaching | Peak Performance Coach</p>
+            </div>
+            <div className="md:col-span-6 md:col-start-6 md:text-right space-y-2">
+              <a
+                href="https://link.michaelzick.com/45min"
+                target="_blank"
+                className="block"
+              >
+                <strong>Book a Free 45-Minute Strategy Session</strong>
+              </a>
+              <Link href="/work-with-me" className="block">
+                Work With Me
+              </Link>
+              <Link href="/testimonials" className="block">
+                Testimonials
+              </Link>
+              <Link href="/about" className="block">
+                About
+              </Link>
             </div>
           </div>
         </footer>

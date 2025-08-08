@@ -6,7 +6,7 @@ export default function Home() {
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative h-screen flex items-end text-white" style={{backgroundImage: "url('https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1653791669541-TDDSOVCWEKVZYEX6T108/unsplash-image-CeYGSLBtuWk.jpg')", backgroundSize:'cover', backgroundPosition:'center'}}>
-        <div className="w-full max-w-screen-xl mx-auto p-8">
+        <div className="w-full max-w-[1400px] mx-auto p-8">
           <h2 className="text-4xl md:text-6xl font-semibold text-right">Peak Performance Coach</h2>
         </div>
       </section>
@@ -29,7 +29,7 @@ export default function Home() {
 
       {/* Process Section */}
       <section className="py-24 bg-gray-100">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-[1400px] mx-auto">
           <h2 className="text-center text-3xl mb-12">How My Process is Different</h2>
           <div className="grid gap-8 md:grid-cols-3">
             <div className="space-y-4 text-center">
