@@ -8,7 +8,6 @@ export default function Testimonials() {
             "url('https://images.squarespace-cdn.com/content/v1/5ec321c2af33de48734cc929/1589847934219-PE40YDXGUNSXSINSYHQI/20140301_Trade-151_0124-copy.jpg')",
         }}
       >
-        <div className="absolute inset-0 bg-[var(--dark-blue)] opacity-70" />
         <div className="relative max-w-screen-xl mx-auto">
           <h1 className="text-[64px] font-semibold text-center">What People Are Saying</h1>
         </div>
