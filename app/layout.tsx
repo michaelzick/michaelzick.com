@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </a>
           </nav>
         </header>
-        <main className="flex-1 pt-20">{children}</main>
+        <main className="flex-1">{children}</main>
         <footer className="bg-black text-white py-8">
           <div className="max-w-screen-xl mx-auto text-center space-y-4 text-sm">
             <p>Michael Zick Coaching | Peak Performance Coach</p>
