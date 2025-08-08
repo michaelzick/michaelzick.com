@@ -2,7 +2,7 @@ export default function About() {
   return (
     <div className="flex flex-col">
       <section className="bg-[var(--dark-blue)] text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32">
-        <div className="max-w-screen-xl mx-auto">
+        <div className="max-w-[1400px] mx-auto">
           <h1 className="text-[64px] font-semibold mb-6">About</h1>
           <h3 className="text-[35px] font-light">
             “Mental health is a commitment to reality at all costs.” — M. Scott Peck
@@ -11,7 +11,7 @@ export default function About() {
       </section>
 
       <section className="px-6 md:px-8 py-24 md:py-32">
-        <div className="max-w-screen-xl mx-auto">
+        <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-center gap-8">
             <div className="md:w-1/2 space-y-6 order-2 md:order-1">
               <h2 className="text-[45px] font-semibold">Michael is all about action.</h2>
@@ -44,7 +44,7 @@ export default function About() {
       </section>
 
       <section className="px-6 md:px-8 py-24 md:py-32">
-        <div className="max-w-screen-xl mx-auto">
+        <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-center gap-8">
             <div className="md:w-1/2">
               <img
@@ -73,7 +73,7 @@ export default function About() {
       </section>
 
       <section className="px-6 md:px-8 py-24 md:py-32">
-        <div className="max-w-screen-xl mx-auto">
+        <div className="max-w-[1400px] mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div className="space-y-4">
               <h3 className="text-[35px] font-medium">

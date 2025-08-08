@@ -8,13 +8,13 @@ export default function Testimonials() {
             "url('https://images.squarespace-cdn.com/content/v1/5ec321c2af33de48734cc929/1589847934219-PE40YDXGUNSXSINSYHQI/20140301_Trade-151_0124-copy.jpg')",
         }}
       >
-        <div className="relative max-w-screen-xl mx-auto">
+        <div className="relative max-w-[1400px] mx-auto">
           <h1 className="text-[64px] font-semibold text-center">What People Are Saying</h1>
         </div>
       </section>
 
       <section className="bg-[var(--dark-blue)] text-white px-6 md:px-8 py-24 md:py-32">
-        <div className="max-w-screen-xl mx-auto space-y-24">
+        <div className="max-w-[1400px] mx-auto space-y-24">
           <div className="flex flex-col md:flex-row md:items-center gap-8">
             <div className="md:w-1/2">
               <img
@@ -77,7 +77,7 @@ export default function Testimonials() {
       </section>
 
       <section className="px-6 md:px-8 py-24 md:py-32">
-        <div className="max-w-screen-xl mx-auto space-y-12 text-[23px]">
+        <div className="max-w-[1400px] mx-auto space-y-12 text-[23px]">
           <div className="space-y-4">
             <p>
               “This program is exceptional. If you want something different from your life and are
