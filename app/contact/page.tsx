@@ -13,6 +13,13 @@ export default function Contact() {
       <div className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-8">
         <div className="md:col-span-5 space-y-6">
           <h1 className="text-[64px] font-semibold">Contact</h1>
+          <a
+            className="btn js-mail64"
+            data-addr="Znc5bzVnNzJAYW5vbmFkZHkuY29t"
+          >
+            Email Me
+          </a>
+          <h2 className="text-2xl font-semibold">Socials</h2>
           <div className="flex space-x-4">
             <a
               href="https://michaelzick.medium.com"
@@ -21,7 +28,7 @@ export default function Contact() {
               aria-label="Medium"
             >
               <svg
-                className="w-8 h-8 fill-current"
+                className="w-11 h-11 fill-current"
                 viewBox="0 0 64 64"
                 aria-hidden="true"
               >
@@ -29,14 +36,6 @@ export default function Contact() {
               </svg>
             </a>
           </div>
-        </div>
-        <div className="md:col-span-6">
-          <a
-            className="btn js-mail64"
-            data-addr="Znc5bzVnNzJAYW5vbmFkZHkuY29t"
-          >
-            Email Me
-          </a>
         </div>
       </div>
     </div>
