@@ -1,4 +1,13 @@
+"use client"
+
+import { useEffect } from 'react'
+import { initMail64 } from '../../lib/mail64'
+
 export default function Contact() {
+  useEffect(() => {
+    initMail64()
+  }, [])
+
   return (
     <div className="bg-default-grey text-white min-h-full px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32">
       <div className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-8">
@@ -22,60 +31,15 @@ export default function Contact() {
           </div>
         </div>
         <div className="md:col-span-6">
-          <form className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="first-name" className="block mb-1">
-                    First Name
-                  </label>
-                  <input
-                    id="first-name"
-                    type="text"
-                    className="w-full border border-gray-300 p-2 text-black bg-white"
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="last-name" className="block mb-1">
-                    Last Name
-                  </label>
-                  <input
-                    id="last-name"
-                    type="text"
-                    className="w-full border border-gray-300 p-2 text-black bg-white"
-                    required
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="email" className="block mb-1">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  className="w-full border border-gray-300 p-2 text-black bg-white"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block mb-1">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  className="w-full border border-gray-300 p-2 text-black bg-white"
-                  rows={4}
-                  required
-                ></textarea>
-              </div>
-              <button type="submit" className="btn">
-                Send
-              </button>
-            </form>
-          </div>
+          <a
+            className="btn js-mail64"
+            data-addr="Znc5bzVnNzJAYW5vbmFkZHkuY29t"
+          >
+            Email Me
+          </a>
         </div>
       </div>
+    </div>
   )
 }
 
