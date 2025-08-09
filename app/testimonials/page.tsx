@@ -5,7 +5,7 @@ export default function Testimonials() {
         className="relative text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32 bg-center bg-cover"
         style={{
           backgroundImage:
-            "url('https://images.squarespace-cdn.com/content/v1/5ec321c2af33de48734cc929/1589847934219-PE40YDXGUNSXSINSYHQI/20140301_Trade-151_0124-copy.jpg')",
+            "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
         }}
       >
         <div className="relative max-w-[1400px] mx-auto">
