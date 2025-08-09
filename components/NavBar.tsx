@@ -26,7 +26,7 @@ export default function NavBar() {
           href="/"
           className={`nav-link text-[32px] ${menuOpen ? '!text-[var(--default-grey)]' : ''}`}
         >
-          Michael Zick
+          <h1 className="font-bold text-[48px]">Michael Zick</h1>
         </Link>
         <div className="nav-links-container flex space-x-6">
           <Link href="/work-with-me" className="nav-link">

@@ -10,7 +10,7 @@ export default function WorkWithMe() {
           </h3>
         </div>
       </section>
-      <section className="px-6 md:px-8 py-24 md:py-32">
+      <section className="px-6 md:px-8 py-24 md:py-32 bg-[var(--light-grey)] text-[var(--default-grey)]">
         <div className="max-w-[1400px] mx-auto space-y-6">
           <h2 className="text-[45px] font-semibold">Individual Coaching Program</h2>
           <h3 className="text-[35px] font-medium">The details:</h3>

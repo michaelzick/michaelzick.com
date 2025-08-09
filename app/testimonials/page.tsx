@@ -76,7 +76,7 @@ export default function Testimonials() {
         </div>
       </section>
 
-      <section className="px-6 md:px-8 py-24 md:py-32">
+      <section className="px-6 md:px-8 py-24 md:py-32 bg-[var(--light-grey)] text-[var(--default-grey)]">
         <div className="max-w-[1400px] mx-auto space-y-12 text-[23px]">
           <div className="space-y-4">
             <p>

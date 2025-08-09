@@ -14,14 +14,14 @@ export default function Home() {
       {/* Where Do You Go From Here */}
       <section className="relative py-32 text-white text-center" style={{backgroundImage: "url('https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1736313453279-VWGAVDGHDBCTQU72PCZT/unsplash-image-vNVwg35VZrg.jpg')", backgroundSize:'cover', backgroundPosition:'center'}}>
         <div className="absolute inset-0 bg-black/40" />
-        <div className="relative max-w-3xl mx-auto p-8">
-          <h2 className="text-3xl md:text-4xl">Where Do You Go From Here?</h2>
+        <div className="relative w-full mx-auto p-8">
+          <h2 className="text-5xl md:text-6xl">Where Do You Go From Here?</h2>
         </div>
       </section>
 
       {/* Intro Section */}
       <section className="py-24">
-        <div className="max-w-3xl mx-auto text-center space-y-8">
+        <div className="max-w-5xl mx-auto text-center space-y-8 text-white text-3xl">
           <h2>You’ve tried things – many things probably, but you’re still in the same place. You know you can achieve more but something is holding you back.</h2>
           <h2>Perhaps what you need is someone who’s been through the same things as you but has found the knowledge, practices, and resources to change.</h2>
         </div>
@@ -30,7 +30,7 @@ export default function Home() {
       {/* Process Section */}
       <section className="py-24 bg-gray-100">
         <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-center text-3xl mb-12">How My Process is Different</h2>
+          <h2 className="text-center text-5xl mb-12">How My Process is Different</h2>
           <div className="grid gap-8 md:grid-cols-3">
             <div className="space-y-4 text-center">
               <img src="https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1639877923597-PHIQ98UGANFVSYLKAXC1/unsplash-image-LoGnr-w1D8E.jpg" alt="Identifying" className="w-full h-48 object-cover" />
@@ -55,13 +55,13 @@ export default function Home() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-24 bg-gray-800 text-white">
+      {/* <section className="py-24 bg-gray-800 text-white">
         <div className="max-w-3xl mx-auto space-y-4">
-          <h2>Subscribe to My Newsletter</h2>
-          <h3>You’ll receive a FREE Belief Reprogramming Workbook (a $97 value) and early access to free courses. No spam; unsubscribe at any time.</h3>
+          <h2 className="text-5xl">Subscribe to My Newsletter</h2>
+          <h3 className="text-3xl">You’ll receive a FREE Belief Reprogramming Workbook (a $97 value) and early access to free courses. No spam; unsubscribe at any time.</h3>
           <a href="https://link.michaelzick.com/sign-up" target="_blank" className="btn">Subscribe</a>
         </div>
-      </section>
+      </section> */}
     </div>
   )
 }
