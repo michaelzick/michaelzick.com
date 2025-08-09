@@ -5,6 +5,7 @@
   --default-grey: #38383b;
   --light-grey: #dfe0e1;
   --white: #ffffff;
+  --primary-blue: #0071e3;
 }
 
 body, html {
@@ -68,6 +69,6 @@ body, html {
   }
 
   .btn {
-    @apply inline-block rounded border border-black px-4 py-2 text-sm transition-colors duration-200 hover:bg-black hover:text-white;
+    @apply inline-block rounded bg-primary-blue text-white px-[42px] py-[30px] text-[16px] transition-colors duration-200 hover:opacity-90;
   }
 }

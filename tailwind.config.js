@@ -9,6 +9,9 @@ module.exports = {
       fontFamily: {
         sans: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
       },
+      colors: {
+        'primary-blue': 'var(--primary-blue)',
+      },
     },
   },
   plugins: [],
