@@ -21,7 +21,7 @@ export default function NavBar() {
         scrolled ? 'bg-default-grey' : 'bg-transparent'
       }`}
     >
-      <nav className="relative z-50 flex w-full items-center justify-between py-4 text-white">
+      <nav className="relative z-50 flex w-full items-center justify-between py-10 text-white">
         <Link
           href="/"
           className={`nav-link text-[32px] ${menuOpen ? '!text-default-grey' : ''}`}
@@ -29,16 +29,16 @@ export default function NavBar() {
           <h1 className="font-bold text-[48px]">Michael Zick</h1>
         </Link>
         <div className="nav-links-container flex space-x-6">
-          <Link href="/work-with-me" className="nav-link">
+          <Link href="/work-with-me" className="nav-link text-2xl">
             Work With Me
           </Link>
-          <Link href="/about" className="nav-link">
+          <Link href="/about" className="nav-link text-2xl">
             About
           </Link>
-          <Link href="/testimonials" className="nav-link">
+          <Link href="/testimonials" className="nav-link text-2xl">
             Testimonials
           </Link>
-          <Link href="/contact" className="nav-link">
+          <Link href="/contact" className="nav-link text-2xl">
             Contact
           </Link>
         </div>
