@@ -13,7 +13,7 @@ export default function Testimonials() {
         </div>
       </section>
 
-      <section className="bg-[var(--default-grey)] text-white px-6 md:px-8 py-24 md:py-32">
+      <section className="bg-default-grey text-white px-6 md:px-8 py-24 md:py-32">
         <div className="max-w-[1400px] mx-auto space-y-24">
           <div className="flex flex-col md:flex-row md:items-center gap-8">
             <div className="md:w-1/2">
@@ -76,7 +76,7 @@ export default function Testimonials() {
         </div>
       </section>
 
-      <section className="px-6 md:px-8 py-24 md:py-32 bg-[var(--light-grey)] text-[var(--default-grey)]">
+      <section className="px-6 md:px-8 py-24 md:py-32 bg-[var(--light-grey)] text-default-grey">
         <div className="max-w-[1400px] mx-auto space-y-12 text-[23px]">
           <div className="space-y-4">
             <p>

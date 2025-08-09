@@ -1,7 +1,7 @@
 export default function WorkWithMe() {
   return (
     <div className="flex flex-col">
-      <section className="bg-[var(--default-grey)] text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32">
+      <section className="bg-default-grey text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32">
         <div className="max-w-[1400px] mx-auto">
           <h1 className="text-[64px] font-semibold mb-6">Work With Me</h1>
           <h3 className="text-[35px] font-light">
@@ -10,7 +10,7 @@ export default function WorkWithMe() {
           </h3>
         </div>
       </section>
-      <section className="px-6 md:px-8 py-24 md:py-32 bg-[var(--light-grey)] text-[var(--default-grey)]">
+      <section className="px-6 md:px-8 py-24 md:py-32 bg-[var(--light-grey)] text-default-grey">
         <div className="max-w-[1400px] mx-auto space-y-6">
           <h2 className="text-[45px] font-semibold">Individual Coaching Program</h2>
           <h3 className="text-[35px] font-medium">The details:</h3>

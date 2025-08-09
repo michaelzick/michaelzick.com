@@ -28,7 +28,7 @@ export default function Home() {
       </section>
 
       {/* Process Section */}
-      <section className="py-24 bg-gray-100 text-[var(--default-grey)]">
+      <section className="py-24 bg-gray-100 text-default-grey">
         <div className="max-w-[1400px] mx-auto">
           <h2 className="text-center text-5xl mb-12">How My Process is Different</h2>
           <div className="grid gap-8 md:grid-cols-3">

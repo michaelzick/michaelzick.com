@@ -1,6 +1,6 @@
 export default function Contact() {
   return (
-    <div className="bg-[var(--default-grey)] text-white min-h-full px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32">
+    <div className="bg-default-grey text-white min-h-full px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32">
       <div className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-8">
         <div className="md:col-span-5 space-y-6">
           <h1 className="text-[64px] font-semibold">Contact</h1>
