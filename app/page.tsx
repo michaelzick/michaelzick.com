@@ -12,16 +12,15 @@ export default function Home() {
       </section>
 
       {/* Where Do You Go From Here */}
-      <section className="relative py-32 text-white text-center" style={{backgroundImage: "url('https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1736313453279-VWGAVDGHDBCTQU72PCZT/unsplash-image-vNVwg35VZrg.jpg')", backgroundSize:'cover', backgroundPosition:'center'}}>
-        <div className="absolute inset-0 bg-black/40" />
+      <section className="relative py-56" style={{backgroundImage: "url('https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1736313453279-VWGAVDGHDBCTQU72PCZT/unsplash-image-vNVwg35VZrg.jpg')", backgroundSize:'cover', backgroundPosition:'center'}}>
         <div className="relative w-full mx-auto p-8">
-          <h2 className="text-5xl md:text-6xl">Where Do You Go From Here?</h2>
+          <h2 className="text-5xl md:text-8xl text-white text-center font-bold">Where Do You Go From Here?</h2>
         </div>
       </section>
 
       {/* Intro Section */}
-      <section className="py-24">
-        <div className="max-w-5xl mx-auto text-center space-y-8 text-white text-3xl">
+      <section className="py-24 bg-light-grey text-default-grey text-4xl">
+        <div className="max-w-5xl mx-auto text-center space-y-8">
           <h2>You’ve tried things – many things probably, but you’re still in the same place. You know you can achieve more but something is holding you back.</h2>
           <h2>Perhaps what you need is someone who’s been through the same things as you but has found the knowledge, practices, and resources to change.</h2>
         </div>
@@ -33,19 +32,19 @@ export default function Home() {
           <h2 className="text-center text-5xl mb-12">How My Process is Different</h2>
           <div className="grid gap-8 md:grid-cols-3">
             <div className="space-y-4 text-center">
-              <img src="https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1639877923597-PHIQ98UGANFVSYLKAXC1/unsplash-image-LoGnr-w1D8E.jpg" alt="Identifying" className="w-full h-48 object-cover" />
-              <h3 className="text-xl font-semibold">Identifying Meanings and Beliefs</h3>
-              <p>Meanings and beliefs are like the programming language of our life. They provide a filter through which external information and experiences pass.</p>
+              <img src="https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1639877923597-PHIQ98UGANFVSYLKAXC1/unsplash-image-LoGnr-w1D8E.jpg" alt="Identifying" className="w-full h-100 object-cover" />
+              <h3 className="text-4xl font-semibold">Identifying Meanings and Beliefs</h3>
+              <p className="text-lg">Meanings and beliefs are like the programming language of our life. They provide a filter through which external information and experiences pass.</p>
             </div>
             <div className="space-y-4 text-center">
-              <img src="https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1639877889055-K1SXB431TORFI5GNSYEL/unsplash-image-8yQijYx5-ww.jpg" alt="Feelings" className="w-full h-48 object-cover" />
-              <h3 className="text-xl font-semibold">Working Through Feelings, Experientially</h3>
-              <p>While analyzing the “why” and the “what” around our thoughts and behaviors is useful, behaviors rarely change without working through the feelings.</p>
+              <img src="https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1639877889055-K1SXB431TORFI5GNSYEL/unsplash-image-8yQijYx5-ww.jpg" alt="Feelings" className="w-full h-100 object-cover" />
+              <h3 className="text-4xl font-semibold">Working Through Feelings, Experientially</h3>
+              <p className="text-lg">While analyzing the “why” and the “what” around our thoughts and behaviors is useful, behaviors rarely change without working through the feelings.</p>
             </div>
             <div className="space-y-4 text-center">
-              <img src="https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1639877978633-ACDVU50FKOQZ38FAML6N/unsplash-image-LtHTe32r_nA.jpg" alt="Action" className="w-full h-48 object-cover" />
-              <h3 className="text-xl font-semibold">Taking Consistent, Conscious Action</h3>
-              <p>Through identifying beliefs and processing feelings you can enter a new state of consciousness and awareness. This is where true behavioral change happens.</p>
+              <img src="https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1639877978633-ACDVU50FKOQZ38FAML6N/unsplash-image-LtHTe32r_nA.jpg" alt="Action" className="w-full h-100 object-cover" />
+              <h3 className="text-4xl font-semibold">Taking Consistent, Conscious Action</h3>
+              <p className="text-lg">Through identifying beliefs and processing feelings you can enter a new state of consciousness and awareness. This is where true behavioral change happens.</p>
             </div>
           </div>
           <div className="mt-12 text-center">
