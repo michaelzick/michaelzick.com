@@ -1,10 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Poppins } from 'next/font/google'
 import NavBar from '../components/NavBar'
-
-const poppins = Poppins({ subsets: ['latin'], weight: ['300'] })
 
 export const metadata: Metadata = {
   title: 'Michael Zick | Peak Performance Coach',
@@ -14,7 +11,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} min-h-screen flex flex-col`}>
+      <body className="min-h-screen flex flex-col font-sans">
         <NavBar />
         <main className="flex-1">{children}</main>
         <footer className="bg-black text-white py-8 text-sm">
