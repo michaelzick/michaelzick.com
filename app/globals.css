@@ -74,5 +74,6 @@ body, html {
     @apply inline-flex items-center justify-center rounded bg-primary-blue text-white transition-colors duration-200 hover:opacity-90;
     padding: 30px 42px;
     font-size: 16px;
+    line-height: 16px;
   }
 }
