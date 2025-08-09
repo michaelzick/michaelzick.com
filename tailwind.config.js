@@ -11,6 +11,10 @@ module.exports = {
       },
       colors: {
         'primary-blue': 'var(--primary-blue)',
+        'dark-blue': 'var(--dark-blue)',
+        'default-grey': 'var(--default-grey)',
+        'light-grey': 'var(--light-grey)',
+        'white': 'var(--white)',
       },
     },
   },
