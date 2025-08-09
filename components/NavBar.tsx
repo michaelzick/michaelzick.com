@@ -18,7 +18,7 @@ export default function NavBar() {
   return (
     <header
       className={`fixed top-0 w-full z-50 px-[70px] max-[929px]:px-[30px] transition-colors duration-500 ${
-        scrolled ? 'bg-default-grey' : 'bg-transparent'
+        scrolled ? 'bg-dark-blue' : 'bg-transparent'
       }`}
     >
       <nav className="relative z-50 flex w-full items-center justify-between py-10 text-white">
