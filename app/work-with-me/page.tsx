@@ -2,10 +2,10 @@ export default function WorkWithMe() {
   return (
     <div className="flex flex-col">
       <section
-        className="relative text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32 bg-center bg-cover min-h-[578px]"
+        className="relative text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32 bg-center bg-cover md:min-h-[578px]"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+            "url('/img/waterfall_2500.webp')",
         }}
       >
         <div className="max-w-[1400px] mx-auto">

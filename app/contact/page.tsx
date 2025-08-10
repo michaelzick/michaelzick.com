@@ -1,16 +1,21 @@
-"use client"
+"use client";
 
-import { useEffect } from 'react'
-import { initMail64 } from '../../lib/mail64'
+import { useEffect } from 'react';
+import { initMail64 } from '../../lib/mail64';
 
 export default function Contact() {
   useEffect(() => {
-    initMail64()
-  }, [])
+    initMail64();
+  }, []);
 
   return (
     <div className="flex flex-col">
-      <section className="bg-default-grey text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32 min-h-[578px]">
+      <section className="bg-default-grey text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32"
+        style={{
+          backgroundImage:
+            "url('/img/lake_reflection_2500.webp')",
+        }}
+      >
         <div className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-8">
           <div className="md:col-span-5 space-y-6">
             <h1 className="text-[64px] font-semibold">Contact</h1>
@@ -41,6 +46,6 @@ export default function Contact() {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
