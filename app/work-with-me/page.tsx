@@ -1,11 +1,17 @@
 export default function WorkWithMe() {
   return (
     <div className="flex flex-col">
-      <section className="bg-default-grey text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32">
+      <section
+        className="relative text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32 bg-center bg-cover"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+        }}
+      >
         <div className="max-w-[1400px] mx-auto">
           <h1 className="text-[64px] font-semibold mb-6">Work With Me</h1>
           <h3 className="text-[35px] font-light">
-            “You can't go back and change the beginning, but you can start where you are and change the ending.” — C.S.
+            “You can&apos;t go back and change the beginning, but you can start where you are and change the ending.” — C.S.
             Lewis
           </h3>
         </div>

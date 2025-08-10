@@ -1,7 +1,13 @@
 export default function About() {
   return (
     <div className="flex flex-col">
-      <section className="bg-default-grey text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32">
+      <section
+        className="relative text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32 bg-center bg-cover"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+        }}
+      >
         <div className="max-w-[1400px] mx-auto">
           <h1 className="text-[64px] font-semibold mb-6">About</h1>
           <h3 className="text-[35px] font-light">
@@ -16,8 +22,8 @@ export default function About() {
             <div className="md:w-1/2 space-y-6 order-2 md:order-1">
               <h2 className="text-[45px] font-semibold">Michael is all about action.</h2>
               <p className="text-[23px]">
-                He stands by the phrase, "We don't think our way into right action; we act our
-                way into right thinking." In other words, replacing worrying with doing is the
+                He stands by the phrase, &quot;We don&apos;t think our way into right action; we act our
+                way into right thinking.&quot; In other words, replacing worrying with doing is the
                 path to success that Michael encourages, and his clients have the results to show
                 for it.
               </p>
@@ -27,9 +33,9 @@ export default function About() {
                 Alicia Davon.
               </p>
               <p className="text-[23px]">
-                With his no-BS approach, those who work with Michael will know what it's like to
+                With his no-BS approach, those who work with Michael will know what it&apos;s like to
                 replace rumination with action, take ownership of their thoughts, feelings, and
-                behaviors, stop being a victim, and play well with others without being "nice."
+                behaviors, stop being a victim, and play well with others without being &quot;nice.&quot;
               </p>
             </div>
             <div className="md:w-1/2 order-1 md:order-2">
