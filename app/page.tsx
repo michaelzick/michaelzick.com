@@ -27,13 +27,13 @@ export default function Home() {
           </h2>
         </div>
         <svg
-          className="absolute bottom-0 left-0 w-full h-[100px]"
-          viewBox="0 0 1440 100"
+          className="absolute bottom-0 left-0 w-full h-[160px]"
+          viewBox="0 0 1440 160"
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M0,0 Q720,100 1440,0 L1440,100 L0,100 Z"
+            d="M0,0 C480,160 960,160 1440,0 L1440,160 L0,160 Z"
             fill="var(--light-grey)"
           />
         </svg>
