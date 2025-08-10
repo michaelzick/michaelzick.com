@@ -21,7 +21,7 @@ export default function Home() {
           backgroundPosition: 'center',
         }}
       >
-        <div className="relative w-full mx-auto p-8">
+        <div className="relative w-full mx-auto p-8 mt-[-88px] md:mt-[-112px]">
           <h2 className="text-5xl md:text-8xl text-white text-center font-bold">
             Where Do You Go From Here?
           </h2>
