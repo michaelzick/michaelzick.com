@@ -12,10 +12,31 @@ export default function Home() {
       </section>
 
       {/* Where Do You Go From Here */}
-      <section className="relative py-56" style={{backgroundImage: "url('https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1736313453279-VWGAVDGHDBCTQU72PCZT/unsplash-image-vNVwg35VZrg.jpg')", backgroundSize:'cover', backgroundPosition:'center'}}>
-        <div className="relative w-full mx-auto p-8">
-          <h2 className="text-5xl md:text-8xl text-white text-center font-bold">Where Do You Go From Here?</h2>
+      <section
+        className="relative py-56 overflow-hidden"
+        style={{
+          backgroundImage:
+            "url('https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1736313453279-VWGAVDGHDBCTQU72PCZT/unsplash-image-vNVwg35VZrg.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="relative w-full mx-auto p-8 mt-[-88px] md:mt-[-112px]">
+          <h2 className="text-5xl md:text-8xl text-white text-center font-bold">
+            Where Do You Go From Here?
+          </h2>
         </div>
+        <svg
+          className="absolute bottom-0 left-0 w-full h-[160px]"
+          viewBox="0 0 1440 160"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0,0 C480,160 960,160 1440,0 L1440,160 L0,160 Z"
+            fill="var(--light-grey)"
+          />
+        </svg>
       </section>
 
       {/* Intro Section */}
