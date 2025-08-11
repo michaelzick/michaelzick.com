@@ -16,7 +16,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="px-6 md:px-8 py-24 md:py-32 bg-[var(--light-grey)] text-default-grey">
+      <section className="px-6 md:px-8 py-24 md:py-32 bg-[rgb(var(--light-grey))] text-default-grey">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-center gap-8">
             <div className="md:w-1/2 space-y-6 order-2 md:order-1">
@@ -78,7 +78,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="px-6 md:px-8 py-24 md:py-32 bg-[var(--light-grey)] text-default-grey">
+      <section className="px-6 md:px-8 py-24 md:py-32 bg-[rgb(var(--light-grey))] text-default-grey">
         <div className="max-w-[1400px] mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div className="space-y-4">

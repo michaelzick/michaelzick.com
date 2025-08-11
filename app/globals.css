@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --dark-blue: #384659;
-  --default-grey: #38383b;
-  --light-grey: #dfe0e1;
-  --white: #ffffff;
-  --primary-blue: #0071e3;
+  --dark-blue: 56 70 89;
+  --default-grey: 56 56 59;
+  --light-grey: 223 224 225;
+  --white: 255 255 255;
+  --primary-blue: 0 113 227;
 }
 
 body, html {
-  background-color: var(--default-grey);
+  background-color: rgb(var(--default-grey));
   font-family: Helvetica, Arial, sans-serif;
-  color: var(--white);
+  color: rgb(var(--white));
 }
 
 .header-burger {
@@ -43,7 +43,7 @@ body, html {
   left: 0;
   width: 24px;
   height: 2px;
-  background-color: #fff;
+  background-color: rgb(var(--white));
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
@@ -57,12 +57,12 @@ body, html {
 
   .burger-inner.open .top-bun {
     transform: translateY(6px) rotate(45deg);
-    background-color: var(--default-grey);
+    background-color: rgb(var(--default-grey));
   }
 
   .burger-inner.open .bottom-bun {
     transform: translateY(-6px) rotate(-45deg);
-    background-color: var(--default-grey);
+    background-color: rgb(var(--default-grey));
   }
 
 @layer components {
