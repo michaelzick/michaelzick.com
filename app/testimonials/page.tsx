@@ -16,35 +16,6 @@ export default function Testimonials() {
       <section className="bg-default-grey text-white px-6 md:px-8 py-24 md:py-32">
         <div className="max-w-[1400px] mx-auto space-y-24">
           <div className="flex flex-col md:flex-row md:items-center gap-8">
-            <div className="md:w-1/2">
-              <img
-                src="https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1641840183619-D7PWLG18BHVY64A52GB3/Ryan%2BIrby.jpg"
-                alt="Ryan I."
-                className="w-full h-auto object-cover"
-              />
-            </div>
-            <div className="md:w-1/2 space-y-6">
-              <h3 className="text-[35px] font-medium">Ryan I.</h3>
-              <p className="text-[23px]">
-                “I completed a one-on-one coaching series with Michael Zick and it was an
-                overwhelmingly positive experience. He provided me with a unique service I
-                haven’t experienced in any therapist or doctors office - NO cookie cutter
-                solutions.
-              </p>
-              <p className="text-[23px]">
-                Instead, he helped me uncover my challenges, hiding under the surface, and we
-                worked at them together. Michael Zick has a deep well of empathy, knowledge and
-                tools to help virtually anyone. He’s done the hard personal work himself.
-              </p>
-              <p className="text-[23px]">
-                Michael helped and pushed me to discover what it is that I was needing, then gave
-                me perspective, feedback, and tools to move through to a place of better clarity
-                and self knowledge.”
-              </p>
-            </div>
-          </div>
-
-          <div className="flex flex-col md:flex-row md:items-center gap-8">
             <div className="md:w-1/2 order-2 md:order-1 space-y-6">
               <h3 className="text-[35px] font-medium">Elizabeth D.</h3>
               <p className="text-[23px]">
@@ -71,6 +42,35 @@ export default function Testimonials() {
                 alt="Elizabeth D."
                 className="w-full h-auto object-cover"
               />
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row md:items-center gap-8">
+            <div className="md:w-1/2">
+              <img
+                src="https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1641840183619-D7PWLG18BHVY64A52GB3/Ryan%2BIrby.jpg"
+                alt="Ryan I."
+                className="w-full h-auto object-cover"
+              />
+            </div>
+            <div className="md:w-1/2 space-y-6">
+              <h3 className="text-[35px] font-medium">Ryan I.</h3>
+              <p className="text-[23px]">
+                “I completed a one-on-one coaching series with Michael Zick and it was an
+                overwhelmingly positive experience. He provided me with a unique service I
+                haven’t experienced in any therapist or doctors office - NO cookie cutter
+                solutions.
+              </p>
+              <p className="text-[23px]">
+                Instead, he helped me uncover my challenges, hiding under the surface, and we
+                worked at them together. Michael Zick has a deep well of empathy, knowledge and
+                tools to help virtually anyone. He’s done the hard personal work himself.
+              </p>
+              <p className="text-[23px]">
+                Michael helped and pushed me to discover what it is that I was needing, then gave
+                me perspective, feedback, and tools to move through to a place of better clarity
+                and self knowledge.”
+              </p>
             </div>
           </div>
         </div>
@@ -145,5 +145,5 @@ export default function Testimonials() {
         </div>
       </section>
     </div>
-  )
+  );
 }
