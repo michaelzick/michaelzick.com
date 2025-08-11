@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,23 +24,40 @@ export default function NavBar() {
       }`}
     >
       <nav className="relative z-50 flex w-full items-center justify-between py-10 text-white">
-        <Link
-          href="/"
-          className={`nav-link text-[32px] ${menuOpen ? '!text-default-grey' : ''}`}
-        >
+        <Link href="/" className={`${menuOpen ? '!text-default-grey' : ''}`}>
           <h1 className="font-bold text-[48px]">Michael Zick</h1>
         </Link>
         <div className="nav-links-container flex space-x-6">
-          <Link href="/work-with-me" className="nav-link text-2xl">
+          <Link
+            href="/work-with-me"
+            className={`nav-link text-2xl ${
+              pathname === '/work-with-me' ? 'active' : ''
+            }`}
+          >
             Work With Me
           </Link>
-          <Link href="/about" className="nav-link text-2xl">
+          <Link
+            href="/about"
+            className={`nav-link text-2xl ${
+              pathname === '/about' ? 'active' : ''
+            }`}
+          >
             About
           </Link>
-          <Link href="/testimonials" className="nav-link text-2xl">
+          <Link
+            href="/testimonials"
+            className={`nav-link text-2xl ${
+              pathname === '/testimonials' ? 'active' : ''
+            }`}
+          >
             Testimonials
           </Link>
-          <Link href="/contact" className="nav-link text-2xl">
+          <Link
+            href="/contact"
+            className={`nav-link text-2xl ${
+              pathname === '/contact' ? 'active' : ''
+            }`}
+          >
             Contact
           </Link>
         </div>
@@ -71,28 +90,36 @@ export default function NavBar() {
       >
         <Link
           href="/work-with-me"
-          className="nav-link text-default-grey"
+          className={`nav-link text-default-grey ${
+            pathname === '/work-with-me' ? 'active' : ''
+          }`}
           onClick={() => setMenuOpen(false)}
         >
           Work With Me
         </Link>
         <Link
           href="/about"
-          className="nav-link text-default-grey"
+          className={`nav-link text-default-grey ${
+            pathname === '/about' ? 'active' : ''
+          }`}
           onClick={() => setMenuOpen(false)}
         >
           About
         </Link>
         <Link
           href="/testimonials"
-          className="nav-link text-default-grey"
+          className={`nav-link text-default-grey ${
+            pathname === '/testimonials' ? 'active' : ''
+          }`}
           onClick={() => setMenuOpen(false)}
         >
           Testimonials
         </Link>
         <Link
           href="/contact"
-          className="nav-link text-default-grey"
+          className={`nav-link text-default-grey ${
+            pathname === '/contact' ? 'active' : ''
+          }`}
           onClick={() => setMenuOpen(false)}
         >
           Contact
