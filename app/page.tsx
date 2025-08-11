@@ -34,7 +34,7 @@ export default function Home() {
         >
           <path
             d="M0,0 C480,160 960,160 1440,0 L1440,160 L0,160 Z"
-            fill="var(--light-grey)"
+            fill="rgb(var(--light-grey))"
           />
         </svg>
       </section>
