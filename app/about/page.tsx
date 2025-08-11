@@ -5,18 +5,20 @@ export default function About() {
         className="relative text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32 bg-center bg-cover md:min-h-[578px]"
         style={{
           backgroundImage:
-            "url('/img/waterfall_2500.webp')",
+            "url('/img/dark_mountains_2500.webp')"
         }}
       >
         <div className="max-w-[1400px] mx-auto">
           <h1 className="text-[64px] font-semibold mb-6">About</h1>
-          <h3 className="text-[35px] font-light">
-            “Mental health is a commitment to reality at all costs.” — M. Scott Peck
+          <h3 className="text-[35px] font-light max-w-[900px]">
+            “Mental health is a commitment to reality at all costs.”
+            <br />
+            — M. Scott Peck
           </h3>
         </div>
       </section>
 
-      <section className="px-6 md:px-8 py-24 md:py-32 bg-[rgb(var(--light-grey))] text-default-grey">
+      <section className="px-6 md:px-8 py-24 md:py-32 bg-[rgb(var(--dark-blue))]">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-center gap-8">
             <div className="md:w-1/2 space-y-6 order-2 md:order-1">
@@ -82,15 +84,15 @@ export default function About() {
         <div className="max-w-[1400px] mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div className="space-y-4">
-              <h3 className="text-[35px] font-medium">
-                Certified as a Life &amp; Relationship Coach by Life Purpose Institute.
+              <h3 className="text-[30px] font-medium">
+                • Certified as a Life &amp; Relationship Coach by Life Purpose Institute.
               </h3>
-              <h3 className="text-[35px] font-medium">
-                Certified by Dr. Robert Glover, author of “No More Mr. Nice Guy” and renowned
+              <h3 className="text-[30px] font-medium">
+                • Certified by Dr. Robert Glover, author of “No More Mr. Nice Guy” and renowned
                 therapist.
               </h3>
-              <h3 className="text-[35px] font-medium">
-                Established in the Los Angeles mental health and recovery community since 2015.
+              <h3 className="text-[30px] font-medium">
+                • Established in the Los Angeles mental health and recovery community since 2015.
               </h3>
               <a
                 href="https://link.michaelzick.com/45min"
@@ -114,6 +116,6 @@ export default function About() {
         </div>
       </section>
     </div>
-  )
+  );
 }
 

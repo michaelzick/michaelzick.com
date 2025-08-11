@@ -10,9 +10,10 @@ export default function WorkWithMe() {
       >
         <div className="max-w-[1400px] mx-auto">
           <h1 className="text-[64px] font-semibold mb-6">Work With Me</h1>
-          <h3 className="text-[35px] font-light">
-            “You can&apos;t go back and change the beginning, but you can start where you are and change the ending.” — C.S.
-            Lewis
+          <h3 className="text-[35px] font-light max-w-[900px]">
+            “You can&apos;t go back and change the beginning, but you can start where you are and change the ending.”
+            <br />
+            — C.S. Lewis
           </h3>
         </div>
       </section>

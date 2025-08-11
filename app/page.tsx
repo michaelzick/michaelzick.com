@@ -53,17 +53,17 @@ export default function Home() {
           <h2 className="text-center text-5xl mb-12">How My Process is Different</h2>
           <div className="grid gap-8 md:grid-cols-3">
             <div className="space-y-4 text-center">
-              <img src="https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1639877923597-PHIQ98UGANFVSYLKAXC1/unsplash-image-LoGnr-w1D8E.jpg" alt="Identifying" className="w-full h-100 object-cover" />
+              <img src="/img/mountains_2500.webp" />
               <h3 className="text-4xl font-semibold">Identifying Meanings and Beliefs</h3>
               <p className="text-lg">Meanings and beliefs are like the programming language of our life. They provide a filter through which external information and experiences pass.</p>
             </div>
             <div className="space-y-4 text-center">
-              <img src="https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1639877889055-K1SXB431TORFI5GNSYEL/unsplash-image-8yQijYx5-ww.jpg" alt="Feelings" className="w-full h-100 object-cover" />
+              <img src="/img/ocean_2500.webp" alt="Feelings" className="w-full h-100 object-cover" />
               <h3 className="text-4xl font-semibold">Working Through Feelings, Experientially</h3>
               <p className="text-lg">While analyzing the “why” and the “what” around our thoughts and behaviors is useful, behaviors rarely change without working through the feelings.</p>
             </div>
             <div className="space-y-4 text-center">
-              <img src="https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1639877978633-ACDVU50FKOQZ38FAML6N/unsplash-image-LtHTe32r_nA.jpg" alt="Action" className="w-full h-100 object-cover" />
+              <img src="/img/dark_mountains_2500.webp" alt="Action" className="w-full h-100 object-cover" />
               <h3 className="text-4xl font-semibold">Taking Consistent, Conscious Action</h3>
               <p className="text-lg">Through identifying beliefs and processing feelings you can enter a new state of consciousness and awareness. This is where true behavioral change happens.</p>
             </div>

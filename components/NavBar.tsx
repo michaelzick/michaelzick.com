@@ -32,7 +32,7 @@ export default function NavBar() {
       >
         <Link href="/" className={`${menuOpen ? '!text-default-grey' : ''}`}>
           <h1
-            className={`font-bold transition-all duration-500 ${
+            className={`transition-all duration-500 ${
               scrolled ? 'text-[40px]' : 'text-[48px]'
             }`}
           >
