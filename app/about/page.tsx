@@ -83,17 +83,16 @@ export default function About() {
       <section className="px-6 md:px-8 py-24 md:py-32 bg-[rgb(var(--light-grey))] text-default-grey">
         <div className="max-w-[1400px] mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-start">
-            <div className="space-y-4">
-              <h3 className="text-[30px] font-medium">
-                • Certified as a Life &amp; Relationship Coach by Life Purpose Institute.
-              </h3>
-              <h3 className="text-[30px] font-medium">
-                • Certified by Dr. Robert Glover, author of “No More Mr. Nice Guy” and renowned
-                therapist.
-              </h3>
-              <h3 className="text-[30px] font-medium">
-                • Established in the Los Angeles mental health and recovery community since 2015.
-              </h3>
+            <div className="space-y-6">
+              <div className="p-6 bg-white rounded-lg shadow-md text-[30px] font-medium">
+                Certified as a Life &amp; Relationship Coach by Life Purpose Institute.
+              </div>
+              <div className="p-6 bg-white rounded-lg shadow-md text-[30px] font-medium">
+                Certified by Dr. Robert Glover, author of “No More Mr. Nice Guy” and renowned therapist.
+              </div>
+              <div className="p-6 bg-white rounded-lg shadow-md text-[30px] font-medium">
+                Established in the Los Angeles mental health and recovery community since 2015.
+              </div>
               <a
                 href="https://link.michaelzick.com/45min"
                 target="_blank"
@@ -102,9 +101,9 @@ export default function About() {
                 Book a Free 45-Minute Strategy Session
               </a>
             </div>
-            <div className="space-y-4">
-              <h2 className="text-[45px] font-semibold">Specialties:</h2>
-              <ul className="list-disc pl-6 space-y-2 text-[23px]">
+            <div className="space-y-6">
+              <h2 className="text-[55px] font-semibold">Specialties:</h2>
+              <ul className="list-disc pl-6 space-y-4 text-[30px]">
                 <li>Nice Guy Syndrome</li>
                 <li>Relationships &amp; dating</li>
                 <li>Finding your purpose</li>
