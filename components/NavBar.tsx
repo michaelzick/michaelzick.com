@@ -19,13 +19,25 @@ export default function NavBar() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 px-[70px] max-[929px]:px-[30px] transition-colors duration-500 ${
-        scrolled ? 'bg-dark-blue' : 'bg-transparent'
+      className={`fixed top-0 w-full z-50 px-[70px] max-[929px]:px-[30px] transition-all duration-500 ${
+        scrolled
+          ? 'bg-dark-blue/70 backdrop-blur-md'
+          : 'bg-transparent backdrop-blur-0'
       }`}
     >
-      <nav className="relative z-50 flex w-full items-center justify-between py-10 text-white">
+      <nav
+        className={`relative z-50 flex w-full items-center justify-between text-white transition-all duration-500 ${
+          scrolled ? 'py-4' : 'py-8'
+        }`}
+      >
         <Link href="/" className={`${menuOpen ? '!text-default-grey' : ''}`}>
-          <h1 className="font-bold text-[48px]">Michael Zick</h1>
+          <h1
+            className={`font-bold transition-all duration-500 ${
+              scrolled ? 'text-[40px]' : 'text-[48px]'
+            }`}
+          >
+            Michael Zick
+          </h1>
         </Link>
         <div className="nav-links-container flex space-x-6">
           <Link
