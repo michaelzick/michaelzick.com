@@ -80,24 +80,19 @@ export default function About() {
         </div>
       </section>
 
-      <section className="px-6 md:px-8 py-24 md:py-32">
+      <section className="px-6 md:px-8 py-24 md:py-32 bg-[rgb(var(--light-grey))] text-default-grey">
         <div className="max-w-[1400px] mx-auto">
-          <div className="relative overflow-hidden flex flex-col md:flex-row">
-            <div
-              className="flex-1 p-8 md:p-16 space-y-6 bg-[rgb(var(--dark-blue))] text-white md:[clip-path:polygon(0_0,calc(50%_+_80px)_0,calc(50%_-_80px)_100%,0_100%)]"
-            >
-              <h2 className="text-[45px] font-semibold">Credentials</h2>
-              <ul className="list-disc pl-6 space-y-4 text-[23px]">
-                <li>Certified as a Life &amp; Relationship Coach by Life Purpose Institute.</li>
-                <li>
-                  Certified by Dr. Robert Glover, author of “No More Mr. Nice Guy” and renowned
-                  therapist.
-                </li>
-                <li>
-                  Established in the Los Angeles mental health and recovery community since
-                  2015.
-                </li>
-              </ul>
+          <div className="grid md:grid-cols-2 gap-12 items-start">
+            <div className="space-y-6">
+              <div className="p-6 bg-white rounded-lg shadow-md text-[30px] font-medium">
+                Certified as a Life &amp; Relationship Coach by Life Purpose Institute.
+              </div>
+              <div className="p-6 bg-white rounded-lg shadow-md text-[30px] font-medium">
+                Certified by Dr. Robert Glover, author of “No More Mr. Nice Guy” and renowned therapist.
+              </div>
+              <div className="p-6 bg-white rounded-lg shadow-md text-[30px] font-medium">
+                Established in the Los Angeles mental health and recovery community since 2015.
+              </div>
               <a
                 href="https://link.michaelzick.com/45min"
                 target="_blank"
@@ -106,11 +101,9 @@ export default function About() {
                 Book a Free 45-Minute Strategy Session
               </a>
             </div>
-            <div
-              className="flex-1 p-8 md:p-16 bg-[rgb(var(--light-grey))] text-default-grey space-y-6 md:[clip-path:polygon(calc(50%_+_80px)_0,100%_0,100%_100%,calc(50%_-_80px)_100%)]"
-            >
-              <h2 className="text-[45px] font-semibold">Specialties</h2>
-              <ul className="list-disc pl-6 space-y-2 text-[23px]">
+            <div className="space-y-6">
+              <h2 className="text-[55px] font-semibold">Specialties:</h2>
+              <ul className="list-disc pl-6 space-y-4 text-[30px]">
                 <li>Nice Guy Syndrome</li>
                 <li>Relationships &amp; dating</li>
                 <li>Finding your purpose</li>
