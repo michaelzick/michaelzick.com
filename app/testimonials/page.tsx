@@ -38,7 +38,7 @@ export default function Testimonials() {
             </div>
             <div className="md:w-1/2 order-1 md:order-2">
               <img
-                src="https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1641840049990-6D7H35AWEW9ATI45I0YP/EG%2BDaily.jpg"
+                src="/img/eg.webp"
                 alt="Elizabeth D."
                 className="w-full h-auto object-cover"
               />
@@ -48,7 +48,7 @@ export default function Testimonials() {
           <div className="flex flex-col md:flex-row md:items-center gap-8">
             <div className="md:w-1/2">
               <img
-                src="https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1641840183619-D7PWLG18BHVY64A52GB3/Ryan%2BIrby.jpg"
+                src="/img/ryan.webp"
                 alt="Ryan I."
                 className="w-full h-auto object-cover"
               />

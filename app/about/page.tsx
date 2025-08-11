@@ -42,7 +42,7 @@ export default function About() {
             </div>
             <div className="md:w-1/2 order-1 md:order-2">
               <img
-                src="https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/c328a4db-a4b7-436d-ba24-1222051310e5/DSC03651.jpg"
+                src="/img/blue_jacket.webp"
                 alt="Michael wearing a jacket"
                 className="w-full h-auto object-cover"
               />
@@ -56,7 +56,7 @@ export default function About() {
           <div className="flex flex-col md:flex-row md:items-center gap-8">
             <div className="md:w-1/2">
               <img
-                src="https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1633647108612-3VE4IJDM88VBYCF0MVKR/MichaelSuitHotel%2522Driplinell%2522-0333.jpg"
+                src="/img/grey_jacket.webp"
                 alt="Michael in suit"
                 className="w-full h-auto object-cover"
               />
