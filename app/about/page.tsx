@@ -18,7 +18,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="px-6 md:px-8 py-24 md:py-32 bg-[rgb(var(--dark-blue))]">
+      <section className="px-6 md:px-8 pt-24 md:pt-32 bg-[rgb(var(--dark-blue))]">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-center gap-8">
             <div className="md:w-1/2 space-y-6 order-2 md:order-1">
@@ -71,7 +71,7 @@ export default function About() {
               <a
                 href="https://link.michaelzick.com/45min"
                 target="_blank"
-                className="btn inline-block"
+                className="btn inline-block text-lg"
               >
                 Book a Free 45-Minute Strategy Session
               </a>
@@ -96,7 +96,7 @@ export default function About() {
               <a
                 href="https://link.michaelzick.com/45min"
                 target="_blank"
-                className="btn inline-block mt-6"
+                className="btn inline-block mt-6 text-lg"
               >
                 Book a Free 45-Minute Strategy Session
               </a>

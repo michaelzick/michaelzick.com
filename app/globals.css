@@ -10,9 +10,9 @@
   --primary-blue: 0 113 227;
 }
 
-body, html {
+body,
+html {
   background-color: rgb(var(--dark-blue));
-  font-family: Helvetica, Arial, sans-serif;
   color: rgb(var(--white));
 }
 
@@ -21,6 +21,7 @@ body, html {
 }
 
 @media (max-width: 929px) {
+
   .nav-links-container,
   .nav-button {
     display: none;
@@ -55,15 +56,15 @@ body, html {
   bottom: 6px;
 }
 
-  .burger-inner.open .top-bun {
-    transform: translateY(6px) rotate(45deg);
-    background-color: rgb(var(--default-grey));
-  }
+.burger-inner.open .top-bun {
+  transform: translateY(6px) rotate(45deg);
+  background-color: rgb(var(--default-grey));
+}
 
-  .burger-inner.open .bottom-bun {
-    transform: translateY(-6px) rotate(-45deg);
-    background-color: rgb(var(--default-grey));
-  }
+.burger-inner.open .bottom-bun {
+  transform: translateY(-6px) rotate(-45deg);
+  background-color: rgb(var(--default-grey));
+}
 
 @layer components {
   .nav-link {

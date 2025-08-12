@@ -69,7 +69,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-12 text-center">
-            <a href="https://link.michaelzick.com/45min" target="_blank" className="btn">Book a Free 45-Minute Strategy Session</a>
+            <a href="https://link.michaelzick.com/45min" target="_blank" className="btn text-lg">Book a Free 45-Minute Strategy Session</a>
           </div>
         </div>
       </section>

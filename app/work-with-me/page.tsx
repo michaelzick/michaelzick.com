@@ -38,7 +38,7 @@ export default function WorkWithMe() {
             <a
               href="https://link.michaelzick.com/45min"
               target="_blank"
-              className="btn mt-6 inline-block"
+              className="btn mt-6 inline-block text-lg"
             >
               Book a Free 45-Minute Strategy Session
             </a>

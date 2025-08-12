@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+        sans: ['"Tahoma"', 'Helvetica', 'Arial', 'sans-serif'],
       },
       colors: {
         'primary-blue': 'rgb(var(--primary-blue) / <alpha-value>)',
