@@ -1,3 +1,32 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Michael Zick | Testimonials',
+  description:
+    'Hear from clients who have transformed their lives through coaching with Michael Zick.',
+  openGraph: {
+    title: 'Michael Zick | Testimonials',
+    description:
+      'Hear from clients who have transformed their lives through coaching with Michael Zick.',
+    url: 'https://michaelzick.com/testimonials',
+    siteName: 'Michael Zick',
+    images: [
+      {
+        url: 'https://michaelzick.com/img/mountains_2500.webp',
+        alt: 'Mountain range at sunrise',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Michael Zick | Testimonials',
+    description:
+      'Hear from clients who have transformed their lives through coaching with Michael Zick.',
+    images: ['https://michaelzick.com/img/mountains_2500.webp'],
+  },
+}
+
 export default function Testimonials() {
   return (
     <div className="flex flex-col">

@@ -5,7 +5,22 @@ import NavBar from '../components/NavBar'
 
 export const metadata: Metadata = {
   title: 'Michael Zick | Peak Performance Coach',
-  description: "I'm a Los Angeles-based certified life and relationship coach, helping individuals level up and relate powerfully.",
+  description:
+    'Los Angeles-based peak performance coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
+  openGraph: {
+    title: 'Michael Zick | Peak Performance Coach',
+    description:
+      'Los Angeles-based peak performance coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
+    url: 'https://michaelzick.com',
+    siteName: 'Michael Zick',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Michael Zick | Peak Performance Coach',
+    description:
+      'Los Angeles-based peak performance coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
