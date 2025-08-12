@@ -8,11 +8,11 @@ export const metadata: Metadata = {
     title: 'Michael Zick | Testimonials',
     description:
       'Hear from clients who have transformed their lives through coaching with Michael Zick.',
-    url: 'https://michaelzick.com/testimonials',
+    url: 'https://www.michaelzick.com/testimonials',
     siteName: 'Michael Zick',
     images: [
       {
-        url: 'https://michaelzick.com/img/mountains_2500.webp',
+        url: 'https://www.michaelzick.com/img/mountains_2500.webp',
         alt: 'Mountain range at sunrise',
       },
     ],
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: 'Michael Zick | Testimonials',
     description:
       'Hear from clients who have transformed their lives through coaching with Michael Zick.',
-    images: ['https://michaelzick.com/img/mountains_2500.webp'],
+    images: ['https://www.michaelzick.com/img/mountains_2500.webp'],
   },
 }
 

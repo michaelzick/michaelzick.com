@@ -8,11 +8,11 @@ export const metadata: Metadata = {
     title: 'Michael Zick | Work With Me',
     description:
       'Explore coaching programs with Michael Zick to achieve peak performance and lasting change.',
-    url: 'https://michaelzick.com/work-with-me',
+    url: 'https://www.michaelzick.com/work-with-me',
     siteName: 'Michael Zick',
     images: [
       {
-        url: 'https://michaelzick.com/img/waterfall_2500.webp',
+        url: 'https://www.michaelzick.com/img/waterfall_2500.webp',
         alt: 'Waterfall cascading over rocks',
       },
     ],
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: 'Michael Zick | Work With Me',
     description:
       'Explore coaching programs with Michael Zick to achieve peak performance and lasting change.',
-    images: ['https://michaelzick.com/img/waterfall_2500.webp'],
+    images: ['https://www.michaelzick.com/img/waterfall_2500.webp'],
   },
 }
 

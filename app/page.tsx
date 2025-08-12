@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: 'Michael Zick | Peak Performance Coach',
     description:
       'Los Angeles-based peak performance coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
-    url: 'https://michaelzick.com',
+    url: 'https://www.michaelzick.com',
     siteName: 'Michael Zick',
     images: [
       {

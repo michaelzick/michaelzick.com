@@ -9,11 +9,11 @@ export const metadata: Metadata = {
     title: 'Michael Zick | Contact',
     description:
       'Get in touch with Michael Zick for coaching inquiries and strategy sessions.',
-    url: 'https://michaelzick.com/contact',
+    url: 'https://www.michaelzick.com/contact',
     siteName: 'Michael Zick',
     images: [
       {
-        url: 'https://michaelzick.com/img/lake_reflection_2500.webp',
+        url: 'https://www.michaelzick.com/img/lake_reflection_2500.webp',
         alt: 'Lake reflection at dusk',
       },
     ],
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: 'Michael Zick | Contact',
     description:
       'Get in touch with Michael Zick for coaching inquiries and strategy sessions.',
-    images: ['https://michaelzick.com/img/lake_reflection_2500.webp'],
+    images: ['https://www.michaelzick.com/img/lake_reflection_2500.webp'],
   },
 };
 

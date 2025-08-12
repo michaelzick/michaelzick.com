@@ -8,11 +8,11 @@ export const metadata: Metadata = {
     title: 'Michael Zick | About',
     description:
       'Learn more about Michael Zick, a Los Angeles-based peak performance coach dedicated to helping clients take action and build powerful relationships.',
-    url: 'https://michaelzick.com/about',
+    url: 'https://www.michaelzick.com/about',
     siteName: 'Michael Zick',
     images: [
       {
-        url: 'https://michaelzick.com/img/dark_mountains_2500.webp',
+        url: 'https://www.michaelzick.com/img/dark_mountains_2500.webp',
         alt: 'Dark mountain landscape',
       },
     ],
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: 'Michael Zick | About',
     description:
       'Learn more about Michael Zick, a Los Angeles-based peak performance coach dedicated to helping clients take action and build powerful relationships.',
-    images: ['https://michaelzick.com/img/dark_mountains_2500.webp'],
+    images: ['https://www.michaelzick.com/img/dark_mountains_2500.webp'],
   },
 }
 
