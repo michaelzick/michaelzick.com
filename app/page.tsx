@@ -71,7 +71,7 @@ export default function Home() {
 
       {/* Intro Section */}
       <section className="py-24 bg-light-grey text-default-grey text-4xl">
-        <div className="max-w-5xl mx-auto text-center space-y-8">
+        <div className="max-w-5xl mx-auto text-center space-y-8 px-2.5 md:px-0">
           <h2>You’ve tried things – many things probably, but you’re still in the same place. You know you can achieve more but something is holding you back.</h2>
           <h2>Perhaps what you need is someone who’s been through the same things as you but has found the knowledge, practices, and resources to change.</h2>
         </div>
@@ -83,19 +83,19 @@ export default function Home() {
           <h2 className="text-center text-5xl mb-12">How My Process is Different</h2>
           <div className="grid gap-8 md:grid-cols-3">
             <div className="space-y-4 text-center">
-              <img src="/img/mountains_2500.webp" />
-              <h3 className="text-4xl font-semibold">Identifying Meanings and Beliefs</h3>
-              <p className="text-lg">Meanings and beliefs are like the programming language of our life. They provide a filter through which external information and experiences pass.</p>
+              <img src="/img/mountains_2500.webp" alt="Mountains" />
+              <h3 className="px-2.5 md:px-0 text-4xl font-semibold">Identifying Meanings and Beliefs</h3>
+              <p className="px-2.5 md:px-0 text-lg">Meanings and beliefs are like the programming language of our life. They provide a filter through which external information and experiences pass.</p>
             </div>
             <div className="space-y-4 text-center">
               <img src="/img/ocean_2500.webp" alt="Feelings" className="w-full h-100 object-cover" />
-              <h3 className="text-4xl font-semibold">Working Through Feelings, Experientially</h3>
-              <p className="text-lg">While analyzing the “why” and the “what” around our thoughts and behaviors is useful, behaviors rarely change without working through the feelings.</p>
+              <h3 className="px-2.5 md:px-0 text-4xl font-semibold">Working Through Feelings, Experientially</h3>
+              <p className="px-2.5 md:px-0 text-lg">While analyzing the “why” and the “what” around our thoughts and behaviors is useful, behaviors rarely change without working through the feelings.</p>
             </div>
             <div className="space-y-4 text-center">
               <img src="/img/dark_mountains_2500.webp" alt="Action" className="w-full h-100 object-cover" />
-              <h3 className="text-4xl font-semibold">Taking Consistent, Conscious Action</h3>
-              <p className="text-lg">Through identifying beliefs and processing feelings you can enter a new state of consciousness and awareness. This is where true behavioral change happens.</p>
+              <h3 className="px-2.5 md:px-0 text-4xl font-semibold">Taking Consistent, Conscious Action</h3>
+              <p className="px-2.5 md:px-0 text-lg">Through identifying beliefs and processing feelings you can enter a new state of consciousness and awareness. This is where true behavioral change happens.</p>
             </div>
           </div>
           <div className="mt-12 text-center">
