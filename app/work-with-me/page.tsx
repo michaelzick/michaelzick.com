@@ -1,3 +1,32 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Michael Zick | Work With Me',
+  description:
+    'Explore coaching programs with Michael Zick to achieve peak performance and lasting change.',
+  openGraph: {
+    title: 'Michael Zick | Work With Me',
+    description:
+      'Explore coaching programs with Michael Zick to achieve peak performance and lasting change.',
+    url: 'https://michaelzick.com/work-with-me',
+    siteName: 'Michael Zick',
+    images: [
+      {
+        url: 'https://michaelzick.com/img/waterfall_2500.webp',
+        alt: 'Waterfall cascading over rocks',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Michael Zick | Work With Me',
+    description:
+      'Explore coaching programs with Michael Zick to achieve peak performance and lasting change.',
+    images: ['https://michaelzick.com/img/waterfall_2500.webp'],
+  },
+}
+
 export default function WorkWithMe() {
   return (
     <div className="flex flex-col">

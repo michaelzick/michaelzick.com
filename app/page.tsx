@@ -1,5 +1,35 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Michael Zick | Peak Performance Coach',
+  description:
+    'Los Angeles-based peak performance coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
+  openGraph: {
+    title: 'Michael Zick | Peak Performance Coach',
+    description:
+      'Los Angeles-based peak performance coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
+    url: 'https://michaelzick.com',
+    siteName: 'Michael Zick',
+    images: [
+      {
+        url: 'https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1653791669541-TDDSOVCWEKVZYEX6T108/unsplash-image-CeYGSLBtuWk.jpg',
+        alt: 'Mountain landscape at sunset',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Michael Zick | Peak Performance Coach',
+    description:
+      'Los Angeles-based peak performance coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
+    images: [
+      'https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1653791669541-TDDSOVCWEKVZYEX6T108/unsplash-image-CeYGSLBtuWk.jpg',
+    ],
+  },
+}
 
 export default function Home() {
   return (
