@@ -37,7 +37,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-screen flex items-end text-white" style={{backgroundImage: "url('https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1653791669541-TDDSOVCWEKVZYEX6T108/unsplash-image-CeYGSLBtuWk.jpg')", backgroundSize:'cover', backgroundPosition:'center'}}>
         <div className="w-full max-w-[1400px] mx-auto p-8">
-          <h2 className="text-4xl md:text-6xl font-semibold text-right">Peak Performance Coach</h2>
+          <h2 className="text-4xl md:text-6xl text-right">Peak Performance Coach</h2>
         </div>
       </section>
 
