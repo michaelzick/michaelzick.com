@@ -37,7 +37,7 @@ export default function WorkWithMe() {
             "url('/img/ocean_2500.webp')",
         }}
       >
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/30" />
         <div className="relative max-w-[1400px] mx-auto">
           <h1 className="text-[64px] font-semibold mb-6">Work With Me</h1>
           <h3 className="text-[35px] font-light max-w-[900px]">
