@@ -17,6 +17,14 @@ export default function NavBar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+  }, [menuOpen])
+
   return (
     <header
       className={`fixed top-0 w-full z-50 px-[70px] max-[929px]:px-[30px] transition-all duration-500 ${
@@ -39,7 +47,7 @@ export default function NavBar() {
             Michael Zick
           </h1>
         </Link>
-        <div className="nav-links-container flex space-x-6">
+        <div className="nav-links-container flex space-x-6 max-[929px]:hidden">
           <Link
             href="/work-with-me"
             className={`nav-link text-2xl ${
@@ -78,7 +86,10 @@ export default function NavBar() {
           data-animation-role="header-element"
         >
           <button
-            className="header-burger-btn burger"
+            type="button"
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            className="header-burger-btn burger hidden max-[929px]:block"
             data-test="header-burger"
             onClick={() => setMenuOpen(!menuOpen)}
           >
@@ -95,48 +106,48 @@ export default function NavBar() {
           </button>
         </div>
       </nav>
-      <div
-        className={`fixed inset-0 bg-white text-default-grey z-40 flex flex-col items-end justify-center space-y-6 p-8 transform transition-transform duration-300 ${
-          menuOpen ? 'translate-x-0' : 'translate-x-full pointer-events-none'
-        }`}
-      >
-        <Link
-          href="/work-with-me"
-          className={`nav-link text-default-grey ${
-            pathname === '/work-with-me' ? 'active' : ''
+        <div
+          className={`fixed inset-0 bg-white text-default-grey z-40 hidden max-[929px]:flex flex-col items-end justify-start pt-24 space-y-6 p-8 transform transition-transform duration-300 ${
+            menuOpen ? 'translate-x-0' : 'translate-x-full pointer-events-none'
           }`}
-          onClick={() => setMenuOpen(false)}
         >
-          Work With Me
-        </Link>
-        <Link
-          href="/about"
-          className={`nav-link text-default-grey ${
-            pathname === '/about' ? 'active' : ''
-          }`}
-          onClick={() => setMenuOpen(false)}
-        >
-          About
-        </Link>
-        <Link
-          href="/testimonials"
-          className={`nav-link text-default-grey ${
-            pathname === '/testimonials' ? 'active' : ''
-          }`}
-          onClick={() => setMenuOpen(false)}
-        >
-          Testimonials
-        </Link>
-        <Link
-          href="/contact"
-          className={`nav-link text-default-grey ${
-            pathname === '/contact' ? 'active' : ''
-          }`}
-          onClick={() => setMenuOpen(false)}
-        >
-          Contact
-        </Link>
-      </div>
+          <Link
+            href="/work-with-me"
+            className={`nav-link text-2xl text-default-grey ${
+              pathname === '/work-with-me' ? 'active' : ''
+            }`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Work With Me
+          </Link>
+          <Link
+            href="/about"
+            className={`nav-link text-2xl text-default-grey ${
+              pathname === '/about' ? 'active' : ''
+            }`}
+            onClick={() => setMenuOpen(false)}
+          >
+            About
+          </Link>
+          <Link
+            href="/testimonials"
+            className={`nav-link text-2xl text-default-grey ${
+              pathname === '/testimonials' ? 'active' : ''
+            }`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Testimonials
+          </Link>
+          <Link
+            href="/contact"
+            className={`nav-link text-2xl text-default-grey ${
+              pathname === '/contact' ? 'active' : ''
+            }`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Contact
+          </Link>
+        </div>
     </header>
   )
 }
