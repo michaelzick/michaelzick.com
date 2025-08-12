@@ -81,6 +81,20 @@ html {
     @apply scale-x-100;
   }
 
+  .footer-link {
+    @apply relative block text-white;
+  }
+
+  .footer-link::after {
+    content: '';
+    @apply absolute left-0 -bottom-1 h-[2px] w-full bg-current transform origin-left scale-x-0 transition-transform duration-300 ease-in-out;
+  }
+
+  .footer-link:hover::after,
+  .footer-link.active::after {
+    @apply scale-x-100;
+  }
+
   .btn {
     @apply inline-flex items-center justify-center rounded bg-primary-blue text-white transition-colors duration-200 hover:opacity-90;
     padding: 30px 42px;
