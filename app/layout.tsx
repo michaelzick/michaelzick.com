@@ -38,17 +38,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a
                 href="https://link.michaelzick.com/45min"
                 target="_blank"
-                className="block"
+                className="footer-link inline-block"
               >
                 <strong>Book a Free 45-Minute Strategy Session</strong>
               </a>
-              <Link href="/work-with-me" className="block">
+              <br />
+              <Link href="/work-with-me" className="footer-link inline-block">
                 Work With Me
               </Link>
-              <Link href="/testimonials" className="block">
+              <br />
+              <Link href="/testimonials" className="footer-link inline-block">
                 Testimonials
               </Link>
-              <Link href="/about" className="block">
+              <br />
+              <Link href="/about" className="footer-link inline-block">
                 About
               </Link>
             </div>
