@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     siteName: 'Michael Zick',
     images: [
       {
-        url: 'https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1653791669541-TDDSOVCWEKVZYEX6T108/unsplash-image-CeYGSLBtuWk.jpg',
+        url: '/img/homepage_mountains.webp',
         alt: 'Mountain landscape at sunset',
       },
     ],
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description:
       'Los Angeles-based peak performance coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
     images: [
-      'https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1653791669541-TDDSOVCWEKVZYEX6T108/unsplash-image-CeYGSLBtuWk.jpg',
+      '/img/homepage_mountains.webp',
     ],
   },
 }
@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-end text-white" style={{backgroundImage: "url('https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1653791669541-TDDSOVCWEKVZYEX6T108/unsplash-image-CeYGSLBtuWk.jpg')", backgroundSize:'cover', backgroundPosition:'center'}}>
+      <section className="relative h-screen flex items-end text-white" style={{backgroundImage: "url('/img/homepage_mountains.webp')", backgroundSize:'cover', backgroundPosition:'center'}}>
         <div className="w-full max-w-[1400px] mx-auto p-8">
           <h2 className="text-4xl md:text-6xl text-right">Peak Performance Coach</h2>
         </div>
@@ -46,7 +46,7 @@ export default function Home() {
         className="relative py-56 overflow-hidden"
         style={{
           backgroundImage:
-            "url('https://images.squarespace-cdn.com/content/v1/5f13a142b2a20e01e9bfd9e3/1736313453279-VWGAVDGHDBCTQU72PCZT/unsplash-image-vNVwg35VZrg.jpg')",
+            "url('/img/lake_reflection_2500.webp')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
