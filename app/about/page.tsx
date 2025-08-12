@@ -98,7 +98,7 @@ export default function About() {
               </p>
               <h2 className="text-[45px] font-semibold">Let’s talk.</h2>
               <a
-                href="https://link.michaelzick.com/45min"
+                href="https://calendly.com/michaelzick/45min"
                 target="_blank"
                 className="btn inline-block text-lg"
               >
@@ -123,7 +123,7 @@ export default function About() {
                 Established in the Los Angeles mental health and recovery community since 2015.
               </div>
               <a
-                href="https://link.michaelzick.com/45min"
+                href="https://calendly.com/michaelzick/45min"
                 target="_blank"
                 className="btn inline-block mt-6 text-lg"
               >

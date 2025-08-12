@@ -66,7 +66,7 @@ export default function WorkWithMe() {
           </ul>
           <div>
             <a
-              href="https://link.michaelzick.com/45min"
+              href="https://calendly.com/michaelzick/45min"
               target="_blank"
               className="btn mt-6 inline-block text-lg"
             >

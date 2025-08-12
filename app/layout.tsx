@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
             <div className="md:col-span-6 md:col-start-6 md:text-right space-y-2">
               <a
-                href="https://link.michaelzick.com/45min"
+                href="https://calendly.com/michaelzick/45min"
                 target="_blank"
                 className="footer-link inline-block"
               >
