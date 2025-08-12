@@ -12,8 +12,8 @@ export const metadata: Metadata = {
     siteName: 'Michael Zick',
     images: [
       {
-        url: 'https://www.michaelzick.com/img/waterfall_2500.webp',
-        alt: 'Waterfall cascading over rocks',
+        url: 'https://www.michaelzick.com/img/ocean_2500.webp',
+        alt: 'Closeup of the ocean',
       },
     ],
     type: 'website',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: 'Michael Zick | Work With Me',
     description:
       'Explore coaching programs with Michael Zick to achieve peak performance and lasting change.',
-    images: ['https://www.michaelzick.com/img/waterfall_2500.webp'],
+    images: ['https://www.michaelzick.com/img/ocean_2500.webp'],
   },
 }
 
@@ -34,7 +34,7 @@ export default function WorkWithMe() {
         className="relative text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32 bg-center bg-cover md:min-h-[578px]"
         style={{
           backgroundImage:
-            "url('/img/waterfall_2500.webp')",
+            "url('/img/ocean_2500.webp')",
         }}
       >
         <div className="max-w-[1400px] mx-auto">
