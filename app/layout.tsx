@@ -1,8 +1,8 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import Link from 'next/link'
-import NavBar from '../components/NavBar'
-import Script from 'next/script'
+import './globals.css';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import NavBar from '../components/NavBar';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Michael Zick | Peak Performance Coach',
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     description:
       'Los Angeles-based peak performance coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
   },
-}
+};
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode; }) {
   return (
     <html lang="en">
       <head>
@@ -64,17 +64,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 Work With Me
               </Link>
               <br />
+              <Link href="/about" className="footer-link inline-block">
+                About
+              </Link>
+              <br />
               <Link href="/testimonials" className="footer-link inline-block">
                 Testimonials
               </Link>
               <br />
-              <Link href="/about" className="footer-link inline-block">
-                About
+              <Link href="/contact" className="footer-link inline-block">
+                Contact
               </Link>
             </div>
           </div>
         </footer>
       </body>
     </html>
-  )
+  );
 }
