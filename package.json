@@ -10,7 +10,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "echo \"No tests configured\""
+    "test": "echo \"No tests configured\"",
+    "sitemap": "node scripts/generate-sitemap.js"
   },
   "dependencies": {
     "next": "latest",
