@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import NavBar from '../components/NavBar'
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: 'Michael Zick | Peak Performance Coach',
@@ -26,6 +27,22 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-QK4WD4TRZV"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-QK4WD4TRZV');
+          `}
+        </Script>
+      </head>
       <body className="min-h-screen flex flex-col font-sans">
         <NavBar />
         <main className="flex-1">{children}</main>
