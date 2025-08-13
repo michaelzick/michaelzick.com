@@ -11,7 +11,7 @@ export default function ContactContent() {
   return (
     <div className="flex flex-col">
       <section
-        className="bg-default-grey text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32"
+        className="bg-default-grey h-screen text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32"
         style={{
           backgroundImage: "url('/img/lake_reflection_2500.webp')",
         }}

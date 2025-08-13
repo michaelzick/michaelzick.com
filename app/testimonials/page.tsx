@@ -31,14 +31,11 @@ export default function Testimonials() {
   return (
     <div className="flex flex-col">
       <section
-        className="relative text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32 bg-center bg-cover md:min-h-[578px]"
-        style={{
-          backgroundImage:
-            "url('/img/mountains_2500.webp')",
-        }}
+        className="relative h-screen flex items-end text-white"
+        style={{ backgroundImage: "url('/img/mountains_2500.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
-        <div className="max-w-[1400px] mx-auto">
-          <h1 className="text-[64px] font-semibold mb-6">What People Are Saying</h1>
+        <div className="relative w-full max-w-[1400px] mx-auto p-8">
+          <h2 className="text-4xl md:text-6xl text-right">Testimonials</h2>
         </div>
       </section>
 

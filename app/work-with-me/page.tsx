@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Michael Zick | Work With Me',
@@ -25,26 +25,18 @@ export const metadata: Metadata = {
       'Explore coaching programs with Michael Zick to achieve peak performance and lasting change.',
     images: ['https://www.michaelzick.com/img/ocean_2500.webp'],
   },
-}
+};
 
 export default function WorkWithMe() {
   return (
     <div className="flex flex-col">
       <section
-        className="relative text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32 bg-center bg-cover md:min-h-[578px]"
-        style={{
-          backgroundImage:
-            "url('/img/ocean_2500.webp')",
-        }}
+        className="relative h-screen flex items-end text-white"
+        style={{ backgroundImage: "url('/img/ocean_2500.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
         <div className="absolute inset-0 bg-black/30" />
-        <div className="relative max-w-[1400px] mx-auto">
-          <h1 className="text-[64px] font-semibold mb-6">Work With Me</h1>
-          <h3 className="text-[35px] font-light max-w-[900px]">
-            “You can&apos;t go back and change the beginning, but you can start where you are and change the ending.”
-            <br />
-            — C.S. Lewis
-          </h3>
+        <div className="relative w-full max-w-[1400px] mx-auto p-8">
+          <h2 className="text-4xl md:text-6xl text-right">Work With Me</h2>
         </div>
       </section>
       <section className="px-6 md:px-8 py-24 md:py-32 bg-[rgb(var(--light-grey))] text-default-grey">
@@ -76,6 +68,6 @@ export default function WorkWithMe() {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
