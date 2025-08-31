@@ -11,7 +11,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "echo \"No tests configured\"",
-    "sitemap": "node scripts/generate-sitemap.js"
+    "sitemap": "node scripts/generate-sitemap.js",
+    "export": "next build"
   },
   "dependencies": {
     "next": "latest",
