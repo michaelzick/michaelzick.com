@@ -8,6 +8,7 @@ export default function NavBar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
+  const [activePath, setActivePath] = useState('')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +25,10 @@ export default function NavBar() {
       document.body.style.overflow = ''
     }
   }, [menuOpen])
+
+  useEffect(() => {
+    setActivePath(pathname)
+  }, [pathname])
 
   return (
     <header
@@ -47,11 +52,11 @@ export default function NavBar() {
             Michael Zick
           </h1>
         </Link>
-        <div className="nav-links-container flex space-x-6 max-[929px]:hidden">
+        <div className="nav-links-container flex items-center space-x-6 max-[929px]:hidden">
           <Link
             href="/work-with-me"
             className={`nav-link text-2xl ${
-              pathname === '/work-with-me' ? 'active' : ''
+              activePath === '/work-with-me' ? 'active' : ''
             }`}
           >
             Work With Me
@@ -59,7 +64,7 @@ export default function NavBar() {
           <Link
             href="/about"
             className={`nav-link text-2xl ${
-              pathname === '/about' ? 'active' : ''
+              activePath === '/about' ? 'active' : ''
             }`}
           >
             About
@@ -67,7 +72,7 @@ export default function NavBar() {
           <Link
             href="/testimonials"
             className={`nav-link text-2xl ${
-              pathname === '/testimonials' ? 'active' : ''
+              activePath === '/testimonials' ? 'active' : ''
             }`}
           >
             Testimonials
@@ -75,11 +80,19 @@ export default function NavBar() {
           <Link
             href="/contact"
             className={`nav-link text-2xl ${
-              pathname === '/contact' ? 'active' : ''
+              activePath === '/contact' ? 'active' : ''
             }`}
           >
             Contact
           </Link>
+          <a
+            href="https://calendly.com/michaelzick/45min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-button"
+          >
+            Book a Session
+          </a>
         </div>
         <div
           className="header-burger menu-overlay-has-visible-non-navigation-items"
@@ -114,7 +127,7 @@ export default function NavBar() {
           <Link
             href="/work-with-me"
             className={`nav-link text-2xl text-default-grey ${
-              pathname === '/work-with-me' ? 'active' : ''
+              activePath === '/work-with-me' ? 'active' : ''
             }`}
             onClick={() => setMenuOpen(false)}
           >
@@ -123,7 +136,7 @@ export default function NavBar() {
           <Link
             href="/about"
             className={`nav-link text-2xl text-default-grey ${
-              pathname === '/about' ? 'active' : ''
+              activePath === '/about' ? 'active' : ''
             }`}
             onClick={() => setMenuOpen(false)}
           >
@@ -132,7 +145,7 @@ export default function NavBar() {
           <Link
             href="/testimonials"
             className={`nav-link text-2xl text-default-grey ${
-              pathname === '/testimonials' ? 'active' : ''
+              activePath === '/testimonials' ? 'active' : ''
             }`}
             onClick={() => setMenuOpen(false)}
           >
@@ -141,12 +154,21 @@ export default function NavBar() {
           <Link
             href="/contact"
             className={`nav-link text-2xl text-default-grey ${
-              pathname === '/contact' ? 'active' : ''
+              activePath === '/contact' ? 'active' : ''
             }`}
             onClick={() => setMenuOpen(false)}
           >
             Contact
           </Link>
+          <a
+            href="https://calendly.com/michaelzick/45min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-button"
+            onClick={() => setMenuOpen(false)}
+          >
+            Book a Session
+          </a>
         </div>
     </header>
   )
