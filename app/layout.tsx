@@ -52,14 +52,6 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
               <p>Michael Zick Coaching | Peak Performance Coach</p>
             </div>
             <div className="md:col-span-6 md:col-start-6 md:text-right space-y-2">
-              <a
-                href="https://calendly.com/michaelzick/45min"
-                target="_blank"
-                className="footer-link inline-block"
-              >
-                <strong>Book a Free 45-Minute Strategy Session</strong>
-              </a>
-              <br />
               <Link href="/work-with-me" className="footer-link inline-block">
                 Work With Me
               </Link>
@@ -75,6 +67,14 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
               <Link href="/contact" className="footer-link inline-block">
                 Contact
               </Link>
+              <br />
+              <a
+                href="https://calendly.com/michaelzick/45min"
+                target="_blank"
+                className="footer-link inline-block"
+              >
+                <strong>Book a Session</strong>
+              </a>
             </div>
           </div>
         </footer>
