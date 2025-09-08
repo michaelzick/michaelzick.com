@@ -47,7 +47,7 @@ export default function NavBar() {
             Michael Zick
           </h1>
         </Link>
-        <div className="nav-links-container flex space-x-6 max-[929px]:hidden">
+        <div className="nav-links-container flex items-center space-x-6 max-[929px]:hidden">
           <Link
             href="/work-with-me"
             className={`nav-link text-2xl ${
@@ -80,6 +80,14 @@ export default function NavBar() {
           >
             Contact
           </Link>
+          <a
+            href="https://calendly.com/michaelzick/45min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-button"
+          >
+            Book a Session
+          </a>
         </div>
         <div
           className="header-burger menu-overlay-has-visible-non-navigation-items"

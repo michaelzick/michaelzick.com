@@ -101,4 +101,8 @@ html {
     font-size: 16px;
     line-height: 16px;
   }
+  .nav-button {
+    @apply inline-flex items-center justify-center rounded bg-primary-blue text-white transition-colors duration-200 hover:opacity-90 text-base leading-4;
+    padding: 8px 16px;
+  }
 }
