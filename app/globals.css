@@ -22,8 +22,7 @@ html {
 
 @media (max-width: 929px) {
 
-  .nav-links-container,
-  .nav-button {
+  .nav-links-container {
     display: none;
   }
 
@@ -100,5 +99,9 @@ html {
     padding: 30px 42px;
     font-size: 16px;
     line-height: 16px;
+  }
+  .nav-button {
+    @apply inline-flex items-center justify-center rounded bg-primary-blue text-white transition-colors duration-200 hover:opacity-90 text-base leading-4;
+    padding: 8px 16px;
   }
 }
