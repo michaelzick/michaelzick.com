@@ -55,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
               <a
                 href="https://calendly.com/michaelzick/45min"
                 target="_blank"
-                className="footer-link inline-block"
+                className="footer-link inline-block text-primary-blue transition-all duration-300 hover:opacity-90"
               >
                 <strong>Book a Free 45-Minute Strategy Session</strong>
               </a>
