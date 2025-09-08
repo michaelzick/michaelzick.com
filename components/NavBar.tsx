@@ -8,6 +8,7 @@ export default function NavBar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
+  const [activePath, setActivePath] = useState('')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +25,10 @@ export default function NavBar() {
       document.body.style.overflow = ''
     }
   }, [menuOpen])
+
+  useEffect(() => {
+    setActivePath(pathname)
+  }, [pathname])
 
   return (
     <header
@@ -51,7 +56,7 @@ export default function NavBar() {
           <Link
             href="/work-with-me"
             className={`nav-link text-2xl ${
-              pathname === '/work-with-me' ? 'active' : ''
+              activePath === '/work-with-me' ? 'active' : ''
             }`}
           >
             Work With Me
@@ -59,7 +64,7 @@ export default function NavBar() {
           <Link
             href="/about"
             className={`nav-link text-2xl ${
-              pathname === '/about' ? 'active' : ''
+              activePath === '/about' ? 'active' : ''
             }`}
           >
             About
@@ -67,7 +72,7 @@ export default function NavBar() {
           <Link
             href="/testimonials"
             className={`nav-link text-2xl ${
-              pathname === '/testimonials' ? 'active' : ''
+              activePath === '/testimonials' ? 'active' : ''
             }`}
           >
             Testimonials
@@ -75,7 +80,7 @@ export default function NavBar() {
           <Link
             href="/contact"
             className={`nav-link text-2xl ${
-              pathname === '/contact' ? 'active' : ''
+              activePath === '/contact' ? 'active' : ''
             }`}
           >
             Contact
@@ -122,7 +127,7 @@ export default function NavBar() {
           <Link
             href="/work-with-me"
             className={`nav-link text-2xl text-default-grey ${
-              pathname === '/work-with-me' ? 'active' : ''
+              activePath === '/work-with-me' ? 'active' : ''
             }`}
             onClick={() => setMenuOpen(false)}
           >
@@ -131,7 +136,7 @@ export default function NavBar() {
           <Link
             href="/about"
             className={`nav-link text-2xl text-default-grey ${
-              pathname === '/about' ? 'active' : ''
+              activePath === '/about' ? 'active' : ''
             }`}
             onClick={() => setMenuOpen(false)}
           >
@@ -140,7 +145,7 @@ export default function NavBar() {
           <Link
             href="/testimonials"
             className={`nav-link text-2xl text-default-grey ${
-              pathname === '/testimonials' ? 'active' : ''
+              activePath === '/testimonials' ? 'active' : ''
             }`}
             onClick={() => setMenuOpen(false)}
           >
@@ -149,7 +154,7 @@ export default function NavBar() {
           <Link
             href="/contact"
             className={`nav-link text-2xl text-default-grey ${
-              pathname === '/contact' ? 'active' : ''
+              activePath === '/contact' ? 'active' : ''
             }`}
             onClick={() => setMenuOpen(false)}
           >
