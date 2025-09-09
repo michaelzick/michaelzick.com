@@ -37,11 +37,13 @@ export async function POST(req: NextRequest) {
       },
     });
 
+    const prefixedSubject = `[michaelzick.com] ${subject}`;
+
     await transporter.sendMail({
-      from: '96ae20001@smtp-brevo.com',
+      from: 'michael@michaelzick.com',
       to: 'michael@michaelzick.com',
       replyTo: email,
-      subject,
+      subject: prefixedSubject,
       text: `Name: ${firstName} ${lastName}\nEmail: ${email}\n\n${message}`,
     });
 
