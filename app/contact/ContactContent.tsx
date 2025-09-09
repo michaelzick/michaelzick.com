@@ -1,17 +1,11 @@
-'use client';
-
-import { useEffect } from 'react';
-import { initMail64 } from '../../lib/mail64';
+import ContactForm from './ContactForm';
 
 export default function ContactContent() {
-  useEffect(() => {
-    initMail64();
-  }, []);
 
   return (
     <div className="flex flex-col">
       <section
-        className="bg-default-grey h-screen text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32"
+        className="bg-default-grey min-h-screen text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32"
         style={{
           backgroundImage: "url('/img/lake_reflection_2500.webp')",
         }}
@@ -19,9 +13,6 @@ export default function ContactContent() {
         <div className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-8">
           <div className="md:col-span-5 space-y-6">
             <h1 className="text-[64px] font-semibold">Contact</h1>
-            <a className="btn js-mail64" data-addr="Znc5bzVnNzJAYW5vbmFkZHkuY29t">
-              Email Me
-            </a>
             <h2 className="text-2xl font-semibold">Socials</h2>
             <div className="flex space-x-4">
               <a
@@ -39,6 +30,10 @@ export default function ContactContent() {
                 </svg>
               </a>
             </div>
+          </div>
+          <div className="md:col-span-7 bg-white text-black rounded p-6">
+            <h2 className="text-3xl font-semibold mb-6 text-default-grey">Send a Message</h2>
+            <ContactForm />
           </div>
         </div>
       </section>
