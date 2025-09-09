@@ -19,7 +19,9 @@ export async function POST(req: NextRequest) {
 
     // Lookup the SMTP password at runtime so builds without the
     // environment variable don't bake in an empty value.
-    const password = process.env['BREVO_SMTP_PASSWORD'];
+    const password =
+      process.env['VITE_BREVO_SMTP_PASSWORD'] ||
+      process.env['BREVO_SMTP_PASSWORD'];
     if (!password) {
       console.error('BREVO_SMTP_PASSWORD is not configured');
       return NextResponse.json(
