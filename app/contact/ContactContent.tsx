@@ -32,7 +32,7 @@ export default function ContactContent() {
             </div>
           </div>
           <div className="md:col-span-7 bg-white text-black rounded p-6">
-            <h2 className="text-3xl font-semibold mb-6">Send a Message</h2>
+            <h2 className="text-3xl font-semibold mb-6 text-default-grey">Send a Message</h2>
             <ContactForm />
           </div>
         </div>
