@@ -5,7 +5,7 @@ export default function ContactContent() {
   return (
     <div className="flex flex-col">
       <section
-        className="bg-default-grey h-screen text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32"
+        className="bg-default-grey min-h-screen text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32"
         style={{
           backgroundImage: "url('/img/lake_reflection_2500.webp')",
         }}
@@ -31,12 +31,10 @@ export default function ContactContent() {
               </a>
             </div>
           </div>
-        </div>
-      </section>
-      <section className="px-6 md:px-8 py-12">
-        <div className="max-w-[800px] mx-auto">
-          <h2 className="text-3xl font-semibold mb-6">Send a Message</h2>
-          <ContactForm />
+          <div className="md:col-span-7 bg-white text-black rounded p-6">
+            <h2 className="text-3xl font-semibold mb-6">Send a Message</h2>
+            <ContactForm />
+          </div>
         </div>
       </section>
     </div>

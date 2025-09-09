@@ -49,7 +49,7 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <input
-          className="border border-gray-300 rounded p-2"
+          className="border border-gray-300 rounded p-2 text-black"
           name="firstName"
           placeholder="First Name"
           value={formData.firstName}
@@ -57,7 +57,7 @@ export default function ContactForm() {
           required
         />
         <input
-          className="border border-gray-300 rounded p-2"
+          className="border border-gray-300 rounded p-2 text-black"
           name="lastName"
           placeholder="Last Name"
           value={formData.lastName}
@@ -66,7 +66,7 @@ export default function ContactForm() {
         />
       </div>
       <input
-        className="border border-gray-300 rounded p-2 w-full"
+        className="border border-gray-300 rounded p-2 w-full text-black"
         type="email"
         name="email"
         placeholder="Email"
@@ -75,7 +75,7 @@ export default function ContactForm() {
         required
       />
       <input
-        className="border border-gray-300 rounded p-2 w-full"
+        className="border border-gray-300 rounded p-2 w-full text-black"
         name="subject"
         placeholder="Subject"
         value={formData.subject}
@@ -83,7 +83,7 @@ export default function ContactForm() {
         required
       />
       <textarea
-        className="border border-gray-300 rounded p-2 w-full min-h-[120px]"
+        className="border border-gray-300 rounded p-2 w-full min-h-[120px] text-black"
         name="message"
         placeholder="Message"
         value={formData.message}
