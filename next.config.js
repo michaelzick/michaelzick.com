@@ -1,6 +1,4 @@
-import type { NextConfig } from 'next';
-
-const nextConfig: NextConfig = {
+const nextConfig = {
   output: 'standalone',
   images: {
     domains: ['www.michaelzick.com', 'michaelzick.com'],
