@@ -11,7 +11,7 @@
     "start": "next start -p $PORT",
     "lint": "next lint",
     "test": "echo \"No tests configured\"",
-    "sitemap": "node scripts/generate-sitemap.js",
+    "sitemap": "node scripts/generate-sitemap.js"
   },
   "dependencies": {
     "next": "latest",
