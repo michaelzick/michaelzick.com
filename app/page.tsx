@@ -96,9 +96,6 @@ export default function Home() {
               <p className="px-2.5 md:px-0 text-lg">Through identifying beliefs and processing feelings you can enter a new state of consciousness and awareness. This is where true behavioral change happens.</p>
             </div>
           </div>
-          <div className="mt-12 text-center">
-            <a href="https://calendly.com/michaelzick/45min" target="_blank" className="btn text-lg">Book a Free 45-Minute Strategy Session</a>
-          </div>
         </div>
       </section>
 
@@ -115,13 +112,6 @@ export default function Home() {
               <div className="p-6 bg-white rounded-lg shadow-md text-[30px] font-medium">
                 Established in the Los Angeles mental health and recovery community since 2015.
               </div>
-              <a
-                href="https://calendly.com/michaelzick/45min"
-                target="_blank"
-                className="btn inline-block mt-6 text-lg"
-              >
-                Book a Free 45-Minute Strategy Session
-              </a>
             </div>
             <div className="space-y-6">
               <h2 className="text-[55px] font-semibold">Specialties:</h2>
