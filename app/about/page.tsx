@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: 'Michael Zick',
     images: [
       {
-        url: 'https://www.michaelzick.com/img/dark_mountains_2500.webp',
+        url: 'https://www.michaelzick.com/img/ocean_2500.webp',
         alt: 'Dark mountain landscape',
       },
     ],
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: 'Michael Zick | About',
     description:
       'Learn more about Michael Zick, a Los Angeles-based peak performance coach dedicated to helping clients take action and build powerful relationships.',
-    images: ['https://www.michaelzick.com/img/dark_mountains_2500.webp'],
+    images: ['https://www.michaelzick.com/img/ocean_2500.webp'],
   },
 }
 
@@ -32,14 +32,14 @@ export default function About() {
     <div className="flex flex-col">
       <section
         className="relative h-screen flex items-end text-white"
-        style={{ backgroundImage: "url('/img/dark_mountains_2500.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+        style={{ backgroundImage: "url('/img/ocean_2500.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
         <div className="relative w-full max-w-[1400px] mx-auto p-8">
           <h2 className="text-4xl md:text-6xl text-right">About</h2>
         </div>
       </section>
 
-      <section className="px-6 md:px-8 pt-24 md:pt-32 bg-[rgb(var(--dark-blue))]">
+      <section className="px-6 md:px-8 pt-24 md:pt-32 bg-gray-100 text-default-grey">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-center gap-8">
             <div className="md:w-1/2 space-y-6 order-2 md:order-1">
@@ -72,7 +72,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="px-6 md:px-8 py-24 md:py-32">
+      <section className="px-6 md:px-8 py-24 md:py-32 bg-gray-100 text-default-grey">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-center gap-8">
             <div className="md:w-1/2">
