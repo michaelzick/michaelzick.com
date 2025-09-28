@@ -102,7 +102,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-6 md:px-8 py-24 md:py-32 bg-[rgb(var(--light-grey))] text-default-grey">
+      <section className="px-6 md:px-8 pt-24 md:pt-32 pb-12 md:pb-16 bg-[rgb(var(--light-grey))] text-default-grey">
         <div className="max-w-[1400px] mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div className="space-y-6">
@@ -137,9 +137,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-6 md:px-8 py-24 md:py-32 bg-[rgb(var(--light-grey))] text-default-grey">
-        <div className="max-w-[1400px] mx-auto md:flex md:justify-end">
-          <div className="space-y-6 md:w-1/2 md:flex md:flex-col md:items-start">
+      <section className="px-6 md:px-8 pt-12 md:pt-16 pb-24 md:pb-32 bg-[rgb(var(--light-grey))] text-default-grey">
+        <div className="max-w-[1400px] mx-auto md:flex md:items-start md:gap-12">
+          <div className="space-y-6 md:w-1/2">
             <h2 className="text-[45px] font-semibold">Individual Coaching Program</h2>
             <h3 className="text-[35px] font-medium">The details:</h3>
             <ul className="list-disc pl-6 space-y-2 text-[23px]">
@@ -162,6 +162,13 @@ export default function Home() {
             >
               Book a Free 45-Minute Strategy Session
             </a>
+          </div>
+          <div className="mt-10 md:mt-0 md:w-1/2 flex md:justify-end">
+            <img
+              src="/img/rear_view_2500.webp"
+              alt="Man overlooking a canyon"
+              className="w-full max-h-[480px] object-cover rounded-lg shadow-md"
+            />
           </div>
         </div>
       </section>
