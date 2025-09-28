@@ -54,14 +54,6 @@ export default function NavBar() {
         </Link>
         <div className="nav-links-container flex items-center space-x-6 max-[929px]:hidden">
           <Link
-            href="/work-with-me"
-            className={`nav-link text-2xl ${
-              activePath === '/work-with-me' ? 'active' : ''
-            }`}
-          >
-            Work With Me
-          </Link>
-          <Link
             href="/about"
             className={`nav-link text-2xl ${
               activePath === '/about' ? 'active' : ''
@@ -124,15 +116,6 @@ export default function NavBar() {
             menuOpen ? 'translate-x-0' : 'translate-x-full pointer-events-none'
           }`}
         >
-          <Link
-            href="/work-with-me"
-            className={`nav-link text-2xl text-default-grey ${
-              activePath === '/work-with-me' ? 'active' : ''
-            }`}
-            onClick={() => setMenuOpen(false)}
-          >
-            Work With Me
-          </Link>
           <Link
             href="/about"
             className={`nav-link text-2xl text-default-grey ${

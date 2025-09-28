@@ -52,10 +52,6 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
               <p>Michael Zick Coaching | Peak Performance Coach</p>
             </div>
             <div className="md:col-span-6 md:col-start-6 md:text-right space-y-2">
-              <Link href="/work-with-me" className="footer-link inline-block">
-                Work With Me
-              </Link>
-              <br />
               <Link href="/about" className="footer-link inline-block">
                 About
               </Link>

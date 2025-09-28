@@ -155,8 +155,8 @@ export default function Home() {
           </div>
           <div className="mt-10 md:mt-0 md:w-1/2 flex md:justify-end">
             <img
-              src="/img/rear_view_2500.webp"
-              alt="Man overlooking a canyon"
+              src="/img/waterfall_2500.webp"
+              alt="Waterfall cascading over rocks"
               className="w-full max-h-[480px] object-cover rounded-lg shadow-md"
             />
           </div>
