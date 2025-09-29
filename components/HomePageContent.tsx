@@ -1,0 +1,347 @@
+'use client'
+
+import { useEffect, useMemo, useRef, useState, type RefObject } from 'react'
+
+type SectionId = 'where' | 'process' | 'specialties' | 'program'
+
+type SectionConfig = {
+  id: SectionId
+  linkText: string
+  sectionRef: RefObject<HTMLElement>
+  titleRef: RefObject<HTMLHeadingElement>
+}
+
+function LinkTab({ href, label }: { href: string; label: string }) {
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setIsVisible(true))
+    return () => cancelAnimationFrame(frame)
+  }, [])
+
+  return (
+    <a
+      href={href}
+      className={`pointer-events-auto block rounded-l-lg bg-dark-blue px-4 py-2 text-white shadow-lg transition-all duration-500 ease-out hover:bg-dark-blue/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white ${
+        isVisible ? 'translate-x-0 opacity-100' : 'translate-x-4 opacity-0'
+      }`}
+    >
+      {label}
+    </a>
+  )
+}
+
+export default function HomePageContent() {
+  const whereSectionRef = useRef<HTMLElement>(null)
+  const processSectionRef = useRef<HTMLElement>(null)
+  const specialtiesSectionRef = useRef<HTMLElement>(null)
+  const programSectionRef = useRef<HTMLElement>(null)
+
+  const whereTitleRef = useRef<HTMLHeadingElement>(null)
+  const processTitleRef = useRef<HTMLHeadingElement>(null)
+  const specialtiesTitleRef = useRef<HTMLHeadingElement>(null)
+  const programTitleRef = useRef<HTMLHeadingElement>(null)
+
+  const sectionConfig = useMemo<SectionConfig[]>(
+    () => [
+      {
+        id: 'where',
+        linkText: 'Where Do You Go From Here?',
+        sectionRef: whereSectionRef,
+        titleRef: whereTitleRef,
+      },
+      {
+        id: 'process',
+        linkText: 'How My Process is Different',
+        sectionRef: processSectionRef,
+        titleRef: processTitleRef,
+      },
+      {
+        id: 'specialties',
+        linkText: 'Specialties and Certifications',
+        sectionRef: specialtiesSectionRef,
+        titleRef: specialtiesTitleRef,
+      },
+      {
+        id: 'program',
+        linkText: 'Individual Coaching Program',
+        sectionRef: programSectionRef,
+        titleRef: programTitleRef,
+      },
+    ],
+    [
+      processSectionRef,
+      processTitleRef,
+      programSectionRef,
+      programTitleRef,
+      specialtiesSectionRef,
+      specialtiesTitleRef,
+      whereSectionRef,
+      whereTitleRef,
+    ],
+  )
+
+  const [visibleTitles, setVisibleTitles] = useState<Record<SectionId, boolean>>({
+    where: false,
+    process: false,
+    specialties: false,
+    program: false,
+  })
+  const [activeLinks, setActiveLinks] = useState<SectionId[]>([])
+
+  useEffect(() => {
+    const titleObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const sectionId = entry.target.getAttribute('data-section-id') as SectionId | null
+          if (!sectionId) return
+          if (entry.isIntersecting) {
+            setVisibleTitles((prev) => {
+              if (prev[sectionId]) return prev
+              return { ...prev, [sectionId]: true }
+            })
+          }
+        })
+      },
+      { threshold: 0.6 },
+    )
+
+    sectionConfig.forEach(({ id, titleRef }) => {
+      const node = titleRef.current
+      if (node) {
+        node.setAttribute('data-section-id', id)
+        titleObserver.observe(node)
+      }
+    })
+
+    return () => titleObserver.disconnect()
+  }, [sectionConfig])
+
+  useEffect(() => {
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const sectionId = entry.target.getAttribute('data-section-id') as SectionId | null
+          if (!sectionId) return
+          if (entry.isIntersecting) {
+            setActiveLinks((prev) => (prev.includes(sectionId) ? prev : [...prev, sectionId]))
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '-30% 0px -50% 0px' },
+    )
+
+    sectionConfig.forEach(({ id, sectionRef }) => {
+      const node = sectionRef.current
+      if (node) {
+        node.setAttribute('data-section-id', id)
+        sectionObserver.observe(node)
+      }
+    })
+
+    return () => sectionObserver.disconnect()
+  }, [sectionConfig])
+
+  return (
+    <div className="relative flex flex-col">
+      <div className="pointer-events-none fixed right-4 top-1/3 z-40 flex flex-col items-end space-y-3">
+        {sectionConfig
+          .filter(({ id }) => activeLinks.includes(id))
+          .map(({ id, linkText }) => (
+            <LinkTab key={id} href={`#${id}`} label={linkText} />
+          ))}
+      </div>
+
+      {/* Hero Section */}
+      <section
+        className="relative flex h-screen items-end text-white"
+        style={{
+          backgroundImage: "url('/img/homepage_mountains.webp')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="w-full max-w-[1400px] mx-auto p-8">
+          <h2 className="text-4xl md:text-6xl text-right">Peak Performance Coach</h2>
+        </div>
+      </section>
+
+      {/* Where Do You Go From Here */}
+      <section
+        id="where"
+        ref={whereSectionRef}
+        className="relative overflow-hidden py-56"
+        style={{
+          backgroundImage: "url('/img/lake_reflection_2500.webp')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="relative w-full mx-auto p-8 mt-[-88px] md:mt-[-112px]">
+          <h2
+            ref={whereTitleRef}
+            className={`text-center text-5xl font-bold text-white transition-opacity duration-700 ease-out md:text-8xl ${
+              visibleTitles.where ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            Where Do You Go From Here?
+          </h2>
+        </div>
+        <svg
+          className="absolute bottom-0 left-0 h-[160px] w-full"
+          viewBox="0 0 1440 160"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M0,0 C480,160 960,160 1440,0 L1440,160 L0,160 Z" fill="rgb(var(--light-grey))" />
+        </svg>
+      </section>
+
+      {/* Intro Section */}
+      <section className="bg-light-grey py-24 text-4xl text-default-grey">
+        <div className="mx-auto max-w-5xl space-y-8 px-2.5 text-center md:px-0">
+          <h2>You’ve tried things – many things probably, but you’re still in the same place. You know you can achieve more but something is holding you back.</h2>
+          <h2>Perhaps what you need is someone who’s been through the same things as you but has found the knowledge, practices, and resources to change.</h2>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section id="process" ref={processSectionRef} className="bg-gray-100 py-24 text-default-grey">
+        <div className="mx-auto max-w-[1400px]">
+          <h2
+            ref={processTitleRef}
+            className={`mb-12 text-center text-5xl transition-opacity duration-700 ease-out ${
+              visibleTitles.process ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            How My Process is Different
+          </h2>
+          <div className="grid gap-8 md:grid-cols-3">
+            <div className="space-y-4 text-center">
+              <img
+                src="/img/mountains_2500.webp"
+                alt="Mountains"
+                className="w-full rounded-lg object-cover shadow-md"
+              />
+              <h3 className="px-2.5 text-4xl font-semibold md:px-0">Identifying Meanings and Beliefs</h3>
+              <p className="px-2.5 text-lg md:px-0">Meanings and beliefs are like the programming language of our life. They provide a filter through which external information and experiences pass.</p>
+            </div>
+            <div className="space-y-4 text-center">
+              <img
+                src="/img/ocean_2500.webp"
+                alt="Feelings"
+                className="h-100 w-full rounded-lg object-cover shadow-md"
+              />
+              <h3 className="px-2.5 text-4xl font-semibold md:px-0">Working Through Feelings, Experientially</h3>
+              <p className="px-2.5 text-lg md:px-0">While analyzing the “why” and the “what” around our thoughts and behaviors is useful, behaviors rarely change without working through the feelings.</p>
+            </div>
+            <div className="space-y-4 text-center">
+              <img
+                src="/img/dark_mountains_2500.webp"
+                alt="Action"
+                className="h-100 w-full rounded-lg object-cover shadow-md"
+              />
+              <h3 className="px-2.5 text-4xl font-semibold md:px-0">Taking Consistent, Conscious Action</h3>
+              <p className="px-2.5 text-lg md:px-0">Through identifying beliefs and processing feelings you can enter a new state of consciousness and awareness. This is where true behavioral change happens.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="specialties"
+        ref={specialtiesSectionRef}
+        className="bg-dark-blue px-6 pb-12 pt-16 text-white md:px-8 md:pt-20 md:pb-16"
+      >
+        <div className="mx-auto max-w-[1400px]">
+          <div className="grid items-start gap-12 md:grid-cols-2">
+            <div className="space-y-6">
+              <h2
+                ref={specialtiesTitleRef}
+                className={`text-[55px] font-semibold transition-opacity duration-700 ease-out ${
+                  visibleTitles.specialties ? 'opacity-100' : 'opacity-0'
+                }`}
+              >
+                Specialties:
+              </h2>
+              <ul className="list-disc space-y-4 pl-6 text-[30px]">
+                <li>Nice Guy Syndrome</li>
+                <li>Relationships &amp; dating</li>
+                <li>Finding your purpose</li>
+                <li>Codependency</li>
+                <li>Belief reprogramming</li>
+              </ul>
+            </div>
+            <div className="space-y-6">
+              <div className="rounded-lg bg-white p-6 text-[30px] font-medium text-default-grey shadow-md">
+                Certified as a Life &amp; Relationship Coach by Life Purpose Institute.
+              </div>
+              <div className="rounded-lg bg-white p-6 text-[30px] font-medium text-default-grey shadow-md">
+                Certified by Dr. Robert Glover, author of “No More Mr. Nice Guy” and renowned therapist.
+              </div>
+              <div className="rounded-lg bg-white p-6 text-[30px] font-medium text-default-grey shadow-md">
+                Established in the Los Angeles mental health and recovery community since 2015.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="program"
+        ref={programSectionRef}
+        className="bg-[rgb(var(--light-grey))] px-6 pb-24 pt-12 text-default-grey md:px-8 md:pt-16 md:pb-32"
+      >
+        <div className="mx-auto flex max-w-[1400px] flex-col gap-12 md:flex-row md:items-start">
+          <div className="space-y-6 md:w-1/2">
+            <h2
+              ref={programTitleRef}
+              className={`text-[45px] font-semibold transition-opacity duration-700 ease-out ${
+                visibleTitles.program ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              Individual Coaching Program
+            </h2>
+            <h3 className="text-[35px] font-medium">The details:</h3>
+            <ul className="list-disc space-y-2 pl-6 text-[23px]">
+              <li>
+                Work with a certified coach to <strong>significantly improve</strong> your life and relationships
+              </li>
+              <li>
+                <strong>Powerful</strong> homework assignments that dive deep; we’ll leave no stone unturned
+              </li>
+              <li>
+                <strong>Unlimited emails</strong> between sessions (subject to availability)
+              </li>
+              <li>6-month program to start; variable after that</li>
+              <li>Free Belief Reprogramming Workbook</li>
+            </ul>
+            <a
+              href="https://calendly.com/michaelzick/45min"
+              target="_blank"
+              className="btn mt-6 inline-block text-lg"
+            >
+              Book a Free 45-Minute Strategy Session
+            </a>
+          </div>
+          <div className="mt-10 flex md:mt-0 md:w-1/2 md:justify-end">
+            <img
+              src="/img/waterfall_2500.webp"
+              alt="Waterfall cascading over rocks"
+              className="max-h-[480px] w-full rounded-lg object-cover shadow-md"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      {/* <section className="py-24 bg-gray-800 text-white">
+        <div className="max-w-3xl mx-auto space-y-4">
+          <h2 className="text-5xl">Subscribe to My Newsletter</h2>
+          <h3 className="text-3xl">You’ll receive a FREE Belief Reprogramming Workbook (a $97 value) and early access to free courses. No spam; unsubscribe at any time.</h3>
+          <a href="https://link.michaelzick.com/sign-up" target="_blank" className="btn">Subscribe</a>
+        </div>
+      </section> */}
+    </div>
+  )
+}
