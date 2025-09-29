@@ -65,7 +65,7 @@ export default function About() {
               <img
                 src="/img/blue_jacket.webp"
                 alt="Michael wearing a jacket"
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover rounded-lg shadow-md"
               />
             </div>
           </div>
@@ -79,7 +79,7 @@ export default function About() {
               <img
                 src="/img/grey_jacket.webp"
                 alt="Michael in suit"
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover rounded-lg shadow-md"
               />
             </div>
             <div className="md:w-1/2 space-y-6">

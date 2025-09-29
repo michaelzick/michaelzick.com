@@ -66,7 +66,7 @@ export default function Testimonials() {
               <img
                 src="/img/eg.webp"
                 alt="Elizabeth D."
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover rounded-lg shadow-md"
               />
             </div>
           </div>
@@ -76,7 +76,7 @@ export default function Testimonials() {
               <img
                 src="/img/ryan.webp"
                 alt="Ryan I."
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover rounded-lg shadow-md"
               />
             </div>
             <div className="md:w-1/2 space-y-6">
