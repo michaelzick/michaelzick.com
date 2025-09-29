@@ -89,6 +89,11 @@ export default function HomePageContent() {
   })
   const [activeLinks, setActiveLinks] = useState<SectionId[]>([])
 
+  const renderLinks = (suffix: string) =>
+    sectionConfig
+      .filter(({ id }) => activeLinks.includes(id))
+      .map(({ id, linkText }) => <LinkTab key={`${id}-${suffix}`} href={`#${id}`} label={linkText} />)
+
   useEffect(() => {
     const titleObserver = new IntersectionObserver(
       (entries) => {
@@ -128,7 +133,7 @@ export default function HomePageContent() {
           }
         })
       },
-      { threshold: 0.1, rootMargin: '-30% 0px -50% 0px' },
+      { threshold: 0, rootMargin: '-35% 0px -35% 0px' },
     )
 
     sectionConfig.forEach(({ id, sectionRef }) => {
@@ -144,12 +149,12 @@ export default function HomePageContent() {
 
   return (
     <div className="relative flex flex-col">
-      <div className="pointer-events-none fixed right-4 top-1/3 z-40 flex flex-col items-end space-y-3">
-        {sectionConfig
-          .filter(({ id }) => activeLinks.includes(id))
-          .map(({ id, linkText }) => (
-            <LinkTab key={id} href={`#${id}`} label={linkText} />
-          ))}
+      <div className="pointer-events-none fixed right-4 top-1/3 z-40 flex flex-col items-end space-y-3 max-[929px]:hidden">
+        {renderLinks('desktop')}
+      </div>
+
+      <div className="pointer-events-none sticky top-24 z-40 hidden w-full flex-col space-y-2 px-4 max-[929px]:flex">
+        {renderLinks('mobile')}
       </div>
 
       {/* Hero Section */}
