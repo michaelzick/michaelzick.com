@@ -10,7 +10,7 @@ export default function ContactContent() {
           backgroundImage: "url('/img/lake_reflection_2500.webp')",
         }}
       >
-        <div className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-8">
+        <div className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-8 shadow-md">
           <div className="md:col-span-5 space-y-6">
             <h1 className="text-[64px] font-semibold">Contact</h1>
             <h2 className="text-2xl font-semibold">Socials</h2>
