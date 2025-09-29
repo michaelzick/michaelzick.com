@@ -7,26 +7,52 @@ type SectionId = 'where' | 'process' | 'specialties' | 'program'
 type SectionConfig = {
   id: SectionId
   linkText: string
+  mobileLabel?: string
   sectionRef: RefObject<HTMLElement>
   titleRef: RefObject<HTMLHeadingElement>
 }
 
-function LinkTab({ href, label, variant }: { href: string; label: string; variant: 'desktop' | 'mobile' }) {
+function LinkTab({
+  href,
+  label,
+  variant,
+  isActive,
+}: {
+  href: string
+  label: string
+  variant: 'desktop' | 'mobile'
+  isActive: boolean
+}) {
   const [isVisible, setIsVisible] = useState(false)
   const baseClasses =
-    'pointer-events-auto block rounded-lg bg-dark-blue text-white shadow-lg transition-all duration-500 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white'
+    'pointer-events-auto block transition-all duration-300 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-dark-blue'
 
   useEffect(() => {
     const frame = requestAnimationFrame(() => setIsVisible(true))
     return () => cancelAnimationFrame(frame)
   }, [])
 
+  const visibilityClasses =
+    variant === 'desktop'
+      ? isVisible
+        ? 'translate-x-0 opacity-100'
+        : 'translate-x-4 opacity-0'
+      : isVisible
+        ? 'opacity-100'
+        : 'opacity-0'
+
+  const desktopStateClasses = isActive
+    ? 'bg-dark-blue text-white hover:bg-dark-blue/80'
+    : 'bg-dark-blue/70 text-white hover:bg-dark-blue/90'
+
+  const mobileStateClasses = isActive
+    ? 'bg-dark-blue text-white border-dark-blue'
+    : 'bg-white/90 text-default-grey border-dark-blue/40'
+
   const variantClasses =
     variant === 'desktop'
-      ? 'px-4 py-2 hover:bg-dark-blue/80'
-      : 'w-full px-4 py-3 text-center font-semibold uppercase tracking-wide'
-
-  const visibilityClasses = isVisible ? 'translate-x-0 opacity-100' : 'translate-x-4 opacity-0'
+      ? `rounded-lg px-4 py-2 shadow-lg ${desktopStateClasses}`
+      : `flex-1 px-3 py-2 text-sm font-semibold text-center border ${mobileStateClasses} first:rounded-l-lg last:rounded-r-lg`
 
   return (
     <a href={href} className={`${baseClasses} ${variantClasses} ${visibilityClasses}`}>
@@ -46,32 +72,36 @@ export default function HomePageContent() {
   const specialtiesTitleRef = useRef<HTMLHeadingElement>(null)
   const programTitleRef = useRef<HTMLHeadingElement>(null)
 
-const sectionConfig = useMemo<SectionConfig[]>(
-  () => [
-    {
-      id: 'where',
-      linkText: 'Beginning',
-      sectionRef: whereSectionRef,
-      titleRef: whereTitleRef,
-    },
-    {
-      id: 'process',
-      linkText: 'Process',
-      sectionRef: processSectionRef,
-      titleRef: processTitleRef,
-    },
-    {
-      id: 'specialties',
-      linkText: 'Certifications',
-      sectionRef: specialtiesSectionRef,
-      titleRef: specialtiesTitleRef,
-    },
-    {
-      id: 'program',
-      linkText: 'Program',
-      sectionRef: programSectionRef,
-      titleRef: programTitleRef,
-    },
+  const sectionConfig = useMemo<SectionConfig[]>(
+    () => [
+      {
+        id: 'where',
+        linkText: 'Beginning',
+        mobileLabel: 'Beginning',
+        sectionRef: whereSectionRef,
+        titleRef: whereTitleRef,
+      },
+      {
+        id: 'process',
+        linkText: 'Process',
+        mobileLabel: 'Process',
+        sectionRef: processSectionRef,
+        titleRef: processTitleRef,
+      },
+      {
+        id: 'specialties',
+        linkText: 'Certifications',
+        mobileLabel: 'Certs',
+        sectionRef: specialtiesSectionRef,
+        titleRef: specialtiesTitleRef,
+      },
+      {
+        id: 'program',
+        linkText: 'Program',
+        mobileLabel: 'Program',
+        sectionRef: programSectionRef,
+        titleRef: programTitleRef,
+      },
     ],
     [
       processSectionRef,
@@ -92,13 +122,25 @@ const sectionConfig = useMemo<SectionConfig[]>(
     program: false,
   })
   const [activeLinks, setActiveLinks] = useState<SectionId[]>([])
+  const [activeSection, setActiveSection] = useState<SectionId>('where')
+  const visitedSectionsRef = useRef<SectionId[]>([])
 
-  const renderLinks = (suffix: string) =>
-    sectionConfig
-      .filter(({ id }) => activeLinks.includes(id))
-      .map(({ id, linkText }) => (
-        <LinkTab key={`${id}-${suffix}`} href={`#${id}`} label={linkText} variant={suffix === 'desktop' ? 'desktop' : 'mobile'} />
-      ))
+  const renderLinks = (variant: 'desktop' | 'mobile') => {
+    const configs =
+      variant === 'desktop'
+        ? sectionConfig.filter(({ id }) => activeLinks.includes(id))
+        : sectionConfig
+
+    return configs.map(({ id, linkText, mobileLabel }) => (
+      <LinkTab
+        key={`${id}-${variant}`}
+        href={`#${id}`}
+        label={variant === 'mobile' && mobileLabel ? mobileLabel : linkText}
+        variant={variant}
+        isActive={activeSection === id}
+      />
+    ))
+  }
 
   useEffect(() => {
     const titleObserver = new IntersectionObserver(
@@ -129,28 +171,51 @@ const sectionConfig = useMemo<SectionConfig[]>(
   }, [sectionConfig])
 
   useEffect(() => {
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const sectionId = entry.target.getAttribute('data-section-id') as SectionId | null
-          if (!sectionId) return
-          if (entry.isIntersecting) {
-            setActiveLinks((prev) => (prev.includes(sectionId) ? prev : [...prev, sectionId]))
+    if (typeof window === 'undefined') return
+
+    const updateActiveState = () => {
+      const viewportHeight = window.innerHeight || 0
+      const focusThreshold = viewportHeight * 0.35
+
+      let current: SectionId | null = null
+      const nextVisited = [...visitedSectionsRef.current]
+
+      sectionConfig.forEach(({ id, titleRef }) => {
+        const titleNode = titleRef.current
+        if (!titleNode) return
+
+        const titleOffset = titleNode.getBoundingClientRect().top
+
+        if (titleOffset <= focusThreshold) {
+          current = id
+          if (!nextVisited.includes(id)) {
+            nextVisited.push(id)
           }
-        })
-      },
-      { threshold: 0, rootMargin: '-35% 0px -35% 0px' },
-    )
+        }
+      })
 
-    sectionConfig.forEach(({ id, sectionRef }) => {
-      const node = sectionRef.current
-      if (node) {
-        node.setAttribute('data-section-id', id)
-        sectionObserver.observe(node)
+      const resolvedCurrent = current ?? sectionConfig[0]?.id ?? 'where'
+
+      setActiveSection((prev) => (prev === resolvedCurrent ? prev : resolvedCurrent))
+
+      if (
+        nextVisited.length !== visitedSectionsRef.current.length ||
+        nextVisited.some((id, index) => visitedSectionsRef.current[index] !== id)
+      ) {
+        visitedSectionsRef.current = nextVisited
+        setActiveLinks([...nextVisited])
       }
-    })
+    }
 
-    return () => sectionObserver.disconnect()
+    updateActiveState()
+
+    window.addEventListener('scroll', updateActiveState, { passive: true })
+    window.addEventListener('resize', updateActiveState)
+
+    return () => {
+      window.removeEventListener('scroll', updateActiveState)
+      window.removeEventListener('resize', updateActiveState)
+    }
   }, [sectionConfig])
 
   return (
@@ -159,8 +224,10 @@ const sectionConfig = useMemo<SectionConfig[]>(
         {renderLinks('desktop')}
       </div>
 
-      <div className="pointer-events-none sticky top-24 z-40 hidden w-full flex-col space-y-2 px-4 max-[929px]:flex">
-        {renderLinks('mobile')}
+      <div className="pointer-events-none fixed inset-x-4 top-[92px] z-40 hidden max-[929px]:flex">
+        <div className="pointer-events-auto flex w-full overflow-hidden rounded-lg border border-dark-blue/20 bg-white/95 shadow-lg backdrop-blur">
+          {renderLinks('mobile')}
+        </div>
       </div>
 
       {/* Hero Section */}
