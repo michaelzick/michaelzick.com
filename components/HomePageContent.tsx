@@ -11,21 +11,25 @@ type SectionConfig = {
   titleRef: RefObject<HTMLHeadingElement>
 }
 
-function LinkTab({ href, label }: { href: string; label: string }) {
+function LinkTab({ href, label, variant }: { href: string; label: string; variant: 'desktop' | 'mobile' }) {
   const [isVisible, setIsVisible] = useState(false)
+  const baseClasses =
+    'pointer-events-auto block rounded-lg bg-dark-blue text-white shadow-lg transition-all duration-500 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white'
 
   useEffect(() => {
     const frame = requestAnimationFrame(() => setIsVisible(true))
     return () => cancelAnimationFrame(frame)
   }, [])
 
+  const variantClasses =
+    variant === 'desktop'
+      ? 'px-4 py-2 hover:bg-dark-blue/80'
+      : 'w-full px-4 py-3 text-center font-semibold uppercase tracking-wide'
+
+  const visibilityClasses = isVisible ? 'translate-x-0 opacity-100' : 'translate-x-4 opacity-0'
+
   return (
-    <a
-      href={href}
-      className={`pointer-events-auto block rounded-l-lg bg-dark-blue px-4 py-2 text-white shadow-lg transition-all duration-500 ease-out hover:bg-dark-blue/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white ${
-        isVisible ? 'translate-x-0 opacity-100' : 'translate-x-4 opacity-0'
-      }`}
-    >
+    <a href={href} className={`${baseClasses} ${variantClasses} ${visibilityClasses}`}>
       {label}
     </a>
   )
@@ -42,32 +46,32 @@ export default function HomePageContent() {
   const specialtiesTitleRef = useRef<HTMLHeadingElement>(null)
   const programTitleRef = useRef<HTMLHeadingElement>(null)
 
-  const sectionConfig = useMemo<SectionConfig[]>(
-    () => [
-      {
-        id: 'where',
-        linkText: 'Where Do You Go From Here?',
-        sectionRef: whereSectionRef,
-        titleRef: whereTitleRef,
-      },
-      {
-        id: 'process',
-        linkText: 'How My Process is Different',
-        sectionRef: processSectionRef,
-        titleRef: processTitleRef,
-      },
-      {
-        id: 'specialties',
-        linkText: 'Specialties and Certifications',
-        sectionRef: specialtiesSectionRef,
-        titleRef: specialtiesTitleRef,
-      },
-      {
-        id: 'program',
-        linkText: 'Individual Coaching Program',
-        sectionRef: programSectionRef,
-        titleRef: programTitleRef,
-      },
+const sectionConfig = useMemo<SectionConfig[]>(
+  () => [
+    {
+      id: 'where',
+      linkText: 'Beginning',
+      sectionRef: whereSectionRef,
+      titleRef: whereTitleRef,
+    },
+    {
+      id: 'process',
+      linkText: 'Process',
+      sectionRef: processSectionRef,
+      titleRef: processTitleRef,
+    },
+    {
+      id: 'specialties',
+      linkText: 'Certifications',
+      sectionRef: specialtiesSectionRef,
+      titleRef: specialtiesTitleRef,
+    },
+    {
+      id: 'program',
+      linkText: 'Program',
+      sectionRef: programSectionRef,
+      titleRef: programTitleRef,
+    },
     ],
     [
       processSectionRef,
@@ -92,7 +96,9 @@ export default function HomePageContent() {
   const renderLinks = (suffix: string) =>
     sectionConfig
       .filter(({ id }) => activeLinks.includes(id))
-      .map(({ id, linkText }) => <LinkTab key={`${id}-${suffix}`} href={`#${id}`} label={linkText} />)
+      .map(({ id, linkText }) => (
+        <LinkTab key={`${id}-${suffix}`} href={`#${id}`} label={linkText} variant={suffix === 'desktop' ? 'desktop' : 'mobile'} />
+      ))
 
   useEffect(() => {
     const titleObserver = new IntersectionObserver(
