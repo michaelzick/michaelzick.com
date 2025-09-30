@@ -66,6 +66,7 @@ export default function HomePageContent() {
   const processSectionRef = useRef<HTMLElement>(null)
   const specialtiesSectionRef = useRef<HTMLElement>(null)
   const programSectionRef = useRef<HTMLElement>(null)
+  const beginningSectionRef = useRef<HTMLDivElement>(null)
 
   const whereTitleRef = useRef<HTMLHeadingElement>(null)
   const processTitleRef = useRef<HTMLHeadingElement>(null)
@@ -189,7 +190,7 @@ export default function HomePageContent() {
       const tabsHeight = mobileTabsRef.current?.getBoundingClientRect().height ?? 0
       const desiredTop = Math.round(headerHeight + 16)
       const desiredScrollMargin = Math.round(headerHeight + tabsHeight + 24)
-      const beginningMargin = Math.max(headerHeight + tabsHeight + 4, 0)
+      const beginningMargin = Math.max(headerHeight + tabsHeight + 32, 0)
       const viewportHeight = window.innerHeight || 0
 
       const baseThreshold = Math.max(
@@ -199,27 +200,28 @@ export default function HomePageContent() {
       const beginningEntryLine = headerHeight + tabsHeight + 8
       const beginningExitLine = headerHeight + 8
 
+      const beginningRect = beginningSectionRef.current?.getBoundingClientRect() ?? null
+      const beginningActiveMobile =
+        isCurrentlyMobile &&
+        beginningRect !== null &&
+        beginningRect.top <= beginningEntryLine &&
+        beginningRect.bottom >= beginningExitLine
+
       const activeIds: SectionId[] = []
       const nextVisited = [...visitedSectionsRef.current]
 
       sectionConfig.forEach(({ id, sectionRef, titleRef }) => {
-        const sectionNode = sectionRef.current
         const titleNode = titleRef.current
-        if (!titleNode || !sectionNode) return
+        if (!titleNode || !sectionRef.current) return
 
         const titleTop = titleNode.getBoundingClientRect().top
-        const sectionRect = sectionNode.getBoundingClientRect()
 
         const isBeginning = id === 'where'
-        const isBeginningActive =
-          isCurrentlyMobile && isBeginning
-            ? sectionRect.top <= beginningEntryLine && sectionRect.bottom >= beginningExitLine
-            : false
 
         const threshold = baseThreshold
         const isActive = isBeginning
           ? isCurrentlyMobile
-            ? isBeginningActive
+            ? beginningActiveMobile
             : titleTop <= threshold
           : titleTop <= threshold
 
@@ -298,44 +300,46 @@ export default function HomePageContent() {
       </section>
 
       {/* Where Do You Go From Here */}
-      <section
-        id="where"
-        ref={whereSectionRef}
-        className="relative overflow-hidden py-56"
-        style={{
-          scrollMarginTop: scrollMarginTopWhere,
-          backgroundImage: "url('/img/lake_reflection_2500.webp')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        <div className="relative w-full mx-auto p-8 mt-[-88px] md:mt-[-112px]">
-          <h2
-            ref={whereTitleRef}
-            className={`text-center text-5xl font-bold text-white transition-opacity duration-700 ease-out md:text-8xl ${
-              visibleTitles.where ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            Where Do You Go From Here?
-          </h2>
-        </div>
-        <svg
-          className="absolute bottom-0 left-0 h-[160px] w-full"
-          viewBox="0 0 1440 160"
-          preserveAspectRatio="none"
-          xmlns="http://www.w3.org/2000/svg"
+      <div id="beginning-section" ref={beginningSectionRef}>
+        <section
+          id="where"
+          ref={whereSectionRef}
+          className="relative overflow-hidden py-56"
+          style={{
+            scrollMarginTop: scrollMarginTopWhere,
+            backgroundImage: "url('/img/lake_reflection_2500.webp')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
         >
-          <path d="M0,0 C480,160 960,160 1440,0 L1440,160 L0,160 Z" fill="rgb(var(--light-grey))" />
-        </svg>
-      </section>
+          <div className="relative w-full mx-auto p-8 mt-[-88px] md:mt-[-112px]">
+            <h2
+              ref={whereTitleRef}
+              className={`text-center text-5xl font-bold text-white transition-opacity duration-700 ease-out md:text-8xl ${
+                visibleTitles.where ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              Where Do You Go From Here?
+            </h2>
+          </div>
+          <svg
+            className="absolute bottom-0 left-0 h-[160px] w-full"
+            viewBox="0 0 1440 160"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M0,0 C480,160 960,160 1440,0 L1440,160 L0,160 Z" fill="rgb(var(--light-grey))" />
+          </svg>
+        </section>
 
-      {/* Intro Section */}
-      <section className="bg-light-grey pt-12 pb-24 text-4xl text-default-grey">
-        <div className="mx-auto max-w-5xl space-y-8 px-2.5 text-center md:px-0">
-          <h2>You’ve tried things – many things probably, but you’re still in the same place. You know you can achieve more but something is holding you back.</h2>
-          <h2>Perhaps what you need is someone who’s been through the same things as you but has found the knowledge, practices, and resources to change.</h2>
-        </div>
-      </section>
+        {/* Intro Section */}
+        <section className="bg-light-grey pt-12 pb-24 text-4xl text-default-grey">
+          <div className="mx-auto max-w-5xl space-y-8 px-2.5 text-center md:px-0">
+            <h2>You’ve tried things – many things probably, but you’re still in the same place. You know you can achieve more but something is holding you back.</h2>
+            <h2>Perhaps what you need is someone who’s been through the same things as you but has found the knowledge, practices, and resources to change.</h2>
+          </div>
+        </section>
+      </div>
 
       {/* Process Section */}
       <section
