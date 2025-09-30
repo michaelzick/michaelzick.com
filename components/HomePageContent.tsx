@@ -127,8 +127,10 @@ export default function HomePageContent() {
   const [isMobile, setIsMobile] = useState(false)
   const [mobileTabsTop, setMobileTabsTop] = useState<number>(120)
   const [mobileScrollMargin, setMobileScrollMargin] = useState<number>(220)
+  const [beginningScrollMargin, setBeginningScrollMargin] = useState<number>(220)
   const mobileTabsRef = useRef<HTMLDivElement>(null)
   const scrollMarginTop = isMobile ? mobileScrollMargin : 160
+  const scrollMarginTopWhere = isMobile ? beginningScrollMargin : scrollMarginTop
 
   const renderLinks = (variant: 'desktop' | 'mobile') => {
     const configs =
@@ -187,27 +189,41 @@ export default function HomePageContent() {
       const tabsHeight = mobileTabsRef.current?.getBoundingClientRect().height ?? 0
       const desiredTop = Math.round(headerHeight + 16)
       const desiredScrollMargin = Math.round(headerHeight + tabsHeight + 24)
+      const beginningMargin = Math.max(headerHeight + tabsHeight + 4, 0)
       const viewportHeight = window.innerHeight || 0
 
       const baseThreshold = Math.max(
         viewportHeight * 0.35,
         isCurrentlyMobile ? desiredScrollMargin + 8 : headerHeight + 80,
       )
-      const beginningThreshold = isCurrentlyMobile
-        ? headerHeight + tabsHeight * 2
-        : baseThreshold
+      const beginningEntryLine = headerHeight + tabsHeight + 8
+      const beginningExitLine = headerHeight + 8
 
       const activeIds: SectionId[] = []
       const nextVisited = [...visitedSectionsRef.current]
 
-      sectionConfig.forEach(({ id, titleRef }) => {
+      sectionConfig.forEach(({ id, sectionRef, titleRef }) => {
+        const sectionNode = sectionRef.current
         const titleNode = titleRef.current
-        if (!titleNode) return
+        if (!titleNode || !sectionNode) return
 
         const titleTop = titleNode.getBoundingClientRect().top
-        const threshold = id === 'where' ? beginningThreshold : baseThreshold
+        const sectionRect = sectionNode.getBoundingClientRect()
 
-        if (titleTop <= threshold) {
+        const isBeginning = id === 'where'
+        const isBeginningActive =
+          isCurrentlyMobile && isBeginning
+            ? sectionRect.top <= beginningEntryLine && sectionRect.bottom >= beginningExitLine
+            : false
+
+        const threshold = baseThreshold
+        const isActive = isBeginning
+          ? isCurrentlyMobile
+            ? isBeginningActive
+            : titleTop <= threshold
+          : titleTop <= threshold
+
+        if (isActive) {
           activeIds.push(id)
           if (!nextVisited.includes(id)) {
             nextVisited.push(id)
@@ -223,6 +239,9 @@ export default function HomePageContent() {
         setMobileTabsTop((prev) => (Math.abs(prev - desiredTop) <= 1 ? prev : desiredTop))
         setMobileScrollMargin((prev) =>
           Math.abs(prev - desiredScrollMargin) <= 1 ? prev : desiredScrollMargin,
+        )
+        setBeginningScrollMargin((prev) =>
+          Math.abs(prev - beginningMargin) <= 1 ? prev : beginningMargin,
         )
       }
 
@@ -284,7 +303,7 @@ export default function HomePageContent() {
         ref={whereSectionRef}
         className="relative overflow-hidden py-56"
         style={{
-          scrollMarginTop,
+          scrollMarginTop: scrollMarginTopWhere,
           backgroundImage: "url('/img/lake_reflection_2500.webp')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
