@@ -330,7 +330,7 @@ export default function HomePageContent() {
       </section>
 
       {/* Intro Section */}
-      <section className="bg-light-grey py-24 text-4xl text-default-grey">
+      <section className="bg-light-grey pt-12 pb-24 text-4xl text-default-grey">
         <div className="mx-auto max-w-5xl space-y-8 px-2.5 text-center md:px-0">
           <h2>You’ve tried things – many things probably, but you’re still in the same place. You know you can achieve more but something is holding you back.</h2>
           <h2>Perhaps what you need is someone who’s been through the same things as you but has found the knowledge, practices, and resources to change.</h2>
