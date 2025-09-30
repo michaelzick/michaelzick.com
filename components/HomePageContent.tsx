@@ -52,7 +52,7 @@ function LinkTab({
   const variantClasses =
     variant === 'desktop'
       ? `w-[7em] text-center rounded-lg px-4 py-2 border border-dark-blue/40 shadow-lg ${desktopStateClasses}`
-      : `flex-1 px-3 py-2 text-sm font-semibold text-center border ${mobileStateClasses} first:rounded-l-lg last:rounded-r-lg`
+      : `flex-1 px-3 py-2 text-sm font-semibold text-center border ${mobileStateClasses} first:rounded-l-lg last:rounded-r-lg max-[480px]:w-full max-[480px]:rounded-none max-[480px]:first:rounded-t-lg max-[480px]:last:rounded-b-lg`
 
   return (
     <a href={href} className={`${baseClasses} ${variantClasses} ${visibilityClasses}`}>
@@ -279,7 +279,7 @@ export default function HomePageContent() {
       >
         <div
           ref={mobileTabsRef}
-          className="pointer-events-auto flex w-full overflow-hidden rounded-lg border border-dark-blue/20 bg-white/95 shadow-lg backdrop-blur"
+          className="pointer-events-auto flex w-full overflow-hidden rounded-lg border border-dark-blue/20 bg-white/95 shadow-lg backdrop-blur max-[480px]:flex-col"
         >
           {renderLinks('mobile')}
         </div>
