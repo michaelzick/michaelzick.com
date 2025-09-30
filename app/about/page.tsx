@@ -92,9 +92,9 @@ export default function About() {
               <a
                 href="https://calendly.com/michaelzick/45min"
                 target="_blank"
-                className="btn inline-block text-lg"
+                className="btn inline-block text-xl"
               >
-                Book a Free 45-Minute Strategy Session
+                Book a Free Session
               </a>
             </div>
           </div>

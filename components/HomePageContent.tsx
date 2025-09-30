@@ -185,15 +185,17 @@ export default function HomePageContent() {
       const header = document.querySelector('header')
       const headerHeight = header ? header.getBoundingClientRect().height : 0
       const tabsHeight = mobileTabsRef.current?.getBoundingClientRect().height ?? 0
-      const viewportHeight = window.innerHeight || 0
-
       const desiredTop = Math.round(headerHeight + 16)
       const desiredScrollMargin = Math.round(headerHeight + tabsHeight + 24)
+      const viewportHeight = window.innerHeight || 0
 
-      const focusThreshold = Math.max(
+      const baseThreshold = Math.max(
         viewportHeight * 0.35,
         isCurrentlyMobile ? desiredScrollMargin + 8 : headerHeight + 80,
       )
+      const beginningThreshold = isCurrentlyMobile
+        ? headerHeight + tabsHeight * 2
+        : baseThreshold
 
       const activeIds: SectionId[] = []
       const nextVisited = [...visitedSectionsRef.current]
@@ -202,9 +204,10 @@ export default function HomePageContent() {
         const titleNode = titleRef.current
         if (!titleNode) return
 
-        const titleOffset = titleNode.getBoundingClientRect().top
+        const titleTop = titleNode.getBoundingClientRect().top
+        const threshold = id === 'where' ? beginningThreshold : baseThreshold
 
-        if (titleOffset <= focusThreshold) {
+        if (titleTop <= threshold) {
           activeIds.push(id)
           if (!nextVisited.includes(id)) {
             nextVisited.push(id)
@@ -436,9 +439,9 @@ export default function HomePageContent() {
             <a
               href="https://calendly.com/michaelzick/45min"
               target="_blank"
-              className="btn mt-6 inline-block text-lg"
+              className="btn mt-6 inline-block text-xl"
             >
-              Book a Free 45-Minute Strategy Session
+              Book a Free Session
             </a>
           </div>
           <div className="mt-10 flex md:mt-0 md:w-1/2 md:justify-end">
