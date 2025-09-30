@@ -32,22 +32,20 @@ export default function NavBar() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 px-[70px] max-[929px]:px-[30px] transition-all duration-500 ${
-        scrolled
-          ? 'bg-dark-blue/50 backdrop-blur-md'
-          : 'bg-transparent backdrop-blur-0'
+      className={`fixed top-0 z-50 w-full px-[70px] max-[929px]:px-[30px] transition-all duration-500 ${
+        scrolled ? 'bg-dark-blue/50 backdrop-blur-md' : 'bg-transparent backdrop-blur-0'
       }`}
     >
       <nav
         className={`relative z-50 flex w-full items-center justify-between text-white transition-all duration-500 ${
           scrolled ? 'py-4' : 'py-8'
-        } ${menuOpen ? 'pointer-events-none' : ''}`}
+        } max-[929px]:py-4 ${menuOpen ? 'pointer-events-none' : ''}`}
       >
         <Link href="/" className={`${menuOpen ? '!text-default-grey' : ''}`}>
           <h1
             className={`transition-all duration-500 ${
               scrolled ? 'text-[40px]' : 'text-[48px]'
-            }`}
+            } max-[929px]:text-[40px]`}
           >
             Michael Zick
           </h1>
