@@ -51,7 +51,7 @@ function LinkTab({
 
   const variantClasses =
     variant === 'desktop'
-      ? `rounded-lg px-4 py-2 border border-dark-blue/40 shadow-lg ${desktopStateClasses}`
+      ? `w-[7em] text-center rounded-lg px-4 py-2 border border-dark-blue/40 shadow-lg ${desktopStateClasses}`
       : `flex-1 px-3 py-2 text-sm font-semibold text-center border ${mobileStateClasses} first:rounded-l-lg last:rounded-r-lg`
 
   return (
@@ -275,7 +275,7 @@ export default function HomePageContent() {
 
       <div
         className="pointer-events-none fixed inset-x-4 z-40 hidden max-[929px]:flex"
-        style={{ top: `${mobileTabsTop}px` }}
+        style={{ top: isMobile ? '100px' : `${mobileTabsTop}px` }}
       >
         <div
           ref={mobileTabsRef}
