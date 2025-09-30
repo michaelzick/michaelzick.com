@@ -124,6 +124,7 @@ export default function HomePageContent() {
   const [activeLinks, setActiveLinks] = useState<SectionId[]>([])
   const [activeSection, setActiveSection] = useState<SectionId>('where')
   const visitedSectionsRef = useRef<SectionId[]>([])
+  const [mobileTabsTop, setMobileTabsTop] = useState<number>(120)
 
   const renderLinks = (variant: 'desktop' | 'mobile') => {
     const configs =
@@ -198,6 +199,12 @@ export default function HomePageContent() {
 
       setActiveSection((prev) => (prev === resolvedCurrent ? prev : resolvedCurrent))
 
+      const header = document.querySelector('header')
+      const headerHeight = header ? header.getBoundingClientRect().height : 0
+      const desiredTop = Math.round(headerHeight + 16)
+
+      setMobileTabsTop((prev) => (Math.abs(prev - desiredTop) <= 1 ? prev : desiredTop))
+
       if (
         nextVisited.length !== visitedSectionsRef.current.length ||
         nextVisited.some((id, index) => visitedSectionsRef.current[index] !== id)
@@ -224,7 +231,10 @@ export default function HomePageContent() {
         {renderLinks('desktop')}
       </div>
 
-      <div className="pointer-events-none fixed inset-x-4 top-[92px] z-40 hidden max-[929px]:flex">
+      <div
+        className="pointer-events-none fixed inset-x-4 z-40 hidden max-[929px]:flex"
+        style={{ top: `${mobileTabsTop}px` }}
+      >
         <div className="pointer-events-auto flex w-full overflow-hidden rounded-lg border border-dark-blue/20 bg-white/95 shadow-lg backdrop-blur">
           {renderLinks('mobile')}
         </div>
