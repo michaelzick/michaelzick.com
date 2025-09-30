@@ -122,7 +122,7 @@ export default function HomePageContent() {
     program: false,
   })
   const [activeLinks, setActiveLinks] = useState<SectionId[]>([])
-  const [activeSection, setActiveSection] = useState<SectionId>('where')
+  const [activeSection, setActiveSection] = useState<SectionId | null>(null)
   const visitedSectionsRef = useRef<SectionId[]>([])
   const [isMobile, setIsMobile] = useState(false)
   const [mobileTabsTop, setMobileTabsTop] = useState<number>(120)
@@ -182,10 +182,20 @@ export default function HomePageContent() {
       const isCurrentlyMobile = typeof window !== 'undefined' ? window.innerWidth <= 929 : false
       setIsMobile((prev) => (prev === isCurrentlyMobile ? prev : isCurrentlyMobile))
 
+      const header = document.querySelector('header')
+      const headerHeight = header ? header.getBoundingClientRect().height : 0
+      const tabsHeight = mobileTabsRef.current?.getBoundingClientRect().height ?? 0
       const viewportHeight = window.innerHeight || 0
-      const focusThreshold = viewportHeight * 0.35
 
-      let current: SectionId | null = null
+      const desiredTop = Math.round(headerHeight + 16)
+      const desiredScrollMargin = Math.round(headerHeight + tabsHeight + 24)
+
+      const focusThreshold = Math.max(
+        viewportHeight * 0.35,
+        isCurrentlyMobile ? desiredScrollMargin + 8 : headerHeight + 80,
+      )
+
+      const activeIds: SectionId[] = []
       const nextVisited = [...visitedSectionsRef.current]
 
       sectionConfig.forEach(({ id, titleRef }) => {
@@ -195,23 +205,16 @@ export default function HomePageContent() {
         const titleOffset = titleNode.getBoundingClientRect().top
 
         if (titleOffset <= focusThreshold) {
-          current = id
+          activeIds.push(id)
           if (!nextVisited.includes(id)) {
             nextVisited.push(id)
           }
         }
       })
 
-      const resolvedCurrent = current ?? sectionConfig[0]?.id ?? 'where'
+      const resolvedCurrent = activeIds.length ? activeIds[activeIds.length - 1] : null
 
       setActiveSection((prev) => (prev === resolvedCurrent ? prev : resolvedCurrent))
-
-      const header = document.querySelector('header')
-      const headerHeight = header ? header.getBoundingClientRect().height : 0
-      const tabsHeight = mobileTabsRef.current?.getBoundingClientRect().height ?? 0
-
-      const desiredTop = Math.round(headerHeight + 16)
-      const desiredScrollMargin = Math.round(headerHeight + tabsHeight + 24)
 
       if (isCurrentlyMobile) {
         setMobileTabsTop((prev) => (Math.abs(prev - desiredTop) <= 1 ? prev : desiredTop))
