@@ -42,8 +42,8 @@ function LinkTab({
         : 'opacity-0'
 
   const desktopStateClasses = isActive
-    ? 'bg-dark-blue text-white hover:bg-dark-blue/80'
-    : 'bg-dark-blue/70 text-white hover:bg-dark-blue/90'
+    ? 'bg-dark-blue text-white hover:bg-dark-blue'
+    : 'bg-white text-default-grey hover:bg-dark-blue hover:text-white'
 
   const mobileStateClasses = isActive
     ? 'bg-dark-blue text-white border-dark-blue'
@@ -51,7 +51,7 @@ function LinkTab({
 
   const variantClasses =
     variant === 'desktop'
-      ? `rounded-lg px-4 py-2 shadow-lg ${desktopStateClasses}`
+      ? `rounded-lg px-4 py-2 border border-dark-blue/40 shadow-lg ${desktopStateClasses}`
       : `flex-1 px-3 py-2 text-sm font-semibold text-center border ${mobileStateClasses} first:rounded-l-lg last:rounded-r-lg`
 
   return (
