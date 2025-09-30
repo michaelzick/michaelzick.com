@@ -316,7 +316,7 @@ export default function HomePageContent() {
       <section
         id="process"
         ref={processSectionRef}
-        className="bg-gray-100 py-24 text-default-grey"
+        className="bg-gray-100 pt-16 pb-24 text-default-grey"
         style={{ scrollMarginTop }}
       >
         <div className="mx-auto max-w-[1400px]">
