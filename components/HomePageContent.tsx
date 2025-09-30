@@ -189,8 +189,8 @@ export default function HomePageContent() {
       const headerHeight = header ? header.getBoundingClientRect().height : 0
       const tabsHeight = mobileTabsRef.current?.getBoundingClientRect().height ?? 0
       const desiredTop = Math.round(headerHeight + 16)
-      const desiredScrollMargin = Math.round(headerHeight + tabsHeight + 24)
-      const beginningMargin = Math.max(headerHeight + tabsHeight + 32, 0)
+      const desiredScrollMargin = Math.round(headerHeight + tabsHeight)
+      const beginningMargin = Math.max(headerHeight + tabsHeight, 0)
       const viewportHeight = window.innerHeight || 0
 
       const baseThreshold = Math.max(
