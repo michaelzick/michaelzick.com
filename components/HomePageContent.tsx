@@ -124,7 +124,11 @@ export default function HomePageContent() {
   const [activeLinks, setActiveLinks] = useState<SectionId[]>([])
   const [activeSection, setActiveSection] = useState<SectionId>('where')
   const visitedSectionsRef = useRef<SectionId[]>([])
+  const [isMobile, setIsMobile] = useState(false)
   const [mobileTabsTop, setMobileTabsTop] = useState<number>(120)
+  const [mobileScrollMargin, setMobileScrollMargin] = useState<number>(220)
+  const mobileTabsRef = useRef<HTMLDivElement>(null)
+  const scrollMarginTop = isMobile ? mobileScrollMargin : 160
 
   const renderLinks = (variant: 'desktop' | 'mobile') => {
     const configs =
@@ -175,6 +179,9 @@ export default function HomePageContent() {
     if (typeof window === 'undefined') return
 
     const updateActiveState = () => {
+      const isCurrentlyMobile = typeof window !== 'undefined' ? window.innerWidth <= 929 : false
+      setIsMobile((prev) => (prev === isCurrentlyMobile ? prev : isCurrentlyMobile))
+
       const viewportHeight = window.innerHeight || 0
       const focusThreshold = viewportHeight * 0.35
 
@@ -201,9 +208,17 @@ export default function HomePageContent() {
 
       const header = document.querySelector('header')
       const headerHeight = header ? header.getBoundingClientRect().height : 0
-      const desiredTop = Math.round(headerHeight + 16)
+      const tabsHeight = mobileTabsRef.current?.getBoundingClientRect().height ?? 0
 
-      setMobileTabsTop((prev) => (Math.abs(prev - desiredTop) <= 1 ? prev : desiredTop))
+      const desiredTop = Math.round(headerHeight + 16)
+      const desiredScrollMargin = Math.round(headerHeight + tabsHeight + 24)
+
+      if (isCurrentlyMobile) {
+        setMobileTabsTop((prev) => (Math.abs(prev - desiredTop) <= 1 ? prev : desiredTop))
+        setMobileScrollMargin((prev) =>
+          Math.abs(prev - desiredScrollMargin) <= 1 ? prev : desiredScrollMargin,
+        )
+      }
 
       if (
         nextVisited.length !== visitedSectionsRef.current.length ||
@@ -235,7 +250,10 @@ export default function HomePageContent() {
         className="pointer-events-none fixed inset-x-4 z-40 hidden max-[929px]:flex"
         style={{ top: `${mobileTabsTop}px` }}
       >
-        <div className="pointer-events-auto flex w-full overflow-hidden rounded-lg border border-dark-blue/20 bg-white/95 shadow-lg backdrop-blur">
+        <div
+          ref={mobileTabsRef}
+          className="pointer-events-auto flex w-full overflow-hidden rounded-lg border border-dark-blue/20 bg-white/95 shadow-lg backdrop-blur"
+        >
           {renderLinks('mobile')}
         </div>
       </div>
@@ -260,6 +278,7 @@ export default function HomePageContent() {
         ref={whereSectionRef}
         className="relative overflow-hidden py-56"
         style={{
+          scrollMarginTop,
           backgroundImage: "url('/img/lake_reflection_2500.webp')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -294,7 +313,12 @@ export default function HomePageContent() {
       </section>
 
       {/* Process Section */}
-      <section id="process" ref={processSectionRef} className="bg-gray-100 py-24 text-default-grey">
+      <section
+        id="process"
+        ref={processSectionRef}
+        className="bg-gray-100 py-24 text-default-grey"
+        style={{ scrollMarginTop }}
+      >
         <div className="mx-auto max-w-[1400px]">
           <h2
             ref={processTitleRef}
@@ -340,6 +364,7 @@ export default function HomePageContent() {
         id="specialties"
         ref={specialtiesSectionRef}
         className="bg-dark-blue px-6 pb-12 pt-16 text-white md:px-8 md:pt-20 md:pb-16"
+        style={{ scrollMarginTop }}
       >
         <div className="mx-auto max-w-[1400px]">
           <div className="grid items-start gap-12 md:grid-cols-2">
@@ -379,6 +404,7 @@ export default function HomePageContent() {
         id="program"
         ref={programSectionRef}
         className="bg-[rgb(var(--light-grey))] px-6 pb-24 pt-12 text-default-grey md:px-8 md:pt-16 md:pb-32"
+        style={{ scrollMarginTop }}
       >
         <div className="mx-auto flex max-w-[1400px] flex-col gap-12 md:flex-row md:items-start">
           <div className="space-y-6 md:w-1/2">
