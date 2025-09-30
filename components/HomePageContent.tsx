@@ -91,8 +91,8 @@ export default function HomePageContent() {
       },
       {
         id: 'specialties',
-        linkText: 'Certifications',
-        mobileLabel: 'Certs',
+        linkText: 'Specialties',
+        mobileLabel: 'Specialties',
         sectionRef: specialtiesSectionRef,
         titleRef: specialtiesTitleRef,
       },
