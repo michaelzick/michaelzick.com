@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
 
-type SectionId = 'where' | 'process' | 'specialties' | 'program';
+type SectionId = 'beginning' | 'process' | 'specialties' | 'program';
 
 type SectionConfig = {
   id: SectionId;
@@ -68,13 +68,13 @@ function LinkTab({
 }
 
 export default function HomePageContent() {
-  const whereSectionRef = useRef<HTMLElement>(null);
+  const beginningSectionRef = useRef<HTMLElement>(null);
   const processSectionRef = useRef<HTMLElement>(null);
   const specialtiesSectionRef = useRef<HTMLElement>(null);
   const programSectionRef = useRef<HTMLElement>(null);
-  const beginningSectionRef = useRef<HTMLDivElement>(null);
+  const beginningWrapperRef = useRef<HTMLDivElement>(null);
 
-  const whereTitleRef = useRef<HTMLHeadingElement>(null);
+  const beginningTitleRef = useRef<HTMLHeadingElement>(null);
   const processTitleRef = useRef<HTMLHeadingElement>(null);
   const specialtiesTitleRef = useRef<HTMLHeadingElement>(null);
   const programTitleRef = useRef<HTMLHeadingElement>(null);
@@ -82,11 +82,11 @@ export default function HomePageContent() {
   const sectionConfig = useMemo<SectionConfig[]>(
     () => [
       {
-        id: 'where',
+        id: 'beginning',
         linkText: 'Beginning',
         mobileLabel: 'Beginning',
-        sectionRef: whereSectionRef,
-        titleRef: whereTitleRef,
+        sectionRef: beginningSectionRef,
+        titleRef: beginningTitleRef,
       },
       {
         id: 'process',
@@ -117,13 +117,13 @@ export default function HomePageContent() {
       programTitleRef,
       specialtiesSectionRef,
       specialtiesTitleRef,
-      whereSectionRef,
-      whereTitleRef,
+      beginningSectionRef,
+      beginningTitleRef,
     ],
   );
 
   const [visibleTitles, setVisibleTitles] = useState<Record<SectionId, boolean>>({
-    where: false,
+    beginning: false,
     process: false,
     specialties: false,
     program: false,
@@ -137,7 +137,7 @@ export default function HomePageContent() {
   const [beginningScrollMargin, setBeginningScrollMargin] = useState<number>(220);
   const mobileTabsRef = useRef<HTMLDivElement>(null);
   const scrollMarginTop = isMobile ? mobileScrollMargin : 160;
-  const scrollMarginTopWhere = isMobile ? beginningScrollMargin : scrollMarginTop;
+  const scrollMarginTopBeginning = isMobile ? beginningScrollMargin : scrollMarginTop;
 
   const renderLinks = (variant: 'desktop' | 'mobile') => {
     const configs =
@@ -206,7 +206,7 @@ export default function HomePageContent() {
       const beginningEntryLine = headerHeight + tabsHeight + 8;
       const beginningExitLine = headerHeight + 8;
 
-      const beginningRect = beginningSectionRef.current?.getBoundingClientRect() ?? null;
+      const beginningRect = beginningWrapperRef.current?.getBoundingClientRect() ?? null;
       const beginningActiveMobile =
         isCurrentlyMobile &&
         beginningRect !== null &&
@@ -222,7 +222,7 @@ export default function HomePageContent() {
 
         const titleTop = titleNode.getBoundingClientRect().top;
 
-        const isBeginning = id === 'where';
+        const isBeginning = id === 'beginning';
 
         const threshold = baseThreshold;
         const isActive = isBeginning
@@ -306,13 +306,13 @@ export default function HomePageContent() {
       </section>
 
       {/* Where Do You Go From Here */}
-      <div id="beginning-section" ref={beginningSectionRef}>
+      <div id="beginning-section" ref={beginningWrapperRef}>
         <section
-          id="where"
-          ref={whereSectionRef}
+          id="beginning"
+          ref={beginningSectionRef}
           className="relative overflow-hidden py-56"
           style={{
-            scrollMarginTop: scrollMarginTopWhere,
+            scrollMarginTop: scrollMarginTopBeginning,
             backgroundImage: "url('/img/lake_reflection_2500.webp')",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -320,8 +320,8 @@ export default function HomePageContent() {
         >
           <div className="relative w-full mx-auto p-8 mt-[-88px] md:mt-[-112px]">
             <h2
-              ref={whereTitleRef}
-              className={`text-center text-5xl font-bold text-white transition-opacity duration-700 ease-out md:text-8xl ${visibleTitles.where ? 'opacity-100' : 'opacity-0'
+              ref={beginningTitleRef}
+              className={`text-center text-5xl font-bold text-white transition-opacity duration-700 ease-out md:text-8xl ${visibleTitles.beginning ? 'opacity-100' : 'opacity-0'
                 }`}
             >
               Where Do You Go From Here?
