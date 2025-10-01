@@ -42,17 +42,17 @@ function LinkTab({
         : 'opacity-0';
 
   const desktopStateClasses = isActive
-    ? 'bg-dark-blue text-white hover:bg-dark-blue font-semibold'
-    : 'bg-white text-default-grey hover:bg-dark-blue hover:text-white font-semibold';
+    ? 'bg-dark-blue/60 text-white border border-white/30 opacity-90 hover:bg-dark-blue/70'
+    : 'bg-dark-blue/30 text-white border border-white/20 opacity-80 hover:bg-dark-blue/50';
 
   const mobileStateClasses = isActive
-    ? 'bg-dark-blue text-white border-dark-blue'
-    : 'bg-white/90 text-default-grey border-dark-blue/40';
+    ? 'bg-dark-blue/60 text-white border border-white/30 opacity-90'
+    : 'bg-dark-blue/30 text-white border border-white/20 opacity-80';
 
   const variantClasses =
     variant === 'desktop'
-      ? `w-[7em] text-center rounded-lg px-4 py-2 border border-dark-blue/40 shadow-lg ${desktopStateClasses}`
-      : `flex-1 px-2 pb-[0.475rem] pt-[0.375rem] text-xs font-semibold text-center border ${mobileStateClasses} first:rounded-l-lg last:rounded-r-lg`;
+      ? `w-[7em] text-center rounded-lg px-4 py-2 shadow-lg backdrop-blur-md font-semibold ${desktopStateClasses}`
+      : `flex-1 px-2 pb-[0.475rem] pt-[0.375rem] text-xs font-semibold text-center backdrop-blur-md first:rounded-l-lg last:rounded-r-lg ${mobileStateClasses}`;
 
   return (
     <a href={href} className={`${baseClasses} ${variantClasses} ${visibilityClasses}`}>
