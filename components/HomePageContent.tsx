@@ -1,282 +1,42 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
-
-type SectionId = 'where' | 'process' | 'specialties' | 'program';
-
-type SectionConfig = {
-  id: SectionId;
-  linkText: string;
-  mobileLabel?: string;
-  sectionRef: RefObject<HTMLElement>;
-  titleRef: RefObject<HTMLHeadingElement>;
-};
-
-function LinkTab({
-  href,
-  label,
-  variant,
-  isActive,
-}: {
-  href: string;
-  label: string;
-  variant: 'desktop' | 'mobile';
-  isActive: boolean;
-}) {
-  const [isVisible, setIsVisible] = useState(false);
-  const baseClasses =
-    'pointer-events-auto block transition-all duration-300 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-dark-blue';
-
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => setIsVisible(true));
-    return () => cancelAnimationFrame(frame);
-  }, []);
-
-  const visibilityClasses =
-    variant === 'desktop'
-      ? isVisible
-        ? 'translate-x-0 opacity-100'
-        : 'translate-x-4 opacity-0'
-      : isVisible
-        ? 'opacity-100'
-        : 'opacity-0';
-
-  const desktopStateClasses = isActive
-    ? 'bg-dark-blue/70 text-white border-white/40 opacity-95 hover:bg-dark-blue/80'
-    : 'bg-dark-blue/30 text-white border-white/25 opacity-80 hover:bg-dark-blue/50';
-
-  const mobileStateClasses = isActive
-    ? 'bg-dark-blue/70 text-white border-white/35 opacity-95'
-    : 'bg-dark-blue/30 text-white border-white/20 opacity-80';
-
-  const desktopWidthClass = isActive ? 'w-[8em]' : 'w-[7em]';
-  const desktopBaseClasses =
-    'text-center rounded-lg px-4 py-2 shadow-lg backdrop-blur-md font-semibold transition-all duration-300 border';
-  const mobileBaseClasses =
-    'flex-1 px-2 pb-[0.475rem] pt-[0.375rem] text-xs font-semibold text-center border transition-all duration-300 backdrop-blur-md first:rounded-l-lg last:rounded-r-lg';
-
-  const variantClasses =
-    variant === 'desktop'
-      ? `${desktopWidthClass} ${desktopBaseClasses} ${desktopStateClasses}`
-      : `${mobileBaseClasses} ${mobileStateClasses}`;
-
-  return (
-    <a href={href} className={`${baseClasses} ${variantClasses} ${visibilityClasses}`}>
-      {label}
-    </a>
-  );
-}
+import { TabLink } from './homepage/TabLink';
+import { useHomepageSections } from './homepage/useHomepageSections';
 
 export default function HomePageContent() {
-  const whereSectionRef = useRef<HTMLElement>(null);
-  const processSectionRef = useRef<HTMLElement>(null);
-  const specialtiesSectionRef = useRef<HTMLElement>(null);
-  const programSectionRef = useRef<HTMLElement>(null);
-  const beginningSectionRef = useRef<HTMLDivElement>(null);
-
-  const whereTitleRef = useRef<HTMLHeadingElement>(null);
-  const processTitleRef = useRef<HTMLHeadingElement>(null);
-  const specialtiesTitleRef = useRef<HTMLHeadingElement>(null);
-  const programTitleRef = useRef<HTMLHeadingElement>(null);
-
-  const sectionConfig = useMemo<SectionConfig[]>(
-    () => [
-      {
-        id: 'where',
-        linkText: 'Beginning',
-        mobileLabel: 'Beginning',
-        sectionRef: whereSectionRef,
-        titleRef: whereTitleRef,
+  const {
+    refs: {
+      sections: {
+        where: whereSectionRef,
+        process: processSectionRef,
+        specialties: specialtiesSectionRef,
+        program: programSectionRef,
       },
-      {
-        id: 'process',
-        linkText: 'Process',
-        mobileLabel: 'Process',
-        sectionRef: processSectionRef,
-        titleRef: processTitleRef,
+      titles: {
+        where: whereTitleRef,
+        process: processTitleRef,
+        specialties: specialtiesTitleRef,
+        program: programTitleRef,
       },
-      {
-        id: 'specialties',
-        linkText: 'Specialties',
-        mobileLabel: 'Specialties',
-        sectionRef: specialtiesSectionRef,
-        titleRef: specialtiesTitleRef,
-      },
-      {
-        id: 'program',
-        linkText: 'Program',
-        mobileLabel: 'Program',
-        sectionRef: programSectionRef,
-        titleRef: programTitleRef,
-      },
-    ],
-    [
-      processSectionRef,
-      processTitleRef,
-      programSectionRef,
-      programTitleRef,
-      specialtiesSectionRef,
-      specialtiesTitleRef,
-      whereSectionRef,
-      whereTitleRef,
-    ],
-  );
-
-  const [visibleTitles, setVisibleTitles] = useState<Record<SectionId, boolean>>({
-    where: false,
-    process: false,
-    specialties: false,
-    program: false,
-  });
-  const [activeLinks, setActiveLinks] = useState<SectionId[]>([]);
-  const [activeSection, setActiveSection] = useState<SectionId | null>(null);
-  const visitedSectionsRef = useRef<SectionId[]>([]);
-  const [isMobile, setIsMobile] = useState(false);
-  const [mobileTabsTop, setMobileTabsTop] = useState<number>(120);
-  const [mobileScrollMargin, setMobileScrollMargin] = useState<number>(220);
-  const [beginningScrollMargin, setBeginningScrollMargin] = useState<number>(220);
-  const mobileTabsRef = useRef<HTMLDivElement>(null);
-  const scrollMarginTop = isMobile ? mobileScrollMargin : 160;
-  const scrollMarginTopWhere = isMobile ? beginningScrollMargin : scrollMarginTop;
-
-  const renderLinks = (variant: 'desktop' | 'mobile') => {
-    const configs =
-      variant === 'desktop'
-        ? sectionConfig.filter(({ id }) => activeLinks.includes(id))
-        : sectionConfig;
-
-    return configs.map(({ id, linkText, mobileLabel }) => (
-      <LinkTab
-        key={`${id}-${variant}`}
-        href={`#${id}`}
-        label={variant === 'mobile' && mobileLabel ? mobileLabel : linkText}
-        variant={variant}
-        isActive={activeSection === id}
-      />
-    ));
-  };
-
-  useEffect(() => {
-    const titleObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const sectionId = entry.target.getAttribute('data-section-id') as SectionId | null;
-          if (!sectionId) return;
-          if (entry.isIntersecting) {
-            setVisibleTitles((prev) => {
-              if (prev[sectionId]) return prev;
-              return { ...prev, [sectionId]: true };
-            });
-          }
-        });
-      },
-      { threshold: 0.6 },
-    );
-
-    sectionConfig.forEach(({ id, titleRef }) => {
-      const node = titleRef.current;
-      if (node) {
-        node.setAttribute('data-section-id', id);
-        titleObserver.observe(node);
-      }
-    });
-
-    return () => titleObserver.disconnect();
-  }, [sectionConfig]);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    const updateActiveState = () => {
-      const isCurrentlyMobile = typeof window !== 'undefined' ? window.innerWidth <= 929 : false;
-      setIsMobile((prev) => (prev === isCurrentlyMobile ? prev : isCurrentlyMobile));
-
-      const header = document.querySelector('header');
-      const headerHeight = header ? header.getBoundingClientRect().height : 0;
-      const tabsHeight = mobileTabsRef.current?.getBoundingClientRect().height ?? 0;
-      const desiredTop = Math.round(headerHeight + 16);
-      const desiredScrollMargin = Math.round(headerHeight + tabsHeight);
-      const beginningMargin = Math.max(headerHeight + tabsHeight, 0);
-      const viewportHeight = window.innerHeight || 0;
-
-      const baseThreshold = Math.max(
-        viewportHeight * 0.35,
-        isCurrentlyMobile ? desiredScrollMargin + 8 : headerHeight + 80,
-      );
-      const beginningEntryLine = headerHeight + tabsHeight + 8;
-      const beginningExitLine = headerHeight + 8;
-
-      const beginningRect = beginningSectionRef.current?.getBoundingClientRect() ?? null;
-      const beginningActiveMobile =
-        isCurrentlyMobile &&
-        beginningRect !== null &&
-        beginningRect.top <= beginningEntryLine &&
-        beginningRect.bottom >= beginningExitLine;
-
-      const activeIds: SectionId[] = [];
-      const nextVisited = [...visitedSectionsRef.current];
-
-      sectionConfig.forEach(({ id, sectionRef, titleRef }) => {
-        const titleNode = titleRef.current;
-        if (!titleNode || !sectionRef.current) return;
-
-        const titleTop = titleNode.getBoundingClientRect().top;
-
-        const isBeginning = id === 'where';
-
-        const threshold = baseThreshold;
-        const isActive = isBeginning
-          ? isCurrentlyMobile
-            ? beginningActiveMobile
-            : titleTop <= threshold
-          : titleTop <= threshold;
-
-        if (isActive) {
-          activeIds.push(id);
-          if (!nextVisited.includes(id)) {
-            nextVisited.push(id);
-          }
-        }
-      });
-
-      const resolvedCurrent = activeIds.length ? activeIds[activeIds.length - 1] : null;
-
-      setActiveSection((prev) => (prev === resolvedCurrent ? prev : resolvedCurrent));
-
-      if (isCurrentlyMobile) {
-        setMobileTabsTop((prev) => (Math.abs(prev - desiredTop) <= 1 ? prev : desiredTop));
-        setMobileScrollMargin((prev) =>
-          Math.abs(prev - desiredScrollMargin) <= 1 ? prev : desiredScrollMargin,
-        );
-        setBeginningScrollMargin((prev) =>
-          Math.abs(prev - beginningMargin) <= 1 ? prev : beginningMargin,
-        );
-      }
-
-      if (
-        nextVisited.length !== visitedSectionsRef.current.length ||
-        nextVisited.some((id, index) => visitedSectionsRef.current[index] !== id)
-      ) {
-        visitedSectionsRef.current = nextVisited;
-        setActiveLinks([...nextVisited]);
-      }
-    };
-
-    updateActiveState();
-
-    window.addEventListener('scroll', updateActiveState, { passive: true });
-    window.addEventListener('resize', updateActiveState);
-
-    return () => {
-      window.removeEventListener('scroll', updateActiveState);
-      window.removeEventListener('resize', updateActiveState);
-    };
-  }, [sectionConfig]);
+      beginningSectionRef,
+      mobileTabsRef,
+    },
+    desktopTabs,
+    mobileTabs,
+    visibleTitles,
+    activeSection,
+    isMobile,
+    mobileTabsTop,
+    scrollMarginTop,
+    scrollMarginTopWhere,
+  } = useHomepageSections();
 
   return (
     <div className="relative flex flex-col">
       <div className="pointer-events-none fixed right-4 top-1/3 z-40 flex flex-col items-end space-y-3 max-[929px]:hidden">
-        {renderLinks('desktop')}
+        {desktopTabs.map(({ id, linkText }) => (
+          <TabLink key={id} href={`#${id}`} label={linkText} variant="desktop" isActive={activeSection === id} />
+        ))}
       </div>
 
       <div
@@ -287,7 +47,15 @@ export default function HomePageContent() {
           ref={mobileTabsRef}
           className="pointer-events-auto flex w-full overflow-hidden rounded-lg border border-dark-blue/20 bg-transparent shadow-lg backdrop-blur"
         >
-          {renderLinks('mobile')}
+          {mobileTabs.map(({ id, linkText, mobileLabel }) => (
+            <TabLink
+              key={id}
+              href={`#${id}`}
+              label={mobileLabel ?? linkText}
+              variant="mobile"
+              isActive={activeSection === id}
+            />
+          ))}
         </div>
       </div>
 
@@ -321,8 +89,9 @@ export default function HomePageContent() {
           <div className="relative w-full mx-auto p-8 mt-[-88px] md:mt-[-112px]">
             <h2
               ref={whereTitleRef}
-              className={`text-center text-5xl font-bold text-white transition-opacity duration-700 ease-out md:text-8xl ${visibleTitles.where ? 'opacity-100' : 'opacity-0'
-                }`}
+              className={`text-center text-5xl font-bold text-white transition-opacity duration-700 ease-out md:text-8xl ${
+                visibleTitles.where ? 'opacity-100' : 'opacity-0'
+              }`}
             >
               Where Do You Go From Here?
             </h2>
@@ -356,8 +125,9 @@ export default function HomePageContent() {
         <div className="mx-auto max-w-[1400px]">
           <h2
             ref={processTitleRef}
-            className={`mb-12 text-center text-5xl transition-opacity duration-700 ease-out ${visibleTitles.process ? 'opacity-100' : 'opacity-0'
-              }`}
+            className={`mb-12 text-center text-5xl transition-opacity duration-700 ease-out ${
+              visibleTitles.process ? 'opacity-100' : 'opacity-0'
+            }`}
           >
             How My Process is Different
           </h2>
@@ -404,8 +174,9 @@ export default function HomePageContent() {
             <div className="space-y-6">
               <h2
                 ref={specialtiesTitleRef}
-                className={`text-[55px] font-semibold transition-opacity duration-700 ease-out ${visibleTitles.specialties ? 'opacity-100' : 'opacity-0'
-                  }`}
+                className={`text-[55px] font-semibold transition-opacity duration-700 ease-out ${
+                  visibleTitles.specialties ? 'opacity-100' : 'opacity-0'
+                }`}
               >
                 Specialties:
               </h2>
@@ -442,8 +213,9 @@ export default function HomePageContent() {
           <div className="space-y-6 md:w-1/2">
             <h2
               ref={programTitleRef}
-              className={`text-[45px] font-semibold transition-opacity duration-700 ease-out ${visibleTitles.program ? 'opacity-100' : 'opacity-0'
-                }`}
+              className={`text-[45px] font-semibold transition-opacity duration-700 ease-out ${
+                visibleTitles.program ? 'opacity-100' : 'opacity-0'
+              }`}
             >
               Individual Coaching Program
             </h2>
