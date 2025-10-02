@@ -42,7 +42,11 @@ export default function NavBar() {
           scrolled ? 'py-4' : 'py-8'
         } max-[929px]:py-4 ${menuOpen ? 'pointer-events-none' : ''}`}
       >
-        <Link href="/" className={`${menuOpen ? '!text-default-grey' : ''}`}>
+        <Link
+          href="/"
+          className={`${menuOpen ? '!text-default-grey pointer-events-auto' : ''}`}
+          onClick={() => setMenuOpen(false)}
+        >
           <h1
             className={`transition-all duration-500 ${
               scrolled ? 'text-[40px]' : 'text-[48px]'
