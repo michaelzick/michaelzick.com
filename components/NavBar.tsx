@@ -86,7 +86,7 @@ export default function NavBar() {
             rel="noopener noreferrer"
             className="nav-button"
           >
-            Book a Session
+            Book a Free Session
           </a>
         </div>
         <div
@@ -153,7 +153,7 @@ export default function NavBar() {
             className="nav-button"
             onClick={() => setMenuOpen(false)}
           >
-            Book a Session
+            Book a Free Session
           </a>
         </div>
     </header>

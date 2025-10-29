@@ -69,7 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
                 target="_blank"
                 className="footer-link inline-block"
               >
-                <strong>Book a Session</strong>
+                <strong>Book a Free Session</strong>
               </a>
             </div>
           </div>
