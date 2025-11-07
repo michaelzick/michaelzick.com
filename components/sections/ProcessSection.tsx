@@ -18,7 +18,7 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
       <div className="mx-auto max-w-[1400px]">
         <h2
           ref={titleRef}
-          className={`mb-12 text-center text-5xl transition-opacity duration-700 ease-out ${
+          className={`font-headline mb-12 text-center text-5xl transition-opacity duration-700 ease-out ${
             isVisible ? 'opacity-100' : 'opacity-0'
           }`}
         >

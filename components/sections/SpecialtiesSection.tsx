@@ -20,7 +20,7 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
           <div className="space-y-6">
             <h2
               ref={titleRef}
-              className={`text-[55px] font-semibold transition-opacity duration-700 ease-out ${
+              className={`font-headline text-[55px] font-semibold transition-opacity duration-700 ease-out ${
                 isVisible ? 'opacity-100' : 'opacity-0'
               }`}
             >

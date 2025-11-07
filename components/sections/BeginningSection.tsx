@@ -31,7 +31,7 @@ export function BeginningSection({
         <div className="relative w-full mx-auto p-8 mt-[-88px] md:mt-[-112px]">
           <h2
             ref={titleRef}
-            className={`text-center text-5xl font-bold text-white transition-opacity duration-700 ease-out md:text-8xl ${
+            className={`font-headline text-center text-5xl font-bold text-white transition-opacity duration-700 ease-out md:text-8xl ${
               isVisible ? 'opacity-100' : 'opacity-0'
             }`}
           >
