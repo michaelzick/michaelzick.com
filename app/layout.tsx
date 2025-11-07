@@ -3,12 +3,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import NavBar from '../components/NavBar';
 import Script from 'next/script';
-import { Golos_Text } from 'next/font/google';
+import { Open_Sans } from 'next/font/google';
 
-const golosText = Golos_Text({
+const openSans = Open_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
-  variable: '--font-golos-text',
+  variable: '--font-open-sans',
 });
 
 export const metadata: Metadata = {
@@ -50,7 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           `}
         </Script>
       </head>
-      <body className={`${golosText.variable} min-h-screen flex flex-col font-sans`}>
+      <body className={`${openSans.variable} min-h-screen flex flex-col font-sans`}>
         <NavBar />
         <main className="flex-1">{children}</main>
         <footer className="text-white py-8 text-lg bg-dark-blue">

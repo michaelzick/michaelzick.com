@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['"Tahoma"', 'Helvetica', 'Arial', 'sans-serif'],
-        headline: ['var(--font-golos-text)', '"Tahoma"', 'Helvetica', 'Arial', 'sans-serif'],
+        headline: ['var(--font-open-sans)', '"Tahoma"', 'Helvetica', 'Arial', 'sans-serif'],
       },
       colors: {
         'primary-blue': 'rgb(var(--primary-blue) / <alpha-value>)',
