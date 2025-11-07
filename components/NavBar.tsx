@@ -46,7 +46,7 @@ export default function NavBar() {
           onClick={() => setMenuOpen(false)}
         >
           <h1
-            className={`transition-all duration-500 ${scrolled ? 'text-[48px]' : 'text-[56px]'
+            className={`font-bold transition-all duration-500 ${scrolled ? 'text-[48px]' : 'text-[56px]'
               } max-[929px]:text-[48px]`}
           >
             Michael Zick

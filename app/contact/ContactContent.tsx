@@ -1,28 +1,38 @@
 import ContactForm from './ContactForm';
 
 export default function ContactContent() {
-
   return (
     <div className="flex flex-col">
       <section
-        className="bg-default-grey min-h-screen text-white px-6 md:px-8 pt-40 md:pt-56 pb-24 md:pb-32"
+        className="relative h-screen flex items-end text-white"
         style={{
           backgroundImage: "url('/img/lake_reflection_2500.webp')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       >
-        <div className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-8 shadow-md">
-          <div className="md:col-span-5 space-y-6">
-            <h1 className="text-[64px] font-semibold">Contact</h1>
-            <h2 className="text-2xl font-semibold">Socials</h2>
-            <div className="flex space-x-4">
+        <div className="relative w-full max-w-[1400px] mx-auto p-8">
+          <h2 className="font-headline text-4xl md:text-6xl text-right">Contact</h2>
+        </div>
+      </section>
+
+      <section className="bg-default-grey text-white px-6 md:px-8 pt-24 md:pt-32 pb-24 md:pb-32">
+        <div className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-8">
+          <div className="md:col-span-5 flex flex-col items-start gap-6">
+            <p className="text-2xl font-light max-w-md">
+              Connect with Michael directly on Medium or reach out using the form.
+            </p>
+            <div className="flex flex-col items-start gap-3">
+              <h2 className="text-2xl font-semibold">Medium</h2>
               <a
                 href="https://michaelzick.medium.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Medium"
+                className="inline-flex h-16 w-16 items-center justify-center rounded-lg border border-white/80 transition-colors duration-200 hover:bg-white/10"
               >
                 <svg
-                  className="w-11 h-11 fill-current"
+                  className="w-12 h-12 fill-current"
                   viewBox="0 0 64 64"
                   aria-hidden="true"
                 >
@@ -40,4 +50,3 @@ export default function ContactContent() {
     </div>
   );
 }
-
