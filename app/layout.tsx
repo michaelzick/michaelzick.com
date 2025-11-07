@@ -3,6 +3,13 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import NavBar from '../components/NavBar';
 import Script from 'next/script';
+import { Golos_Text } from 'next/font/google';
+
+const golosText = Golos_Text({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-golos-text',
+});
 
 export const metadata: Metadata = {
   title: 'Michael Zick | Peak Performance Coach',
@@ -24,7 +31,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode; }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
@@ -43,7 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
           `}
         </Script>
       </head>
-      <body className="min-h-screen flex flex-col font-sans">
+      <body className={`${golosText.variable} min-h-screen flex flex-col font-sans`}>
         <NavBar />
         <main className="flex-1">{children}</main>
         <footer className="text-white py-8 text-lg bg-dark-blue">

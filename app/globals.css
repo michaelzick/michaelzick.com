@@ -17,6 +17,14 @@ html {
   scroll-behavior: smooth;
 }
 
+@layer base {
+  h1,
+  h2,
+  h3 {
+    @apply font-headline;
+  }
+}
+
 .header-burger {
   display: none;
 }
