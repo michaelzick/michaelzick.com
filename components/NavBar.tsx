@@ -37,7 +37,7 @@ export default function NavBar() {
         }`}
     >
       <nav
-        className={`relative z-50 flex w-full items-center justify-between text-white transition-all duration-500 ${scrolled ? 'py-4' : 'py-8'
+        className={`relative z-50 flex w-full items-center justify-between text-white transition-all duration-500 ${scrolled ? 'py-4' : 'py-6'
           } max-[929px]:py-4 ${menuOpen ? 'pointer-events-none' : ''}`}
       >
         <Link
@@ -46,8 +46,8 @@ export default function NavBar() {
           onClick={() => setMenuOpen(false)}
         >
           <h1
-            className={`transition-all duration-500 ${scrolled ? 'text-[40px]' : 'text-[48px]'
-              } max-[929px]:text-[40px]`}
+            className={`transition-all duration-500 ${scrolled ? 'text-[48px]' : 'text-[56px]'
+              } max-[929px]:text-[48px]`}
           >
             Michael Zick
           </h1>
