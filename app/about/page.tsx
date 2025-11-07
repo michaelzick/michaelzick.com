@@ -34,6 +34,7 @@ export default function About() {
         className="relative h-screen flex items-end text-white"
         style={{ backgroundImage: "url('/img/ocean_2500.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
+        <div className="absolute inset-0 bg-black/30" aria-hidden="true"></div>
         <div className="relative w-full max-w-[1400px] mx-auto p-8">
           <h2 className="text-4xl md:text-6xl text-right">About</h2>
         </div>
