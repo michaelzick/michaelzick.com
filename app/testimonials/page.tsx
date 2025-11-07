@@ -102,8 +102,11 @@ export default function Testimonials() {
         </div>
       </section>
 
-      <section className="px-6 md:px-8 py-24 md:py-32 bg-[rgb(var(--light-grey))] text-default-grey">
+      <section className="px-6 md:px-8 pt-12 pb-24 md:pt-16 md:pb-32 bg-[rgb(var(--light-grey))] text-default-grey">
         <div className="max-w-[1400px] mx-auto space-y-12 text-[23px]">
+          <div className="max-w-4xl mx-auto md:mx-0">
+            <h2 className="font-headline text-[45px] font-semibold leading-tight text-center md:text-left">More Testimonials</h2>
+          </div>
           <div className="space-y-4">
             <p>
               “This program is exceptional. If you want something different from your life and are
