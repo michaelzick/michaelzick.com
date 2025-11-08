@@ -42,17 +42,17 @@ export function useScrollTracking(sectionConfig: SectionConfig[]) {
       const halfSpacing = Math.round(reducedSpacing * 0.5);
       const adjustedTabsTop = Math.max(headerHeight + halfSpacing, headerHeight + 8);
       const tabsTop = isCurrentlyMobile ? adjustedTabsTop : baseTabsTop;
-      const tabsBottom = tabsTop + tabsHeight;
-      const desiredScrollMargin = Math.round(Math.max(headerHeight + 16, tabsBottom + 8));
-      const beginningMargin = Math.max(desiredScrollMargin, tabsBottom + 8);
+      const overlayOffset = Math.round(headerHeight + 24);
+      const desiredScrollMargin = Math.max(overlayOffset, headerHeight + 16);
+      const beginningMargin = desiredScrollMargin;
       const viewportHeight = window.innerHeight || 0;
 
       const baseThreshold = Math.max(
         viewportHeight * 0.35,
         isCurrentlyMobile ? desiredScrollMargin + 8 : headerHeight + 80,
       );
-      const beginningEntryLine = headerHeight + tabsHeight + 8;
-      const beginningExitLine = headerHeight + 8;
+      const beginningEntryLine = desiredScrollMargin;
+      const beginningExitLine = Math.max(headerHeight + 8, 8);
 
       const beginningRect = beginningWrapperRef.current?.getBoundingClientRect() ?? null;
       const beginningActiveMobile =
