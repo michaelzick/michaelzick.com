@@ -39,7 +39,7 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
             <img
               src="/img/mountains_2500.webp"
               alt="Mountains"
-              className="w-full rounded-lg object-cover shadow-md"
+              className="w-full rounded-lg object-cover shadow-md max-[767px]:rounded-none"
             />
             <h3 className="px-2.5 text-4xl font-semibold md:px-0">Identifying Meanings and Beliefs</h3>
             <p className="px-2.5 text-lg md:px-0">Meanings and beliefs are like the programming language of our life. They provide a filter through which external information and experiences pass.</p>
@@ -53,7 +53,7 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
             <img
               src="/img/ocean_2500.webp"
               alt="Feelings"
-              className="h-100 w-full rounded-lg object-cover shadow-md"
+              className="h-100 w-full rounded-lg object-cover shadow-md max-[767px]:rounded-none"
             />
             <h3 className="px-2.5 text-4xl font-semibold md:px-0">Working Through Feelings, Experientially</h3>
             <p className="px-2.5 text-lg md:px-0">While analyzing the &quot;why&quot; and the &quot;what&quot; around our thoughts and behaviors is useful, behaviors rarely change without working through the feelings.</p>
@@ -67,7 +67,7 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
             <img
               src="/img/dark_mountains_2500.webp"
               alt="Action"
-              className="h-100 w-full rounded-lg object-cover shadow-md"
+              className="h-100 w-full rounded-lg object-cover shadow-md max-[767px]:rounded-none"
             />
             <h3 className="px-2.5 text-4xl font-semibold md:px-0">Taking Consistent, Conscious Action</h3>
             <p className="px-2.5 text-lg md:px-0">Through identifying beliefs and processing feelings you can enter a new state of consciousness and awareness. This is where true behavioral change happens.</p>
