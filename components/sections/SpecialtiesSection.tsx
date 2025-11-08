@@ -1,4 +1,7 @@
+'use client';
+
 import type { RefObject } from 'react';
+import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
 
 interface SpecialtiesSectionProps {
   sectionRef: RefObject<HTMLElement>;
@@ -8,6 +11,8 @@ interface SpecialtiesSectionProps {
 }
 
 export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVisible }: SpecialtiesSectionProps) {
+  const { setRef: setHighlightRef, visibleStates: highlightVisible } = useFadeInOnScroll(3, 0.3);
+
   return (
     <section
       id="specialties"
@@ -35,13 +40,28 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
             </ul>
           </div>
           <div className="space-y-6">
-            <div className="rounded-lg bg-white p-6 text-[30px] font-medium text-default-grey shadow-md">
+            <div
+              ref={setHighlightRef(0)}
+              className={`rounded-lg bg-white p-6 text-[30px] font-medium text-default-grey shadow-md transition-all duration-700 ease-out ${
+                highlightVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
+            >
               Certified as a Life &amp; Relationship Coach by Life Purpose Institute.
             </div>
-            <div className="rounded-lg bg-white p-6 text-[30px] font-medium text-default-grey shadow-md">
+            <div
+              ref={setHighlightRef(1)}
+              className={`rounded-lg bg-white p-6 text-[30px] font-medium text-default-grey shadow-md transition-all duration-700 ease-out ${
+                highlightVisible[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
+            >
               Certified by Dr. Robert Glover, author of &quot;No More Mr. Nice Guy&quot; and renowned therapist.
             </div>
-            <div className="rounded-lg bg-white p-6 text-[30px] font-medium text-default-grey shadow-md">
+            <div
+              ref={setHighlightRef(2)}
+              className={`rounded-lg bg-white p-6 text-[30px] font-medium text-default-grey shadow-md transition-all duration-700 ease-out ${
+                highlightVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
+            >
               Established in the Los Angeles mental health and recovery community since 2015.
             </div>
           </div>

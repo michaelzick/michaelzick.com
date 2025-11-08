@@ -1,4 +1,7 @@
+'use client';
+
 import type { RefObject } from 'react';
+import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
 
 interface ProgramSectionProps {
   sectionRef: RefObject<HTMLElement>;
@@ -8,6 +11,8 @@ interface ProgramSectionProps {
 }
 
 export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisible }: ProgramSectionProps) {
+  const { setRef: setImageRef, visibleStates: imageVisible } = useFadeInOnScroll(1, 0.4);
+
   return (
     <section
       id="program"
@@ -47,7 +52,12 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
             Book a Free Session
           </a>
         </div>
-        <div className="mt-10 flex md:mt-0 md:w-1/2 md:justify-end">
+        <div
+          ref={setImageRef(0)}
+          className={`mt-10 flex md:mt-0 md:w-1/2 md:justify-end transition-all duration-700 ease-out ${
+            imageVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
+        >
           <img
             src="/img/waterfall_2500.webp"
             alt="Waterfall cascading over rocks"

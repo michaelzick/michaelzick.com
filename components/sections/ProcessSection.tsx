@@ -1,4 +1,7 @@
+'use client';
+
 import type { RefObject } from 'react';
+import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
 
 interface ProcessSectionProps {
   sectionRef: RefObject<HTMLElement>;
@@ -8,6 +11,8 @@ interface ProcessSectionProps {
 }
 
 export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisible }: ProcessSectionProps) {
+  const { setRef: setCardRef, visibleStates: cardVisible } = useFadeInOnScroll(3, 0.35);
+
   return (
     <section
       id="process"
@@ -25,7 +30,12 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
           How My Process is Different
         </h2>
         <div className="grid gap-8 md:grid-cols-3">
-          <div className="space-y-4 text-center">
+          <div
+            ref={setCardRef(0)}
+            className={`space-y-4 text-center transition-all duration-700 ease-out ${
+              cardVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
             <img
               src="/img/mountains_2500.webp"
               alt="Mountains"
@@ -34,7 +44,12 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
             <h3 className="px-2.5 text-4xl font-semibold md:px-0">Identifying Meanings and Beliefs</h3>
             <p className="px-2.5 text-lg md:px-0">Meanings and beliefs are like the programming language of our life. They provide a filter through which external information and experiences pass.</p>
           </div>
-          <div className="space-y-4 text-center">
+          <div
+            ref={setCardRef(1)}
+            className={`space-y-4 text-center transition-all duration-700 ease-out ${
+              cardVisible[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
             <img
               src="/img/ocean_2500.webp"
               alt="Feelings"
@@ -43,7 +58,12 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
             <h3 className="px-2.5 text-4xl font-semibold md:px-0">Working Through Feelings, Experientially</h3>
             <p className="px-2.5 text-lg md:px-0">While analyzing the &quot;why&quot; and the &quot;what&quot; around our thoughts and behaviors is useful, behaviors rarely change without working through the feelings.</p>
           </div>
-          <div className="space-y-4 text-center">
+          <div
+            ref={setCardRef(2)}
+            className={`space-y-4 text-center transition-all duration-700 ease-out ${
+              cardVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
             <img
               src="/img/dark_mountains_2500.webp"
               alt="Action"
