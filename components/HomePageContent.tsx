@@ -93,7 +93,7 @@ export default function HomePageContent() {
       {/* Mobile Navigation */}
       <div
         className="pointer-events-none fixed inset-x-4 z-40 hidden max-[929px]:flex"
-        style={{ top: isMobile ? '100px' : `${mobileTabsTop}px` }}
+        style={{ top: isMobile ? '110px' : `${mobileTabsTop}px` }}
       >
         <div
           ref={mobileTabsRef}
