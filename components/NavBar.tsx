@@ -47,7 +47,7 @@ export default function NavBar() {
         >
           <h1
             className={`font-bold transition-all duration-500 ${scrolled ? 'text-[48px]' : 'text-[56px]'
-              } max-[929px]:text-[48px]`}
+              } max-[929px]:text-[40px]`}
           >
             Michael Zick
           </h1>

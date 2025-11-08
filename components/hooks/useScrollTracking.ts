@@ -16,7 +16,7 @@ export function useScrollTracking(sectionConfig: SectionConfig[]) {
   const [activeLinks, setActiveLinks] = useState<SectionId[]>([]);
   const [activeSection, setActiveSection] = useState<SectionId | null>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [mobileTabsTop, setMobileTabsTop] = useState<number>(110);
+  const [mobileTabsTop, setMobileTabsTop] = useState<number>(100);
   const [mobileScrollMargin, setMobileScrollMargin] = useState<number>(220);
   const [beginningScrollMargin, setBeginningScrollMargin] = useState<number>(220);
 
