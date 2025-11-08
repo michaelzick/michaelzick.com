@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 export function useFadeInOnScroll(count: number, threshold = 0.4) {
   const elementRefs = useRef<(HTMLElement | null)[]>([]);
@@ -44,14 +44,23 @@ export function useFadeInOnScroll(count: number, threshold = 0.4) {
     return () => observer.disconnect();
   }, [count, threshold]);
 
+  const refCallbacks = useMemo(
+    () =>
+      Array.from({ length: count }, (_, index) => {
+        const callback = (element: HTMLElement | null) => {
+          elementRefs.current[index] = element;
+          if (element) {
+            element.setAttribute('data-fade-index', index.toString());
+          }
+        };
+        return callback;
+      }),
+    [count],
+  );
+
   const setRef = useCallback(
-    (index: number) => (element: HTMLElement | null) => {
-      elementRefs.current[index] = element;
-      if (element) {
-        element.setAttribute('data-fade-index', index.toString());
-      }
-    },
-    [],
+    (index: number) => refCallbacks[index] ?? (() => {}),
+    [refCallbacks],
   );
 
   return { setRef, visibleStates };

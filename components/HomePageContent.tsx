@@ -68,7 +68,6 @@ export default function HomePageContent() {
   const {
     activeLinks,
     activeSection,
-    isMobile,
     mobileTabsTop,
     scrollMarginTop,
     scrollMarginTopBeginning,
@@ -93,7 +92,7 @@ export default function HomePageContent() {
       {/* Mobile Navigation */}
       <div
         className="pointer-events-none fixed inset-x-4 z-40 hidden max-[929px]:flex"
-        style={{ top: isMobile ? '100px' : `${mobileTabsTop}px` }}
+        style={{ top: `${mobileTabsTop}px` }}
       >
         <div
           ref={mobileTabsRef}

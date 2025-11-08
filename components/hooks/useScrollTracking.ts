@@ -37,9 +37,14 @@ export function useScrollTracking(sectionConfig: SectionConfig[]) {
       const header = document.querySelector('header');
       const headerHeight = header ? header.getBoundingClientRect().height : 0;
       const tabsHeight = mobileTabsRef.current?.getBoundingClientRect().height ?? 0;
-      const desiredTop = Math.round(headerHeight + 16);
-      const desiredScrollMargin = Math.round(headerHeight + tabsHeight);
-      const beginningMargin = Math.max(headerHeight + tabsHeight, 0);
+      const baseTabsTop = Math.round(headerHeight + 16);
+      const reducedSpacing = Math.max(baseTabsTop - headerHeight, 0);
+      const halfSpacing = Math.round(reducedSpacing * 0.5);
+      const adjustedTabsTop = Math.max(headerHeight + halfSpacing, headerHeight + 8);
+      const tabsTop = isCurrentlyMobile ? adjustedTabsTop : baseTabsTop;
+      const tabsBottom = tabsTop + tabsHeight;
+      const desiredScrollMargin = Math.round(Math.max(headerHeight + 16, tabsBottom + 8));
+      const beginningMargin = Math.max(desiredScrollMargin, tabsBottom + 8);
       const viewportHeight = window.innerHeight || 0;
 
       const baseThreshold = Math.max(
@@ -87,7 +92,7 @@ export function useScrollTracking(sectionConfig: SectionConfig[]) {
       setActiveSection((prev) => (prev === resolvedCurrent ? prev : resolvedCurrent));
 
       if (isCurrentlyMobile) {
-        setMobileTabsTop((prev) => (Math.abs(prev - desiredTop) <= 1 ? prev : desiredTop));
+        setMobileTabsTop((prev) => (Math.abs(prev - tabsTop) <= 1 ? prev : tabsTop));
         setMobileScrollMargin((prev) =>
           Math.abs(prev - desiredScrollMargin) <= 1 ? prev : desiredScrollMargin,
         );

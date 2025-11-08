@@ -20,12 +20,7 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
     >
       <div className="mx-auto flex max-w-[1400px] flex-col gap-12 md:flex-row md:items-start">
         <FadeInSection className="space-y-6 md:w-1/2">
-          <h2
-            ref={titleRef}
-            className={`text-[45px] font-semibold transition-opacity duration-700 ease-out ${
-              isVisible ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
+          <h2 ref={titleRef} className="text-[45px] font-semibold">
             Individual Coaching Program
           </h2>
           <h3 className="text-[35px] font-medium">The details:</h3>
