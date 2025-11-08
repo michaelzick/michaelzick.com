@@ -36,7 +36,6 @@ export function useScrollTracking(sectionConfig: SectionConfig[]) {
 
       const header = document.querySelector('header');
       const headerHeight = header ? header.getBoundingClientRect().height : 0;
-      const tabsHeight = mobileTabsRef.current?.getBoundingClientRect().height ?? 0;
       const baseTabsTop = Math.round(headerHeight + 16);
       const reducedSpacing = Math.max(baseTabsTop - headerHeight, 0);
       const halfSpacing = Math.round(reducedSpacing * 0.5);

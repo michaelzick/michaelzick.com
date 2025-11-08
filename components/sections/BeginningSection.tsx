@@ -31,8 +31,8 @@ export function BeginningSection({
         <div className="relative w-full mx-auto p-8 mt-[-88px] md:mt-[-112px]">
           <h2
             ref={titleRef}
-            className={`font-headline text-center text-5xl font-bold text-white transition-opacity duration-700 ease-out md:text-8xl ${
-              isVisible ? 'opacity-100' : 'opacity-0'
+            className={`font-headline text-center text-5xl font-bold text-white transition-all duration-700 ease-out md:text-8xl ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
             Where Do You Go From Here?
