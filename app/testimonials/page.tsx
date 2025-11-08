@@ -104,7 +104,7 @@ export default function Testimonials() {
       </section>
 
       <section className="px-6 md:px-8 pt-12 pb-24 md:pt-16 md:pb-32 bg-[rgb(var(--light-grey))] text-default-grey">
-        <FadeInSection className="max-w-[1400px] mx-auto space-y-12 text-[23px]">
+        <div className="max-w-[1400px] mx-auto space-y-12 text-[23px]">
           <div className="max-w-4xl mx-auto md:mx-0">
             <h2 className="font-headline text-[45px] font-semibold leading-tight text-center md:text-left">More Testimonials</h2>
           </div>
@@ -172,7 +172,7 @@ export default function Testimonials() {
             </p>
             <p className="font-semibold">— Howard B.</p>
           </div>
-        </FadeInSection>
+        </div>
       </section>
     </div>
   );
