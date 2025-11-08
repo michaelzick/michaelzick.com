@@ -1,7 +1,7 @@
 'use client';
 
 import type { RefObject } from 'react';
-import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
+import { FadeInSection } from '../FadeInSection';
 
 interface ProgramSectionProps {
   sectionRef: RefObject<HTMLElement>;
@@ -11,8 +11,6 @@ interface ProgramSectionProps {
 }
 
 export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisible }: ProgramSectionProps) {
-  const { setRef: setImageRef, visibleStates: imageVisible } = useFadeInOnScroll(1, 0.4);
-
   return (
     <section
       id="program"
@@ -21,7 +19,7 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
       style={{ scrollMarginTop }}
     >
       <div className="mx-auto flex max-w-[1400px] flex-col gap-12 md:flex-row md:items-start">
-        <div className="space-y-6 md:w-1/2">
+        <FadeInSection className="space-y-6 md:w-1/2">
           <h2
             ref={titleRef}
             className={`text-[45px] font-semibold transition-opacity duration-700 ease-out ${
@@ -51,13 +49,8 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
           >
             Book a Free Session
           </a>
-        </div>
-        <div
-          ref={setImageRef(0)}
-          className={`mt-10 flex md:mt-0 md:w-1/2 md:justify-end transition-all duration-700 ease-out ${
-            imageVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-          }`}
-        >
+        </FadeInSection>
+        <div className="mt-10 flex md:mt-0 md:w-1/2 md:justify-end">
           <img
             src="/img/waterfall_2500.webp"
             alt="Waterfall cascading over rocks"
