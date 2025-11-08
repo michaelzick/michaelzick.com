@@ -1,4 +1,5 @@
 import ContactForm from './ContactForm';
+import { FadeInSection } from '../../components/FadeInSection';
 
 export default function ContactContent() {
   return (
@@ -18,7 +19,7 @@ export default function ContactContent() {
       </section>
 
       <section className="bg-default-grey text-white px-6 md:px-8 pt-24 md:pt-32 pb-24 md:pb-32">
-        <div className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-8">
+        <FadeInSection className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-8">
           <div className="md:col-span-5 flex flex-col items-start gap-6">
             <p className="text-2xl font-light max-w-md">
               Connect with Michael directly on Medium or reach out using the form.
@@ -46,7 +47,7 @@ export default function ContactContent() {
             <h2 className="text-3xl font-semibold mb-6 text-default-grey">Send a Message</h2>
             <ContactForm />
           </div>
-        </div>
+        </FadeInSection>
       </section>
     </div>
   );
