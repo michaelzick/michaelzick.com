@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { FadeInSection } from '../../components/FadeInSection'
 
 export const metadata: Metadata = {
   title: 'Michael Zick | Testimonials',
@@ -42,7 +43,7 @@ export default function Testimonials() {
       <section className="bg-dark-blue text-white px-6 md:px-8 py-24 md:py-32">
         <div className="max-w-[1400px] mx-auto space-y-24">
           <div className="flex flex-col md:flex-row md:items-center gap-8">
-            <div className="md:w-1/2 order-2 md:order-1 space-y-6">
+            <FadeInSection className="md:w-1/2 order-2 md:order-1 space-y-6">
               <h3 className="text-[35px] font-medium">Elizabeth D.</h3>
               <p className="text-[23px]">
                 “I think following that tiny voice in your head is what leads you to the most
@@ -61,7 +62,7 @@ export default function Testimonials() {
                 not just in the dating realm, but all kinds of amazing revelations and changes are
                 happening in other areas of my life, too.”
               </p>
-            </div>
+            </FadeInSection>
             <div className="md:w-1/2 order-1 md:order-2">
               <img
                 src="/img/eg.webp"
@@ -79,7 +80,7 @@ export default function Testimonials() {
                 className="w-full h-auto object-cover rounded-lg shadow-md"
               />
             </div>
-            <div className="md:w-1/2 space-y-6">
+            <FadeInSection className="md:w-1/2 space-y-6">
               <h3 className="text-[35px] font-medium">Ryan I.</h3>
               <p className="text-[23px]">
                 “I completed a one-on-one coaching series with Michael Zick and it was an
@@ -97,13 +98,13 @@ export default function Testimonials() {
                 me perspective, feedback, and tools to move through to a place of better clarity
                 and self knowledge.”
               </p>
-            </div>
+            </FadeInSection>
           </div>
         </div>
       </section>
 
       <section className="px-6 md:px-8 pt-12 pb-24 md:pt-16 md:pb-32 bg-[rgb(var(--light-grey))] text-default-grey">
-        <div className="max-w-[1400px] mx-auto space-y-12 text-[23px]">
+        <FadeInSection className="max-w-[1400px] mx-auto space-y-12 text-[23px]">
           <div className="max-w-4xl mx-auto md:mx-0">
             <h2 className="font-headline text-[45px] font-semibold leading-tight text-center md:text-left">More Testimonials</h2>
           </div>
@@ -171,7 +172,7 @@ export default function Testimonials() {
             </p>
             <p className="font-semibold">— Howard B.</p>
           </div>
-        </div>
+        </FadeInSection>
       </section>
     </div>
   );
