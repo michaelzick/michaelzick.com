@@ -53,8 +53,9 @@ export async function POST(req: NextRequest) {
       response: captchaToken,
     });
 
+    const forwardedFor = req.headers.get('x-forwarded-for');
     const clientIp =
-      req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? req.ip ?? undefined;
+      forwardedFor?.split(',')[0]?.trim() ?? req.headers.get('x-real-ip')?.trim() ?? undefined;
     if (clientIp) {
       captchaPayload.append('remoteip', clientIp);
     }
