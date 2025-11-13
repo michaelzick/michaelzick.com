@@ -14,10 +14,11 @@
     "sitemap": "node scripts/generate-sitemap.js"
   },
   "dependencies": {
+    "@hcaptcha/react-hcaptcha": "^1.14.0",
     "next": "latest",
+    "nodemailer": "^7.0.6",
     "react": "latest",
-    "react-dom": "latest",
-    "nodemailer": "^7.0.6"
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",
