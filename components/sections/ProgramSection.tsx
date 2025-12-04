@@ -34,7 +34,7 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
     >
       <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
       <div className="relative mx-auto max-w-[1200px]">
-        <FadeInSection className="space-y-6 max-w-[850px]">
+        <FadeInSection className="space-y-6 max-w-[700px]">
           <h2 ref={titleRef} className="text-[45px] font-semibold">
             Individual Coaching Program
           </h2>
