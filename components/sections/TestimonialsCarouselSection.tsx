@@ -140,7 +140,11 @@ export function TestimonialsCarouselSection({
           </div>
         </div>
 
-        <div className="relative">
+        <div
+          className={`relative transition-all duration-700 ease-out delay-200 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+        >
           <div
             ref={scrollRef}
             className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4"
