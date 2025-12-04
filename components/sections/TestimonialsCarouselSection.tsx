@@ -89,7 +89,9 @@ export function TestimonialsCarouselSection({
     <section
       id="testimonials"
       ref={sectionRef}
-      className="bg-[rgb(var(--light-grey))] px-6 pt-12 pb-16 text-default-grey md:px-8 md:pt-16 md:pb-24"
+      className={`bg-[rgb(var(--light-grey))] px-6 pt-12 pb-16 text-default-grey md:px-8 md:pt-16 md:pb-24 transition-opacity duration-700 ease-out ${
+        isVisible ? 'opacity-100' : 'opacity-0'
+      }`}
       style={{ scrollMarginTop }}
     >
       <div className="mx-auto max-w-[1400px] space-y-6">
