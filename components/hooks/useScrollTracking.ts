@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, type RefObject } from 'react';
 
-export type SectionId = 'beginning' | 'process' | 'specialties' | 'program';
+export type SectionId = 'beginning' | 'process' | 'specialties' | 'program' | 'testimonials';
 
 export type SectionConfig = {
   id: SectionId;
@@ -85,6 +85,21 @@ export function useScrollTracking(sectionConfig: SectionConfig[]) {
           }
         }
       });
+
+      // Ensure testimonials becomes active (and deactivates Program) once its container crosses the header offset line
+      const testimonialsEntry = sectionConfig.find(({ id }) => id === 'testimonials');
+      if (testimonialsEntry?.sectionRef.current) {
+        const testimonialsTop = testimonialsEntry.sectionRef.current.getBoundingClientRect().top;
+        const activationLine = desiredScrollMargin;
+        if (testimonialsTop <= activationLine) {
+          if (!activeIds.includes('testimonials')) {
+            activeIds.push('testimonials');
+          }
+          if (!nextVisited.includes('testimonials')) {
+            nextVisited.push('testimonials');
+          }
+        }
+      }
 
       const resolvedCurrent = activeIds.length ? activeIds[activeIds.length - 1] : null;
 

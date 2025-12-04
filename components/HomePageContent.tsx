@@ -17,11 +17,13 @@ export default function HomePageContent() {
   const processSectionRef = useRef<HTMLElement>(null);
   const specialtiesSectionRef = useRef<HTMLElement>(null);
   const programSectionRef = useRef<HTMLElement>(null);
+  const testimonialsSectionRef = useRef<HTMLElement>(null);
 
   const beginningTitleRef = useRef<HTMLHeadingElement>(null);
   const processTitleRef = useRef<HTMLHeadingElement>(null);
   const specialtiesTitleRef = useRef<HTMLHeadingElement>(null);
   const programTitleRef = useRef<HTMLHeadingElement>(null);
+  const testimonialsTitleRef = useRef<HTMLHeadingElement>(null);
 
   const sectionConfig = useMemo<SectionConfig[]>(
     () => [
@@ -53,6 +55,13 @@ export default function HomePageContent() {
         sectionRef: programSectionRef,
         titleRef: programTitleRef,
       },
+      {
+        id: 'testimonials',
+        linkText: 'Testimonials',
+        mobileLabel: 'Testimonials',
+        sectionRef: testimonialsSectionRef,
+        titleRef: testimonialsTitleRef,
+      },
     ],
     [
       processSectionRef,
@@ -63,6 +72,8 @@ export default function HomePageContent() {
       specialtiesTitleRef,
       beginningSectionRef,
       beginningTitleRef,
+      testimonialsSectionRef,
+      testimonialsTitleRef,
     ],
   );
 
@@ -139,7 +150,12 @@ export default function HomePageContent() {
         isVisible={visibleTitles.program}
       />
 
-      <TestimonialsCarouselSection />
+      <TestimonialsCarouselSection
+        sectionRef={testimonialsSectionRef}
+        titleRef={testimonialsTitleRef}
+        scrollMarginTop={scrollMarginTop}
+        isVisible={visibleTitles.testimonials}
+      />
     </div>
   );
 }

@@ -9,6 +9,7 @@ export function useTitleVisibility(sectionConfig: SectionConfig[]) {
     process: false,
     specialties: false,
     program: false,
+    testimonials: false,
   });
 
   useEffect(() => {

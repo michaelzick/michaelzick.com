@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type RefObject } from 'react';
 
 interface Testimonial {
   quote: string;
@@ -40,7 +40,19 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-export function TestimonialsCarouselSection() {
+interface TestimonialsCarouselSectionProps {
+  sectionRef: RefObject<HTMLElement>;
+  titleRef: RefObject<HTMLHeadingElement>;
+  scrollMarginTop: number;
+  isVisible: boolean;
+}
+
+export function TestimonialsCarouselSection({
+  sectionRef,
+  titleRef,
+  scrollMarginTop,
+  isVisible,
+}: TestimonialsCarouselSectionProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isAtStart, setIsAtStart] = useState(true);
   const [isAtEnd, setIsAtEnd] = useState(false);
@@ -74,13 +86,30 @@ export function TestimonialsCarouselSection() {
   };
 
   return (
-    <section className="bg-[rgb(var(--light-grey))] px-6 pt-12 pb-16 text-default-grey md:px-8 md:pt-16 md:pb-24">
+    <section
+      id="testimonials"
+      ref={sectionRef}
+      className="bg-[rgb(var(--light-grey))] px-6 pt-12 pb-16 text-default-grey md:px-8 md:pt-16 md:pb-24"
+      style={{ scrollMarginTop }}
+    >
       <div className="mx-auto max-w-[1400px] space-y-6">
         <div className="flex items-center justify-between gap-4">
           <div className="space-y-2">
-            <h2 className="text-[45px] font-semibold">Client Results</h2>
+            <h2
+              ref={titleRef}
+              className={`text-[45px] font-semibold transition-opacity duration-700 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'
+                }`}
+            >
+              Client Results
+            </h2>
             <p className="text-[20px] leading-relaxed">
-              Real words from clients who partnered with me to break patterns, build momentum, and see lasting change.
+              Real words from clients who partnered with me to break patterns, build momentum, and see lasting change.{' '}
+              <a
+                href="/testimonials"
+                className="text-[18px] font-semibold text-dark-blue underline decoration-dark-blue/60 decoration-2 underline-offset-4 transition hover:text-dark-blue/80"
+              >
+                View more.
+              </a>
             </p>
           </div>
           <div className="hidden shrink-0 items-center gap-3 md:flex">
