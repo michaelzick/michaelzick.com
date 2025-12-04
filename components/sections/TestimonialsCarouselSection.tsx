@@ -79,7 +79,7 @@ export function TestimonialsCarouselSection() {
         <div className="flex items-center justify-between gap-4">
           <div className="space-y-2">
             <h2 className="text-[45px] font-semibold">Client Results</h2>
-            <p className="max-w-2xl text-[20px] leading-relaxed">
+            <p className="text-[20px] leading-relaxed">
               Real words from clients who partnered with me to break patterns, build momentum, and see lasting change.
             </p>
           </div>
