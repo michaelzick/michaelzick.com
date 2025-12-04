@@ -15,7 +15,7 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      'I completed a one-on-one coaching series and it was an overwhelmingly positive experience. He helped me uncover my challenges hiding under the surface—no cookie cutter solutions.',
+      'I completed a one-on-one coaching series and it was an overwhelmingly positive experience. He helped me uncover my challenges hiding under the surface — NO cookie cutter solutions.',
     author: 'Ryan I.',
   },
   {
