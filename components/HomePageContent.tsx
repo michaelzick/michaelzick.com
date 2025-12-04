@@ -9,6 +9,7 @@ import { BeginningSection } from './sections/BeginningSection';
 import { ProcessSection } from './sections/ProcessSection';
 import { SpecialtiesSection } from './sections/SpecialtiesSection';
 import { ProgramSection } from './sections/ProgramSection';
+import { TestimonialsCarouselSection } from './sections/TestimonialsCarouselSection';
 import type { SectionConfig } from './hooks/useScrollTracking';
 
 export default function HomePageContent() {
@@ -137,6 +138,8 @@ export default function HomePageContent() {
         scrollMarginTop={scrollMarginTop}
         isVisible={visibleTitles.program}
       />
+
+      <TestimonialsCarouselSection />
     </div>
   );
 }
