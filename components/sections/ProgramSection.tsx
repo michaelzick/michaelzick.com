@@ -12,17 +12,11 @@ interface ProgramSectionProps {
 
 export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisible }: ProgramSectionProps) {
   const detailItems: ReactNode[] = [
-    <>
-      Work with a certified coach to <strong>significantly improve</strong> your life and relationships.
-    </>,
-    <>
-      <strong>Powerful</strong> homework assignments that dive deep; we&apos;ll leave no stone unturned.
-    </>,
-    <>
-      <strong>Unlimited emails</strong> between sessions (subject to availability).
-    </>,
-    <>6-month program to start; variable after that.</>,
-    <>Free Belief Reprogramming Workbook.</>,
+    'Work with a certified coach to significantly improve your life and relationships.',
+    'Powerful homework assignments that dive deep; we’ll leave no stone unturned.',
+    'Unlimited emails between sessions (subject to availability).',
+    '6-month program to start; variable after that.',
+    'Free Belief Reprogramming Workbook.',
   ];
 
   return (
@@ -34,7 +28,7 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
     >
       <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
       <div className="relative mx-auto max-w-[1200px]">
-        <FadeInSection className="space-y-6 max-w-[700px]">
+        <FadeInSection className="space-y-6 max-w-[850px]">
           <h2 ref={titleRef} className="text-[45px] font-semibold">
             Individual Coaching Program
           </h2>
