@@ -110,7 +110,7 @@ export function TestimonialsCarouselSection({
                 href="/testimonials"
                 className="text-[18px] font-semibold text-dark-blue underline decoration-dark-blue/60 decoration-2 underline-offset-4 transition hover:text-dark-blue/80"
               >
-                View more.
+                View&nbsp;more.
               </a>
             </p>
           </div>
