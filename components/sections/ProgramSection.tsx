@@ -29,11 +29,12 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
     <section
       id="program"
       ref={sectionRef}
-      className="bg-[rgb(var(--light-grey))] px-6 pb-24 pt-12 text-default-grey md:px-8 md:pt-16 md:pb-32"
-      style={{ scrollMarginTop }}
+      className="relative overflow-hidden bg-cover bg-center px-6 pb-24 pt-12 text-white md:px-8 md:pt-16 md:pb-32"
+      style={{ scrollMarginTop, backgroundImage: 'url("/img/waterfall_2500.webp")' }}
     >
-      <div className="mx-auto flex max-w-[1400px] flex-col gap-12 md:flex-row md:items-start">
-        <FadeInSection className="space-y-6 md:w-1/2">
+      <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
+      <div className="relative mx-auto max-w-[1200px]">
+        <FadeInSection className="space-y-6 max-w-[850px]">
           <h2 ref={titleRef} className="text-[45px] font-semibold">
             Individual Coaching Program
           </h2>
@@ -42,7 +43,7 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
             {detailItems.map((item, index) => (
               <li
                 key={index}
-                className="rounded-lg bg-white p-5 font-medium leading-relaxed text-default-grey shadow-md ring-1 ring-dark-blue/10"
+                className="rounded-lg bg-white/95 p-5 font-medium leading-relaxed text-default-grey shadow-md ring-1 ring-white/15 backdrop-blur-sm"
               >
                 {item}
               </li>
@@ -56,13 +57,6 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
             Book a Free Session
           </a>
         </FadeInSection>
-        <div className="mt-10 flex md:mt-0 md:w-1/2 md:justify-end">
-          <img
-            src="/img/waterfall_2500.webp"
-            alt="Waterfall cascading over rocks"
-            className="max-h-[480px] w-full rounded-lg object-cover shadow-md"
-          />
-        </div>
       </div>
     </section>
   );
