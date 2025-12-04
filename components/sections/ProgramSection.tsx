@@ -1,6 +1,6 @@
 'use client';
 
-import type { RefObject } from 'react';
+import type { ReactNode, RefObject } from 'react';
 import { FadeInSection } from '../FadeInSection';
 
 interface ProgramSectionProps {
@@ -11,6 +11,20 @@ interface ProgramSectionProps {
 }
 
 export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisible }: ProgramSectionProps) {
+  const detailItems: ReactNode[] = [
+    <>
+      Work with a certified coach to <strong>significantly improve</strong> your life and relationships.
+    </>,
+    <>
+      <strong>Powerful</strong> homework assignments that dive deep; we&apos;ll leave no stone unturned.
+    </>,
+    <>
+      <strong>Unlimited emails</strong> between sessions (subject to availability).
+    </>,
+    <>6-month program to start; variable after that.</>,
+    <>Free Belief Reprogramming Workbook.</>,
+  ];
+
   return (
     <section
       id="program"
@@ -24,18 +38,15 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
             Individual Coaching Program
           </h2>
           <h3 className="text-[35px] font-medium">The details:</h3>
-          <ul className="list-disc space-y-2 pl-6 text-[23px]">
-            <li>
-              Work with a certified coach to <strong>significantly improve</strong> your life and relationships
-            </li>
-            <li>
-              <strong>Powerful</strong> homework assignments that dive deep; we&apos;ll leave no stone unturned
-            </li>
-            <li>
-              <strong>Unlimited emails</strong> between sessions (subject to availability)
-            </li>
-            <li>6-month program to start; variable after that</li>
-            <li>Free Belief Reprogramming Workbook</li>
+          <ul className="list-none space-y-4 p-0 text-[23px]">
+            {detailItems.map((item, index) => (
+              <li
+                key={index}
+                className="rounded-lg bg-white p-5 font-medium leading-relaxed text-default-grey shadow-md ring-1 ring-dark-blue/10"
+              >
+                {item}
+              </li>
+            ))}
           </ul>
           <a
             href="https://calendly.com/michaelzick/45min"
