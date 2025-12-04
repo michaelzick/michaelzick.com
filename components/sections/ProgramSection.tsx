@@ -2,6 +2,7 @@
 
 import type { ReactNode, RefObject } from 'react';
 import { FadeInSection } from '../FadeInSection';
+import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
 
 interface ProgramSectionProps {
   sectionRef: RefObject<HTMLElement>;
@@ -18,6 +19,7 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
     '6-month program to start; variable after that.',
     'Free Belief Reprogramming Workbook.',
   ];
+  const { setRef: setDetailRef, visibleStates: detailVisible } = useFadeInOnScroll(detailItems.length, 0.3);
 
   return (
     <section
@@ -37,7 +39,10 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
             {detailItems.map((item, index) => (
               <li
                 key={index}
-                className="rounded-lg bg-white/95 p-5 font-medium leading-relaxed text-default-grey shadow-md ring-1 ring-white/15 backdrop-blur-sm"
+                ref={setDetailRef(index)}
+                className={`rounded-lg bg-white/95 p-5 font-medium leading-relaxed text-default-grey shadow-md ring-1 ring-white/15 backdrop-blur-sm transition-all duration-700 ease-out ${
+                  detailVisible[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                }`}
               >
                 {item}
               </li>
