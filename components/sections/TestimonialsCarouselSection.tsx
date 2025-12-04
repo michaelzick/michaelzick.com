@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface Testimonial {
   quote: string;
@@ -42,6 +42,29 @@ const testimonials: Testimonial[] = [
 
 export function TestimonialsCarouselSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [isAtStart, setIsAtStart] = useState(true);
+  const [isAtEnd, setIsAtEnd] = useState(false);
+
+  useEffect(() => {
+    const node = scrollRef.current;
+    if (!node) return;
+
+    const updatePositions = () => {
+      const { scrollLeft, scrollWidth, clientWidth } = node;
+      const maxScroll = scrollWidth - clientWidth;
+      setIsAtStart(scrollLeft <= 1);
+      setIsAtEnd(scrollLeft >= maxScroll - 1);
+    };
+
+    updatePositions();
+    node.addEventListener('scroll', updatePositions, { passive: true });
+    window.addEventListener('resize', updatePositions);
+
+    return () => {
+      node.removeEventListener('scroll', updatePositions);
+      window.removeEventListener('resize', updatePositions);
+    };
+  }, []);
 
   const handleScroll = (direction: 'left' | 'right') => {
     const node = scrollRef.current;
@@ -51,8 +74,8 @@ export function TestimonialsCarouselSection() {
   };
 
   return (
-    <section className="bg-[rgb(var(--light-grey))] px-6 py-16 text-default-grey md:px-8 md:py-24">
-      <div className="mx-auto max-w-[1400px] space-y-8">
+    <section className="bg-[rgb(var(--light-grey))] px-6 pt-12 pb-16 text-default-grey md:px-8 md:pt-16 md:pb-24">
+      <div className="mx-auto max-w-[1400px] space-y-6">
         <div className="flex items-center justify-between gap-4">
           <div className="space-y-2">
             <h2 className="text-[45px] font-semibold">Client Results</h2>
@@ -64,18 +87,24 @@ export function TestimonialsCarouselSection() {
             <button
               type="button"
               aria-label="Previous testimonial"
+              disabled={isAtStart}
               onClick={() => handleScroll('left')}
-              className="rounded-full bg-white px-4 py-3 text-[18px] font-semibold text-dark-blue shadow-md ring-1 ring-dark-blue/10 transition hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-dark-blue/30 text-white shadow-md ring-1 ring-white/20 backdrop-blur-md transition hover:bg-dark-blue/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-sm"
             >
-              ←
+              <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
             </button>
             <button
               type="button"
               aria-label="Next testimonial"
+              disabled={isAtEnd}
               onClick={() => handleScroll('right')}
-              className="rounded-full bg-white px-4 py-3 text-[18px] font-semibold text-dark-blue shadow-md ring-1 ring-dark-blue/10 transition hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-dark-blue/30 text-white shadow-md ring-1 ring-white/20 backdrop-blur-md transition hover:bg-dark-blue/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-sm"
             >
-              →
+              <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
             </button>
           </div>
         </div>
@@ -90,12 +119,12 @@ export function TestimonialsCarouselSection() {
             {testimonials.map((testimonial, index) => (
               <figure
                 key={index}
-                className="snap-start shrink-0 basis-full rounded-lg bg-white p-6 shadow-md ring-1 ring-dark-blue/10 md:basis-[60%] lg:basis-[45%] xl:basis-[32%]"
+                className="snap-start shrink-0 basis-full rounded-lg bg-dark-blue/95 p-6 shadow-md ring-1 ring-white/15 backdrop-blur-md md:basis-[60%] lg:basis-[45%] xl:basis-[32%]"
               >
-                <blockquote className="text-[22px] leading-relaxed text-dark-blue">
+                <blockquote className="text-[22px] leading-relaxed text-white">
                   “{testimonial.quote}”
                 </blockquote>
-                <figcaption className="mt-4 text-[18px] font-semibold text-default-grey">
+                <figcaption className="mt-4 text-[18px] font-semibold text-white/80">
                   — {testimonial.author}
                 </figcaption>
               </figure>
@@ -106,18 +135,24 @@ export function TestimonialsCarouselSection() {
             <button
               type="button"
               aria-label="Previous testimonial"
+              disabled={isAtStart}
               onClick={() => handleScroll('left')}
-              className="rounded-full bg-white px-4 py-3 text-[18px] font-semibold text-dark-blue shadow-md ring-1 ring-dark-blue/10 transition hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-dark-blue/30 text-white shadow-md ring-1 ring-white/20 backdrop-blur-md transition hover:bg-dark-blue/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-sm"
             >
-              ←
+              <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
             </button>
             <button
               type="button"
               aria-label="Next testimonial"
+              disabled={isAtEnd}
               onClick={() => handleScroll('right')}
-              className="rounded-full bg-white px-4 py-3 text-[18px] font-semibold text-dark-blue shadow-md ring-1 ring-dark-blue/10 transition hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-dark-blue/30 text-white shadow-md ring-1 ring-white/20 backdrop-blur-md transition hover:bg-dark-blue/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-sm"
             >
-              →
+              <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
             </button>
           </div>
         </div>
