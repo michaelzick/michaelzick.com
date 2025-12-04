@@ -29,10 +29,10 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
     <section
       id="program"
       ref={sectionRef}
-      className="relative overflow-hidden bg-cover bg-center px-6 pb-24 pt-12 text-white md:px-8 md:pt-16 md:pb-32"
+      className="relative overflow-hidden bg-cover bg-center px-6 pb-16 pt-12 text-white md:px-8 md:pt-16 md:pb-20"
       style={{ scrollMarginTop, backgroundImage: 'url("/img/waterfall_2500.webp")' }}
     >
-      <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
+      <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
       <div className="relative mx-auto max-w-[1200px]">
         <FadeInSection className="space-y-6 max-w-[850px]">
           <h2 ref={titleRef} className="text-[45px] font-semibold">
