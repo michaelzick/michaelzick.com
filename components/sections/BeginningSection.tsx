@@ -31,11 +31,12 @@ export function BeginningSection({
         <div className="relative w-full mx-auto p-8 mt-[-88px] md:mt-[-112px]">
           <h2
             ref={titleRef}
-            className={`font-headline text-center text-5xl font-bold text-white transition-all duration-700 ease-out md:text-8xl ${
+            className={`font-headline text-center text-5xl font-bold text-white leading-[1.05] transition-all duration-700 ease-out md:text-8xl ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            What Keeps You Safe, Keeps You Stuck
+            <span className="block">What Keeps You Safe,</span>
+            <span className="block">Keeps You Stuck</span>
           </h2>
         </div>
         <svg
