@@ -1,6 +1,7 @@
 'use client';
 
 import type { RefObject } from 'react';
+import { FadeInSection } from '../FadeInSection';
 import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
 
 interface BeginningSectionProps {
@@ -86,11 +87,11 @@ export function BeginningSection({
       </section>
 
       <section className="bg-dark-blue py-20 text-white">
-        <div className="mx-auto max-w-[1400px] px-6 text-center md:px-8">
+        <FadeInSection className="mx-auto max-w-[1400px] px-6 text-center md:px-8">
           <h2 className="font-headline text-4xl font-bold tracking-tight leading-tight md:text-5xl lg:text-6xl">
             It&apos;s Time To Get In Touch With Reality.
           </h2>
-        </div>
+        </FadeInSection>
       </section>
     </div>
   );
