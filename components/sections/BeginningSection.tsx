@@ -1,4 +1,7 @@
+'use client';
+
 import type { RefObject } from 'react';
+import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
 
 interface BeginningSectionProps {
   sectionRef: RefObject<HTMLElement>;
@@ -15,6 +18,8 @@ export function BeginningSection({
   scrollMarginTop,
   isVisible
 }: BeginningSectionProps) {
+  const { setRef: setCopyRef, visibleStates: copyVisible } = useFadeInOnScroll(2, 0.35);
+
   return (
     <div id="beginning-section" ref={wrapperRef}>
       <section
@@ -31,12 +36,22 @@ export function BeginningSection({
         <div className="relative w-full mx-auto p-8 mt-[-88px] md:mt-[-112px]">
           <h2
             ref={titleRef}
-            className={`font-headline text-center text-5xl font-bold text-white leading-[1.05] transition-all duration-700 ease-out md:text-8xl ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-            }`}
+            className="font-headline text-center text-5xl font-bold text-white leading-[1.05] md:text-8xl"
           >
-            <span className="block">What Keeps You Safe,</span>
-            <span className="block">Keeps You Stuck</span>
+            <span
+              className={`block transition-all duration-700 ease-out ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
+            >
+              What Keeps You Safe,
+            </span>
+            <span
+              className={`block transition-all duration-700 ease-out delay-150 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
+            >
+              Keeps You Stuck.
+            </span>
           </h2>
         </div>
         <svg
@@ -51,8 +66,22 @@ export function BeginningSection({
 
       <section className="bg-light-grey pt-12 pb-24 text-4xl text-default-grey">
         <div className="mx-auto max-w-6xl space-y-8 px-2.5 text-center md:px-0">
-          <h2>You&apos;ve tried many things but you&apos;re still in the same place.</h2>
-          <h2>You know you can achieve more but things keep holding you back.</h2>
+          <h2
+            ref={setCopyRef(0)}
+            className={`transition-all duration-700 ease-out ${
+              copyVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
+            You&apos;ve tried many things but you&apos;re still in the same place.
+          </h2>
+          <h2
+            ref={setCopyRef(1)}
+            className={`transition-all duration-700 ease-out delay-150 ${
+              copyVisible[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
+            You know you can achieve more but things keep holding you back.
+          </h2>
         </div>
       </section>
 
