@@ -12,22 +12,22 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'Michael Zick | Peak Performance Coach',
+  title: 'Michael Zick | Reality Alignment Coach',
   description:
-    'Los Angeles-based peak performance coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
+    'Los Angeles-based Reality Alignment Coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
   openGraph: {
-    title: 'Michael Zick | Peak Performance Coach',
+    title: 'Michael Zick | Reality Alignment Coach',
     description:
-      'Los Angeles-based peak performance coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
+      'Los Angeles-based Reality Alignment Coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
     url: 'https://www.michaelzick.com',
     siteName: 'Michael Zick',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Michael Zick | Peak Performance Coach',
+    title: 'Michael Zick | Reality Alignment Coach',
     description:
-      'Los Angeles-based peak performance coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
+      'Los Angeles-based Reality Alignment Coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
   },
 };
 
@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="text-white py-8 text-lg bg-dark-blue">
           <div className="max-w-[1400px] mx-auto px-6 md:px-8 grid md:grid-cols-12 gap-8 items-start">
             <div className="md:col-span-5">
-              <p>Michael Zick Coaching | Peak Performance Coach</p>
+              <p>Michael Zick Coaching | Reality Alignment Coach</p>
             </div>
             <div className="md:col-span-6 md:col-start-6 md:text-right space-y-2">
               <Link href="/about" className="footer-link inline-block">

@@ -4,11 +4,11 @@ import { FadeInSection } from '../../components/FadeInSection'
 export const metadata: Metadata = {
   title: 'Michael Zick | About',
   description:
-    'Learn more about Michael Zick, a Los Angeles-based peak performance coach dedicated to helping clients take action and build powerful relationships.',
+    'Learn more about Michael Zick, a Los Angeles-based Reality Alignment Coach dedicated to helping clients take action and build powerful relationships.',
   openGraph: {
     title: 'Michael Zick | About',
     description:
-      'Learn more about Michael Zick, a Los Angeles-based peak performance coach dedicated to helping clients take action and build powerful relationships.',
+      'Learn more about Michael Zick, a Los Angeles-based Reality Alignment Coach dedicated to helping clients take action and build powerful relationships.',
     url: 'https://www.michaelzick.com/about',
     siteName: 'Michael Zick',
     images: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Michael Zick | About',
     description:
-      'Learn more about Michael Zick, a Los Angeles-based peak performance coach dedicated to helping clients take action and build powerful relationships.',
+      'Learn more about Michael Zick, a Los Angeles-based Reality Alignment Coach dedicated to helping clients take action and build powerful relationships.',
     images: ['https://www.michaelzick.com/img/ocean_2500.webp'],
   },
 }

@@ -35,7 +35,7 @@ export function BeginningSection({
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            Where Do You Go From Here?
+            What Keeps You Safe, Keeps You Stuck
           </h2>
         </div>
         <svg

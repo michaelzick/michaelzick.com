@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import HomePageContent from '../components/HomePageContent'
 
 export const metadata: Metadata = {
-  title: 'Michael Zick | Peak Performance Coach',
+  title: 'Michael Zick | Reality Alignment Coach',
   description:
-    'Los Angeles-based peak performance coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
+    'Los Angeles-based Reality Alignment Coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
   openGraph: {
-    title: 'Michael Zick | Peak Performance Coach',
+    title: 'Michael Zick | Reality Alignment Coach',
     description:
-      'Los Angeles-based peak performance coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
+      'Los Angeles-based Reality Alignment Coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
     url: 'https://www.michaelzick.com',
     siteName: 'Michael Zick',
     images: [
@@ -21,9 +21,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Michael Zick | Peak Performance Coach',
+    title: 'Michael Zick | Reality Alignment Coach',
     description:
-      'Los Angeles-based peak performance coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
+      'Los Angeles-based Reality Alignment Coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
     images: [
       '/img/homepage_mountains.webp',
     ],
