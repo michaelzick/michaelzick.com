@@ -55,6 +55,14 @@ export function BeginningSection({
           <h2>Perhaps what you need is someone who&apos;s been through the same things as you but has found the knowledge, practices, and resources to change.</h2>
         </div>
       </section>
+
+      <section className="bg-light-grey pt-4 pb-28 text-default-grey">
+        <div className="mx-auto max-w-5xl px-2.5 text-center md:px-0">
+          <h2 className="font-headline text-5xl font-bold md:text-6xl leading-tight">
+            It&apos;s Time To Get In Touch With Reality.
+          </h2>
+        </div>
+      </section>
     </div>
   );
 }
