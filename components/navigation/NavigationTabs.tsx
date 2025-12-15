@@ -23,7 +23,7 @@ export function NavigationTabs({ sectionConfig, activeLinks, activeSection, vari
       {configs.map(({ id, linkText, mobileLabel }) => (
         <LinkTab
           key={`${id}-${variant}`}
-          href={`#${id}`}
+          targetId={id}
           label={variant === 'mobile' && mobileLabel ? mobileLabel : linkText}
           variant={variant}
           isActive={activeSection === id}

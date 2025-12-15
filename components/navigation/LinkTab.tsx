@@ -3,13 +3,13 @@
 import { useEffect, useState } from 'react';
 
 interface LinkTabProps {
-  href: string;
+  targetId: string;
   label: string;
   variant: 'desktop' | 'mobile';
   isActive: boolean;
 }
 
-export function LinkTab({ href, label, variant, isActive }: LinkTabProps) {
+export function LinkTab({ targetId, label, variant, isActive }: LinkTabProps) {
   const [isVisible, setIsVisible] = useState(false);
   const baseClasses =
     'pointer-events-auto block transition-all duration-300 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-dark-blue';
@@ -47,9 +47,19 @@ export function LinkTab({ href, label, variant, isActive }: LinkTabProps) {
       ? `${desktopWidthClass} ${desktopBaseClasses} ${desktopStateClasses}`
       : `${mobileBaseClasses} ${mobileStateClasses}`;
 
+  const handleNavigate = () => {
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
-    <a href={href} className={`${baseClasses} ${variantClasses} ${visibilityClasses}`}>
+    <button
+      type="button"
+      onClick={handleNavigate}
+      className={`${baseClasses} ${variantClasses} ${visibilityClasses}`}
+    >
       {label}
-    </a>
+    </button>
   );
 }
