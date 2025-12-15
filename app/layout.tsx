@@ -14,11 +14,11 @@ const openSans = Open_Sans({
 export const metadata: Metadata = {
   title: 'Michael Zick | Reality Alignment Coach',
   description:
-    'Los Angeles-based Reality Alignment Coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
+    'Helping high-functioning adults separate fear and anxiety from reality.',
   openGraph: {
     title: 'Michael Zick | Reality Alignment Coach',
     description:
-      'Los Angeles-based Reality Alignment Coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
+      'Helping high-functioning adults separate fear and anxiety from reality.',
     url: 'https://www.michaelzick.com',
     siteName: 'Michael Zick',
     type: 'website',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Michael Zick | Reality Alignment Coach',
     description:
-      'Los Angeles-based Reality Alignment Coach helping individuals take action, overcome limiting beliefs, and build powerful relationships.',
+      'Helping high-functioning adults separate fear and anxiety from reality.',
   },
 };
 

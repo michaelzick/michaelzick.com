@@ -4,11 +4,11 @@ import ContactContent from './ContactContent';
 export const metadata: Metadata = {
   title: 'Michael Zick | Contact',
   description:
-    'Get in touch with Michael Zick for coaching inquiries and strategy sessions.',
+    'Helping high-functioning adults separate fear and anxiety from reality.',
   openGraph: {
     title: 'Michael Zick | Contact',
     description:
-      'Get in touch with Michael Zick for coaching inquiries and strategy sessions.',
+      'Helping high-functioning adults separate fear and anxiety from reality.',
     url: 'https://www.michaelzick.com/contact',
     siteName: 'Michael Zick',
     images: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Michael Zick | Contact',
     description:
-      'Get in touch with Michael Zick for coaching inquiries and strategy sessions.',
+      'Helping high-functioning adults separate fear and anxiety from reality.',
     images: ['https://www.michaelzick.com/img/lake_reflection_2500.webp'],
   },
 };
@@ -31,4 +31,3 @@ export const metadata: Metadata = {
 export default function Contact() {
   return <ContactContent />;
 }
-

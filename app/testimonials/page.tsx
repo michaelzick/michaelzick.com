@@ -4,11 +4,11 @@ import { FadeInSection } from '../../components/FadeInSection'
 export const metadata: Metadata = {
   title: 'Michael Zick | Testimonials',
   description:
-    'Hear from clients who have transformed their lives through coaching with Michael Zick.',
+    'Helping high-functioning adults separate fear and anxiety from reality.',
   openGraph: {
     title: 'Michael Zick | Testimonials',
     description:
-      'Hear from clients who have transformed their lives through coaching with Michael Zick.',
+      'Helping high-functioning adults separate fear and anxiety from reality.',
     url: 'https://www.michaelzick.com/testimonials',
     siteName: 'Michael Zick',
     images: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Michael Zick | Testimonials',
     description:
-      'Hear from clients who have transformed their lives through coaching with Michael Zick.',
+      'Helping high-functioning adults separate fear and anxiety from reality.',
     images: ['https://www.michaelzick.com/img/mountains_2500.webp'],
   },
 }
