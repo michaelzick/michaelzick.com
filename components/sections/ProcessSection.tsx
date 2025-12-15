@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import type { RefObject } from 'react';
 import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
 
@@ -36,9 +37,12 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
               cardVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            <img
+            <Image
               src="/img/mountains_2500.webp"
               alt="Mountains"
+              width={2500}
+              height={1656}
+              sizes="(min-width: 768px) 33vw, 100vw"
               className="w-full rounded-lg object-cover shadow-md max-[767px]:rounded-none"
             />
             <h3 className="px-2.5 text-4xl font-semibold md:px-0">Identifying Meanings and Beliefs</h3>
@@ -50,9 +54,12 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
               cardVisible[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            <img
+            <Image
               src="/img/ocean_2500.webp"
               alt="Feelings"
+              width={2500}
+              height={1667}
+              sizes="(min-width: 768px) 33vw, 100vw"
               className="h-100 w-full rounded-lg object-cover shadow-md max-[767px]:rounded-none"
             />
             <h3 className="px-2.5 text-4xl font-semibold md:px-0">Working Through Feelings, Experientially</h3>
@@ -64,9 +71,12 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
               cardVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            <img
+            <Image
               src="/img/dark_mountains_2500.webp"
               alt="Action"
+              width={2500}
+              height={1668}
+              sizes="(min-width: 768px) 33vw, 100vw"
               className="h-100 w-full rounded-lg object-cover shadow-md max-[767px]:rounded-none"
             />
             <h3 className="px-2.5 text-4xl font-semibold md:px-0">Taking Consistent, Conscious Action</h3>
