@@ -50,15 +50,15 @@ export function BeginningSection({
       </section>
 
       <section className="bg-light-grey pt-12 pb-24 text-4xl text-default-grey">
-        <div className="mx-auto max-w-5xl space-y-8 px-2.5 text-center md:px-0">
-          <h2>You&apos;ve tried things – many things probably, but you&apos;re still in the same place. You know you can achieve more but something is holding you back.</h2>
-          <h2>Perhaps what you need is someone who&apos;s been through the same things as you but has found the knowledge, practices, and resources to change.</h2>
+        <div className="mx-auto max-w-6xl space-y-8 px-2.5 text-center md:px-0">
+          <h2>You&apos;ve tried many things but you&apos;re still in the same place.</h2>
+          <h2>You know you can achieve more but things keep holding you back.</h2>
         </div>
       </section>
 
-      <section className="bg-light-grey pt-4 pb-28 text-default-grey">
-        <div className="mx-auto max-w-5xl px-2.5 text-center md:px-0">
-          <h2 className="font-headline text-5xl font-bold md:text-6xl leading-tight">
+      <section className="bg-dark-blue py-20 text-white">
+        <div className="mx-auto max-w-[1400px] px-6 text-center md:px-8">
+          <h2 className="font-headline text-4xl font-bold tracking-tight leading-tight md:text-5xl lg:text-6xl">
             It&apos;s Time To Get In Touch With Reality.
           </h2>
         </div>
