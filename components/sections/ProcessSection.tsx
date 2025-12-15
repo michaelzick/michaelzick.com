@@ -17,7 +17,7 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
     <section
       id="process"
       ref={sectionRef}
-      className="bg-gray-100 pt-16 pb-24 text-default-grey"
+      className="bg-gray-100 pt-16 pb-0 md:pb-24 text-default-grey"
       style={{ scrollMarginTop }}
     >
       <div className="mx-auto max-w-[1400px]">
@@ -60,7 +60,7 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
           </div>
           <div
             ref={setCardRef(2)}
-            className={`space-y-4 text-center transition-all duration-700 ease-out ${
+            className={`space-y-4 text-center transition-all duration-700 ease-out pb-6 md:pb-0 ${
               cardVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
