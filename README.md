@@ -1,4 +1,4 @@
-# Michael Zick Coaching
+# Michael Zick | Reality Alignment Coach
 
 This project is a simplified recreation of [michaelzick.com](https://www.michaelzick.com/) using Next.js, React, TypeScript, and Tailwind CSS.
 

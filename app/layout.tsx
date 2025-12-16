@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="text-white py-8 text-lg bg-dark-blue">
           <div className="max-w-[1400px] mx-auto px-6 md:px-8 grid md:grid-cols-12 gap-8 items-start">
             <div className="md:col-span-5">
-              <p>Michael Zick Coaching | Reality Alignment Coach</p>
+              <p>Michael Zick | Reality Alignment Coach</p>
             </div>
             <div className="md:col-span-6 md:col-start-6 md:text-right space-y-2">
               <Link href="/about" className="footer-link inline-block">

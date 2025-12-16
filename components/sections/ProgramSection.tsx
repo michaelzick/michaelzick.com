@@ -14,9 +14,9 @@ interface ProgramSectionProps {
 export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisible }: ProgramSectionProps) {
   const valueProps: ReactNode[] = [
     'Significantly improve your life and relationships.',
-    'Customized homework assignments to build better habits.',
+    'Homework assignments to build better habits.',
     'Emails between sessions for additional support.',
-    '6-month program to engrain new patterns and behaviors.',
+    '6-month duration to engrain new patterns.',
   ];
   const { setRef: setDetailRef, visibleStates: detailVisible } = useFadeInOnScroll(valueProps.length, 0.3);
 
@@ -29,7 +29,7 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
     >
       <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
       <div className="relative mx-auto max-w-[1200px]">
-        <FadeInSection className="space-y-6 max-w-[850px]">
+        <FadeInSection className="space-y-6">
           <h2 ref={titleRef} className="text-[56px] font-semibold leading-[1.05] tracking-tight md:text-[72px]">
             Individual Coaching Program
           </h2>
