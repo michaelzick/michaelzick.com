@@ -32,10 +32,10 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
               Specialties:
             </h2>
             <ul className="list-disc space-y-4 pl-6 text-[30px]">
+              <li>Separating fact from fiction</li>
               <li>Nice Guy Syndrome</li>
               <li>Relationships &amp; dating</li>
-              <li>Finding your purpose</li>
-              <li>Codependency</li>
+              <li>Setting boundaries</li>
               <li>Belief reprogramming</li>
             </ul>
           </div>

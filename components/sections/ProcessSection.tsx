@@ -45,8 +45,8 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
               sizes="(min-width: 768px) 33vw, 100vw"
               className="w-full rounded-lg object-cover shadow-md max-[767px]:rounded-none"
             />
-            <h3 className="px-2.5 text-4xl font-semibold md:px-0">Identifying Meanings and Beliefs</h3>
-            <p className="px-2.5 text-lg md:px-0">Meanings and beliefs are like the programming language of our life. They provide a filter through which external information and experiences pass.</p>
+            <h3 className="px-2.5 text-4xl font-semibold md:px-0">Identifying Meanings, Beliefs, and Narratives</h3>
+            <p className="px-2.5 text-lg md:px-0">Meanings, beliefs, and narratives are like the programming language of our lives. Most of them operate below the surface.</p>
           </div>
           <div
             ref={setCardRef(1)}
