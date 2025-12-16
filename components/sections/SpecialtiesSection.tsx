@@ -11,7 +11,12 @@ interface SpecialtiesSectionProps {
 }
 
 export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVisible }: SpecialtiesSectionProps) {
-  const { setRef: setHighlightRef, visibleStates: highlightVisible } = useFadeInOnScroll(3, 0.3);
+  const highlights = [
+    'Certified by Dr. Robert Glover, author of "No More Mr. Nice Guy" and renowned therapist.',
+    'Certified as a Life & Relationship Coach by Life Purpose Institute.',
+    'Established in the Los Angeles mental health and recovery community since 2015.',
+  ];
+  const { setRef: setHighlightRef, visibleStates: highlightVisible } = useFadeInOnScroll(highlights.length, 0.3);
 
   return (
     <section
@@ -39,32 +44,25 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
               <li>Belief reprogramming</li>
             </ul>
           </div>
-          <div className="space-y-6">
-            <div
-              ref={setHighlightRef(0)}
-              className={`rounded-lg bg-white p-6 text-[30px] font-medium text-default-grey shadow-md transition-all duration-700 ease-out ${
-                highlightVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-              }`}
-            >
-              Certified as a Life &amp; Relationship Coach by Life Purpose Institute.
-            </div>
-            <div
-              ref={setHighlightRef(1)}
-              className={`rounded-lg bg-white p-6 text-[30px] font-medium text-default-grey shadow-md transition-all duration-700 ease-out ${
-                highlightVisible[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-              }`}
-            >
-              Certified by Dr. Robert Glover, author of &quot;No More Mr. Nice Guy&quot; and renowned therapist.
-            </div>
-            <div
-              ref={setHighlightRef(2)}
-              className={`rounded-lg bg-white p-6 text-[30px] font-medium text-default-grey shadow-md transition-all duration-700 ease-out ${
-                highlightVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-              }`}
-            >
-              Established in the Los Angeles mental health and recovery community since 2015.
-            </div>
-          </div>
+          <ul className="list-none border-t border-white/25 p-0">
+            {highlights.map((item, index) => {
+              const itemNumber = String(index + 1).padStart(2, '0');
+              return (
+                <li
+                  key={index}
+                  ref={setHighlightRef(index)}
+                  className={`grid grid-cols-[auto_1fr] gap-x-6 border-b border-white/20 py-7 md:py-8 transition-all duration-700 ease-out ${
+                    highlightVisible[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                  }`}
+                >
+                  <span className="mt-2 font-mono text-xs font-semibold tracking-[0.35em] text-white/70">
+                    {itemNumber}
+                  </span>
+                  <p className="text-[26px] font-semibold leading-snug text-white md:text-[30px]">{item}</p>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </section>
