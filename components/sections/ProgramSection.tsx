@@ -11,7 +11,7 @@ interface ProgramSectionProps {
   isVisible: boolean;
 }
 
-export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisible }: ProgramSectionProps) {
+export function ProgramSection({ sectionRef, titleRef, scrollMarginTop }: ProgramSectionProps) {
   const valueProps: ReactNode[] = [
     'Significantly improve your life and relationships.',
     'Homework assignments to build better habits.',
