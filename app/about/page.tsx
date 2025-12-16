@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description:
       'Helping high-functioning adults separate fear and anxiety from reality.',
     url: 'https://www.michaelzick.com/about',
-    siteName: 'Michael Zick',
+    siteName: 'Michael Zick | Reality Alignment Coach',
     images: [
       {
         url: 'https://www.michaelzick.com/img/ocean_2500.webp',
