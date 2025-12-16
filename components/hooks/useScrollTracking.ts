@@ -50,7 +50,10 @@ export function useScrollTracking(sectionConfig: SectionConfig[]) {
         viewportHeight * 0.35,
         isCurrentlyMobile ? desiredScrollMargin + 8 : headerHeight + 80,
       );
-      const beginningEntryLine = desiredScrollMargin;
+
+      const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+      const mobileTabsBottom = mobileTabsRef.current?.getBoundingClientRect().bottom ?? 0;
+      const beginningEntryLine = Math.max(headerBottom, mobileTabsBottom);
       const beginningExitLine = Math.max(headerHeight + 8, 8);
 
       const beginningRect = beginningWrapperRef.current?.getBoundingClientRect() ?? null;
