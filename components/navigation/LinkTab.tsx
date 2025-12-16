@@ -50,7 +50,18 @@ export function LinkTab({ targetId, label, variant, isActive }: LinkTabProps) {
   const handleNavigate = () => {
     const target = document.getElementById(targetId);
     if (!target) return;
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    const header = document.querySelector('header');
+    const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+
+    const mobileTabs = document.querySelector('[data-home-mobile-tabs]') as HTMLElement | null;
+    const mobileTabsRect = mobileTabs?.getBoundingClientRect() ?? null;
+    const mobileTabsBottom = mobileTabsRect && mobileTabsRect.height > 0 ? mobileTabsRect.bottom : 0;
+
+    const offset = Math.max(headerBottom, mobileTabsBottom);
+    const targetTop = target.getBoundingClientRect().top + window.scrollY;
+
+    window.scrollTo({ top: Math.max(targetTop - offset, 0), behavior: 'smooth' });
   };
 
   return (

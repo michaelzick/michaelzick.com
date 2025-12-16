@@ -69,6 +69,7 @@ export function useScrollTracking(sectionConfig: SectionConfig[]) {
         if (!titleNode || !sectionRef.current) return;
 
         const titleTop = titleNode.getBoundingClientRect().top;
+        const sectionTop = sectionRef.current.getBoundingClientRect().top;
 
         const isBeginning = id === 'beginning';
 
@@ -76,7 +77,7 @@ export function useScrollTracking(sectionConfig: SectionConfig[]) {
         const isActive = isBeginning
           ? isCurrentlyMobile
             ? beginningActiveMobile
-            : titleTop <= threshold
+            : sectionTop <= threshold
           : titleTop <= threshold;
 
         if (isActive) {

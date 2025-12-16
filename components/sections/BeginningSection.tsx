@@ -23,7 +23,12 @@ export function BeginningSection({
 
   return (
     <div id="beginning-section" ref={wrapperRef}>
-      <section className="bg-light-grey pt-12 pb-20 text-default-grey">
+      <section
+        id="beginning"
+        ref={sectionRef}
+        className="bg-light-grey pt-12 pb-20 text-default-grey"
+        style={{ scrollMarginTop }}
+      >
         <div className="mx-auto max-w-4xl space-y-8 px-6 text-left md:px-8">
           <h2
             ref={setCopyRef(0)}
@@ -61,11 +66,8 @@ export function BeginningSection({
       </section>
 
       <section
-        id="beginning"
-        ref={sectionRef}
         className="relative overflow-hidden py-56"
         style={{
-          scrollMarginTop,
           backgroundImage: "url('/img/lake_reflection_2500.webp')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',

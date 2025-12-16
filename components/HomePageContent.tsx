@@ -108,6 +108,7 @@ export default function HomePageContent() {
       >
         <div
           ref={mobileTabsRef}
+          data-home-mobile-tabs
           className="pointer-events-auto flex w-full overflow-hidden rounded-lg border border-dark-blue/20 bg-transparent shadow-lg backdrop-blur"
         >
           <NavigationTabs
