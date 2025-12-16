@@ -64,6 +64,7 @@ export function useScrollTracking(sectionConfig: SectionConfig[]) {
       const nextVisited = [...visitedSectionsRef.current];
 
       sectionConfig.forEach(({ id, sectionRef, titleRef }) => {
+        if (id === 'testimonials') return;
         const titleNode = titleRef.current;
         if (!titleNode || !sectionRef.current) return;
 
@@ -85,21 +86,6 @@ export function useScrollTracking(sectionConfig: SectionConfig[]) {
           }
         }
       });
-
-      // Ensure testimonials becomes active (and deactivates Program) once its container crosses the header offset line
-      const testimonialsEntry = sectionConfig.find(({ id }) => id === 'testimonials');
-      if (testimonialsEntry?.sectionRef.current) {
-        const testimonialsTop = testimonialsEntry.sectionRef.current.getBoundingClientRect().top;
-        const activationLine = desiredScrollMargin;
-        if (testimonialsTop <= activationLine) {
-          if (!activeIds.includes('testimonials')) {
-            activeIds.push('testimonials');
-          }
-          if (!nextVisited.includes('testimonials')) {
-            nextVisited.push('testimonials');
-          }
-        }
-      }
 
       const resolvedCurrent = activeIds.length ? activeIds[activeIds.length - 1] : null;
 

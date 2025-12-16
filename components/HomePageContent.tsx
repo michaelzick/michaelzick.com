@@ -49,18 +49,18 @@ export default function HomePageContent() {
         titleRef: specialtiesTitleRef,
       },
       {
-        id: 'program',
-        linkText: 'Program',
-        mobileLabel: 'Program',
-        sectionRef: programSectionRef,
-        titleRef: programTitleRef,
-      },
-      {
         id: 'testimonials',
         linkText: 'Testimonials',
         mobileLabel: 'Testimonials',
         sectionRef: testimonialsSectionRef,
         titleRef: testimonialsTitleRef,
+      },
+      {
+        id: 'program',
+        linkText: 'Program',
+        mobileLabel: 'Program',
+        sectionRef: programSectionRef,
+        titleRef: programTitleRef,
       },
     ],
     [
@@ -143,18 +143,18 @@ export default function HomePageContent() {
         isVisible={visibleTitles.specialties}
       />
 
-      <ProgramSection
-        sectionRef={programSectionRef}
-        titleRef={programTitleRef}
-        scrollMarginTop={scrollMarginTop}
-        isVisible={visibleTitles.program}
-      />
-
       <TestimonialsCarouselSection
         sectionRef={testimonialsSectionRef}
         titleRef={testimonialsTitleRef}
         scrollMarginTop={scrollMarginTop}
         isVisible={visibleTitles.testimonials}
+      />
+
+      <ProgramSection
+        sectionRef={programSectionRef}
+        titleRef={programTitleRef}
+        scrollMarginTop={scrollMarginTop}
+        isVisible={visibleTitles.program}
       />
     </div>
   );
