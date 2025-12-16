@@ -13,11 +13,10 @@ interface ProgramSectionProps {
 
 export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisible }: ProgramSectionProps) {
   const detailItems: ReactNode[] = [
-    'Work with a certified coach to significantly improve your life and relationships.',
-    'Powerful homework assignments that dive deep; we’ll leave no stone unturned.',
-    'Unlimited emails between sessions (subject to availability).',
-    '6-month program to start; variable after that.',
-    'Free Belief Reprogramming Workbook.',
+    'Significantly improve your life and relationships.',
+    'Customized homework assignments to build better habits.',
+    'Emails between sessions for additional support.',
+    '6-month program to engrain new patterns and behaviors.',
   ];
   const { setRef: setDetailRef, visibleStates: detailVisible } = useFadeInOnScroll(detailItems.length, 0.3);
 
@@ -34,7 +33,6 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
           <h2 ref={titleRef} className="text-[45px] font-semibold">
             Individual Coaching Program
           </h2>
-          <h3 className="text-[35px] font-medium">The details:</h3>
           <ul className="list-none space-y-4 p-0 text-[23px]">
             {detailItems.map((item, index) => (
               <li
