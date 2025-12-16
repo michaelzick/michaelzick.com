@@ -46,6 +46,7 @@ export function useScrollTracking(sectionConfig: SectionConfig[]) {
       const beginningMargin = desiredScrollMargin;
       const viewportHeight = window.innerHeight || 0;
 
+      const activationFudge = 6;
       const baseThreshold = Math.max(
         viewportHeight * 0.35,
         isCurrentlyMobile ? desiredScrollMargin + 8 : headerHeight + 80,
@@ -53,7 +54,7 @@ export function useScrollTracking(sectionConfig: SectionConfig[]) {
 
       const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
       const mobileTabsBottom = mobileTabsRef.current?.getBoundingClientRect().bottom ?? 0;
-      const beginningEntryLine = Math.max(headerBottom, mobileTabsBottom);
+      const beginningEntryLine = Math.max(headerBottom, mobileTabsBottom) + activationFudge;
       const beginningExitLine = Math.max(headerHeight + 8, 8);
 
       const beginningRect = beginningWrapperRef.current?.getBoundingClientRect() ?? null;
@@ -76,7 +77,7 @@ export function useScrollTracking(sectionConfig: SectionConfig[]) {
 
         const isBeginning = id === 'beginning';
 
-        const threshold = baseThreshold;
+        const threshold = baseThreshold + activationFudge;
         const isActive = isBeginning
           ? isCurrentlyMobile
             ? beginningActiveMobile
