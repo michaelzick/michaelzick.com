@@ -19,7 +19,7 @@ export function BeginningSection({
   scrollMarginTop,
   isVisible
 }: BeginningSectionProps) {
-  const { setRef: setCopyRef, visibleStates: copyVisible } = useFadeInOnScroll(3, 0.35);
+  const { setRef: setCopyRef, visibleStates: copyVisible } = useFadeInOnScroll(4, 0.35);
 
   return (
     <div id="beginning-section" ref={wrapperRef}>
@@ -49,6 +49,14 @@ export function BeginningSection({
           >
             You know you can achieve more but things keep holding you back.
           </h3>
+          <h2
+            ref={setCopyRef(3)}
+            className={`font-headline text-4xl font-bold leading-tight md:text-6xl transition-all duration-700 ease-out delay-500 ${
+              copyVisible[3] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
+            Well here&apos;s the thing...
+          </h2>
         </div>
       </section>
 
