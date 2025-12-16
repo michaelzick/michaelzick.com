@@ -19,10 +19,39 @@ export function BeginningSection({
   scrollMarginTop,
   isVisible
 }: BeginningSectionProps) {
-  const { setRef: setCopyRef, visibleStates: copyVisible } = useFadeInOnScroll(2, 0.35);
+  const { setRef: setCopyRef, visibleStates: copyVisible } = useFadeInOnScroll(3, 0.35);
 
   return (
     <div id="beginning-section" ref={wrapperRef}>
+      <section className="bg-light-grey pt-12 pb-20 text-default-grey">
+        <div className="mx-auto max-w-4xl space-y-8 px-6 text-left md:px-8">
+          <h2
+            ref={setCopyRef(0)}
+            className={`font-headline text-5xl font-bold leading-[1.05] md:text-8xl transition-all duration-700 ease-out ${
+              copyVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
+            Let me guess.
+          </h2>
+          <h3
+            ref={setCopyRef(1)}
+            className={`font-headline text-3xl font-bold leading-tight md:text-5xl transition-all duration-700 ease-out delay-150 ${
+              copyVisible[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
+            You&apos;ve tried many things but you&apos;re still in the same place.
+          </h3>
+          <h3
+            ref={setCopyRef(2)}
+            className={`font-headline text-3xl font-bold leading-tight md:text-5xl transition-all duration-700 ease-out delay-300 ${
+              copyVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
+            You know you can achieve more but things keep holding you back.
+          </h3>
+        </div>
+      </section>
+
       <section
         id="beginning"
         ref={sectionRef}
@@ -61,29 +90,8 @@ export function BeginningSection({
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path d="M0,0 C480,160 960,160 1440,0 L1440,160 L0,160 Z" fill="rgb(var(--light-grey))" />
+          <path d="M0,0 C480,160 960,160 1440,0 L1440,160 L0,160 Z" fill="rgb(var(--dark-blue))" />
         </svg>
-      </section>
-
-      <section className="bg-light-grey pt-12 pb-24 text-4xl text-default-grey">
-        <div className="mx-auto max-w-6xl space-y-8 px-2.5 text-center md:px-0">
-          <h2
-            ref={setCopyRef(0)}
-            className={`transition-all duration-700 ease-out ${
-              copyVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-            }`}
-          >
-            You&apos;ve tried many things but you&apos;re still in the same place.
-          </h2>
-          <h2
-            ref={setCopyRef(1)}
-            className={`transition-all duration-700 ease-out delay-150 ${
-              copyVisible[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-            }`}
-          >
-            You know you can achieve more but things keep holding you back.
-          </h2>
-        </div>
       </section>
 
       <section className="bg-dark-blue py-20 text-white">
