@@ -12,13 +12,13 @@ interface ProgramSectionProps {
 }
 
 export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisible }: ProgramSectionProps) {
-  const detailItems: ReactNode[] = [
+  const valueProps: ReactNode[] = [
     'Significantly improve your life and relationships.',
     'Customized homework assignments to build better habits.',
     'Emails between sessions for additional support.',
     '6-month program to engrain new patterns and behaviors.',
   ];
-  const { setRef: setDetailRef, visibleStates: detailVisible } = useFadeInOnScroll(detailItems.length, 0.3);
+  const { setRef: setDetailRef, visibleStates: detailVisible } = useFadeInOnScroll(valueProps.length, 0.3);
 
   return (
     <section
@@ -30,21 +30,27 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
       <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
       <div className="relative mx-auto max-w-[1200px]">
         <FadeInSection className="space-y-6 max-w-[850px]">
-          <h2 ref={titleRef} className="text-[45px] font-semibold">
+          <h2 ref={titleRef} className="text-[56px] font-semibold leading-[1.05] tracking-tight md:text-[72px]">
             Individual Coaching Program
           </h2>
-          <ul className="list-none space-y-4 p-0 text-[23px]">
-            {detailItems.map((item, index) => (
-              <li
-                key={index}
-                ref={setDetailRef(index)}
-                className={`rounded-lg bg-white/95 p-5 font-medium leading-relaxed text-default-grey shadow-md ring-1 ring-white/15 backdrop-blur-sm transition-all duration-700 ease-out ${
-                  detailVisible[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                }`}
-              >
-                {item}
-              </li>
-            ))}
+          <ul className="list-none border-t border-white/25 p-0">
+            {valueProps.map((item, index) => {
+              const itemNumber = String(index + 1).padStart(2, '0');
+              return (
+                <li
+                  key={index}
+                  ref={setDetailRef(index)}
+                  className={`grid grid-cols-[auto_1fr] gap-x-6 border-b border-white/20 py-7 md:py-8 transition-all duration-700 ease-out ${
+                    detailVisible[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                  }`}
+                >
+                  <span className="mt-2 font-mono text-xs font-semibold tracking-[0.35em] text-white/70">
+                    {itemNumber}
+                  </span>
+                  <p className="text-[28px] font-semibold leading-snug text-white md:text-[32px]">{item}</p>
+                </li>
+              );
+            })}
           </ul>
           <a
             href="https://calendly.com/michaelzick/45min"
