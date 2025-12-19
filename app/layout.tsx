@@ -92,7 +92,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   ZICKONEZERO Creative
                 </a>
               </p>
-              <p className="md:text-right">© 2025 ZICKONEZERO Creative</p>
+              <p className="md:text-right">© 2025 Michael Zick Coaching</p>
             </div>
           </div>
         </footer>
