@@ -36,7 +36,7 @@ export function BeginningSection({
               copyVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            Let me guess.
+            Let me guess...
           </h2>
           <h3
             ref={setCopyRef(1)}
@@ -44,7 +44,7 @@ export function BeginningSection({
               copyVisible[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            You&apos;ve tried many things but you&apos;re still in the same place.
+            You know what you need to change but something keeps holding you back.
           </h3>
           <h3
             ref={setCopyRef(2)}
@@ -52,7 +52,7 @@ export function BeginningSection({
               copyVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            You know you can achieve more but things keep holding you back.
+            You’ve done talk therapy, tried self-help books, and maybe even joined support groups, but the same old patterns remain.
           </h3>
           <h2
             ref={setCopyRef(3)}
@@ -60,7 +60,7 @@ export function BeginningSection({
               copyVisible[3] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            Well here&apos;s the thing...
+            Here’s the thing...
           </h2>
         </div>
       </section>
