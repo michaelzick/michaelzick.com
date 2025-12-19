@@ -52,7 +52,7 @@ export function BeginningSection({
               copyVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            You’ve done talk therapy, tried self-help books, and maybe even joined support groups, but the same old patterns remain.
+            You’ve done talk therapy, read self-help books, and maybe even joined support groups, but the same old patterns remain.
           </h3>
           <h2
             ref={setCopyRef(3)}
