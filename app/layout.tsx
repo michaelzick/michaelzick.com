@@ -80,6 +80,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </a>
             </div>
           </div>
+          <div className="mt-8 border-t border-white/20 pt-4 text-sm">
+            <div className="px-6 md:px-8 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+              <p>
+                Site designed and built by{' '}
+                <a
+                  href="https://www.zickonezero.com"
+                  target="_blank"
+                  className="footer-link inline-block"
+                >
+                  ZICKONEZERO Creative
+                </a>
+              </p>
+              <p className="md:text-right">© 2025 ZICKONEZERO Creative</p>
+            </div>
+          </div>
         </footer>
       </body>
     </html>
