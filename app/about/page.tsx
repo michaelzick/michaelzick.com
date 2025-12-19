@@ -29,6 +29,12 @@ export const metadata: Metadata = {
 }
 
 export default function About() {
+  const credentials = [
+    'Certified by Dr. Robert Glover, author of "No More Mr. Nice Guy" and renowned therapist.',
+    'Certified as a Life & Relationship Coach by Life Purpose Institute.',
+    'Established in the Los Angeles mental health and recovery community since 2015.',
+  ]
+
   return (
     <div className="flex flex-col">
       <section
@@ -42,7 +48,7 @@ export default function About() {
       </section>
 
       <section className="px-6 md:px-8 pt-24 md:pt-32 bg-gray-100 text-default-grey">
-        <div className="max-w-[1400px] mx-auto">
+        <div className="max-w-[1400px] mx-auto space-y-12">
           <div className="flex flex-col md:flex-row md:items-center gap-8">
             <FadeInSection className="md:w-1/2 space-y-6 order-2 md:order-1">
               <h2 className="text-[45px] font-semibold">Michael is all about action.</h2>
@@ -71,6 +77,26 @@ export default function About() {
               />
             </div>
           </div>
+          <FadeInSection>
+            <ul className="list-none border-t border-default-grey/30 p-0">
+              {credentials.map((item, index) => {
+                const itemNumber = String(index + 1).padStart(2, '0')
+                return (
+                  <li
+                    key={item}
+                    className="grid grid-cols-[auto_1fr] gap-x-6 border-b border-default-grey/20 py-7 md:py-8"
+                  >
+                    <span className="mt-2 font-mono text-xs font-semibold tracking-[0.35em] text-default-grey/70">
+                      {itemNumber}
+                    </span>
+                    <p className="text-[26px] font-semibold leading-snug text-default-grey md:text-[30px]">
+                      {item}
+                    </p>
+                  </li>
+                )
+              })}
+            </ul>
+          </FadeInSection>
         </div>
       </section>
 
