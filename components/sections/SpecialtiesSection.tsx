@@ -15,7 +15,7 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
     'Separating fact from fiction',
     'Nice Guy Syndrome',
     'Relationships & dating',
-    'Setting boundaries',
+    'Somatic regulation',
     'Belief reprogramming',
   ];
   const { setRef: setSpecialtyRef, visibleStates: specialtyVisible } = useFadeInOnScroll(specialties.length, 0.3);
