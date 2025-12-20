@@ -19,6 +19,7 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
     'Action-Oriented Coaching',
     'Relationships & Dating',
   ];
+  const { setRef: setImageRef, visibleStates: imageVisible } = useFadeInOnScroll(1, 0.3);
   const { setRef: setSpecialtyRef, visibleStates: specialtyVisible } = useFadeInOnScroll(specialties.length, 0.3);
 
   return (
@@ -30,7 +31,12 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
     >
       <div className="mx-auto max-w-[1400px]">
         <div className="grid items-start gap-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-          <div className="order-2 md:order-1">
+          <div
+            ref={setImageRef(0)}
+            className={`order-2 md:order-1 transition-all duration-700 ease-out ${
+              imageVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
             <div className="relative h-[400px] w-full overflow-hidden rounded-lg shadow-md sm:h-[480px] md:h-[638px]">
               <Image
                 src="/img/grey-suit-blue-shirt.webp"
