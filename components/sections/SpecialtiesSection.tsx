@@ -12,11 +12,11 @@ interface SpecialtiesSectionProps {
 
 export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVisible }: SpecialtiesSectionProps) {
   const specialties = [
-    'Separating fact from fiction',
-    'Nice Guy Syndrome',
-    'Relationships & dating',
-    'Somatic regulation',
-    'Belief reprogramming',
+    'Restructuring Beliefs',
+    'Healing Self-Sabotage',
+    'Somatic Regulation',
+    'Action-Oriented Coaching',
+    'Relationships & Dating',
   ];
   const { setRef: setSpecialtyRef, visibleStates: specialtyVisible } = useFadeInOnScroll(specialties.length, 0.3);
 
@@ -39,9 +39,8 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
           <div className="order-1 md:order-2 space-y-6">
             <h2
               ref={titleRef}
-              className={`font-headline text-[55px] font-semibold transition-opacity duration-700 ease-out ${
-                isVisible ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={`font-headline text-[55px] font-semibold transition-opacity duration-700 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'
+                }`}
             >
               Specialties:
             </h2>
@@ -52,9 +51,8 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
                   <li
                     key={item}
                     ref={setSpecialtyRef(index)}
-                    className={`grid grid-cols-[auto_1fr] gap-x-6 border-b border-white/20 py-7 md:py-8 transition-all duration-700 ease-out ${
-                      specialtyVisible[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                    }`}
+                    className={`grid grid-cols-[auto_1fr] gap-x-6 border-b border-white/20 py-7 md:py-8 transition-all duration-700 ease-out ${specialtyVisible[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                      }`}
                   >
                     <span className="mt-2 font-mono text-xs font-semibold tracking-[0.35em] text-white/70">
                       {itemNumber}
