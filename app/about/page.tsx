@@ -138,12 +138,12 @@ export default function About() {
               />
             </FadeInSection>
             <FadeInSection className="md:w-1/2 space-y-6 md:order-1">
+              <h2 className="text-[45px] font-semibold">Let’s talk.</h2>
               <p className="text-[23px]">
                 Michael has successfully coached celebrities, entrepreneurs, Nice Guys, and high-functioning adults
                 to create better goals, careers, and relationships.
               </p>
               <p className="text-[23px]">Is it time to get in touch with reality?</p>
-              <h2 className="text-[45px] font-semibold">Let’s talk.</h2>
               <a
                 href="https://calendly.com/michaelzick/45min"
                 target="_blank"
