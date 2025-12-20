@@ -99,6 +99,7 @@ export default function About() {
           </FadeInSection>
           <div className="flex flex-col md:flex-row md:items-center gap-8">
             <FadeInSection className="md:w-1/2 space-y-6 order-2 md:order-2">
+              <h2 className="text-[45px] font-semibold">Get outside.</h2>
               <p className="text-[23px]">
                 As an avid outdoorsman, surfer, and snowboarder, Michael promotes nature-based activities to his
                 clients. As part of a comprehensive mind-body-emotion practice, connecting with nature is a core
