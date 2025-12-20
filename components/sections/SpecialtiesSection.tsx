@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import type { RefObject } from 'react';
 import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
 
@@ -30,11 +31,15 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
       <div className="mx-auto max-w-[1400px]">
         <div className="grid items-start gap-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
           <div className="order-2 md:order-1">
-            <img
-              src="/img/grey-suit-blue-shirt.webp"
-              alt="Michael in a grey suit and blue shirt"
-              className="h-[400px] w-full rounded-lg object-cover object-top shadow-md sm:h-[480px] md:h-[638px]"
-            />
+            <div className="relative h-[400px] w-full overflow-hidden rounded-lg shadow-md sm:h-[480px] md:h-[638px]">
+              <Image
+                src="/img/grey-suit-blue-shirt.webp"
+                alt="Michael in a grey suit and blue shirt"
+                fill
+                sizes="(min-width: 768px) 45vw, 100vw"
+                className="object-cover object-top"
+              />
+            </div>
           </div>
           <div className="order-1 md:order-2 space-y-6">
             <h2
