@@ -112,10 +112,10 @@ export default function About() {
             </FadeInSection>
             <FadeInSection className="md:w-1/2 order-1 md:order-1">
               <Image
-                src="/img/mt-hood-selfie-darkened.webp"
-                alt="Michael outdoors in the mountains"
-                width={800}
-                height={936}
+                src="/img/pitted.webp"
+                alt="Michael surfing a wave"
+                width={2000}
+                height={1334}
                 sizes="(min-width: 768px) 50vw, 100vw"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
               />
