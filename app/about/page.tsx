@@ -97,20 +97,36 @@ export default function About() {
               })}
             </ul>
           </FadeInSection>
+          <div className="flex flex-col md:flex-row md:items-center gap-8">
+            <FadeInSection className="md:w-1/2 space-y-6 order-2 md:order-2">
+              <p className="text-[23px]">
+                As an avid outdoorsman, surfer, and snowboarder, Michael promotes nature-based activities to his
+                clients. As part of a comprehensive mind-body-emotion practice, connecting with nature is a core
+                aspect of reality alignment coaching.
+              </p>
+            </FadeInSection>
+            <div className="md:w-1/2 order-1 md:order-1">
+              <img
+                src="/img/mt-hood-selfie-darkened.webp"
+                alt="Michael outdoors in the mountains"
+                className="w-full h-auto object-cover rounded-lg shadow-md"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
       <section className="px-6 md:px-8 py-24 md:py-32 bg-gray-100 text-default-grey">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-center gap-8">
-            <div className="md:w-1/2">
+            <div className="md:w-1/2 md:order-2">
               <img
                 src="/img/grey_jacket.webp"
                 alt="Michael in suit"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
               />
             </div>
-            <FadeInSection className="md:w-1/2 space-y-6">
+            <FadeInSection className="md:w-1/2 space-y-6 md:order-1">
               <p className="text-[23px]">
                 Michael has successfully coached celebrities, entrepreneurs, Nice Guys, and men
                 and women through various transitions. Is it time for your life to change for the
