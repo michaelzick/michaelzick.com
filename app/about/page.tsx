@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { FadeInSection } from '../../components/FadeInSection';
 
 export const metadata: Metadata = {
@@ -70,9 +71,12 @@ export default function About() {
               </p>
             </FadeInSection>
             <FadeInSection className="md:w-1/2 order-1 md:order-2">
-              <img
+              <Image
                 src="/img/blue_jacket.webp"
                 alt="Michael wearing a jacket"
+                width={2500}
+                height={3124}
+                sizes="(min-width: 768px) 50vw, 100vw"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
               />
             </FadeInSection>
@@ -107,9 +111,12 @@ export default function About() {
               </p>
             </FadeInSection>
             <FadeInSection className="md:w-1/2 order-1 md:order-1">
-              <img
+              <Image
                 src="/img/mt-hood-selfie-darkened.webp"
                 alt="Michael outdoors in the mountains"
+                width={800}
+                height={936}
+                sizes="(min-width: 768px) 50vw, 100vw"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
               />
             </FadeInSection>
@@ -121,9 +128,12 @@ export default function About() {
         <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-center gap-8">
             <FadeInSection className="md:w-1/2 md:order-2">
-              <img
+              <Image
                 src="/img/grey_jacket.webp"
                 alt="Michael in suit"
+                width={2500}
+                height={1667}
+                sizes="(min-width: 768px) 50vw, 100vw"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
               />
             </FadeInSection>
