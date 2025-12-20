@@ -1,5 +1,5 @@
-import type { Metadata } from 'next'
-import { FadeInSection } from '../../components/FadeInSection'
+import type { Metadata } from 'next';
+import { FadeInSection } from '../../components/FadeInSection';
 
 export const metadata: Metadata = {
   title: 'Michael Zick | About',
@@ -26,14 +26,14 @@ export const metadata: Metadata = {
       'Helping high-functioning adults separate fear and anxiety from reality.',
     images: ['https://www.michaelzick.com/img/ocean_2500.webp'],
   },
-}
+};
 
 export default function About() {
   const credentials = [
     'Certified by Dr. Robert Glover, author of "No More Mr. Nice Guy" and renowned therapist.',
     'Certified as a Life & Relationship Coach by Life Purpose Institute.',
     'Established in the Los Angeles mental health and recovery community since 2015.',
-  ]
+  ];
 
   return (
     <div className="flex flex-col">
@@ -69,18 +69,18 @@ export default function About() {
                 behaviors, stop being a victim, and play well with others without being &quot;nice.&quot;
               </p>
             </FadeInSection>
-            <div className="md:w-1/2 order-1 md:order-2">
+            <FadeInSection className="md:w-1/2 order-1 md:order-2">
               <img
                 src="/img/blue_jacket.webp"
                 alt="Michael wearing a jacket"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
               />
-            </div>
+            </FadeInSection>
           </div>
           <FadeInSection>
             <ul className="list-none border-t border-default-grey/30 p-0">
               {credentials.map((item, index) => {
-                const itemNumber = String(index + 1).padStart(2, '0')
+                const itemNumber = String(index + 1).padStart(2, '0');
                 return (
                   <li
                     key={item}
@@ -93,7 +93,7 @@ export default function About() {
                       {item}
                     </p>
                   </li>
-                )
+                );
               })}
             </ul>
           </FadeInSection>
@@ -106,13 +106,13 @@ export default function About() {
                 aspect of reality alignment coaching.
               </p>
             </FadeInSection>
-            <div className="md:w-1/2 order-1 md:order-1">
+            <FadeInSection className="md:w-1/2 order-1 md:order-1">
               <img
                 src="/img/mt-hood-selfie-darkened.webp"
                 alt="Michael outdoors in the mountains"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
               />
-            </div>
+            </FadeInSection>
           </div>
         </div>
       </section>
@@ -120,19 +120,19 @@ export default function About() {
       <section className="px-6 md:px-8 py-24 md:py-32 bg-gray-100 text-default-grey">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-center gap-8">
-            <div className="md:w-1/2 md:order-2">
+            <FadeInSection className="md:w-1/2 md:order-2">
               <img
                 src="/img/grey_jacket.webp"
                 alt="Michael in suit"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
               />
-            </div>
+            </FadeInSection>
             <FadeInSection className="md:w-1/2 space-y-6 md:order-1">
               <p className="text-[23px]">
-                Michael has successfully coached celebrities, entrepreneurs, Nice Guys, and men
-                and women through various transitions. Is it time for your life to change for the
-                better?
+                Michael has successfully coached celebrities, entrepreneurs, Nice Guys, and high-functioning adults
+                to create better goals, careers, and relationships.
               </p>
+              <p className="text-[23px]">Is it time to get in touch with reality?</p>
               <h2 className="text-[45px] font-semibold">Let’s talk.</h2>
               <a
                 href="https://calendly.com/michaelzick/45min"
