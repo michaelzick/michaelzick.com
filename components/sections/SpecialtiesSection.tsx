@@ -16,7 +16,7 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
     'Restructuring Beliefs',
     'Healing Self-Sabotage',
     'Somatic Regulation',
-    'Action-Oriented Coaching',
+    'Nature-Based Modalities',
     'Relationships & Dating',
   ];
   const { setRef: setImageRef, visibleStates: imageVisible } = useFadeInOnScroll(1, 0.3);
