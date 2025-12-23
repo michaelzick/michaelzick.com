@@ -1,30 +1,35 @@
 import type { Metadata } from 'next';
 import ContactContent from './ContactContent';
+import { siteConfig } from '../../lib/site';
 
 export const metadata: Metadata = {
   title: 'Michael Zick | Contact',
   description:
-    'Helping high-functioning adults separate fear and anxiety from reality.',
+    'Contact Michael Zick to book a free reality alignment coaching session or ask a question.',
+  alternates: {
+    canonical: '/contact',
+  },
   openGraph: {
     title: 'Michael Zick | Contact',
     description:
-      'Helping high-functioning adults separate fear and anxiety from reality.',
-    url: 'https://www.michaelzick.com/contact',
-    siteName: 'Michael Zick | Reality Alignment Coach',
+      'Contact Michael Zick to book a free reality alignment coaching session or ask a question.',
+    url: `${siteConfig.url}/contact`,
+    siteName: siteConfig.name,
     images: [
       {
-        url: 'https://www.michaelzick.com/img/lake_reflection_2500.webp',
+        url: '/img/lake_reflection_2500.webp',
         alt: 'Lake reflection at dusk',
       },
     ],
     type: 'website',
+    locale: siteConfig.locale,
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Michael Zick | Contact',
     description:
-      'Helping high-functioning adults separate fear and anxiety from reality.',
-    images: ['https://www.michaelzick.com/img/lake_reflection_2500.webp'],
+      'Contact Michael Zick to book a free reality alignment coaching session or ask a question.',
+    images: ['/img/lake_reflection_2500.webp'],
   },
 };
 

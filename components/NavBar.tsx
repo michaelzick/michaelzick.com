@@ -45,12 +45,12 @@ export default function NavBar() {
           className={`${menuOpen ? '!text-default-grey pointer-events-auto' : ''}`}
           onClick={() => setMenuOpen(false)}
         >
-          <h1
-            className={`font-bold transition-all duration-500 ${scrolled ? 'text-[48px]' : 'text-[56px]'
+          <span
+            className={`font-headline font-bold transition-all duration-500 ${scrolled ? 'text-[48px]' : 'text-[56px]'
               } max-[929px]:text-[40px]`}
           >
             Michael Zick
-          </h1>
+          </span>
         </Link>
         <div className="nav-links-container flex items-center space-x-6 max-[929px]:hidden">
           <Link

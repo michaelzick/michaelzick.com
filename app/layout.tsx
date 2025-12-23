@@ -4,6 +4,7 @@ import Link from 'next/link';
 import NavBar from '../components/NavBar';
 import Script from 'next/script';
 import { Open_Sans } from 'next/font/google';
+import { siteConfig } from '../lib/site';
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -11,23 +12,75 @@ const openSans = Open_Sans({
   variable: '--font-open-sans',
 });
 
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${siteConfig.url}/#organization`,
+      name: siteConfig.businessName,
+      url: siteConfig.url,
+      description: siteConfig.description,
+      areaServed: {
+        '@type': 'City',
+        name: siteConfig.placename,
+      },
+      sameAs: siteConfig.sameAs,
+    },
+    {
+      '@type': 'Person',
+      '@id': `${siteConfig.url}/#person`,
+      name: siteConfig.shortName,
+      jobTitle: 'Reality Alignment Coach',
+      url: siteConfig.url,
+      image: `${siteConfig.url}${siteConfig.personImage}`,
+      worksFor: {
+        '@id': `${siteConfig.url}/#organization`,
+      },
+      sameAs: siteConfig.sameAs,
+    },
+  ],
+};
+
 export const metadata: Metadata = {
-  title: 'Michael Zick | Reality Alignment Coach',
-  description:
-    'Helping high-functioning adults separate fear and anxiety from reality.',
+  metadataBase: new URL(siteConfig.url),
+  title: siteConfig.name,
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  authors: [{ name: siteConfig.shortName, url: siteConfig.url }],
+  creator: siteConfig.shortName,
+  publisher: siteConfig.businessName,
   openGraph: {
-    title: 'Michael Zick | Reality Alignment Coach',
-    description:
-      'Helping high-functioning adults separate fear and anxiety from reality.',
-    url: 'https://www.michaelzick.com',
-    siteName: 'Michael Zick | Reality Alignment Coach',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    locale: siteConfig.locale,
     type: 'website',
+    images: [
+      {
+        url: siteConfig.defaultImage,
+        alt: 'Mountain landscape at sunset',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Michael Zick | Reality Alignment Coach',
-    description:
-      'Helping high-functioning adults separate fear and anxiety from reality.',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [siteConfig.defaultImage],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  other: {
+    'geo.region': siteConfig.region,
+    'geo.placename': siteConfig.placename,
   },
 };
 
@@ -35,6 +88,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
         {/* Google tag (gtag.js) */}
         <Script
           strategy="afterInteractive"

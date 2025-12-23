@@ -1,32 +1,32 @@
 import type { Metadata } from 'next'
 import HomePageContent from '../components/HomePageContent'
+import { siteConfig } from '../lib/site'
 
 export const metadata: Metadata = {
-  title: 'Michael Zick | Reality Alignment Coach',
-  description:
-    'Helping high-functioning adults separate fear and anxiety from reality.',
+  title: siteConfig.name,
+  description: siteConfig.description,
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: 'Michael Zick | Reality Alignment Coach',
-    description:
-      'Helping high-functioning adults separate fear and anxiety from reality.',
-    url: 'https://www.michaelzick.com',
-    siteName: 'Michael Zick | Reality Alignment Coach',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     images: [
       {
-        url: '/img/homepage_mountains.webp',
+        url: siteConfig.defaultImage,
         alt: 'Mountain landscape at sunset',
       },
     ],
     type: 'website',
+    locale: siteConfig.locale,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Michael Zick | Reality Alignment Coach',
-    description:
-      'Helping high-functioning adults separate fear and anxiety from reality.',
-    images: [
-      '/img/homepage_mountains.webp',
-    ],
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [siteConfig.defaultImage],
   },
 }
 

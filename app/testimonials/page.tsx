@@ -1,30 +1,35 @@
 import type { Metadata } from 'next'
 import { FadeInSection } from '../../components/FadeInSection'
+import { siteConfig } from '../../lib/site'
 
 export const metadata: Metadata = {
   title: 'Michael Zick | Testimonials',
   description:
-    'Helping high-functioning adults separate fear and anxiety from reality.',
+    'Read testimonials from clients of Michael Zick\'s reality alignment coaching program.',
+  alternates: {
+    canonical: '/testimonials',
+  },
   openGraph: {
     title: 'Michael Zick | Testimonials',
     description:
-      'Helping high-functioning adults separate fear and anxiety from reality.',
-    url: 'https://www.michaelzick.com/testimonials',
-    siteName: 'Michael Zick | Reality Alignment Coach',
+      'Read testimonials from clients of Michael Zick\'s reality alignment coaching program.',
+    url: `${siteConfig.url}/testimonials`,
+    siteName: siteConfig.name,
     images: [
       {
-        url: 'https://www.michaelzick.com/img/mountains_2500.webp',
+        url: '/img/mountains_2500.webp',
         alt: 'Mountain range at sunrise',
       },
     ],
     type: 'website',
+    locale: siteConfig.locale,
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Michael Zick | Testimonials',
     description:
-      'Helping high-functioning adults separate fear and anxiety from reality.',
-    images: ['https://www.michaelzick.com/img/mountains_2500.webp'],
+      'Read testimonials from clients of Michael Zick\'s reality alignment coaching program.',
+    images: ['/img/mountains_2500.webp'],
   },
 }
 
@@ -36,7 +41,7 @@ export default function Testimonials() {
         style={{ backgroundImage: "url('/img/mountains_2500.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
         <div className="relative w-full max-w-[1400px] mx-auto p-8">
-          <h2 className="text-4xl md:text-6xl text-right">Testimonials</h2>
+          <h1 className="text-4xl md:text-6xl text-right">Testimonials</h1>
         </div>
       </section>
 

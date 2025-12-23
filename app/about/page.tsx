@@ -1,31 +1,36 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { FadeInSection } from '../../components/FadeInSection';
+import { siteConfig } from '../../lib/site';
 
 export const metadata: Metadata = {
   title: 'Michael Zick | About',
   description:
-    'Helping high-functioning adults separate fear and anxiety from reality.',
+    'Learn about Michael Zick, a reality alignment coach established in the Los Angeles mental health and recovery community since 2015.',
+  alternates: {
+    canonical: '/about',
+  },
   openGraph: {
     title: 'Michael Zick | About',
     description:
-      'Helping high-functioning adults separate fear and anxiety from reality.',
-    url: 'https://www.michaelzick.com/about',
-    siteName: 'Michael Zick | Reality Alignment Coach',
+      'Learn about Michael Zick, a reality alignment coach established in the Los Angeles mental health and recovery community since 2015.',
+    url: `${siteConfig.url}/about`,
+    siteName: siteConfig.name,
     images: [
       {
-        url: 'https://www.michaelzick.com/img/ocean_2500.webp',
+        url: '/img/ocean_2500.webp',
         alt: 'Dark mountain landscape',
       },
     ],
     type: 'website',
+    locale: siteConfig.locale,
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Michael Zick | About',
     description:
-      'Helping high-functioning adults separate fear and anxiety from reality.',
-    images: ['https://www.michaelzick.com/img/ocean_2500.webp'],
+      'Learn about Michael Zick, a reality alignment coach established in the Los Angeles mental health and recovery community since 2015.',
+    images: ['/img/ocean_2500.webp'],
   },
 };
 
@@ -44,7 +49,7 @@ export default function About() {
       >
         <div className="absolute inset-0 bg-black/30" aria-hidden="true"></div>
         <div className="relative w-full max-w-[1400px] mx-auto p-8">
-          <h2 className="text-4xl md:text-6xl text-right">About</h2>
+          <h1 className="text-4xl md:text-6xl text-right">About</h1>
         </div>
       </section>
 

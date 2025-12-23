@@ -14,7 +14,7 @@ export default function ContactContent() {
       >
         <div className="absolute inset-0 bg-black/30" aria-hidden="true"></div>
         <div className="relative w-full max-w-[1400px] mx-auto p-8">
-          <h2 className="font-headline text-4xl md:text-6xl text-right">Contact</h2>
+          <h1 className="font-headline text-4xl md:text-6xl text-right">Contact</h1>
         </div>
       </section>
 
