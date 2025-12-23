@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/img/ocean_2500.webp',
-        alt: 'Dark mountain landscape',
+        alt: 'Ocean shoreline at dusk',
       },
     ],
     type: 'website',

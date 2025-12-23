@@ -12,6 +12,15 @@ const openSans = Open_Sans({
   variable: '--font-open-sans',
 });
 
+const [countryCode, regionCode] = siteConfig.region.split('-');
+
+const organizationAddress = {
+  '@type': 'PostalAddress',
+  addressLocality: siteConfig.placename,
+  ...(regionCode ? { addressRegion: regionCode } : {}),
+  ...(countryCode ? { addressCountry: countryCode } : {}),
+};
+
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -21,6 +30,7 @@ const structuredData = {
       name: siteConfig.businessName,
       url: siteConfig.url,
       description: siteConfig.description,
+      address: organizationAddress,
       areaServed: {
         '@type': 'City',
         name: siteConfig.placename,
@@ -86,7 +96,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang={siteConfig.locale.replace('_', '-')}>
       <head>
         <script
           type="application/ld+json"
