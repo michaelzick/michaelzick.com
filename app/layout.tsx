@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: siteConfig.name,
   description: siteConfig.description,
-  keywords: siteConfig.keywords,
+  keywords: [...siteConfig.keywords],
   authors: [{ name: siteConfig.shortName, url: siteConfig.url }],
   creator: siteConfig.shortName,
   publisher: siteConfig.businessName,
