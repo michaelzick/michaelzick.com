@@ -105,11 +105,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Amplitude Browser SDK + Session Replay */}
         <Script
           strategy="afterInteractive"
-          src="https://cdn.amplitude.com/libs/analytics-browser-2.0.0-min.js.gz"
-        />
-        <Script
-          strategy="afterInteractive"
-          src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.0.0-min.js.gz"
+          src="https://cdn.amplitude.com/script/46e4589d8bee602239bf1937b465e1d7.js"
         />
         <Script id="amplitude-init" strategy="afterInteractive">
           {`
