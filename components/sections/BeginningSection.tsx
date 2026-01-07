@@ -90,7 +90,7 @@ export function BeginningSection({
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
             >
-              Keeps You Stuck.
+              Keeps You In Place.
             </span>
           </h2>
         </div>
