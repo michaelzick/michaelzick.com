@@ -73,6 +73,7 @@ export function BeginningSection({
           backgroundPosition: 'center',
         }}
       >
+        <div className="absolute inset-0 bg-black/20" aria-hidden="true"></div>
         <div className="relative w-full mx-auto p-8 mt-[-88px] md:mt-[-112px]">
           <h2
             ref={titleRef}
