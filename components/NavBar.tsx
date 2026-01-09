@@ -145,10 +145,9 @@ export default function NavBar() {
             href="https://calendly.com/michaelzick/45min"
             target="_blank"
             rel="noopener noreferrer"
-            className="nav-button gap-2"
+            className="nav-button"
           >
             Book a Free Session
-            <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
         <div
@@ -237,11 +236,10 @@ export default function NavBar() {
           href="https://calendly.com/michaelzick/45min"
           target="_blank"
           rel="noopener noreferrer"
-          className="nav-button gap-2"
+          className="nav-button"
           onClick={() => setMenuOpen(false)}
         >
           Book a Free Session
-          <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
         </a>
       </div>
     </header>

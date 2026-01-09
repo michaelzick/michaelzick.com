@@ -184,7 +184,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 className="footer-link"
               >
                 <strong>Book a Free Session</strong>
-                <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
             <div className="md:col-span-3 md:text-right space-y-2">
@@ -223,7 +222,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   className="footer-link"
                 >
                   ZICKONEZERO Creative
-                  <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
                 </a>
               </p>
               <p className="md:text-right">© 2025 Michael Zick Coaching</p>
