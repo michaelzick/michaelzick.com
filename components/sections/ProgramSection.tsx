@@ -1,6 +1,7 @@
 'use client';
 
 import type { ReactNode, RefObject } from 'react';
+import { OpenInNewWindowIcon } from '@radix-ui/react-icons';
 import { FadeInSection } from '../FadeInSection';
 import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
 
@@ -55,9 +56,11 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop }: Progra
           <a
             href="https://calendly.com/michaelzick/45min"
             target="_blank"
-            className="btn mt-6 inline-block text-xl"
+            rel="noopener noreferrer"
+            className="btn mt-6 gap-2 text-xl"
           >
             Book a Free Session
+            <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
           </a>
         </FadeInSection>
       </div>

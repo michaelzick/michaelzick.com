@@ -90,7 +90,7 @@ html {
   }
 
   .footer-link {
-    @apply relative block text-white;
+    @apply relative inline-flex items-center gap-2 text-white;
   }
 
   .footer-link::after {

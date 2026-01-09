@@ -1,5 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import { OpenInNewWindowIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import NavBar from '../components/NavBar';
 import Script from 'next/script';
@@ -164,15 +165,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <span className="block text-xs uppercase tracking-[0.2em] text-white/70">
                 Links
               </span>
-              <Link href="/about" className="footer-link inline-block">
+              <Link href="/about" className="footer-link">
                 About
               </Link>
               <br />
-              <Link href="/testimonials" className="footer-link inline-block">
+              <Link href="/testimonials" className="footer-link">
                 Testimonials
               </Link>
               <br />
-              <Link href="/contact" className="footer-link inline-block">
+              <Link href="/contact" className="footer-link">
                 Contact
               </Link>
               <br />
@@ -180,9 +181,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 href="https://calendly.com/michaelzick/45min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="footer-link inline-block"
+                className="footer-link"
               >
                 <strong>Book a Free Session</strong>
+                <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
             <div className="md:col-span-3 md:text-right space-y-2">
@@ -193,18 +195,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 href="https://findyourflowstate.michaelzick.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="footer-link inline-block"
+                className="footer-link"
               >
                 Find Your Flow State
+                <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
               </a>
               <br />
               <a
                 href="https://whosincharge.michaelzick.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="footer-link inline-block"
+                className="footer-link"
               >
                 Who&apos;s In Charge?
+                <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -216,9 +220,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   href="https://www.zickonezero.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="footer-link inline-block"
+                  className="footer-link"
                 >
                   ZICKONEZERO Creative
+                  <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
                 </a>
               </p>
               <p className="md:text-right">© 2025 Michael Zick Coaching</p>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { OpenInNewWindowIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -111,7 +112,7 @@ export default function NavBar() {
               </svg>
             </button>
             <div
-              className={`absolute left-0 top-full mt-3 w-64 rounded-2xl bg-white text-default-grey shadow-xl ring-1 ring-black/5 transition-all duration-200 ${appsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none'
+              className={`absolute left-0 top-full mt-3 w-64 rounded-lg bg-white text-default-grey shadow-xl ring-1 ring-black/5 transition-all duration-200 ${appsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none'
                 }`}
               role="menu"
               aria-label="Apps"
@@ -122,9 +123,10 @@ export default function NavBar() {
                 rel="noopener noreferrer"
                 role="menuitem"
                 tabIndex={appsOpen ? 0 : -1}
-                className="block px-4 py-3 text-base font-medium hover:bg-black/5 transition-colors"
+                className="flex w-full items-center gap-2 px-4 py-3 text-base font-medium hover:bg-black/5 transition-colors"
               >
                 Find Your Flow State
+                <OpenInNewWindowIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
               </a>
               <a
                 href="https://whosincharge.michaelzick.com/"
@@ -132,9 +134,10 @@ export default function NavBar() {
                 rel="noopener noreferrer"
                 role="menuitem"
                 tabIndex={appsOpen ? 0 : -1}
-                className="block px-4 py-3 text-base font-medium hover:bg-black/5 transition-colors"
+                className="flex w-full items-center gap-2 px-4 py-3 text-base font-medium hover:bg-black/5 transition-colors"
               >
                 Who&apos;s In Charge?
+                <OpenInNewWindowIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -142,9 +145,10 @@ export default function NavBar() {
             href="https://calendly.com/michaelzick/45min"
             target="_blank"
             rel="noopener noreferrer"
-            className="nav-button"
+            className="nav-button gap-2"
           >
             Book a Free Session
+            <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
         <div
@@ -175,30 +179,35 @@ export default function NavBar() {
         className={`fixed inset-0 h-screen bg-white text-default-grey z-40 hidden max-[929px]:flex flex-col items-end justify-start pt-32 space-y-6 p-8 transform transition-transform duration-300 ${menuOpen ? 'translate-x-0' : 'translate-x-full pointer-events-none'
           }`}
       >
-        <Link
-          href="/about"
-          className={`nav-link text-2xl text-default-grey ${activePath === '/about' ? 'active' : ''
-            }`}
-          onClick={() => setMenuOpen(false)}
-        >
-          About
-        </Link>
-        <Link
-          href="/testimonials"
-          className={`nav-link text-2xl text-default-grey ${activePath === '/testimonials' ? 'active' : ''
-            }`}
-          onClick={() => setMenuOpen(false)}
-        >
-          Testimonials
-        </Link>
-        <Link
-          href="/contact"
-          className={`nav-link text-2xl text-default-grey ${activePath === '/contact' ? 'active' : ''
-            }`}
-          onClick={() => setMenuOpen(false)}
-        >
-          Contact
-        </Link>
+        <div className="flex flex-col items-end space-y-3">
+          <span className="text-xs uppercase tracking-[0.2em] text-default-grey/70">
+            Links
+          </span>
+          <Link
+            href="/about"
+            className={`nav-link text-2xl text-default-grey ${activePath === '/about' ? 'active' : ''
+              }`}
+            onClick={() => setMenuOpen(false)}
+          >
+            About
+          </Link>
+          <Link
+            href="/testimonials"
+            className={`nav-link text-2xl text-default-grey ${activePath === '/testimonials' ? 'active' : ''
+              }`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Testimonials
+          </Link>
+          <Link
+            href="/contact"
+            className={`nav-link text-2xl text-default-grey ${activePath === '/contact' ? 'active' : ''
+              }`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Contact
+          </Link>
+        </div>
         <div className="pt-2 flex flex-col items-end space-y-3">
           <span className="text-xs uppercase tracking-[0.2em] text-default-grey/70">
             Apps
@@ -211,6 +220,7 @@ export default function NavBar() {
             onClick={() => setMenuOpen(false)}
           >
             Find Your Flow State
+            <OpenInNewWindowIcon className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
           </a>
           <a
             href="https://whosincharge.michaelzick.com/"
@@ -220,16 +230,18 @@ export default function NavBar() {
             onClick={() => setMenuOpen(false)}
           >
             Who&apos;s In Charge?
+            <OpenInNewWindowIcon className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
           </a>
         </div>
         <a
           href="https://calendly.com/michaelzick/45min"
           target="_blank"
           rel="noopener noreferrer"
-          className="nav-button"
+          className="nav-button gap-2"
           onClick={() => setMenuOpen(false)}
         >
           Book a Free Session
+          <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
         </a>
       </div>
     </header>

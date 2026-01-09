@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { OpenInNewWindowIcon } from '@radix-ui/react-icons';
 import Image from 'next/image';
 import { FadeInSection } from '../../components/FadeInSection';
 import { siteConfig } from '../../lib/site';
@@ -152,9 +153,11 @@ export default function About() {
               <a
                 href="https://calendly.com/michaelzick/45min"
                 target="_blank"
-                className="btn inline-block text-xl"
+                rel="noopener noreferrer"
+                className="btn gap-2 text-xl"
               >
                 Book a Free Session
+                <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
               </a>
             </FadeInSection>
           </div>
