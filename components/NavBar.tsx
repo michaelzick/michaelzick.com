@@ -112,7 +112,7 @@ export default function NavBar() {
               </svg>
             </button>
             <div
-              className={`absolute left-0 top-full mt-3 w-64 rounded-lg bg-white text-default-grey shadow-xl ring-1 ring-black/5 transition-all duration-200 ${appsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none'
+              className={`absolute left-0 top-full mt-3 w-max rounded-lg bg-white text-default-grey shadow-xl ring-1 ring-black/5 transition-all duration-200 flex flex-col ${appsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none'
                 }`}
               role="menu"
               aria-label="Apps"
@@ -123,7 +123,7 @@ export default function NavBar() {
                 rel="noopener noreferrer"
                 role="menuitem"
                 tabIndex={appsOpen ? 0 : -1}
-                className="flex w-full items-center gap-2 px-4 py-3 text-base font-medium hover:bg-black/5 transition-colors"
+                className="flex items-center gap-2 px-4 py-3 text-base font-medium whitespace-nowrap hover:bg-black/5 transition-colors"
               >
                 Find Your Flow State
                 <OpenInNewWindowIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
@@ -134,7 +134,7 @@ export default function NavBar() {
                 rel="noopener noreferrer"
                 role="menuitem"
                 tabIndex={appsOpen ? 0 : -1}
-                className="flex w-full items-center gap-2 px-4 py-3 text-base font-medium hover:bg-black/5 transition-colors"
+                className="flex items-center gap-2 px-4 py-3 text-base font-medium whitespace-nowrap hover:bg-black/5 transition-colors"
               >
                 Who&apos;s In Charge?
                 <OpenInNewWindowIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
