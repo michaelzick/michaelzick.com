@@ -1,14 +1,16 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [appsOpen, setAppsOpen] = useState(false);
   const pathname = usePathname();
   const [activePath, setActivePath] = useState('');
+  const appsMenuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +24,7 @@ export default function NavBar() {
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden';
+      setAppsOpen(false);
     } else {
       document.body.style.overflow = '';
     }
@@ -74,6 +77,67 @@ export default function NavBar() {
           >
             Contact
           </Link>
+          <div
+            ref={appsMenuRef}
+            className="relative"
+            onMouseEnter={() => setAppsOpen(true)}
+            onMouseLeave={() => setAppsOpen(false)}
+            onFocus={() => setAppsOpen(true)}
+            onBlur={(event) => {
+              const nextFocus = event.relatedTarget as Node | null;
+              if (!nextFocus || !appsMenuRef.current?.contains(nextFocus)) {
+                setAppsOpen(false);
+              }
+            }}
+          >
+            <button
+              type="button"
+              className="nav-link text-2xl flex items-center gap-2"
+              aria-haspopup="menu"
+              aria-expanded={appsOpen}
+            >
+              Apps
+              <svg
+                aria-hidden="true"
+                className={`h-4 w-4 transition-transform ${appsOpen ? 'rotate-180' : ''}`}
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.94l3.71-3.71a.75.75 0 1 1 1.06 1.06l-4.24 4.24a.75.75 0 0 1-1.06 0L5.21 8.29a.75.75 0 0 1 .02-1.08Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+            <div
+              className={`absolute left-0 top-full mt-3 w-64 rounded-2xl bg-white text-default-grey shadow-xl ring-1 ring-black/5 transition-all duration-200 ${appsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none'
+                }`}
+              role="menu"
+              aria-label="Apps"
+            >
+              <a
+                href="https://findyourflowstate.michaelzick.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                role="menuitem"
+                tabIndex={appsOpen ? 0 : -1}
+                className="block px-4 py-3 text-base font-medium hover:bg-black/5 transition-colors"
+              >
+                Find Your Flow State
+              </a>
+              <a
+                href="https://whosincharge.michaelzick.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                role="menuitem"
+                tabIndex={appsOpen ? 0 : -1}
+                className="block px-4 py-3 text-base font-medium hover:bg-black/5 transition-colors"
+              >
+                Who&apos;s In Charge?
+              </a>
+            </div>
+          </div>
           <a
             href="https://calendly.com/michaelzick/45min"
             target="_blank"
@@ -135,6 +199,29 @@ export default function NavBar() {
         >
           Contact
         </Link>
+        <div className="pt-2 flex flex-col items-end space-y-3">
+          <span className="text-xs uppercase tracking-[0.2em] text-default-grey/70">
+            Apps
+          </span>
+          <a
+            href="https://findyourflowstate.michaelzick.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-link text-2xl text-default-grey"
+            onClick={() => setMenuOpen(false)}
+          >
+            Find Your Flow State
+          </a>
+          <a
+            href="https://whosincharge.michaelzick.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-link text-2xl text-default-grey"
+            onClick={() => setMenuOpen(false)}
+          >
+            Who&apos;s In Charge?
+          </a>
+        </div>
         <a
           href="https://calendly.com/michaelzick/45min"
           target="_blank"

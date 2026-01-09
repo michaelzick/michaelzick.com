@@ -160,7 +160,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="md:col-span-5">
               <p>Michael Zick | Reality Alignment Coach</p>
             </div>
-            <div className="md:col-span-6 md:col-start-6 md:text-right space-y-2">
+            <div className="md:col-span-4 md:text-right space-y-2">
               <Link href="/about" className="footer-link inline-block">
                 About
               </Link>
@@ -176,9 +176,32 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a
                 href="https://calendly.com/michaelzick/45min"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="footer-link inline-block"
               >
                 <strong>Book a Free Session</strong>
+              </a>
+            </div>
+            <div className="md:col-span-3 md:text-right space-y-2">
+              <span className="block text-xs uppercase tracking-[0.2em] text-white/70">
+                Apps
+              </span>
+              <a
+                href="https://findyourflowstate.michaelzick.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-link inline-block"
+              >
+                Find Your Flow State
+              </a>
+              <br />
+              <a
+                href="https://whosincharge.michaelzick.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-link inline-block"
+              >
+                Who&apos;s In Charge?
               </a>
             </div>
           </div>
@@ -189,6 +212,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <a
                   href="https://www.zickonezero.com"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="footer-link inline-block"
                 >
                   ZICKONEZERO Creative
