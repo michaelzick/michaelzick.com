@@ -161,6 +161,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <p>Michael Zick | Reality Alignment Coach</p>
             </div>
             <div className="md:col-span-4 md:text-right space-y-2">
+              <span className="block text-xs uppercase tracking-[0.2em] text-white/70">
+                Links
+              </span>
               <Link href="/about" className="footer-link inline-block">
                 About
               </Link>
