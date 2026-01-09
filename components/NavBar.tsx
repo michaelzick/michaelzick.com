@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { OpenInNewWindowIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { trackLinkClick } from '../lib/analytics';
 
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false);
@@ -35,6 +36,10 @@ export default function NavBar() {
     setActivePath(pathname);
   }, [pathname]);
 
+  const trackHeaderLink = (label: string, href: string, section: string, variant?: 'desktop' | 'mobile') => {
+    trackLinkClick({ location: 'header', label, href, section, variant });
+  };
+
   return (
     <header
       className={`fixed top-0 z-50 w-full px-[70px] max-[1024px]:px-[35px] max-[929px]:px-[30px] transition-all duration-500 ${scrolled ? 'bg-dark-blue/50 backdrop-blur-md' : 'bg-transparent backdrop-blur-0'
@@ -47,7 +52,10 @@ export default function NavBar() {
         <Link
           href="/"
           className={`${menuOpen ? '!text-default-grey pointer-events-auto' : ''}`}
-          onClick={() => setMenuOpen(false)}
+          onClick={() => {
+            trackHeaderLink('Michael Zick', '/', 'brand');
+            setMenuOpen(false);
+          }}
         >
           <span
             className={`font-headline font-bold transition-all duration-500 ${scrolled ? 'text-[48px]' : 'text-[56px]'
@@ -61,6 +69,7 @@ export default function NavBar() {
             href="/about"
             className={`nav-link text-2xl ${activePath === '/about' ? 'active' : ''
               }`}
+            onClick={() => trackHeaderLink('About', '/about', 'primary')}
           >
             About
           </Link>
@@ -68,6 +77,7 @@ export default function NavBar() {
             href="/testimonials"
             className={`nav-link text-2xl ${activePath === '/testimonials' ? 'active' : ''
               }`}
+            onClick={() => trackHeaderLink('Testimonials', '/testimonials', 'primary')}
           >
             Testimonials
           </Link>
@@ -75,6 +85,7 @@ export default function NavBar() {
             href="/contact"
             className={`nav-link text-2xl ${activePath === '/contact' ? 'active' : ''
               }`}
+            onClick={() => trackHeaderLink('Contact', '/contact', 'primary')}
           >
             Contact
           </Link>
@@ -124,6 +135,10 @@ export default function NavBar() {
                 role="menuitem"
                 tabIndex={appsOpen ? 0 : -1}
                 className="flex items-center gap-2 px-4 py-3 text-base font-medium whitespace-nowrap hover:bg-black/5 transition-colors"
+                onClick={() => {
+                  trackHeaderLink('Find Your Flow State', 'https://findyourflowstate.michaelzick.com/', 'apps');
+                  setAppsOpen(false);
+                }}
               >
                 Find Your Flow State
                 <OpenInNewWindowIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
@@ -135,6 +150,10 @@ export default function NavBar() {
                 role="menuitem"
                 tabIndex={appsOpen ? 0 : -1}
                 className="flex items-center gap-2 px-4 py-3 text-base font-medium whitespace-nowrap hover:bg-black/5 transition-colors"
+                onClick={() => {
+                  trackHeaderLink('Who\'s In Charge?', 'https://whosincharge.michaelzick.com/', 'apps');
+                  setAppsOpen(false);
+                }}
               >
                 Who&apos;s In Charge?
                 <OpenInNewWindowIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
@@ -146,6 +165,7 @@ export default function NavBar() {
             target="_blank"
             rel="noopener noreferrer"
             className="nav-button"
+            onClick={() => trackHeaderLink('Book a Free Session', 'https://calendly.com/michaelzick/45min', 'cta')}
           >
             Book a Free Session
           </a>
@@ -186,7 +206,10 @@ export default function NavBar() {
             href="/about"
             className={`nav-link text-2xl text-default-grey ${activePath === '/about' ? 'active' : ''
               }`}
-            onClick={() => setMenuOpen(false)}
+            onClick={() => {
+              trackHeaderLink('About', '/about', 'primary', 'mobile');
+              setMenuOpen(false);
+            }}
           >
             About
           </Link>
@@ -194,7 +217,10 @@ export default function NavBar() {
             href="/testimonials"
             className={`nav-link text-2xl text-default-grey ${activePath === '/testimonials' ? 'active' : ''
               }`}
-            onClick={() => setMenuOpen(false)}
+            onClick={() => {
+              trackHeaderLink('Testimonials', '/testimonials', 'primary', 'mobile');
+              setMenuOpen(false);
+            }}
           >
             Testimonials
           </Link>
@@ -202,7 +228,10 @@ export default function NavBar() {
             href="/contact"
             className={`nav-link text-2xl text-default-grey ${activePath === '/contact' ? 'active' : ''
               }`}
-            onClick={() => setMenuOpen(false)}
+            onClick={() => {
+              trackHeaderLink('Contact', '/contact', 'primary', 'mobile');
+              setMenuOpen(false);
+            }}
           >
             Contact
           </Link>
@@ -216,7 +245,10 @@ export default function NavBar() {
             target="_blank"
             rel="noopener noreferrer"
             className="nav-link text-2xl text-default-grey"
-            onClick={() => setMenuOpen(false)}
+            onClick={() => {
+              trackHeaderLink('Find Your Flow State', 'https://findyourflowstate.michaelzick.com/', 'apps', 'mobile');
+              setMenuOpen(false);
+            }}
           >
             Find Your Flow State
             <OpenInNewWindowIcon className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
@@ -226,7 +258,10 @@ export default function NavBar() {
             target="_blank"
             rel="noopener noreferrer"
             className="nav-link text-2xl text-default-grey"
-            onClick={() => setMenuOpen(false)}
+            onClick={() => {
+              trackHeaderLink('Who\'s In Charge?', 'https://whosincharge.michaelzick.com/', 'apps', 'mobile');
+              setMenuOpen(false);
+            }}
           >
             Who&apos;s In Charge?
             <OpenInNewWindowIcon className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
@@ -237,7 +272,10 @@ export default function NavBar() {
           target="_blank"
           rel="noopener noreferrer"
           className="nav-button"
-          onClick={() => setMenuOpen(false)}
+          onClick={() => {
+            trackHeaderLink('Book a Free Session', 'https://calendly.com/michaelzick/45min', 'cta', 'mobile');
+            setMenuOpen(false);
+          }}
         >
           Book a Free Session
         </a>

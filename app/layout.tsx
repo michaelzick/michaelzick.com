@@ -1,8 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { OpenInNewWindowIcon } from '@radix-ui/react-icons';
-import Link from 'next/link';
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 import Script from 'next/script';
 import { Open_Sans } from 'next/font/google';
 import { siteConfig } from '../lib/site';
@@ -156,78 +155,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${openSans.variable} min-h-screen flex flex-col font-sans`}>
         <NavBar />
         <main className="flex-1">{children}</main>
-        <footer className="text-white py-8 text-lg bg-dark-blue">
-          <div className="max-w-[1400px] mx-auto px-6 md:px-8 grid md:grid-cols-12 gap-8 items-start">
-            <div className="md:col-span-5">
-              <p>Michael Zick | Reality Alignment Coach</p>
-            </div>
-            <div className="md:col-span-4 md:text-right space-y-2">
-              <span className="block text-xs uppercase tracking-[0.2em] text-white/70">
-                Links
-              </span>
-              <Link href="/about" className="footer-link">
-                About
-              </Link>
-              <br />
-              <Link href="/testimonials" className="footer-link">
-                Testimonials
-              </Link>
-              <br />
-              <Link href="/contact" className="footer-link">
-                Contact
-              </Link>
-              <br />
-              <a
-                href="https://calendly.com/michaelzick/45min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-link"
-              >
-                <strong>Book a Free Session</strong>
-              </a>
-            </div>
-            <div className="md:col-span-3 md:text-right space-y-2">
-              <span className="block text-xs uppercase tracking-[0.2em] text-white/70">
-                Apps
-              </span>
-              <a
-                href="https://findyourflowstate.michaelzick.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-link"
-              >
-                Find Your Flow State
-                <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
-              </a>
-              <br />
-              <a
-                href="https://whosincharge.michaelzick.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-link"
-              >
-                Who&apos;s In Charge?
-                <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-          <div className="mt-8 border-t border-white/20 pt-4 text-sm">
-            <div className="px-6 md:px-8 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-              <p>
-                Site designed and built by{' '}
-                <a
-                  href="https://www.zickonezero.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="footer-link"
-                >
-                  ZICKONEZERO Creative
-                </a>
-              </p>
-              <p className="md:text-right">© 2025 Michael Zick Coaching</p>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </body>
     </html>
   );
