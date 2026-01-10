@@ -44,7 +44,7 @@ export default function NavBar() {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full px-[70px] max-[1024px]:px-[35px] max-[929px]:px-[30px] transition-all duration-500 ${isLightNav ? 'header-light' : ''
+      className={`fixed top-0 z-50 w-full px-8 min-[1440px]:px-[70px] max-[1024px]:px-[35px] max-[929px]:px-[30px] transition-all duration-500 ${isLightNav ? 'header-light' : ''
         } ${scrolled ? (isLightNav ? 'bg-white/80 backdrop-blur-md' : 'bg-dark-blue/50 backdrop-blur-md') : 'bg-transparent backdrop-blur-0'
         }`}
     >
