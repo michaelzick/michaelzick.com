@@ -163,7 +163,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </span>
             )}
             {post.category && (
-              <span className="rounded-full border border-dark-blue/10 bg-dark-blue/5 px-3 py-1 text-xs uppercase tracking-[0.2em]">
+              <span className="rounded-full border border-dark-blue/20 bg-dark-blue/10 px-2 py-0.5 text-xs font-semibold uppercase tracking-[0.2em] text-default-grey">
                 {post.category}
               </span>
             )}
