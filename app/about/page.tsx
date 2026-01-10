@@ -59,22 +59,33 @@ export default function About() {
           <div className="flex flex-col md:flex-row md:items-center gap-8">
             <FadeInSection className="md:w-1/2 space-y-6 order-2 md:order-1">
               <h2 className="text-[45px] font-semibold">Michael is all about action.</h2>
-              <p className="text-[23px]">
-                He stands by the phrase, &quot;We don&apos;t think our way into right action; we act our
-                way into right thinking.&quot; In other words, replacing worrying with doing is the
-                path to success that Michael encourages, and his clients have the results to show
-                for it.
-              </p>
-              <p className="text-[23px]">
-                He has worked with the best of the best — from top business and marketing
-                coaches to world-renowned relationship experts like Dr. Glover and Erwan and
-                Alicia Davon.
-              </p>
-              <p className="text-[23px]">
-                With his no-BS approach, those who work with Michael will know what it&apos;s like to
-                replace rumination with action, take ownership of their thoughts, feelings, and
-                behaviors, stop being a victim, and play well with others without being &quot;nice.&quot;
-              </p>
+              <div>
+                <div className="space-y-4">
+                  <p className="text-[23px]">
+                    He stands by the phrase, &quot;We don&apos;t think our way into right action; we act our
+                    way into right thinking.&quot; In other words, replacing worrying with doing is the
+                    path to success that Michael encourages, and his clients have the results to show
+                    for it.
+                  </p>
+                  <p className="text-[23px]">
+                    He has worked with the best of the best — from top business and marketing
+                    coaches to world-renowned relationship experts like Dr. Glover and Erwan and
+                    Alicia Davon.
+                  </p>
+                  <p className="text-[23px]">
+                    With his no-BS approach, those who work with Michael will know what it&apos;s like to
+                    replace rumination with action, take ownership of their thoughts, feelings, and
+                    behaviors, stop being a victim, and play well with others without being &quot;nice.&quot;
+                  </p>
+                </div>
+                <TrackedCtaLink
+                  href="https://calendly.com/michaelzick/45min"
+                  className="btn mt-6 text-xl"
+                  location="about"
+                >
+                  Book a Free Session
+                </TrackedCtaLink>
+              </div>
             </FadeInSection>
             <FadeInSection className="md:w-1/2 order-1 md:order-2">
               <Image
@@ -110,11 +121,22 @@ export default function About() {
           <div className="flex flex-col md:flex-row md:items-center gap-8">
             <FadeInSection className="md:w-1/2 space-y-6 order-2 md:order-2">
               <h2 className="text-[45px] font-semibold">Get outside.</h2>
-              <p className="text-[23px]">
-                As an avid outdoorsman, surfer, and snowboarder, Michael promotes nature-based activities to his
-                clients. As part of a comprehensive mind-body-emotion practice, connecting with nature is a core
-                aspect of reality alignment coaching.
-              </p>
+              <div>
+                <div className="space-y-4">
+                  <p className="text-[23px]">
+                    As an avid outdoorsman, surfer, and snowboarder, Michael promotes nature-based activities to his
+                    clients. As part of a comprehensive mind-body-emotion practice, connecting with nature is a core
+                    aspect of reality alignment coaching.
+                  </p>
+                </div>
+                <TrackedCtaLink
+                  href="https://calendly.com/michaelzick/45min"
+                  className="btn mt-6 text-xl"
+                  location="about"
+                >
+                  Book a Free Session
+                </TrackedCtaLink>
+              </div>
             </FadeInSection>
             <FadeInSection className="md:w-1/2 order-1 md:order-1">
               <Image
@@ -145,18 +167,22 @@ export default function About() {
             </FadeInSection>
             <FadeInSection className="md:w-1/2 space-y-6 md:order-1">
               <h2 className="text-[45px] font-semibold">Let’s talk.</h2>
-              <p className="text-[23px]">
-                Michael has successfully coached celebrities, entrepreneurs, Nice Guys, and high-functioning adults
-                to create better goals, careers, and relationships.
-              </p>
-              <p className="text-[23px]">Is it time to get in touch with reality?</p>
-              <TrackedCtaLink
-                href="https://calendly.com/michaelzick/45min"
-                className="btn text-xl"
-                location="about"
-              >
-                Book a Free Session
-              </TrackedCtaLink>
+              <div>
+                <div className="space-y-4">
+                  <p className="text-[23px]">
+                    Michael has successfully coached celebrities, entrepreneurs, Nice Guys, and high-functioning adults
+                    to create better goals, careers, and relationships.
+                  </p>
+                  <p className="text-[23px]">Is it time to get in touch with reality?</p>
+                </div>
+                <TrackedCtaLink
+                  href="https://calendly.com/michaelzick/45min"
+                  className="btn mt-6 text-xl"
+                  location="about"
+                >
+                  Book a Free Session
+                </TrackedCtaLink>
+              </div>
             </FadeInSection>
           </div>
         </div>
