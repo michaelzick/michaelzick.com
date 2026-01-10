@@ -162,7 +162,7 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
           <h1 className="font-headline text-5xl font-semibold leading-tight md:text-6xl">
             Blog
           </h1>
-          <p className="mt-3 text-xl text-default-grey/80">
+          <p className="mt-8 text-xl text-default-grey/80">
             Perspectives, tools, and stories for reality alignment, relationships, and growth.
           </p>
         </div>
