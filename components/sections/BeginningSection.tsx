@@ -2,6 +2,7 @@
 
 import type { RefObject } from 'react';
 import { FadeInSection } from '../FadeInSection';
+import TrackedCtaLink from '../TrackedCtaLink';
 import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
 
 interface BeginningSectionProps {
@@ -110,14 +111,13 @@ export function BeginningSection({
           <h2 className="font-headline text-4xl font-bold tracking-tight leading-tight md:text-5xl lg:text-6xl">
             It&apos;s Time To Get In Touch With Reality.
           </h2>
-          <a
+          <TrackedCtaLink
             href="https://calendly.com/michaelzick/45min"
-            target="_blank"
-            rel="noopener noreferrer"
             className="btn mt-10 inline-block text-xl"
+            location="beginning"
           >
             Book a Free Session
-          </a>
+          </TrackedCtaLink>
         </FadeInSection>
       </section>
     </div>

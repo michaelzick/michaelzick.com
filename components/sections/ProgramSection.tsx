@@ -2,6 +2,7 @@
 
 import type { ReactNode, RefObject } from 'react';
 import { FadeInSection } from '../FadeInSection';
+import TrackedCtaLink from '../TrackedCtaLink';
 import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
 
 interface ProgramSectionProps {
@@ -52,14 +53,13 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop }: Progra
               );
             })}
           </ul>
-          <a
+          <TrackedCtaLink
             href="https://calendly.com/michaelzick/45min"
-            target="_blank"
-            rel="noopener noreferrer"
             className="btn mt-6 text-xl"
+            location="program"
           >
             Book a Free Session
-          </a>
+          </TrackedCtaLink>
         </FadeInSection>
       </div>
     </section>

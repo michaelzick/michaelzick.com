@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { OpenInNewWindowIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { trackLinkClick } from '../lib/analytics';
+import { trackEvent, trackLinkClick } from '../lib/analytics';
 
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false);
@@ -40,6 +40,16 @@ export default function NavBar() {
 
   const trackHeaderLink = (label: string, href: string, section: string, variant?: 'desktop' | 'mobile') => {
     trackLinkClick({ location: 'header', label, href, section, variant });
+
+    if (label === 'Book a Free Session') {
+      trackEvent('book_free_session_click', {
+        location: 'header',
+        label,
+        href,
+        ...(variant ? { variant } : {}),
+        page_path: window.location.pathname,
+      });
+    }
   };
 
   return (

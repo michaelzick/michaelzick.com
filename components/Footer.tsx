@@ -2,11 +2,20 @@
 
 import Link from 'next/link';
 import { OpenInNewWindowIcon } from '@radix-ui/react-icons';
-import { trackLinkClick } from '../lib/analytics';
+import { trackEvent, trackLinkClick } from '../lib/analytics';
 
 export default function Footer() {
   const handleFooterClick = (label: string, href: string, section: string) => () => {
     trackLinkClick({ location: 'footer', label, href, section });
+
+    if (label === 'Book a Free Session') {
+      trackEvent('book_free_session_click', {
+        location: 'footer',
+        label,
+        href,
+        page_path: window.location.pathname,
+      });
+    }
   };
 
   return (

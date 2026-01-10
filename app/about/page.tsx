@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { FadeInSection } from '../../components/FadeInSection';
+import TrackedCtaLink from '../../components/TrackedCtaLink';
 import { siteConfig } from '../../lib/site';
 
 export const metadata: Metadata = {
@@ -149,14 +150,13 @@ export default function About() {
                 to create better goals, careers, and relationships.
               </p>
               <p className="text-[23px]">Is it time to get in touch with reality?</p>
-              <a
+              <TrackedCtaLink
                 href="https://calendly.com/michaelzick/45min"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="btn text-xl"
+                location="about"
               >
                 Book a Free Session
-              </a>
+              </TrackedCtaLink>
             </FadeInSection>
           </div>
         </div>
