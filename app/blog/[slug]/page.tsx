@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import ScrollToTopButton from '../../../components/blog/ScrollToTopButton';
 import { getBlogPostBySlug, getBlogPosts } from '../../../lib/blog';
 import { siteConfig } from '../../../lib/site';
 
@@ -196,7 +197,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             )}
           </div>
         </div>
-        <div className="mt-8 overflow-hidden rounded-lg shadow-md">
+        <div id="blog-post-image" className="mt-8 overflow-hidden rounded-lg shadow-md">
           <img
             src={post.imageUrl}
             alt={post.title}
@@ -222,6 +223,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         )}
       </div>
+      <ScrollToTopButton targetId="blog-post-image" />
     </section>
   );
 }
