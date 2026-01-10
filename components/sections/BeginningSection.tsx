@@ -105,7 +105,7 @@ export function BeginningSection({
         </svg>
       </section>
 
-      <section className="bg-dark-blue py-20 text-white">
+      <section className="bg-dark-blue pt-20 pb-14 text-white">
         <FadeInSection className="mx-auto max-w-[1400px] px-6 text-center md:px-8">
           <h2 className="font-headline text-4xl font-bold tracking-tight leading-tight md:text-5xl lg:text-6xl">
             It&apos;s Time To Get In Touch With Reality.
@@ -114,7 +114,7 @@ export function BeginningSection({
             href="https://calendly.com/michaelzick/45min"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn mt-6 inline-block text-xl"
+            className="btn mt-10 inline-block text-xl"
           >
             Book a Free Session
           </a>
