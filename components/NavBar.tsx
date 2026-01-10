@@ -64,7 +64,12 @@ export default function NavBar() {
             className={`font-headline font-bold transition-all duration-500 ${scrolled ? 'text-[48px] max-[1174px]:text-[40px]' : 'text-[56px] max-[1174px]:text-[44px]'
               } max-[929px]:text-[40px]`}
           >
-            Michael Zick
+            <span className="inline max-[980px]:hidden max-[929px]:inline">
+              Michael Zick
+            </span>
+            <span className="hidden max-[980px]:inline max-[929px]:hidden">
+              MZ
+            </span>
           </span>
         </Link>
         <div className="nav-links-container flex items-center space-x-6 max-[929px]:hidden">
