@@ -5,6 +5,8 @@ export type RawBlogPost = {
   subtitle: string;
   author: string;
   excerpt?: string;
+  canonicalUrl?: string;
+  canonicalSource?: string;
   imageUrl: string;
   body: string;
   category?: string;

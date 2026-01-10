@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     };
   }
 
-  const canonical = `/blog/${post.slug}`;
+  const canonical = post.canonicalUrl ?? `/blog/${post.slug}`;
   const imageUrl = toAbsoluteUrl(post.imageUrl);
 
   return {
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       type: 'article',
       title: post.title,
       description: post.excerpt,
-      url: `${siteConfig.url}${canonical}`,
+      url: post.canonicalUrl ?? `${siteConfig.url}${canonical}`,
       siteName: siteConfig.name,
       images: [
         {
@@ -90,6 +90,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     datePublished: post.datePublished,
     dateModified: post.dateModified ?? post.datePublished,
     mainEntityOfPage: postUrl,
+    isBasedOn: post.canonicalUrl,
   };
 
   const breadcrumbJsonLd = {
@@ -135,6 +136,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             Blog
           </Link>
         </nav>
+        {post.canonicalUrl && post.canonicalSource && (
+          <p className="mt-4 text-sm text-default-grey/70">
+            Originally published on{' '}
+            <a
+              href={post.canonicalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-dark-blue underline decoration-dark-blue/60 decoration-2 underline-offset-4 transition hover:text-dark-blue/80"
+            >
+              {post.canonicalSource}
+            </a>
+            .
+          </p>
+        )}
         <div className="mt-6 space-y-4">
           <h1 className="font-headline text-4xl font-semibold leading-tight md:text-5xl">
             {post.title}
