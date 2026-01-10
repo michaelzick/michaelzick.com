@@ -182,7 +182,7 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
                 className="flex items-center justify-between rounded-lg border border-dark-blue/20 bg-white px-4 py-3 text-left text-base font-semibold text-default-grey shadow-sm"
               >
                 Filters
-                <span className="text-sm text-default-grey/60">
+                <span className="ml-2 text-sm text-default-grey/60">
                   {mobileFiltersOpen ? 'Hide' : 'Show'}
                 </span>
               </button>
