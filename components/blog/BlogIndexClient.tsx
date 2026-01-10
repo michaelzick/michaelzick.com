@@ -169,7 +169,7 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
 
         <div className="grid gap-10 lg:grid-cols-[260px_1fr]">
           <aside className="hidden lg:block">
-            <div className="sticky top-28 rounded-lg bg-white p-5 shadow-md ring-1 ring-black/5">
+            <div className="sticky top-28 mt-10 rounded-lg bg-white p-5 shadow-md ring-1 ring-black/5">
               {hasFilters ? renderFilters() : <p className="text-sm text-default-grey/70">Add blog posts to enable filters.</p>}
             </div>
           </aside>
@@ -220,22 +220,14 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
                         />
                       </div>
                       <div className="space-y-3 p-5">
-                        {post.category && (
-                          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-default-grey/70">
-                            {post.category}
-                          </p>
-                        )}
-                        <h2 className="font-headline text-2xl font-semibold text-default-grey">
-                          {post.title}
-                        </h2>
-                        <p className="text-base text-default-grey/80">{post.subtitle}</p>
-                        <div className="flex flex-wrap items-center justify-between gap-2 text-sm text-default-grey/70">
-                          <span>By {post.author}</span>
-                          {post.datePublished && <span>{new Date(post.datePublished).toLocaleDateString('en-US')}</span>}
-                        </div>
-                        {post.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-2 pt-1">
-                            {post.tags.slice(0, 3).map((tag) => (
+                        {(post.category || post.tags.length > 0) && (
+                          <div className="flex flex-wrap gap-2">
+                            {post.category && (
+                              <span className="rounded-full border border-dark-blue/20 bg-dark-blue/10 px-2 py-0.5 text-xs font-semibold uppercase tracking-[0.2em] text-default-grey">
+                                {post.category}
+                              </span>
+                            )}
+                            {post.tags.map((tag) => (
                               <span
                                 key={tag}
                                 className="rounded-full border border-dark-blue/10 bg-dark-blue/5 px-2 py-0.5 text-xs text-default-grey"
@@ -245,6 +237,14 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
                             ))}
                           </div>
                         )}
+                        <h2 className="font-headline text-2xl font-semibold text-default-grey">
+                          {post.title}
+                        </h2>
+                        <p className="text-base text-default-grey/80">{post.subtitle}</p>
+                        <div className="flex flex-wrap items-center justify-between gap-2 text-sm text-default-grey/70">
+                          <span>By {post.author}</span>
+                          {post.datePublished && <span>{new Date(post.datePublished).toLocaleDateString('en-US')}</span>}
+                        </div>
                       </div>
                     </article>
                   </Link>
