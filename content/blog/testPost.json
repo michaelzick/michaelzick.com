@@ -1,0 +1,20 @@
+[
+  {
+    "title": "test post",
+    "subtitle": "asdf asdf asdfasdasdf",
+    "author": "david alskdjf",
+    "excerpt": "test testing testeddd",
+    "imageUrl": "https://miro.medium.com/v2/resize:fit:2000/0*B45atecjzNHrUOzp",
+    "body": "<p>blasldkfjalsdfoiuasdf laskdjf</p>",
+    "category": "Video",
+    "tags": [
+      "Nice Guy Syndrome",
+      "dogs",
+      "cats",
+      "Barf",
+      "datinG"
+    ],
+    "datePublished": "2026-01-10",
+    "dateModified": "2026-01-10"
+  }
+]
