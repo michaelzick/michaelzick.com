@@ -70,7 +70,7 @@ export default function NavBar() {
         <div className="nav-links-container flex items-center space-x-6 max-[929px]:hidden">
           <Link
             href="/about"
-            className={`nav-link text-2xl ${isLightNav ? 'text-default-grey' : ''} ${activePath === '/about' ? 'active' : ''
+            className={`nav-link text-2xl max-[1174px]:text-xl ${isLightNav ? 'text-default-grey' : ''} ${activePath === '/about' ? 'active' : ''
               }`}
             onClick={() => trackHeaderLink('About', '/about', 'primary')}
           >
@@ -78,7 +78,7 @@ export default function NavBar() {
           </Link>
           <Link
             href="/testimonials"
-            className={`nav-link text-2xl ${isLightNav ? 'text-default-grey' : ''} ${activePath === '/testimonials' ? 'active' : ''
+            className={`nav-link text-2xl max-[1174px]:text-xl ${isLightNav ? 'text-default-grey' : ''} ${activePath === '/testimonials' ? 'active' : ''
               }`}
             onClick={() => trackHeaderLink('Testimonials', '/testimonials', 'primary')}
           >
@@ -86,14 +86,14 @@ export default function NavBar() {
           </Link>
           <Link
             href="/blog"
-            className={`nav-link text-2xl ${isLightNav ? 'text-default-grey' : ''} ${isBlogActive ? 'active' : ''}`}
+            className={`nav-link text-2xl max-[1174px]:text-xl ${isLightNav ? 'text-default-grey' : ''} ${isBlogActive ? 'active' : ''}`}
             onClick={() => trackHeaderLink('Blog', '/blog', 'primary')}
           >
             Blog
           </Link>
           <Link
             href="/contact"
-            className={`nav-link text-2xl ${isLightNav ? 'text-default-grey' : ''} ${activePath === '/contact' ? 'active' : ''
+            className={`nav-link text-2xl max-[1174px]:text-xl ${isLightNav ? 'text-default-grey' : ''} ${activePath === '/contact' ? 'active' : ''
               }`}
             onClick={() => trackHeaderLink('Contact', '/contact', 'primary')}
           >
@@ -114,7 +114,7 @@ export default function NavBar() {
           >
             <button
               type="button"
-              className={`nav-link text-2xl flex items-center gap-2 ${isLightNav ? 'text-default-grey' : ''}`}
+              className={`nav-link text-2xl max-[1174px]:text-xl flex items-center gap-2 ${isLightNav ? 'text-default-grey' : ''}`}
               aria-haspopup="menu"
               aria-expanded={appsOpen}
             >
