@@ -13,6 +13,7 @@ export default function NavBar() {
   const pathname = usePathname();
   const [activePath, setActivePath] = useState('');
   const appsMenuRef = useRef<HTMLDivElement | null>(null);
+  const isBlogActive = activePath === '/blog' || activePath.startsWith('/blog/');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -80,6 +81,13 @@ export default function NavBar() {
             onClick={() => trackHeaderLink('Testimonials', '/testimonials', 'primary')}
           >
             Testimonials
+          </Link>
+          <Link
+            href="/blog"
+            className={`nav-link text-2xl ${isBlogActive ? 'active' : ''}`}
+            onClick={() => trackHeaderLink('Blog', '/blog', 'primary')}
+          >
+            Blog
           </Link>
           <Link
             href="/contact"
@@ -223,6 +231,16 @@ export default function NavBar() {
             }}
           >
             Testimonials
+          </Link>
+          <Link
+            href="/blog"
+            className={`nav-link text-2xl text-default-grey ${isBlogActive ? 'active' : ''}`}
+            onClick={() => {
+              trackHeaderLink('Blog', '/blog', 'primary', 'mobile');
+              setMenuOpen(false);
+            }}
+          >
+            Blog
           </Link>
           <Link
             href="/contact"

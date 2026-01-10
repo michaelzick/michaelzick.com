@@ -113,4 +113,52 @@ html {
     @apply inline-flex items-center justify-center rounded bg-primary-blue text-white transition-all duration-300 hover:opacity-90 text-base leading-4;
     padding: 9px 16px 10px;
   }
+
+  .blog-content {
+    @apply text-lg leading-relaxed text-default-grey;
+  }
+
+  .blog-content p {
+    @apply mb-5;
+  }
+
+  .blog-content h1 {
+    @apply font-headline text-4xl font-semibold md:text-5xl mt-10 mb-4 text-default-grey;
+  }
+
+  .blog-content h2 {
+    @apply font-headline text-3xl font-semibold md:text-4xl mt-8 mb-3 text-default-grey;
+  }
+
+  .blog-content h3 {
+    @apply font-headline text-2xl font-semibold md:text-3xl mt-6 mb-3 text-default-grey;
+  }
+
+  .blog-content a {
+    @apply text-primary-blue underline decoration-primary-blue/60 decoration-2 underline-offset-4 transition hover:text-primary-blue/80;
+  }
+
+  .blog-content ul {
+    @apply mb-5 list-disc pl-6;
+  }
+
+  .blog-content ol {
+    @apply mb-5 list-decimal pl-6;
+  }
+
+  .blog-content li {
+    @apply mb-2;
+  }
+
+  .blog-content blockquote {
+    @apply mb-5 border-l-4 border-dark-blue/40 pl-4 italic text-default-grey/80;
+  }
+
+  .blog-content strong {
+    @apply font-semibold;
+  }
+
+  .blog-content img {
+    @apply my-6 rounded-lg shadow-md;
+  }
 }

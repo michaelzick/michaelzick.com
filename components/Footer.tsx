@@ -27,6 +27,10 @@ export default function Footer() {
             Testimonials
           </Link>
           <br />
+          <Link href="/blog" className="footer-link" onClick={handleFooterClick('Blog', '/blog', 'links')}>
+            Blog
+          </Link>
+          <br />
           <Link href="/contact" className="footer-link" onClick={handleFooterClick('Contact', '/contact', 'links')}>
             Contact
           </Link>
