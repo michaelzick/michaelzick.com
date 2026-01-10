@@ -110,6 +110,14 @@ export function BeginningSection({
           <h2 className="font-headline text-4xl font-bold tracking-tight leading-tight md:text-5xl lg:text-6xl">
             It&apos;s Time To Get In Touch With Reality.
           </h2>
+          <a
+            href="https://calendly.com/michaelzick/45min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn mt-6 inline-block text-xl"
+          >
+            Book a Free Session
+          </a>
         </FadeInSection>
       </section>
     </div>
