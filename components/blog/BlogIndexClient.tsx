@@ -156,7 +156,7 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
   );
 
   return (
-    <section className="bg-[rgb(var(--light-grey))] px-6 py-16 text-default-grey md:px-8 md:py-20">
+    <section className="bg-[rgb(var(--light-grey))] px-6 pb-16 pt-24 text-default-grey md:px-8 md:pb-20 md:pt-28 lg:pt-36 xl:pt-40">
       <div className="mx-auto max-w-[1400px]">
         <div className="mb-10 text-center md:text-left">
           <h1 className="font-headline text-5xl font-semibold leading-tight md:text-6xl">

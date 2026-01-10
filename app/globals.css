@@ -64,6 +64,11 @@ html {
   bottom: 6px;
 }
 
+.header-light .burger-inner .top-bun,
+.header-light .burger-inner .bottom-bun {
+  background-color: rgb(var(--default-grey));
+}
+
 .burger-inner.open .top-bun {
   transform: translateY(6px) rotate(45deg);
   background-color: rgb(var(--default-grey));

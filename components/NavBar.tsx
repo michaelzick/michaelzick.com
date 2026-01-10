@@ -14,6 +14,7 @@ export default function NavBar() {
   const [activePath, setActivePath] = useState('');
   const appsMenuRef = useRef<HTMLDivElement | null>(null);
   const isBlogActive = activePath === '/blog' || activePath.startsWith('/blog/');
+  const isLightNav = activePath.startsWith('/blog');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,16 +44,17 @@ export default function NavBar() {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full px-[70px] max-[1024px]:px-[35px] max-[929px]:px-[30px] transition-all duration-500 ${scrolled ? 'bg-dark-blue/50 backdrop-blur-md' : 'bg-transparent backdrop-blur-0'
+      className={`fixed top-0 z-50 w-full px-[70px] max-[1024px]:px-[35px] max-[929px]:px-[30px] transition-all duration-500 ${isLightNav ? 'header-light' : ''
+        } ${scrolled ? (isLightNav ? 'bg-white/80 backdrop-blur-md' : 'bg-dark-blue/50 backdrop-blur-md') : 'bg-transparent backdrop-blur-0'
         }`}
     >
       <nav
-        className={`relative z-50 flex w-full items-center justify-between text-white transition-all duration-500 ${scrolled ? 'py-4' : 'py-6'
-          } max-[929px]:py-4 ${menuOpen ? 'pointer-events-none' : ''}`}
+        className={`relative z-50 flex w-full items-center justify-between transition-all duration-500 ${isLightNav ? 'text-default-grey' : 'text-white'
+          } ${scrolled ? 'py-4' : 'py-6'} max-[929px]:py-4 ${menuOpen ? 'pointer-events-none' : ''}`}
       >
         <Link
           href="/"
-          className={`${menuOpen ? '!text-default-grey pointer-events-auto' : ''}`}
+          className={`${menuOpen ? '!text-default-grey pointer-events-auto' : ''} ${isLightNav ? 'text-default-grey' : 'text-white'}`}
           onClick={() => {
             trackHeaderLink('Michael Zick', '/', 'brand');
             setMenuOpen(false);
@@ -68,7 +70,7 @@ export default function NavBar() {
         <div className="nav-links-container flex items-center space-x-6 max-[929px]:hidden">
           <Link
             href="/about"
-            className={`nav-link text-2xl ${activePath === '/about' ? 'active' : ''
+            className={`nav-link text-2xl ${isLightNav ? 'text-default-grey' : ''} ${activePath === '/about' ? 'active' : ''
               }`}
             onClick={() => trackHeaderLink('About', '/about', 'primary')}
           >
@@ -76,7 +78,7 @@ export default function NavBar() {
           </Link>
           <Link
             href="/testimonials"
-            className={`nav-link text-2xl ${activePath === '/testimonials' ? 'active' : ''
+            className={`nav-link text-2xl ${isLightNav ? 'text-default-grey' : ''} ${activePath === '/testimonials' ? 'active' : ''
               }`}
             onClick={() => trackHeaderLink('Testimonials', '/testimonials', 'primary')}
           >
@@ -84,14 +86,14 @@ export default function NavBar() {
           </Link>
           <Link
             href="/blog"
-            className={`nav-link text-2xl ${isBlogActive ? 'active' : ''}`}
+            className={`nav-link text-2xl ${isLightNav ? 'text-default-grey' : ''} ${isBlogActive ? 'active' : ''}`}
             onClick={() => trackHeaderLink('Blog', '/blog', 'primary')}
           >
             Blog
           </Link>
           <Link
             href="/contact"
-            className={`nav-link text-2xl ${activePath === '/contact' ? 'active' : ''
+            className={`nav-link text-2xl ${isLightNav ? 'text-default-grey' : ''} ${activePath === '/contact' ? 'active' : ''
               }`}
             onClick={() => trackHeaderLink('Contact', '/contact', 'primary')}
           >
@@ -112,7 +114,7 @@ export default function NavBar() {
           >
             <button
               type="button"
-              className="nav-link text-2xl flex items-center gap-2"
+              className={`nav-link text-2xl flex items-center gap-2 ${isLightNav ? 'text-default-grey' : ''}`}
               aria-haspopup="menu"
               aria-expanded={appsOpen}
             >
