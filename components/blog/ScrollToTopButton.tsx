@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { trackEvent } from '../../lib/analytics';
 
 type ScrollToTopButtonProps = {
   targetId: string;
@@ -41,6 +42,12 @@ export default function ScrollToTopButton({ targetId }: ScrollToTopButtonProps) 
   }, [targetId]);
 
   const handleClick = () => {
+    trackEvent('scroll_to_top', {
+      location: 'blog_post',
+      target_id: targetId,
+      page_path: window.location.pathname,
+    });
+
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       window.scrollTo({ top: 0 });
       return;
