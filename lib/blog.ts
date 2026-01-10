@@ -27,9 +27,10 @@ type BlogFilters = {
 
 function slugify(value: string) {
   return value
+    .normalize('NFKD')
     .toLowerCase()
     .replace(/&/g, 'and')
-    .replace(/['"]/g, '')
+    .replace(/['"’“”‘]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 }
@@ -77,7 +78,8 @@ export function getBlogPosts(): BlogPost[] {
 }
 
 export function getBlogPostBySlug(slug: string) {
-  return getBlogPosts().find((post) => post.slug === slug);
+  const normalized = slugify(decodeURIComponent(slug));
+  return getBlogPosts().find((post) => post.slug === normalized);
 }
 
 export function getBlogFilters(posts: BlogPost[]): BlogFilters {

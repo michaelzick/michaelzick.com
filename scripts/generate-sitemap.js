@@ -23,9 +23,10 @@ function getRoutes(dir, route = '') {
 
 function slugify(value) {
   return value
+    .normalize('NFKD')
     .toLowerCase()
     .replace(/&/g, 'and')
-    .replace(/['"]/g, '')
+    .replace(/['"’“”‘]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 }

@@ -5,7 +5,7 @@ import { getBlogPostBySlug, getBlogPosts } from '../../../lib/blog';
 import { siteConfig } from '../../../lib/site';
 
 type BlogPostPageProps = {
-  params: { slug: string };
+  params: { slug: string } | Promise<{ slug: string }>;
 };
 
 function toAbsoluteUrl(url: string) {
@@ -17,8 +17,11 @@ export function generateStaticParams() {
   return getBlogPosts().map((post) => ({ slug: post.slug }));
 }
 
-export function generateMetadata({ params }: BlogPostPageProps): Metadata {
-  const post = getBlogPostBySlug(params.slug);
+export const dynamicParams = true;
+
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const resolvedParams = await Promise.resolve(params);
+  const post = getBlogPostBySlug(resolvedParams.slug);
   if (!post) {
     return {
       title: `Blog | ${siteConfig.shortName}`,
@@ -61,8 +64,9 @@ export function generateMetadata({ params }: BlogPostPageProps): Metadata {
   };
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = getBlogPostBySlug(params.slug);
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const resolvedParams = await Promise.resolve(params);
+  const post = getBlogPostBySlug(resolvedParams.slug);
   if (!post) notFound();
 
   const postUrl = `${siteConfig.url}/blog/${post.slug}`;
