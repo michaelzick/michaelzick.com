@@ -10,6 +10,7 @@ const blogDescription =
 export const metadata: Metadata = {
   title: blogTitle,
   description: blogDescription,
+  keywords: [...siteConfig.keywords, 'blog', 'articles', 'videos'],
   alternates: {
     canonical: '/blog',
   },
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
     url: `${siteConfig.url}/blog`,
     siteName: siteConfig.name,
     type: 'website',
+    locale: siteConfig.locale,
     images: [
       {
         url: siteConfig.defaultImage,
@@ -50,6 +52,7 @@ export default function BlogPage() {
     description: blogDescription,
     url: `${siteConfig.url}/blog`,
     inLanguage: siteConfig.locale,
+    keywords: siteConfig.keywords.join(', '),
     publisher: {
       '@type': 'Organization',
       name: siteConfig.businessName,
@@ -63,6 +66,11 @@ export default function BlogPage() {
         '@type': 'Person',
         name: post.author,
       },
+      articleSection: post.category,
+      keywords: post.tags.join(', '),
+      about: post.tags.map((tag) => ({ '@type': 'Thing', name: tag })),
+      inLanguage: siteConfig.locale,
+      isBasedOn: post.canonicalUrl,
       url: `${siteConfig.url}/blog/${post.slug}`,
       image: toAbsoluteUrl(post.imageUrl),
       datePublished: post.datePublished,
@@ -70,11 +78,22 @@ export default function BlogPage() {
     })),
   };
 
+  const itemListJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: posts.map((post, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: `${siteConfig.url}/blog/${post.slug}`,
+      name: post.title,
+    })),
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([blogJsonLd, itemListJsonLd]) }}
       />
       <BlogIndexClient posts={posts} filters={filters} />
     </>

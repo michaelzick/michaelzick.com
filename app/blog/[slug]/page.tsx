@@ -13,6 +13,10 @@ function toAbsoluteUrl(url: string) {
   return `${siteConfig.url}${url}`;
 }
 
+function stripHtml(html: string) {
+  return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 export function generateStaticParams() {
   return getBlogPosts().map((post) => ({ slug: post.slug }));
 }
@@ -42,8 +46,9 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       type: 'article',
       title: post.title,
       description: post.excerpt,
-      url: post.canonicalUrl ?? `${siteConfig.url}${canonical}`,
+      url: `${siteConfig.url}/blog/${post.slug}`,
       siteName: siteConfig.name,
+      locale: siteConfig.locale,
       images: [
         {
           url: imageUrl,
@@ -53,6 +58,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       publishedTime: post.datePublished,
       modifiedTime: post.dateModified ?? post.datePublished,
       authors: [post.author],
+      tags: post.tags,
+      section: post.category,
     },
     twitter: {
       card: 'summary_large_image',
@@ -60,7 +67,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       description: post.excerpt,
       images: [imageUrl],
     },
-    keywords: post.tags,
+    keywords: Array.from(new Set([...siteConfig.keywords, ...post.tags])),
   };
 }
 
@@ -71,11 +78,25 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const postUrl = `${siteConfig.url}/blog/${post.slug}`;
   const imageUrl = toAbsoluteUrl(post.imageUrl);
+  const [countryCode, regionCode] = siteConfig.region.split('-');
+  const contentLocation = {
+    '@type': 'Place',
+    name: siteConfig.placename,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: siteConfig.placename,
+      ...(regionCode ? { addressRegion: regionCode } : {}),
+      ...(countryCode ? { addressCountry: countryCode } : {}),
+    },
+  };
+  const about = post.tags.map((tag) => ({ '@type': 'Thing', name: tag }));
+  const wordCount = post.body ? stripHtml(post.body).split(/\s+/).filter(Boolean).length : undefined;
 
   const blogPostingJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
+    alternativeHeadline: post.subtitle,
     description: post.excerpt,
     image: imageUrl,
     author: {
@@ -91,6 +112,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     dateModified: post.dateModified ?? post.datePublished,
     mainEntityOfPage: postUrl,
     isBasedOn: post.canonicalUrl,
+    inLanguage: siteConfig.locale,
+    keywords: post.tags.join(', '),
+    articleSection: post.category,
+    about,
+    contentLocation,
+    ...(wordCount ? { wordCount } : {}),
   };
 
   const breadcrumbJsonLd = {
