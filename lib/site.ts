@@ -22,6 +22,11 @@ export const siteConfig = {
     'Nice Guy Syndrome',
     'Nice Guys No More',
     'Los Angeles',
+    'Los Angeles life coach',
   ],
-  sameAs: ['https://michaelzick.medium.com'],
+  sameAs: [
+    'https://michaelzick.medium.com',
+    'https://www.linkedin.com/in/michaelzick',
+    'https://www.zickonezero.com',
+  ]
 } as const;
