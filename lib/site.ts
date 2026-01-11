@@ -1,5 +1,5 @@
 export const siteConfig = {
-  url: 'https://michaelzick.com',
+  url: 'https://www.michaelzick.com',
   name: 'Michael Zick | Reality Alignment Coach',
   shortName: 'Michael Zick',
   description: 'Helping high-functioning adults separate fear and anxiety from reality.',

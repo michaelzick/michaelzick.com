@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     };
   }
 
-  const canonical = post.canonicalUrl ?? `/blog/${post.slug}`;
+  const canonical = `/blog/${post.slug}`;
   const imageUrl = toAbsoluteUrl(post.imageUrl);
 
   return {
@@ -93,6 +93,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const about = post.tags.map((tag) => ({ '@type': 'Thing', name: tag }));
   const wordCount = post.body ? stripHtml(post.body).split(/\s+/).filter(Boolean).length : undefined;
 
+  const isBasedOn = post.canonicalUrl?.startsWith(siteConfig.url) ? post.canonicalUrl : undefined;
   const blogPostingJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -112,7 +113,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     datePublished: post.datePublished,
     dateModified: post.dateModified ?? post.datePublished,
     mainEntityOfPage: postUrl,
-    isBasedOn: post.canonicalUrl,
+    ...(isBasedOn ? { isBasedOn } : {}),
     inLanguage: siteConfig.locale,
     keywords: post.tags.join(', '),
     articleSection: post.category,

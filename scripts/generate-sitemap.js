@@ -4,7 +4,7 @@ const path = require('path');
 const APP_DIR = path.join(__dirname, '..', 'app');
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 const BLOG_POSTS_PATH = path.join(__dirname, '..', 'content', 'blog', 'posts.json');
-const BASE_URL = process.env.SITE_URL || 'https://michaelzick.com';
+const BASE_URL = process.env.SITE_URL || 'https://www.michaelzick.com';
 
 function getRoutes(dir, route = '') {
   const entries = fs.readdirSync(dir, { withFileTypes: true });

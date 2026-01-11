@@ -58,24 +58,27 @@ export default function BlogPage() {
       name: siteConfig.businessName,
       url: siteConfig.url,
     },
-    blogPost: posts.map((post) => ({
-      '@type': 'BlogPosting',
-      headline: post.title,
-      description: post.excerpt,
-      author: {
-        '@type': 'Person',
-        name: post.author,
-      },
-      articleSection: post.category,
-      keywords: post.tags.join(', '),
-      about: post.tags.map((tag) => ({ '@type': 'Thing', name: tag })),
-      inLanguage: siteConfig.locale,
-      isBasedOn: post.canonicalUrl,
-      url: `${siteConfig.url}/blog/${post.slug}`,
-      image: toAbsoluteUrl(post.imageUrl),
-      datePublished: post.datePublished,
-      dateModified: post.dateModified ?? post.datePublished,
-    })),
+    blogPost: posts.map((post) => {
+      const isBasedOn = post.canonicalUrl?.startsWith(siteConfig.url) ? post.canonicalUrl : undefined;
+      return {
+        '@type': 'BlogPosting',
+        headline: post.title,
+        description: post.excerpt,
+        author: {
+          '@type': 'Person',
+          name: post.author,
+        },
+        articleSection: post.category,
+        keywords: post.tags.join(', '),
+        about: post.tags.map((tag) => ({ '@type': 'Thing', name: tag })),
+        inLanguage: siteConfig.locale,
+        ...(isBasedOn ? { isBasedOn } : {}),
+        url: `${siteConfig.url}/blog/${post.slug}`,
+        image: toAbsoluteUrl(post.imageUrl),
+        datePublished: post.datePublished,
+        dateModified: post.dateModified ?? post.datePublished,
+      };
+    }),
   };
 
   const itemListJsonLd = {
