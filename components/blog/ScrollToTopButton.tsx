@@ -78,7 +78,7 @@ export default function ScrollToTopButton({ targetId }: ScrollToTopButtonProps) 
       aria-label="Scroll to top"
       onClick={handleClick}
       tabIndex={isVisible ? 0 : -1}
-      className={`fixed bottom-14 left-8 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-dark-blue/30 text-white shadow-md ring-1 ring-white/20 backdrop-blur-md transition-all duration-300 hover:bg-dark-blue/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 max-[1024px]:left-[35px] max-[929px]:left-[30px] min-[1440px]:left-[70px] ${
+      className={`fixed bottom-[3em] left-8 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-dark-blue/30 text-white shadow-md ring-1 ring-white/20 backdrop-blur-md transition-all duration-300 hover:bg-dark-blue/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 max-[1024px]:left-[35px] max-[929px]:left-[30px] min-[1440px]:left-[70px] ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
       }`}
     >
