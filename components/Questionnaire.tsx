@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { trackEvent } from '../lib/analytics';
+import { Step, FormData } from '../lib/types';
 
-const STEPS = [
+const STEPS: Step[] = [
   {
     id: 'intake',
     title: 'Who are you?',
@@ -58,7 +59,7 @@ const STEPS = [
 
 export default function Questionnaire() {
   const [stepIndex, setStepIndex] = useState(0);
-  const [formData, setFormData] = useState<any>({
+  const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
     email: '',
@@ -96,9 +97,9 @@ export default function Questionnaire() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     if (currentStep.id === 'intake') {
-      setFormData((prev: any) => ({ ...prev, [name]: value }));
+      setFormData((prev: FormData) => ({ ...prev, [name]: value }));
     } else {
-      setFormData((prev: any) => ({
+      setFormData((prev: FormData) => ({
         ...prev,
         answers: { ...prev.answers, [name]: value },
       }));
@@ -205,19 +206,21 @@ export default function Questionnaire() {
         </div>
 
         <div className="space-y-6">
-          {currentStep.fields?.map((field: any) => (
+          {currentStep.fields?.map((field) => (
             <div key={field.name}>
-              <label className="block text-sm font-medium mb-2 text-dark-blue/80">
+              <label htmlFor={field.name} className="block text-sm font-medium mb-2 text-dark-blue/80">
                 {field.label}
               </label>
               <input
+                id={field.name}
                 type={field.type}
                 name={field.name}
-                value={formData[field.name]}
+                value={(formData as any)[field.name]}
                 onChange={handleInputChange}
                 placeholder={field.placeholder}
                 className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none"
                 required
+                aria-required="true"
               />
             </div>
           ))}
@@ -239,37 +242,40 @@ export default function Questionnaire() {
             </div>
           )}
 
-          {currentStep.questions?.map((q: any) => (
+          {currentStep.questions?.map((q) => (
             <div key={q.id}>
-              <label className="block text-lg font-medium mb-3 text-dark-blue/90">
+              <label htmlFor={q.id} className="block text-lg font-medium mb-3 text-dark-blue/90">
                 {q.text}
               </label>
               {q.type === 'textarea' ? (
                 <textarea
+                  id={q.id}
                   name={q.id}
                   value={formData.answers[q.id] || ''}
                   onChange={handleInputChange}
                   rows={4}
                   className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none"
                   required
+                  aria-required="true"
                 />
               ) : q.type === 'range' ? (
                 <div className="space-y-4">
                   <input
+                    id={q.id}
                     type="range"
                     name={q.id}
                     min={q.min}
                     max={q.max}
-                    value={formData.answers[q.id] || 5}
+                    value={formData.answers[q.id] || q.min}
                     onChange={handleInputChange}
                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-blue"
                   />
-                  <div className="flex justify-between text-sm text-gray-500 font-medium px-1">
-                    <span>None at all (1)</span>
-                    <span>Full Ownership (10)</span>
-                  </div>
-                  <div className="text-center text-primary-blue font-bold text-xl">
-                    {formData.answers[q.id] || 5}
+                  <div className="flex justify-between text-sm font-bold text-dark-blue">
+                    <span>{q.min} (Victimhood)</span>
+                    <span className="bg-primary-blue text-white px-3 py-1 rounded-full">
+                      Current: {formData.answers[q.id] || q.min}
+                    </span>
+                    <span>{q.max} (Ownership)</span>
                   </div>
                 </div>
               ) : null}
