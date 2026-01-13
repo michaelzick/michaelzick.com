@@ -1,9 +1,12 @@
 import OpenAI from 'openai';
 import { NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
+
+export const runtime = 'nodejs';
 
 export async function POST(req: Request) {
   try {
@@ -17,6 +20,11 @@ export async function POST(req: Request) {
       console.error('CRITICAL: OPENAI_API_KEY is not defined in environment variables');
       return NextResponse.json({ error: 'AI Service Configuration Error' }, { status: 500 });
     }
+
+    const password = process.env['BREVO_SMTP_PASSWORD'];
+    const userName = process.env['BREVO_USER'];
+    const toAddress = process.env['BREVO_TO'];
+    const fromAddress = process.env['BREVO_FROM'];
 
     const prompt = `
       You are Michael Zick, a Reality Alignment Coach.
@@ -69,6 +77,36 @@ export async function POST(req: Request) {
 
     if (!analysisText) {
       throw new Error('OpenAI failed to generate content');
+    }
+
+    // Send email notification if SMTP is configured
+    if (password && userName && toAddress && fromAddress) {
+      try {
+        const transporter = nodemailer.createTransport({
+          host: 'smtp-relay.brevo.com',
+          port: 587,
+          auth: {
+            user: userName,
+            pass: password,
+          },
+        });
+
+        const subject = `[michaelzick.com] New Reality Alignment Result: ${firstName} ${lastName}`;
+        const questionsAndAnswers = Object.entries(answers)
+          .map(([qId, answer]) => `Q: ${qId}\nA: ${answer}`)
+          .join('\n\n');
+
+        await transporter.sendMail({
+          from: fromAddress,
+          to: toAddress,
+          replyTo: email,
+          subject: subject,
+          text: `Name: ${firstName} ${lastName}\nEmail: ${email}\n\nQUEST_ANSWERS:\n${questionsAndAnswers}\n\nAI_ANALYSIS:\n${analysisText}`,
+        });
+      } catch (mailErr) {
+        console.error('Failed to send result email:', mailErr);
+        // Don't fail the request if email fails, as the user already has the result in UI
+      }
     }
 
     return NextResponse.json({ analysis: analysisText });
