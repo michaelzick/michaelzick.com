@@ -161,7 +161,6 @@ export async function POST(req: Request) {
     console.error('Error in analysis API:', error);
     return NextResponse.json({
       error: 'Failed to analyze inputs',
-      details: error.message,
     }, { status: 500 });
   }
 }

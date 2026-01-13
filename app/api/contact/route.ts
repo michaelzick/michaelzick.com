@@ -6,9 +6,43 @@ import nodemailer from 'nodemailer';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
+// Simple in-memory rate limiting (per instance)
+const rateLimitMap = new Map<string, { count: number; lastReset: number; }>();
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
+const MAX_REQUESTS_PER_WINDOW = 5;
+
 export async function POST(req: NextRequest) {
   try {
-    const { firstName, lastName, email, subject, message, captchaToken } = await req.json();
+    const body = await req.json();
+    const { firstName, lastName, email, subject, message, captchaToken } = body;
+
+    // 1. Rate limiting by IP
+    const forwarded = req.headers.get('x-forwarded-for');
+    const ip = forwarded ? forwarded.split(',')[0] : 'anonymous';
+    const now = Date.now();
+    const userLimit = rateLimitMap.get(ip) || { count: 0, lastReset: now };
+
+    if (now - userLimit.lastReset > RATE_LIMIT_WINDOW) {
+      userLimit.count = 0;
+      userLimit.lastReset = now;
+    }
+
+    if (userLimit.count >= MAX_REQUESTS_PER_WINDOW) {
+      return NextResponse.json({ success: false, error: 'Too many requests. Please try again in an hour.' }, { status: 429 });
+    }
+
+    userLimit.count++;
+    rateLimitMap.set(ip, userLimit);
+
+    // 2. Input Validation
+    if (!firstName || !lastName || !email || !subject || !message) {
+      return NextResponse.json({ success: false, error: 'Missing required fields' }, { status: 400 });
+    }
+
+    if (firstName.length > 50 || lastName.length > 50 || email.length > 100 || subject.length > 200 || message.length > 5000) {
+      return NextResponse.json({ success: false, error: 'Input exceeds character limits' }, { status: 400 });
+    }
+
     console.log('Contact form submission', {
       firstName,
       lastName,
