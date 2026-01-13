@@ -114,6 +114,14 @@ export default function NavBar() {
           >
             Contact
           </Link>
+          <Link
+            href="/questionnaire"
+            className={`nav-link text-2xl max-[1174px]:text-xl ${isLightNav ? 'text-default-grey' : ''} ${activePath === '/questionnaire' ? 'active' : ''
+              }`}
+            onClick={() => trackHeaderLink('Questionnaire', '/questionnaire', 'primary')}
+          >
+            Questionnaire
+          </Link>
           <div
             ref={appsMenuRef}
             className="relative after:absolute after:left-0 after:top-full after:h-3 after:w-full after:content-[''] after:bg-transparent"
@@ -269,6 +277,17 @@ export default function NavBar() {
             }}
           >
             Contact
+          </Link>
+          <Link
+            href="/questionnaire"
+            className={`nav-link text-2xl text-default-grey ${activePath === '/questionnaire' ? 'active' : ''
+              }`}
+            onClick={() => {
+              trackHeaderLink('Questionnaire', '/questionnaire', 'primary', 'mobile');
+              setMenuOpen(false);
+            }}
+          >
+            Questionnaire
           </Link>
         </div>
         <div className="pt-2 flex flex-col items-end space-y-3">

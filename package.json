@@ -14,6 +14,7 @@
     "sitemap": "node scripts/generate-sitemap.js"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@hcaptcha/react-hcaptcha": "^1.14.0",
     "@radix-ui/react-icons": "^1.3.2",
     "next": "^16.0.7",
