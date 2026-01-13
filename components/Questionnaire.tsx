@@ -184,9 +184,8 @@ export default function Questionnaire() {
         <div className="space-y-2 text-left">
           <p>
             This questionnaire uses AI (OpenAI) to analyze your responses and generate personalized coaching insights.
-          </p>
-          <p>
-            Your responses and contact information will be securely emailed to Michael Zick for review. We value your privacy; your data is never shared with third parties and is kept strictly confidential.
+            Your responses and contact information will be securely emailed to Michael Zick for review. We value your privacy;
+            your data is never shared with third parties and is kept strictly confidential.
           </p>
         </div>
       </div>
