@@ -24,7 +24,7 @@ export default function Footer() {
         <div className="md:col-span-5">
           <p>Michael Zick | Reality Alignment Coach</p>
         </div>
-        <div className="md:col-span-4 md:text-right space-y-2">
+        <div className="md:col-span-4 space-y-2">
           <span className="block text-xs uppercase tracking-[0.2em] text-white/70">
             Links
           </span>
@@ -54,10 +54,14 @@ export default function Footer() {
             <strong>Book a Free Session</strong>
           </a>
         </div>
-        <div className="md:col-span-3 md:text-right space-y-2">
+        <div className="md:col-span-3 space-y-2">
           <span className="block text-xs uppercase tracking-[0.2em] text-white/70">
             Apps
           </span>
+          <Link href="/questionnaire" className="footer-link" onClick={handleFooterClick('Questionnaire', '/questionnaire', 'apps')}>
+            Questionnaire
+          </Link>
+          <br />
           <a
             href="https://findyourflowstate.michaelzick.com/"
             target="_blank"
@@ -79,10 +83,6 @@ export default function Footer() {
             Who&apos;s In Charge?
             <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
           </a>
-          <br />
-          <Link href="/questionnaire" className="footer-link" onClick={handleFooterClick('Questionnaire', '/questionnaire', 'apps')}>
-            Questionnaire
-          </Link>
         </div>
       </div>
       <div className="mt-8 border-t border-white/20 pt-4 text-sm">

@@ -153,6 +153,18 @@ export default function NavBar() {
               role="menu"
               aria-label="Apps"
             >
+              <Link
+                href="/questionnaire"
+                role="menuitem"
+                tabIndex={appsOpen ? 0 : -1}
+                className="flex items-center gap-2 px-4 py-3 text-base font-medium whitespace-nowrap hover:bg-black/5 transition-colors"
+                onClick={() => {
+                  trackHeaderLink('Questionnaire', '/questionnaire', 'apps');
+                  setAppsOpen(false);
+                }}
+              >
+                Questionnaire
+              </Link>
               <a
                 href="https://findyourflowstate.michaelzick.com/"
                 target="_blank"
@@ -183,18 +195,6 @@ export default function NavBar() {
                 Who&apos;s In Charge?
                 <OpenInNewWindowIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
               </a>
-              <Link
-                href="/questionnaire"
-                role="menuitem"
-                tabIndex={appsOpen ? 0 : -1}
-                className="flex items-center gap-2 px-4 py-3 text-base font-medium whitespace-nowrap hover:bg-black/5 transition-colors"
-                onClick={() => {
-                  trackHeaderLink('Questionnaire', '/questionnaire', 'apps');
-                  setAppsOpen(false);
-                }}
-              >
-                Questionnaire
-              </Link>
             </div>
           </div>
           <a
@@ -287,6 +287,16 @@ export default function NavBar() {
           <span className="text-xs uppercase tracking-[0.2em] text-default-grey/70">
             Apps
           </span>
+          <Link
+            href="/questionnaire"
+            className={`nav-link text-2xl text-default-grey ${activePath === '/questionnaire' ? 'active' : ''}`}
+            onClick={() => {
+              trackHeaderLink('Questionnaire', '/questionnaire', 'apps', 'mobile');
+              setMenuOpen(false);
+            }}
+          >
+            Questionnaire
+          </Link>
           <a
             href="https://findyourflowstate.michaelzick.com/"
             target="_blank"
@@ -313,16 +323,6 @@ export default function NavBar() {
             Who&apos;s In Charge?
             <OpenInNewWindowIcon className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
           </a>
-          <Link
-            href="/questionnaire"
-            className={`nav-link text-2xl text-default-grey ${activePath === '/questionnaire' ? 'active' : ''}`}
-            onClick={() => {
-              trackHeaderLink('Questionnaire', '/questionnaire', 'apps', 'mobile');
-              setMenuOpen(false);
-            }}
-          >
-            Questionnaire
-          </Link>
         </div>
         <a
           href="https://calendly.com/michaelzick/45min"
