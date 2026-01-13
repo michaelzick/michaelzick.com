@@ -135,7 +135,7 @@ export default function ContactForm() {
         {captchaError && <p className="text-sm text-red-600">{captchaError}</p>}
       </div>
       {status === 'success' && (
-        <p className="text-green-600">Your message has been sent.</p>
+        <p className="text-green-600">Your message has been sent. I will get back to you within 48 hours.</p>
       )}
       {status === 'error' && (
         <p className="text-red-600">There was an error sending your message.</p>
