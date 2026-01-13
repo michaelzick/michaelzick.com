@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { trackEvent } from '../lib/analytics';
 import { Step, FormData } from '../lib/types';
@@ -73,8 +73,29 @@ export default function Questionnaire() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [analysis, setAnalysis] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isFirstRender = useRef(true);
 
   const currentStep = STEPS[stepIndex];
+
+  useEffect(() => {
+    // Skip scroll on initial mount to avoid jumping on page load
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    // Scroll for any step changes or when analysis appears
+    scrollToTop();
+  }, [stepIndex, analysis]);
+
+  const scrollToTop = () => {
+    if (cardRef.current) {
+      const yOffset = -120; // Account for sticky header (approx 80-100px)
+      const y = cardRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
 
   const isStepValid = () => {
     if (currentStep.id === 'intake') {
@@ -150,7 +171,10 @@ export default function Questionnaire() {
 
   if (analysis) {
     return (
-      <div className="max-w-3xl mx-auto p-8 bg-white text-default-grey rounded-xl shadow-md ring-1 ring-black/5 mt-12 animate-fade-in">
+      <div
+        ref={cardRef}
+        className="max-w-3xl mx-auto p-8 bg-white text-default-grey rounded-xl shadow-md ring-1 ring-black/5 mt-12 animate-fade-in"
+      >
         <h2 className="text-3xl font-bold mb-6 border-b pb-4">Your Reality Alignment Analysis</h2>
         <div className="prose prose-lg max-w-none prose-slate">
           {analysis.split('\n').map((para, i) => (
@@ -193,7 +217,10 @@ export default function Questionnaire() {
         </div>
       </div>
 
-      <div className="bg-white text-default-grey rounded-xl shadow-md ring-1 ring-black/5 p-6 sm:p-8">
+      <div
+        ref={cardRef}
+        className="bg-white text-default-grey rounded-xl shadow-md ring-1 ring-black/5 p-6 sm:p-8"
+      >
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-4">
             <span className="text-sm font-semibold uppercase tracking-widest text-dark-blue/60 whitespace-nowrap">
