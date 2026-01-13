@@ -147,7 +147,7 @@ export default function Questionnaire() {
 
   if (analysis) {
     return (
-      <div className="max-w-3xl mx-auto p-8 bg-white text-default-grey rounded-xl shadow-md ring-1 ring-black/5 mt-12 mb-24 animate-fade-in">
+      <div className="max-w-3xl mx-auto p-8 bg-white text-default-grey rounded-xl shadow-md ring-1 ring-black/5 mt-12 animate-fade-in">
         <h2 className="text-3xl font-bold mb-6 border-b pb-4">Your Reality Alignment Analysis</h2>
         <div className="prose prose-lg max-w-none prose-slate">
           {analysis.split('\n').map((para, i) => (
@@ -177,7 +177,7 @@ export default function Questionnaire() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto mb-24">
+    <div className="max-w-2xl mx-auto">
       {/* Disclaimer Section */}
       <div className="mb-6 p-4 bg-primary-blue/5 border border-primary-blue/10 rounded-lg text-sm text-default-grey/80 space-y-2">
         <p>

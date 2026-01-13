@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function QuestionnairePage() {
   return (
-    <div className="min-h-screen bg-[rgb(var(--light-grey))] pt-32 pb-12 px-6 text-default-grey">
+    <div className="min-h-screen bg-[rgb(var(--light-grey))] pt-32 pb-16 md:pb-20 px-6 text-default-grey">
       <div className="max-w-[1400px] mx-auto text-center mb-12">
         <h1 className="text-4xl md:text-6xl font-bold text-dark-blue mb-4">
           Reality Alignment Questionnaire
