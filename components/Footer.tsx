@@ -44,10 +44,6 @@ export default function Footer() {
             Contact
           </Link>
           <br />
-          <Link href="/questionnaire" className="footer-link" onClick={handleFooterClick('Questionnaire', '/questionnaire', 'links')}>
-            Questionnaire
-          </Link>
-          <br />
           <a
             href="https://calendly.com/michaelzick/45min"
             target="_blank"
@@ -83,6 +79,10 @@ export default function Footer() {
             Who&apos;s In Charge?
             <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
           </a>
+          <br />
+          <Link href="/questionnaire" className="footer-link" onClick={handleFooterClick('Questionnaire', '/questionnaire', 'apps')}>
+            Questionnaire
+          </Link>
         </div>
       </div>
       <div className="mt-8 border-t border-white/20 pt-4 text-sm">

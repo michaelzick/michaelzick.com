@@ -12,12 +12,12 @@ export const metadata: Metadata = {
 
 export default function QuestionnairePage() {
   return (
-    <div className="min-h-screen bg-gray-50 pt-32 pb-12 px-6">
+    <div className="min-h-screen bg-[rgb(var(--light-grey))] pt-32 pb-12 px-6 text-default-grey">
       <div className="max-w-[1400px] mx-auto text-center mb-12">
         <h1 className="text-4xl md:text-6xl font-bold text-dark-blue mb-4">
           Reality Alignment Questionnaire
         </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+        <p className="text-xl text-default-grey/80 max-w-2xl mx-auto">
           "We don't think our way into right action; we act our way into right thinking."
           Discover your path to alignment.
         </p>

@@ -14,7 +14,7 @@ export default function NavBar() {
   const [activePath, setActivePath] = useState('');
   const appsMenuRef = useRef<HTMLDivElement | null>(null);
   const isBlogActive = activePath === '/blog' || activePath.startsWith('/blog/');
-  const isLightNav = activePath.startsWith('/blog');
+  const isLightNav = activePath.startsWith('/blog') || activePath === '/questionnaire';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -114,14 +114,6 @@ export default function NavBar() {
           >
             Contact
           </Link>
-          <Link
-            href="/questionnaire"
-            className={`nav-link text-2xl max-[1174px]:text-xl ${isLightNav ? 'text-default-grey' : ''} ${activePath === '/questionnaire' ? 'active' : ''
-              }`}
-            onClick={() => trackHeaderLink('Questionnaire', '/questionnaire', 'primary')}
-          >
-            Questionnaire
-          </Link>
           <div
             ref={appsMenuRef}
             className="relative after:absolute after:left-0 after:top-full after:h-3 after:w-full after:content-[''] after:bg-transparent"
@@ -191,6 +183,18 @@ export default function NavBar() {
                 Who&apos;s In Charge?
                 <OpenInNewWindowIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
               </a>
+              <Link
+                href="/questionnaire"
+                role="menuitem"
+                tabIndex={appsOpen ? 0 : -1}
+                className="flex items-center gap-2 px-4 py-3 text-base font-medium whitespace-nowrap hover:bg-black/5 transition-colors"
+                onClick={() => {
+                  trackHeaderLink('Questionnaire', '/questionnaire', 'apps');
+                  setAppsOpen(false);
+                }}
+              >
+                Questionnaire
+              </Link>
             </div>
           </div>
           <a
@@ -278,17 +282,6 @@ export default function NavBar() {
           >
             Contact
           </Link>
-          <Link
-            href="/questionnaire"
-            className={`nav-link text-2xl text-default-grey ${activePath === '/questionnaire' ? 'active' : ''
-              }`}
-            onClick={() => {
-              trackHeaderLink('Questionnaire', '/questionnaire', 'primary', 'mobile');
-              setMenuOpen(false);
-            }}
-          >
-            Questionnaire
-          </Link>
         </div>
         <div className="pt-2 flex flex-col items-end space-y-3">
           <span className="text-xs uppercase tracking-[0.2em] text-default-grey/70">
@@ -320,6 +313,16 @@ export default function NavBar() {
             Who&apos;s In Charge?
             <OpenInNewWindowIcon className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
           </a>
+          <Link
+            href="/questionnaire"
+            className={`nav-link text-2xl text-default-grey ${activePath === '/questionnaire' ? 'active' : ''}`}
+            onClick={() => {
+              trackHeaderLink('Questionnaire', '/questionnaire', 'apps', 'mobile');
+              setMenuOpen(false);
+            }}
+          >
+            Questionnaire
+          </Link>
         </div>
         <a
           href="https://calendly.com/michaelzick/45min"
