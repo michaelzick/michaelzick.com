@@ -50,7 +50,6 @@ export async function POST(req: Request) {
         { role: "system", content: "You are Michael Zick, a Reality Alignment Coach." },
         { role: "user", content: prompt }
       ],
-      temperature: 0.7,
     }).catch(async (err) => {
       // Fallback if gpt-5-mini is not available to the key
       if (err.status === 404 || err.message.includes('model_not_found')) {
@@ -61,7 +60,6 @@ export async function POST(req: Request) {
             { role: "system", content: "You are Michael Zick, a Reality Alignment Coach." },
             { role: "user", content: prompt }
           ],
-          temperature: 0.7,
         });
       }
       throw err;
