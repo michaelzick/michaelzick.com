@@ -183,15 +183,15 @@ html {
     @apply relative inline-flex items-center justify-center rounded-lg font-bold text-xl whitespace-nowrap px-[42px] py-[30px] transition-all duration-300;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(12px);
-    border: 2px solid rgb(var(--primary-blue));
-    color: rgb(var(--primary-blue));
+    border: 2px solid white;
+    color: white;
     z-index: 1;
   }
 
   .rainbow-glass-btn:hover {
     background: rgba(255, 255, 255, 0.2);
     border-color: transparent;
-    @apply text-primary-blue shadow-lg;
+    @apply text-white shadow-lg;
   }
 
   .rainbow-glass-btn::after {
