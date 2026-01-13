@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { trackEvent } from '../lib/analytics';
 
 const STEPS = [
@@ -63,6 +64,7 @@ export default function Questionnaire() {
     email: '',
     answers: {},
   });
+  const [consented, setConsented] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [analysis, setAnalysis] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -128,130 +130,164 @@ export default function Questionnaire() {
             <p key={i} className="mb-4">{para}</p>
           ))}
         </div>
-        <div className="mt-12 flex flex-col items-center gap-6 p-6 bg-dark-blue/5 rounded-lg">
-          <p className="text-xl font-medium text-center italic">
-            "We don't think our way into right action; we act our way into right thinking."
-          </p>
-          <a
-            href="https://calendly.com/michaelzick/45min"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn text-xl"
-          >
-            Schedule Your Free Session with Michael
-          </a>
+        <div className="mt-12 p-6 bg-dark-blue/5 rounded-lg">
+          <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
+            <a
+              href="https://calendly.com/michaelzick/45min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn text-xl whitespace-nowrap"
+            >
+              Schedule Your Free Session
+            </a>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-lg border-2 border-primary-blue text-primary-blue transition-all duration-300 hover:bg-primary-blue/10 font-bold text-xl whitespace-nowrap px-[42px] py-[30px]"
+            >
+              Contact Michael
+            </Link>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-8 bg-white text-default-grey rounded-xl shadow-md ring-1 ring-black/5 mt-12 mb-24">
-      <div className="mb-8">
-        <div className="flex justify-between items-center mb-4">
-          <span className="text-sm font-semibold uppercase tracking-widest text-dark-blue/60">
-            Step {stepIndex + 1} of {STEPS.length}
-          </span>
-          <div className="h-2 w-48 bg-gray-200 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-primary-blue transition-all duration-500"
-              style={{ width: `${((stepIndex + 1) / STEPS.length) * 100}%` }}
-            />
-          </div>
-        </div>
-        <h2 className="text-3xl font-bold text-dark-blue">{currentStep.title}</h2>
+    <div className="max-w-2xl mx-auto mb-24">
+      {/* Disclaimer Section */}
+      <div className="mb-6 p-4 bg-primary-blue/5 border border-primary-blue/10 rounded-lg text-sm text-default-grey/80 space-y-2">
+        <p>
+          <strong>Notice:</strong> This questionnaire uses AI (OpenAI) to analyze your responses and generate personalized coaching insights.
+        </p>
+        <p>
+          Your responses and contact information will be securely emailed to Michael Zick for review. We value your privacy; your data is never shared with third parties and is kept strictly confidential.
+        </p>
       </div>
 
-      <div className="space-y-6">
-        {currentStep.fields?.map((field: any) => (
-          <div key={field.name}>
-            <label className="block text-sm font-medium mb-2 text-dark-blue/80">
-              {field.label}
-            </label>
-            <input
-              type={field.type}
-              name={field.name}
-              value={formData[field.name]}
-              onChange={handleInputChange}
-              placeholder={field.placeholder}
-              className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none"
-              required
-            />
+      <div className="bg-white text-default-grey rounded-xl shadow-md ring-1 ring-black/5 p-8">
+        <div className="mb-8">
+          <div className="flex justify-between items-center mb-4">
+            <span className="text-sm font-semibold uppercase tracking-widest text-dark-blue/60">
+              Step {stepIndex + 1} of {STEPS.length}
+            </span>
+            <div className="h-2 w-48 bg-gray-200 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-primary-blue transition-all duration-500"
+                style={{ width: `${((stepIndex + 1) / STEPS.length) * 100}%` }}
+              />
+            </div>
           </div>
-        ))}
+          <h2 className="text-3xl font-bold text-dark-blue">{currentStep.title}</h2>
+        </div>
 
-        {currentStep.questions?.map((q: any) => (
-          <div key={q.id}>
-            <label className="block text-lg font-medium mb-3 text-dark-blue/90">
-              {q.text}
-            </label>
-            {q.type === 'textarea' ? (
-              <textarea
-                name={q.id}
-                value={formData.answers[q.id] || ''}
+        <div className="space-y-6">
+          {currentStep.fields?.map((field: any) => (
+            <div key={field.name}>
+              <label className="block text-sm font-medium mb-2 text-dark-blue/80">
+                {field.label}
+              </label>
+              <input
+                type={field.type}
+                name={field.name}
+                value={formData[field.name]}
                 onChange={handleInputChange}
-                rows={4}
+                placeholder={field.placeholder}
                 className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none"
                 required
               />
-            ) : q.type === 'range' ? (
-              <div className="space-y-4">
+            </div>
+          ))}
+
+          {currentStep.id === 'intake' && (
+            <div className="pt-4 border-t border-gray-100">
+              <label className="flex items-start gap-3 cursor-pointer group">
                 <input
-                  type="range"
-                  name={q.id}
-                  min={q.min}
-                  max={q.max}
-                  value={formData.answers[q.id] || 5}
-                  onChange={handleInputChange}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-blue"
+                  type="checkbox"
+                  checked={consented}
+                  onChange={(e) => setConsented(e.target.checked)}
+                  className="mt-1 h-4 w-4 rounded border-gray-300 text-primary-blue focus:ring-primary-blue"
                 />
-                <div className="flex justify-between text-sm text-gray-500 font-medium px-1">
-                  <span>None at all (1)</span>
-                  <span>Full Ownership (10)</span>
-                </div>
-                <div className="text-center text-primary-blue font-bold text-xl">
-                  {formData.answers[q.id] || 5}
-                </div>
-              </div>
-            ) : null}
-          </div>
-        ))}
-      </div>
-
-      {error && (
-        <div className="mt-6 p-4 bg-red-50 text-red-600 rounded-lg text-sm border border-red-100">
-          {error}
-        </div>
-      )}
-
-      <div className="mt-12 flex justify-between items-center">
-        <button
-          onClick={prevStep}
-          disabled={stepIndex === 0 || isSubmitting}
-          className={`text-dark-blue font-semibold transition-opacity disabled:opacity-0 ${stepIndex === 0 ? 'invisible' : ''
-            }`}
-        >
-          ← Back
-        </button>
-        <button
-          onClick={nextStep}
-          disabled={isSubmitting}
-          className="btn !py-4 !px-12 text-lg disabled:opacity-50"
-        >
-          {isSubmitting ? (
-            <span className="flex items-center gap-2">
-              <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-              </svg>
-              Analyzing...
-            </span>
-          ) : stepIndex === STEPS.length - 1 ? (
-            'Get My Analysis'
-          ) : (
-            'Next →'
+                <span className="text-sm text-default-grey/80 leading-snug group-hover:text-default-grey transition-colors">
+                  I consent to having my responses analyzed by AI and shared with Michael Zick.
+                  I agree to be contacted by Michael regarding my results and coaching opportunities.
+                </span>
+              </label>
+            </div>
           )}
-        </button>
+
+          {currentStep.questions?.map((q: any) => (
+            <div key={q.id}>
+              <label className="block text-lg font-medium mb-3 text-dark-blue/90">
+                {q.text}
+              </label>
+              {q.type === 'textarea' ? (
+                <textarea
+                  name={q.id}
+                  value={formData.answers[q.id] || ''}
+                  onChange={handleInputChange}
+                  rows={4}
+                  className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none"
+                  required
+                />
+              ) : q.type === 'range' ? (
+                <div className="space-y-4">
+                  <input
+                    type="range"
+                    name={q.id}
+                    min={q.min}
+                    max={q.max}
+                    value={formData.answers[q.id] || 5}
+                    onChange={handleInputChange}
+                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-blue"
+                  />
+                  <div className="flex justify-between text-sm text-gray-500 font-medium px-1">
+                    <span>None at all (1)</span>
+                    <span>Full Ownership (10)</span>
+                  </div>
+                  <div className="text-center text-primary-blue font-bold text-xl">
+                    {formData.answers[q.id] || 5}
+                  </div>
+                </div>
+              ) : null}
+            </div>
+          ))}
+        </div>
+
+        {error && (
+          <div className="mt-6 p-4 bg-red-50 text-red-600 rounded-lg text-sm border border-red-100">
+            {error}
+          </div>
+        )}
+
+        <div className="mt-12 flex justify-between items-center">
+          <button
+            onClick={prevStep}
+            disabled={stepIndex === 0 || isSubmitting}
+            className={`text-dark-blue font-semibold transition-opacity disabled:opacity-0 ${stepIndex === 0 ? 'invisible' : ''
+              }`}
+          >
+            ← Back
+          </button>
+          <button
+            onClick={nextStep}
+            disabled={isSubmitting || (stepIndex === 0 && !consented)}
+            className="btn !py-4 !px-12 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isSubmitting ? (
+              <span className="flex items-center gap-2">
+                <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                </svg>
+                Analyzing...
+              </span>
+            ) : stepIndex === STEPS.length - 1 ? (
+              'Get My Analysis'
+            ) : (
+              'Next →'
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );
