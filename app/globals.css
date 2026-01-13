@@ -18,6 +18,7 @@ html {
 }
 
 @layer base {
+
   h1,
   h2,
   h3 {
@@ -114,6 +115,7 @@ html {
     font-size: 16px;
     line-height: 16px;
   }
+
   .nav-button {
     @apply inline-flex items-center justify-center rounded-lg bg-primary-blue text-white transition-all duration-300 hover:opacity-90 text-base leading-4;
     padding: 9px 16px 10px;
@@ -165,5 +167,57 @@ html {
 
   .blog-content img {
     @apply my-6 rounded-lg shadow-md;
+  }
+
+  @keyframes rainbow-border-scroll {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    100% {
+      background-position: 200% 50%;
+    }
+  }
+
+  .rainbow-glass-btn {
+    @apply relative inline-flex items-center justify-center rounded-lg font-bold text-xl whitespace-nowrap px-[42px] py-[30px] transition-all duration-300;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 2px solid rgb(var(--primary-blue));
+    color: rgb(var(--primary-blue));
+    z-index: 1;
+  }
+
+  .rainbow-glass-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: transparent;
+    @apply text-primary-blue shadow-lg;
+  }
+
+  .rainbow-glass-btn::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    padding: 2px;
+    border-radius: inherit;
+    background: linear-gradient(90deg,
+        #4285F4, #34A853, #FBBC05, #EA4335, #4285F4);
+    background-size: 200% auto;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .rainbow-glass-btn:hover::after {
+    opacity: 1;
+    animation: rainbow-border-scroll 2s linear infinite;
   }
 }
