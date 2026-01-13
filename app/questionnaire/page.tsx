@@ -14,7 +14,7 @@ export default function QuestionnairePage() {
   return (
     <div className="min-h-screen bg-[rgb(var(--light-grey))] pt-32 pb-16 md:pb-20 px-6 text-default-grey">
       <div className="max-w-[1400px] mx-auto text-center mb-12">
-        <h1 className="text-4xl md:text-6xl font-bold text-dark-blue mb-4">
+        <h1 className="text-4xl md:text-6xl font-bold text-dark-blue mb-8">
           Reality Alignment Questionnaire
         </h1>
         <p className="text-xl text-default-grey/80 max-w-xl mx-auto">
