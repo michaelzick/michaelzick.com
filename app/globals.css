@@ -180,7 +180,7 @@ html {
   }
 
   .rainbow-glass-btn {
-    @apply relative inline-flex items-center justify-center rounded-lg font-bold text-xl whitespace-nowrap px-[42px] py-[30px] transition-all duration-300;
+    @apply relative inline-flex items-center justify-center rounded-lg font-bold text-base md:text-xl whitespace-nowrap px-[22px] py-[14px] md:px-[42px] md:py-[30px] transition-all duration-300;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(12px);
     border: 2px solid white;
