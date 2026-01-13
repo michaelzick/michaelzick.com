@@ -10,9 +10,9 @@ const STEPS: Step[] = [
     id: 'intake',
     title: 'Who are you?',
     fields: [
-      { name: 'firstName', label: 'First Name', type: 'text', placeholder: 'John' },
-      { name: 'lastName', label: 'Last Name', type: 'text', placeholder: 'Doe' },
-      { name: 'email', label: 'Email Address', type: 'email', placeholder: 'john@example.com' },
+      { name: 'firstName', label: 'First Name', type: 'text', placeholder: 'John', maxLength: 50 },
+      { name: 'lastName', label: 'Last Name', type: 'text', placeholder: 'Doe', maxLength: 50 },
+      { name: 'email', label: 'Email Address', type: 'email', placeholder: 'john@example.com', maxLength: 100 },
     ],
   },
   {
@@ -23,6 +23,7 @@ const STEPS: Step[] = [
         id: 'mainStruggle',
         text: 'Briefly describe what is currently feeling "out of alignment" in your life (career, relationship, or personal growth).',
         type: 'textarea',
+        maxLength: 1000,
       },
     ],
   },
@@ -41,6 +42,7 @@ const STEPS: Step[] = [
         id: 'victimhood',
         text: 'Where do you feel like a "victim" in your life right now?',
         type: 'textarea',
+        maxLength: 1000,
       },
     ],
   },
@@ -52,6 +54,7 @@ const STEPS: Step[] = [
         id: 'rumination',
         text: 'Are you trying to "think" your way out of this problem, or are you taking physical steps to change it?',
         type: 'textarea',
+        maxLength: 1000,
       },
     ],
   },
@@ -65,6 +68,7 @@ export default function Questionnaire() {
     email: '',
     answers: {},
   });
+  const [honeypot, setHoneypot] = useState('');
   const [consented, setConsented] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [analysis, setAnalysis] = useState<string | null>(null);
@@ -131,7 +135,7 @@ export default function Questionnaire() {
       const response = await fetch('/api/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, website: honeypot }),
       });
 
       const data = await response.json();
@@ -218,6 +222,7 @@ export default function Questionnaire() {
                 value={(formData as any)[field.name]}
                 onChange={handleInputChange}
                 placeholder={field.placeholder}
+                maxLength={field.maxLength}
                 className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none"
                 required
                 aria-required="true"
@@ -244,9 +249,16 @@ export default function Questionnaire() {
 
           {currentStep.questions?.map((q) => (
             <div key={q.id}>
-              <label htmlFor={q.id} className="block text-lg font-medium mb-3 text-dark-blue/90">
-                {q.text}
-              </label>
+              <div className="flex justify-between items-end mb-3">
+                <label htmlFor={q.id} className="block text-lg font-medium text-dark-blue/90">
+                  {q.text}
+                </label>
+                {q.type === 'textarea' && q.maxLength && (
+                  <span className={`text-xs font-mono ${(formData.answers[q.id]?.length || 0) >= q.maxLength ? 'text-red-500 font-bold' : 'text-gray-400'}`}>
+                    {formData.answers[q.id]?.length || 0}/{q.maxLength}
+                  </span>
+                )}
+              </div>
               {q.type === 'textarea' ? (
                 <textarea
                   id={q.id}
@@ -254,6 +266,7 @@ export default function Questionnaire() {
                   value={formData.answers[q.id] || ''}
                   onChange={handleInputChange}
                   rows={4}
+                  maxLength={q.maxLength}
                   className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none"
                   required
                   aria-required="true"
@@ -281,6 +294,18 @@ export default function Questionnaire() {
               ) : null}
             </div>
           ))}
+        </div>
+
+        {/* Honeypot field - hidden from users */}
+        <div style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', left: '-9999px' }} aria-hidden="true">
+          <input
+            type="text"
+            name="website"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+          />
         </div>
 
         {error && (

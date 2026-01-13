@@ -4,6 +4,7 @@ export interface Question {
   type: 'textarea' | 'range';
   min?: number;
   max?: number;
+  maxLength?: number;
 }
 
 export interface IntakeField {
@@ -11,6 +12,7 @@ export interface IntakeField {
   label: string;
   type: string;
   placeholder: string;
+  maxLength?: number;
 }
 
 export interface Step {
