@@ -71,6 +71,28 @@ export default function Questionnaire() {
 
   const currentStep = STEPS[stepIndex];
 
+  const isStepValid = () => {
+    if (currentStep.id === 'intake') {
+      return (
+        formData.firstName.trim() !== '' &&
+        formData.lastName.trim() !== '' &&
+        formData.email.trim() !== '' &&
+        consented
+      );
+    }
+
+    // Check all questions in current step
+    if (currentStep.questions) {
+      return currentStep.questions.every((q: any) => {
+        if (q.type === 'range') return true; // Range always has a value
+        const answer = formData.answers[q.id];
+        return answer && answer.trim() !== '';
+      });
+    }
+
+    return true;
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     if (currentStep.id === 'intake') {
@@ -84,6 +106,8 @@ export default function Questionnaire() {
   };
 
   const nextStep = () => {
+    if (!isStepValid()) return;
+
     if (stepIndex < STEPS.length - 1) {
       setStepIndex(stepIndex + 1);
       window.scrollTo(0, 0);
@@ -270,7 +294,7 @@ export default function Questionnaire() {
           </button>
           <button
             onClick={nextStep}
-            disabled={isSubmitting || (stepIndex === 0 && !consented)}
+            disabled={isSubmitting || !isStepValid()}
             className="btn !py-4 !px-12 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
