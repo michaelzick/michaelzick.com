@@ -110,7 +110,6 @@ export default function Questionnaire() {
 
     if (stepIndex < STEPS.length - 1) {
       setStepIndex(stepIndex + 1);
-      window.scrollTo(0, 0);
     } else {
       handleSubmit();
     }
@@ -119,7 +118,6 @@ export default function Questionnaire() {
   const prevStep = () => {
     if (stepIndex > 0) {
       setStepIndex(stepIndex - 1);
-      window.scrollTo(0, 0);
     }
   };
 
