@@ -193,13 +193,13 @@ export default function Questionnaire() {
         </div>
       </div>
 
-      <div className="bg-white text-default-grey rounded-xl shadow-md ring-1 ring-black/5 p-8">
+      <div className="bg-white text-default-grey rounded-xl shadow-md ring-1 ring-black/5 p-6 sm:p-8">
         <div className="mb-8">
-          <div className="flex justify-between items-center mb-4">
-            <span className="text-sm font-semibold uppercase tracking-widest text-dark-blue/60">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-4">
+            <span className="text-sm font-semibold uppercase tracking-widest text-dark-blue/60 whitespace-nowrap">
               Step {stepIndex + 1} of {STEPS.length}
             </span>
-            <div className="h-2 w-48 bg-gray-200 rounded-full overflow-hidden">
+            <div className="h-2 w-full sm:w-48 bg-gray-200 rounded-full overflow-hidden">
               <div
                 className="h-full bg-primary-blue transition-all duration-500"
                 style={{ width: `${((stepIndex + 1) / STEPS.length) * 100}%` }}
@@ -273,6 +273,11 @@ export default function Questionnaire() {
                 />
               ) : q.type === 'range' ? (
                 <div className="space-y-4">
+                  <div className="flex justify-center">
+                    <span className="bg-primary-blue/10 text-primary-blue px-4 py-1.5 rounded-full text-sm font-bold ring-1 ring-primary-blue/20">
+                      Current Value: {formData.answers[q.id] || q.min}
+                    </span>
+                  </div>
                   <input
                     id={q.id}
                     type="range"
@@ -283,12 +288,15 @@ export default function Questionnaire() {
                     onChange={handleInputChange}
                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-blue"
                   />
-                  <div className="flex justify-between text-sm font-bold text-dark-blue">
-                    <span>{q.min} (Victimhood)</span>
-                    <span className="bg-primary-blue text-white px-3 py-1 rounded-full">
-                      Current: {formData.answers[q.id] || q.min}
+                  <div className="flex justify-between text-xs sm:text-sm font-bold text-dark-blue/70">
+                    <span className="flex flex-col items-start">
+                      <span className="text-dark-blue">{q.min}</span>
+                      <span>Victimhood</span>
                     </span>
-                    <span>{q.max} (Ownership)</span>
+                    <span className="flex flex-col items-end">
+                      <span className="text-dark-blue">{q.max}</span>
+                      <span>Ownership</span>
+                    </span>
                   </div>
                 </div>
               ) : null}
