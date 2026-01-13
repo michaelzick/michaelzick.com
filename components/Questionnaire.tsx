@@ -179,13 +179,16 @@ export default function Questionnaire() {
   return (
     <div className="max-w-2xl mx-auto">
       {/* Disclaimer Section */}
-      <div className="mb-6 p-4 bg-primary-blue/5 border border-primary-blue/10 rounded-lg text-sm text-default-grey/80 space-y-2">
-        <p>
-          <strong>Notice:</strong> This questionnaire uses AI (OpenAI) to analyze your responses and generate personalized coaching insights.
-        </p>
-        <p>
-          Your responses and contact information will be securely emailed to Michael Zick for review. We value your privacy; your data is never shared with third parties and is kept strictly confidential.
-        </p>
+      <div className="mb-6 p-4 bg-primary-blue/5 border border-primary-blue/10 rounded-lg text-sm text-default-grey/80">
+        <p className="text-center font-bold mb-3 text-base">Notice</p>
+        <div className="space-y-2 text-left">
+          <p>
+            This questionnaire uses AI (OpenAI) to analyze your responses and generate personalized coaching insights.
+          </p>
+          <p>
+            Your responses and contact information will be securely emailed to Michael Zick for review. We value your privacy; your data is never shared with third parties and is kept strictly confidential.
+          </p>
+        </div>
       </div>
 
       <div className="bg-white text-default-grey rounded-xl shadow-md ring-1 ring-black/5 p-8">
