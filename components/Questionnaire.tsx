@@ -76,6 +76,7 @@ export default function Questionnaire() {
   const [analysis, setAnalysis] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const isFirstRender = useRef(true);
 
   const currentStep = STEPS[stepIndex];
@@ -92,9 +93,15 @@ export default function Questionnaire() {
   }, [stepIndex, analysis]);
 
   const scrollToTop = () => {
-    if (cardRef.current) {
+    if (stepIndex === 0 && !analysis) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const ref = analysis ? cardRef : containerRef;
+    if (ref.current) {
       const yOffset = -120; // Account for sticky header (approx 80-100px)
-      const y = cardRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      const y = ref.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
@@ -181,6 +188,7 @@ export default function Questionnaire() {
       stepsCount={STEPS.length}
       currentStep={currentStep}
       cardRef={cardRef}
+      containerRef={containerRef}
       honeypot={honeypot}
       setHoneypot={setHoneypot}
       error={error}

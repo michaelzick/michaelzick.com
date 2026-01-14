@@ -7,6 +7,7 @@ interface QuestionnaireFormProps {
   stepsCount: number;
   currentStep: Step;
   cardRef: React.RefObject<HTMLDivElement | null>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
   children: React.ReactNode;
   honeypot: string;
   setHoneypot: (value: string) => void;
@@ -22,6 +23,7 @@ export default function QuestionnaireForm({
   stepsCount,
   currentStep,
   cardRef,
+  containerRef,
   children,
   honeypot,
   setHoneypot,
@@ -32,7 +34,7 @@ export default function QuestionnaireForm({
   nextStep,
 }: QuestionnaireFormProps) {
   return (
-    <div className="max-w-2xl mx-auto">
+    <div ref={containerRef} className="max-w-2xl mx-auto">
       {/* Disclaimer Section */}
       <div className="mb-6 p-4 bg-primary-blue/5 border border-primary-blue/10 rounded-lg text-sm text-default-grey/80">
         <p className="text-center font-bold mb-3 text-base">Notice</p>
