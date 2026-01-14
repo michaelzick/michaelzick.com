@@ -6,7 +6,7 @@ import { getBlogPostBySlug, getBlogPosts } from '../../../lib/blog';
 import { siteConfig } from '../../../lib/site';
 
 type BlogPostPageProps = {
-  params: { slug: string } | Promise<{ slug: string }>;
+  params: { slug: string; } | Promise<{ slug: string; }>;
 };
 
 function toAbsoluteUrl(url: string) {
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     };
   }
 
-  const canonical = `/blog/${post.slug}`;
+  const canonical = post.canonicalUrl || `${siteConfig.url}/blog/${post.slug}`;
   const imageUrl = toAbsoluteUrl(post.imageUrl);
 
   return {
@@ -113,7 +113,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     datePublished: post.datePublished,
     dateModified: post.dateModified ?? post.datePublished,
     mainEntityOfPage: postUrl,
-    ...(isBasedOn ? { isBasedOn } : {}),
+    ...(post.canonicalUrl ? { isBasedOn: post.canonicalUrl } : {}),
     inLanguage: siteConfig.locale,
     keywords: post.tags.join(', '),
     articleSection: post.category,
