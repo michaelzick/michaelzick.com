@@ -188,7 +188,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <span>By {post.author}</span>
             {post.datePublished && (
               <span>
-                {new Date(post.datePublished).toLocaleDateString('en-US')}
+                {(() => {
+                  const [year, month, day] = post.datePublished.split('-').map(Number);
+                  return new Date(year, month - 1, day).toLocaleDateString('en-US');
+                })()}
               </span>
             )}
             {post.category && (

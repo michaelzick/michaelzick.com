@@ -71,11 +71,10 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
           <button
             type="button"
             onClick={() => setSelectedCategory('all')}
-            className={`rounded-full border px-3 py-1 text-sm transition ${
-              selectedCategory === 'all'
+            className={`rounded-full border px-3 py-1 text-sm transition ${selectedCategory === 'all'
                 ? 'border-dark-blue bg-dark-blue text-white'
                 : 'border-dark-blue/20 bg-white text-default-grey hover:border-dark-blue/40'
-            }`}
+              }`}
           >
             All
           </button>
@@ -84,11 +83,10 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
               key={category}
               type="button"
               onClick={() => setSelectedCategory(category)}
-              className={`rounded-full border px-3 py-1 text-sm transition ${
-                selectedCategory === category
+              className={`rounded-full border px-3 py-1 text-sm transition ${selectedCategory === category
                   ? 'border-dark-blue bg-dark-blue text-white'
                   : 'border-dark-blue/20 bg-white text-default-grey hover:border-dark-blue/40'
-              }`}
+                }`}
             >
               {category}
             </button>
@@ -109,11 +107,10 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
                 key={tag}
                 type="button"
                 onClick={() => toggleTag(tag)}
-                className={`rounded-full border px-3 py-1 text-sm transition ${
-                  selectedTags.includes(tag)
+                className={`rounded-full border px-3 py-1 text-sm transition ${selectedTags.includes(tag)
                     ? 'border-dark-blue bg-dark-blue text-white'
                     : 'border-dark-blue/20 bg-white text-default-grey hover:border-dark-blue/40'
-                }`}
+                  }`}
               >
                 {tag}
               </button>
@@ -128,11 +125,10 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
           <button
             type="button"
             onClick={() => setSelectedAuthor('all')}
-            className={`rounded-full border px-3 py-1 text-sm transition ${
-              selectedAuthor === 'all'
+            className={`rounded-full border px-3 py-1 text-sm transition ${selectedAuthor === 'all'
                 ? 'border-dark-blue bg-dark-blue text-white'
                 : 'border-dark-blue/20 bg-white text-default-grey hover:border-dark-blue/40'
-            }`}
+              }`}
           >
             All
           </button>
@@ -141,11 +137,10 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
               key={author}
               type="button"
               onClick={() => setSelectedAuthor(author)}
-              className={`rounded-full border px-3 py-1 text-sm transition ${
-                selectedAuthor === author
+              className={`rounded-full border px-3 py-1 text-sm transition ${selectedAuthor === author
                   ? 'border-dark-blue bg-dark-blue text-white'
                   : 'border-dark-blue/20 bg-white text-default-grey hover:border-dark-blue/40'
-              }`}
+                }`}
             >
               {author}
             </button>
@@ -243,7 +238,14 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
                         <p className="text-base text-default-grey/80">{post.subtitle}</p>
                         <div className="flex flex-wrap items-center justify-between gap-2 text-sm text-default-grey/70">
                           <span>By {post.author}</span>
-                          {post.datePublished && <span>{new Date(post.datePublished).toLocaleDateString('en-US')}</span>}
+                          {post.datePublished && (
+                            <span>
+                              {(() => {
+                                const [year, month, day] = post.datePublished.split('-').map(Number);
+                                return new Date(year, month - 1, day).toLocaleDateString('en-US');
+                              })()}
+                            </span>
+                          )}
                         </div>
                       </div>
                     </article>
