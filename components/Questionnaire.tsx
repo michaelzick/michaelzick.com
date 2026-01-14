@@ -1,9 +1,11 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import Link from 'next/link';
 import { trackEvent } from '../lib/analytics';
 import { Step, FormData } from '../lib/types';
+import QuestionnaireAnalysis from './questionnaire/QuestionnaireAnalysis';
+import QuestionnaireForm from './questionnaire/QuestionnaireForm';
+import QuestionnaireFields from './questionnaire/QuestionnaireFields';
 
 const STEPS: Step[] = [
   {
@@ -170,215 +172,30 @@ export default function Questionnaire() {
   };
 
   if (analysis) {
-    return (
-      <div
-        ref={cardRef}
-        className="max-w-3xl mx-auto p-8 bg-white text-default-grey rounded-xl shadow-md ring-1 ring-black/5 mt-12 animate-fade-in"
-      >
-        <h2 className="text-3xl font-bold mb-6 border-b pb-4">Your Reality Alignment Analysis</h2>
-        <div className="prose prose-lg max-w-none prose-slate">
-          {analysis.split('\n').map((para, i) => (
-            <p key={i} className="mb-4">{para}</p>
-          ))}
-        </div>
-        <div className="mt-12 p-6 bg-dark-blue/5 rounded-lg">
-          <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
-            <a
-              href="https://calendly.com/michaelzick/45min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn text-xl whitespace-nowrap"
-            >
-              Schedule Your Free Session
-            </a>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-lg border-2 border-primary-blue text-primary-blue transition-all duration-300 hover:bg-primary-blue/10 font-bold text-xl whitespace-nowrap px-[42px] py-[30px]"
-            >
-              Contact Michael
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
+    return <QuestionnaireAnalysis analysis={analysis} cardRef={cardRef} />;
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
-      {/* Disclaimer Section */}
-      <div className="mb-6 p-4 bg-primary-blue/5 border border-primary-blue/10 rounded-lg text-sm text-default-grey/80">
-        <p className="text-center font-bold mb-3 text-base">Notice</p>
-        <div className="space-y-2 text-left">
-          <p>
-            This questionnaire uses AI (OpenAI) to analyze your responses and generate personalized coaching insights.
-            Your responses and contact information will be securely emailed to Michael Zick for review. We value your privacy;
-            your data is never shared with third parties and is kept strictly confidential.
-          </p>
-        </div>
-      </div>
-
-      <div
-        ref={cardRef}
-        className="bg-white text-default-grey rounded-xl shadow-md ring-1 ring-black/5 p-6 sm:p-8"
-      >
-        <div className="mb-8">
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-4">
-            <span className="text-sm font-semibold uppercase tracking-widest text-dark-blue/60 whitespace-nowrap">
-              Step {stepIndex + 1} of {STEPS.length}
-            </span>
-            <div className="h-2 w-full sm:w-48 bg-gray-200 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-primary-blue transition-all duration-500"
-                style={{ width: `${((stepIndex + 1) / STEPS.length) * 100}%` }}
-              />
-            </div>
-          </div>
-          <h2 className="text-3xl font-bold text-dark-blue">{currentStep.title}</h2>
-        </div>
-
-        <div className="space-y-6">
-          {currentStep.fields?.map((field) => (
-            <div key={field.name}>
-              <label htmlFor={field.name} className="block text-sm font-medium mb-2 text-dark-blue/80">
-                {field.label}
-              </label>
-              <input
-                id={field.name}
-                type={field.type}
-                name={field.name}
-                value={(formData as any)[field.name]}
-                onChange={handleInputChange}
-                placeholder={field.placeholder}
-                maxLength={field.maxLength}
-                className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none"
-                required
-                aria-required="true"
-              />
-            </div>
-          ))}
-
-          {currentStep.id === 'intake' && (
-            <div className="pt-4 border-t border-gray-100">
-              <label className="flex items-start gap-3 cursor-pointer group">
-                <input
-                  type="checkbox"
-                  checked={consented}
-                  onChange={(e) => setConsented(e.target.checked)}
-                  className="mt-1 h-4 w-4 rounded border-gray-300 text-primary-blue focus:ring-primary-blue"
-                />
-                <span className="text-sm text-default-grey/80 leading-snug group-hover:text-default-grey transition-colors">
-                  I consent to having my responses analyzed by AI and shared with Michael Zick.
-                  I agree to be contacted by Michael regarding my results and coaching opportunities.
-                </span>
-              </label>
-            </div>
-          )}
-
-          {currentStep.questions?.map((q) => (
-            <div key={q.id}>
-              <div className="flex justify-between items-end mb-3">
-                <label htmlFor={q.id} className="block text-lg font-medium text-dark-blue/90">
-                  {q.text}
-                </label>
-                {q.type === 'textarea' && q.maxLength && (
-                  <span className={`text-xs font-mono ${(formData.answers[q.id]?.length || 0) >= q.maxLength ? 'text-red-500 font-bold' : 'text-gray-400'}`}>
-                    {formData.answers[q.id]?.length || 0}/{q.maxLength}
-                  </span>
-                )}
-              </div>
-              {q.type === 'textarea' ? (
-                <textarea
-                  id={q.id}
-                  name={q.id}
-                  value={formData.answers[q.id] || ''}
-                  onChange={handleInputChange}
-                  rows={4}
-                  maxLength={q.maxLength}
-                  className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none"
-                  required
-                  aria-required="true"
-                />
-              ) : q.type === 'range' ? (
-                <div className="space-y-4">
-                  <div className="flex justify-center">
-                    <span className="bg-primary-blue/10 text-primary-blue px-4 py-1.5 rounded-full text-sm font-bold ring-1 ring-primary-blue/20">
-                      Current Value: {formData.answers[q.id] || q.min}
-                    </span>
-                  </div>
-                  <input
-                    id={q.id}
-                    type="range"
-                    name={q.id}
-                    min={q.min}
-                    max={q.max}
-                    value={formData.answers[q.id] || q.min}
-                    onChange={handleInputChange}
-                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-blue"
-                  />
-                  <div className="flex justify-between text-xs sm:text-sm font-bold text-dark-blue/70">
-                    <span className="flex flex-col items-start">
-                      <span className="text-dark-blue">{q.min}</span>
-                      <span>Victimhood</span>
-                    </span>
-                    <span className="flex flex-col items-end">
-                      <span className="text-dark-blue">{q.max}</span>
-                      <span>Ownership</span>
-                    </span>
-                  </div>
-                </div>
-              ) : null}
-            </div>
-          ))}
-        </div>
-
-        {/* Honeypot field - hidden from users */}
-        <div style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', left: '-9999px' }} aria-hidden="true">
-          <input
-            type="text"
-            name="website"
-            value={honeypot}
-            onChange={(e) => setHoneypot(e.target.value)}
-            tabIndex={-1}
-            autoComplete="off"
-          />
-        </div>
-
-        {error && (
-          <div className="mt-6 p-4 bg-red-50 text-red-600 rounded-lg text-sm border border-red-100">
-            {error}
-          </div>
-        )}
-
-        <div className="mt-12 flex justify-between items-center">
-          <button
-            onClick={prevStep}
-            disabled={stepIndex === 0 || isSubmitting}
-            className={`text-dark-blue font-semibold transition-opacity disabled:opacity-0 ${stepIndex === 0 ? 'invisible' : ''
-              }`}
-          >
-            ← Back
-          </button>
-          <button
-            onClick={nextStep}
-            disabled={isSubmitting || !isStepValid()}
-            className="btn !py-4 !px-12 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isSubmitting ? (
-              <span className="flex items-center gap-2">
-                <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                </svg>
-                Analyzing...
-              </span>
-            ) : stepIndex === STEPS.length - 1 ? (
-              'Get My Analysis'
-            ) : (
-              'Next →'
-            )}
-          </button>
-        </div>
-      </div>
-    </div>
+    <QuestionnaireForm
+      stepIndex={stepIndex}
+      stepsCount={STEPS.length}
+      currentStep={currentStep}
+      cardRef={cardRef}
+      honeypot={honeypot}
+      setHoneypot={setHoneypot}
+      error={error}
+      isSubmitting={isSubmitting}
+      isStepValid={isStepValid}
+      prevStep={prevStep}
+      nextStep={nextStep}
+    >
+      <QuestionnaireFields
+        currentStep={currentStep}
+        formData={formData}
+        consented={consented}
+        setConsented={setConsented}
+        handleInputChange={handleInputChange}
+      />
+    </QuestionnaireForm>
   );
 }

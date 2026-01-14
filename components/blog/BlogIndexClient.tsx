@@ -1,8 +1,9 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import Link from 'next/link';
 import type { BlogPost } from '../../lib/blog';
+import BlogFilters from './BlogFilters';
+import BlogPostCard from './BlogPostCard';
 
 type BlogIndexClientProps = {
   posts: BlogPost[];
@@ -50,106 +51,6 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
     filters.tags.length > 0 ||
     filters.authors.length > 0;
 
-  const renderFilters = (isMobile = false) => (
-    <div className={`space-y-6 ${isMobile ? 'mt-4' : ''}`}>
-      <div className="flex items-center justify-between">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-default-grey/70">
-          Filters
-        </p>
-        <button
-          type="button"
-          onClick={clearFilters}
-          className="text-sm font-semibold text-dark-blue/80 transition hover:text-dark-blue"
-        >
-          Clear
-        </button>
-      </div>
-
-      <div className="space-y-3">
-        <p className="text-sm font-semibold text-default-grey">Category</p>
-        <div className="flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={() => setSelectedCategory('all')}
-            className={`rounded-full border px-3 py-1 text-sm transition ${selectedCategory === 'all'
-                ? 'border-dark-blue bg-dark-blue text-white'
-                : 'border-dark-blue/20 bg-white text-default-grey hover:border-dark-blue/40'
-              }`}
-          >
-            All
-          </button>
-          {filters.categories.map((category) => (
-            <button
-              key={category}
-              type="button"
-              onClick={() => setSelectedCategory(category)}
-              className={`rounded-full border px-3 py-1 text-sm transition ${selectedCategory === category
-                  ? 'border-dark-blue bg-dark-blue text-white'
-                  : 'border-dark-blue/20 bg-white text-default-grey hover:border-dark-blue/40'
-                }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="space-y-3">
-        <p className="text-sm font-semibold text-default-grey">Tags</p>
-        <div className="flex flex-wrap gap-2">
-          {filters.tags.length === 0 ? (
-            <span className="text-sm text-default-grey/70">
-              No tags yet.
-            </span>
-          ) : (
-            filters.tags.map((tag) => (
-              <button
-                key={tag}
-                type="button"
-                onClick={() => toggleTag(tag)}
-                className={`rounded-full border px-3 py-1 text-sm transition ${selectedTags.includes(tag)
-                    ? 'border-dark-blue bg-dark-blue text-white'
-                    : 'border-dark-blue/20 bg-white text-default-grey hover:border-dark-blue/40'
-                  }`}
-              >
-                {tag}
-              </button>
-            ))
-          )}
-        </div>
-      </div>
-
-      <div className="space-y-3">
-        <p className="text-sm font-semibold text-default-grey">Author</p>
-        <div className="flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={() => setSelectedAuthor('all')}
-            className={`rounded-full border px-3 py-1 text-sm transition ${selectedAuthor === 'all'
-                ? 'border-dark-blue bg-dark-blue text-white'
-                : 'border-dark-blue/20 bg-white text-default-grey hover:border-dark-blue/40'
-              }`}
-          >
-            All
-          </button>
-          {filters.authors.map((author) => (
-            <button
-              key={author}
-              type="button"
-              onClick={() => setSelectedAuthor(author)}
-              className={`rounded-full border px-3 py-1 text-sm transition ${selectedAuthor === author
-                  ? 'border-dark-blue bg-dark-blue text-white'
-                  : 'border-dark-blue/20 bg-white text-default-grey hover:border-dark-blue/40'
-                }`}
-            >
-              {author}
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-
   return (
     <section className="bg-[rgb(var(--light-grey))] px-6 pb-16 pt-24 text-default-grey md:px-8 md:pb-20 md:pt-28 lg:pt-36 xl:pt-40">
       <div className="mx-auto max-w-[1400px]">
@@ -165,7 +66,20 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
         <div className="grid gap-10 lg:grid-cols-[260px_1fr]">
           <aside className="hidden lg:block">
             <div className="sticky top-28 mt-10 rounded-lg bg-white p-5 shadow-md ring-1 ring-black/5">
-              {hasFilters ? renderFilters() : <p className="text-sm text-default-grey/70">Add blog posts to enable filters.</p>}
+              {hasFilters ? (
+                <BlogFilters
+                  filters={filters}
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                  selectedAuthor={selectedAuthor}
+                  setSelectedAuthor={setSelectedAuthor}
+                  selectedTags={selectedTags}
+                  toggleTag={toggleTag}
+                  clearFilters={clearFilters}
+                />
+              ) : (
+                <p className="text-sm text-default-grey/70">Add blog posts to enable filters.</p>
+              )}
             </div>
           </aside>
 
@@ -183,7 +97,21 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
               </button>
               {mobileFiltersOpen && (
                 <div className="mt-4 rounded-lg bg-white p-5 shadow-md ring-1 ring-black/5">
-                  {hasFilters ? renderFilters(true) : <p className="text-sm text-default-grey/70">Add blog posts to enable filters.</p>}
+                  {hasFilters ? (
+                    <BlogFilters
+                      filters={filters}
+                      selectedCategory={selectedCategory}
+                      setSelectedCategory={setSelectedCategory}
+                      selectedAuthor={selectedAuthor}
+                      setSelectedAuthor={setSelectedAuthor}
+                      selectedTags={selectedTags}
+                      toggleTag={toggleTag}
+                      clearFilters={clearFilters}
+                      isMobile
+                    />
+                  ) : (
+                    <p className="text-sm text-default-grey/70">Add blog posts to enable filters.</p>
+                  )}
                 </div>
               )}
             </div>
@@ -203,53 +131,7 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
             ) : (
               <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
                 {filteredPosts.map((post) => (
-                  <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
-                    <article className="overflow-hidden rounded-lg bg-white shadow-md transition duration-300 group-hover:-translate-y-1 group-hover:shadow-lg">
-                      <div className="aspect-[16/9] overflow-hidden">
-                        <img
-                          src={post.imageUrl}
-                          alt={post.title}
-                          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                      <div className="space-y-3 p-5">
-                        {(post.category || post.tags.length > 0) && (
-                          <div className="flex flex-wrap gap-2">
-                            {post.category && (
-                              <span className="rounded-full border border-dark-blue/20 bg-dark-blue/10 px-2 py-0.5 text-xs font-semibold uppercase tracking-[0.2em] text-default-grey">
-                                {post.category}
-                              </span>
-                            )}
-                            {post.tags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="rounded-full border border-dark-blue/10 bg-dark-blue/5 px-2 py-0.5 text-xs text-default-grey"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                        <h2 className="font-headline text-2xl font-semibold text-default-grey">
-                          {post.title}
-                        </h2>
-                        <p className="text-base text-default-grey/80">{post.subtitle}</p>
-                        <div className="flex flex-wrap items-center justify-between gap-2 text-sm text-default-grey/70">
-                          <span>By {post.author}</span>
-                          {post.datePublished && (
-                            <span>
-                              {(() => {
-                                const [year, month, day] = post.datePublished.split('-').map(Number);
-                                return new Date(year, month - 1, day).toLocaleDateString('en-US');
-                              })()}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </article>
-                  </Link>
+                  <BlogPostCard key={post.slug} post={post} />
                 ))}
               </div>
             )}
