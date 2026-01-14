@@ -223,6 +223,75 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             ))}
           </div>
         )}
+
+        {/* Similar Posts Section */}
+        <div className="mt-20 border-t border-dark-blue/10 pt-16">
+          {(() => {
+            const allPosts = getBlogPosts();
+            const similarPosts = allPosts
+              .filter((p) => p.slug !== post.slug) // Exclude current post
+              .filter((p) => p.tags.some((tag) => post.tags.includes(tag))) // At least one tag in common
+              .slice(0, 3); // Show up to 3 similar posts
+
+            if (similarPosts.length > 0) {
+              return (
+                <div className="space-y-10">
+                  <h2 className="font-headline text-3xl font-semibold text-dark-blue">
+                    Similar Posts
+                  </h2>
+                  <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    {similarPosts.map((similar) => (
+                      <Link
+                        key={similar.slug}
+                        href={`/blog/${similar.slug}`}
+                        className="group flex flex-col space-y-4 rounded-lg bg-white p-4 shadow-sm ring-1 ring-black/5 transition-all hover:-translate-y-1 hover:shadow-md"
+                      >
+                        <div className="aspect-video overflow-hidden rounded-lg">
+                          <img
+                            src={similar.imageUrl}
+                            alt={similar.title}
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <h3 className="font-headline text-xl font-bold leading-tight text-dark-blue">
+                            {similar.title}
+                          </h3>
+                          <p className="line-clamp-2 text-sm text-default-grey/70">
+                            {similar.subtitle}
+                          </p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="mt-12 flex justify-start">
+                    <Link
+                      href="/blog"
+                      className="inline-flex items-center gap-2 text-dark-blue font-bold transition-colors group"
+                    >
+                      View All Posts
+                      <span className="transition-transform group-hover:translate-x-1">→</span>
+                    </Link>
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <div className="flex flex-col items-center justify-center space-y-6 text-center">
+                <p className="text-lg text-default-grey/60 italic">
+                  No similar posts found, but there's plenty more to explore.
+                </p>
+                <Link
+                  href="/blog"
+                  className="btn !px-10 !py-4 text-lg inline-flex items-center gap-2"
+                >
+                  ← Back To Blog
+                </Link>
+              </div>
+            );
+          })()}
+        </div>
       </div>
       <ScrollToTopButton targetId="blog-post-image" />
     </section>
