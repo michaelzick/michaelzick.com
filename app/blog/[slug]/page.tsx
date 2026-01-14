@@ -228,7 +228,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         )}
 
         {/* Similar Posts Section */}
-        <div className="mt-20 border-t border-dark-blue/10 pt-16">
+        <div className="mt-10 border-t border-dark-blue/10 pt-8">
           {(() => {
             const allPosts = getBlogPosts();
             const similarPosts = allPosts
