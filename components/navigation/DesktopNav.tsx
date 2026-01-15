@@ -73,6 +73,7 @@ export default function DesktopNav({
           className={`nav-link text-2xl max-[1174px]:text-xl flex items-center gap-2 ${isLightNav ? 'text-default-grey' : ''}`}
           aria-haspopup="menu"
           aria-expanded={appsOpen}
+          aria-controls="apps-menu"
         >
           Apps
           <svg
@@ -89,6 +90,7 @@ export default function DesktopNav({
           </svg>
         </button>
         <div
+          id="apps-menu"
           className={`absolute left-0 top-full mt-3 w-max rounded-lg bg-white text-default-grey shadow-xl ring-1 ring-black/5 transition-all duration-200 flex flex-col ${appsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none'
             }`}
           role="menu"
