@@ -48,7 +48,7 @@ export default function ContactContent() {
                   className="group inline-flex h-16 w-16 items-center justify-center rounded-lg border border-white/40 transition-all duration-300 hover:bg-white/10 hover:border-white"
                 >
                   <svg
-                    className="w-10 h-10 fill-current opacity-80 group-hover:opacity-100 transition-opacity"
+                    className="w-14 h-14 fill-current opacity-80 group-hover:opacity-100 transition-opacity"
                     viewBox="0 0 64 64"
                     aria-hidden="true"
                   >
