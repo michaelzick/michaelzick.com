@@ -18,7 +18,7 @@ export default function ContactContent() {
         </div>
       </section>
 
-      <section className="bg-default-grey text-white px-6 md:px-8 pt-24 md:pt-32 pb-24 md:pb-32">
+      <section className="bg-default-grey text-white px-4 md:px-8 pt-24 md:pt-32 pb-24 md:pb-32">
         <FadeInSection className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-8 lg:gap-16">
           <div className="md:col-span-5 flex flex-col justify-between">
             <div className="flex flex-col items-start gap-8">
@@ -30,7 +30,7 @@ export default function ContactContent() {
                 href="https://calendly.com/michaelzick/45min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn text-xl whitespace-nowrap"
+                className="btn text-xl text-center"
               >
                 Schedule Your Free Session
               </a>
@@ -56,7 +56,7 @@ export default function ContactContent() {
               </a>
             </div>
           </div>
-          <div className="md:col-span-7 bg-white text-black rounded-xl p-8 shadow-2xl ring-1 ring-black/5">
+          <div className="md:col-span-7 bg-white text-black rounded-xl p-5 sm:p-8 shadow-2xl ring-1 ring-black/5">
             <h2 className="text-3xl font-bold mb-8 text-default-grey">Send a Message</h2>
             <ContactForm />
           </div>
