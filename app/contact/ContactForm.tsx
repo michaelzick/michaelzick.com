@@ -136,7 +136,7 @@ export default function ContactForm() {
           required
         />
       </div>
-      <div className="space-y-4">
+      <div className="space-y-4 !mt-4">
         <HCaptcha
           sitekey={hCaptchaSiteKey}
           onVerify={(token) => {
@@ -164,7 +164,7 @@ export default function ContactForm() {
           There was an error sending your message. Please try again.
         </div>
       )}
-      <div className="pt-4">
+      <div className="!mt-4">
         <button
           type="submit"
           className="btn !w-full md:!w-auto !text-xl !px-16 !py-8 transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
