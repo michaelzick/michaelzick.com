@@ -23,7 +23,7 @@ export default function ContactContent() {
         <FadeInSection className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-10 lg:gap-12 items-stretch">
           {/* Column 1: Image (Left) */}
           <div className="hidden md:block md:col-span-3 lg:col-span-3 order-1 h-full">
-            <div className="relative h-full overflow-hidden rounded-xl shadow-2xl ring-1 ring-white/10 min-h-[500px]">
+            <div className="relative h-full overflow-hidden rounded-xl shadow-2xl ring-1 ring-white/10 min-h-[640px]">
               <Image
                 src="/img/grey-suit-blue-shirt-2.webp"
                 alt="Michael Zick"
