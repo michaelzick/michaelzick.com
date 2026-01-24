@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import ScrollToTopButton from '../../../components/blog/ScrollToTopButton';
 import { getBlogPostBySlug, getBlogPosts } from '../../../lib/blog';
@@ -202,12 +203,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </div>
         <div id="blog-post-image" className="mt-8 overflow-hidden rounded-lg shadow-md">
-          <img
+          <Image
             src={post.imageUrl}
             alt={post.title}
+            width={1200}
+            height={630}
             className="h-full w-full object-cover"
-            loading="lazy"
-            decoding="async"
+            priority={true}
           />
         </div>
         <div
@@ -250,9 +252,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         className="group flex flex-col space-y-4 rounded-lg bg-white p-4 shadow-sm ring-1 ring-black/5 transition-all hover:-translate-y-1 hover:shadow-md"
                       >
                         <div className="aspect-video overflow-hidden rounded-lg">
-                          <img
+                          <Image
                             src={similar.imageUrl}
                             alt={similar.title}
+                            width={400}
+                            height={225}
                             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                           />
                         </div>
@@ -283,7 +287,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             return (
               <div className="flex flex-col items-center justify-center space-y-6 text-center">
                 <p className="text-lg text-default-grey/60 italic">
-                  No similar posts found, but there's plenty more to explore.
+                  No similar posts found, but there&apos;s plenty more to explore.
                 </p>
                 <Link
                   href="/blog"

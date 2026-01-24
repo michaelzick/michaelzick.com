@@ -18,7 +18,7 @@ export default function QuestionnairePage() {
           Reality Alignment Questionnaire
         </h1>
         <p className="text-xl text-default-grey/80 max-w-xl mx-auto">
-          "We don't think our way into right action; we act our way into right thinking."
+          &quot;We don&apos;t think our way into right action; we act our way into right thinking.&quot;
           <br />
           <strong className="block mt-2">Discover your path to alignment.</strong>
         </p>

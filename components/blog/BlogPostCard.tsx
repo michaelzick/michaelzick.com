@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import type { BlogPost } from '../../lib/blog';
 
 interface BlogPostCardProps {
@@ -12,12 +13,12 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
     <Link href={`/blog/${post.slug}`} className="group block">
       <article className="overflow-hidden rounded-lg bg-white shadow-md transition duration-300 group-hover:-translate-y-1 group-hover:shadow-lg">
         <div className="aspect-[16/9] overflow-hidden">
-          <img
+          <Image
             src={post.imageUrl}
             alt={post.title}
+            width={640}
+            height={360}
             className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-            loading="lazy"
-            decoding="async"
           />
         </div>
         <div className="space-y-3 p-5">

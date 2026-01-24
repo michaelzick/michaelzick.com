@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { trackEvent } from '../lib/analytics';
 import { Step, FormData } from '../lib/types';
 import QuestionnaireAnalysis from './questionnaire/QuestionnaireAnalysis';
@@ -27,18 +27,7 @@ export default function Questionnaire() {
 
   const currentStep = STEPS[stepIndex];
 
-  useEffect(() => {
-    // Skip scroll on initial mount to avoid jumping on page load
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-
-    // Scroll for any step changes or when analysis appears
-    scrollToTop();
-  }, [stepIndex, analysis]);
-
-  const scrollToTop = () => {
+  const scrollToTop = useCallback(() => {
     if (stepIndex === 0 && !analysis) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
@@ -50,7 +39,18 @@ export default function Questionnaire() {
       const y = ref.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
-  };
+  }, [stepIndex, analysis]);
+
+  useEffect(() => {
+    // Skip scroll on initial mount to avoid jumping on page load
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    // Scroll for any step changes or when analysis appears
+    scrollToTop();
+  }, [stepIndex, analysis, scrollToTop]);
 
   const isStepValid = () => {
     if (currentStep.id === 'intake') {

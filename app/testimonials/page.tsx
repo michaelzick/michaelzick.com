@@ -1,6 +1,7 @@
-import type { Metadata } from 'next'
-import { FadeInSection } from '../../components/FadeInSection'
-import { siteConfig } from '../../lib/site'
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import { FadeInSection } from '../../components/FadeInSection';
+import { siteConfig } from '../../lib/site';
 
 export const metadata: Metadata = {
   title: 'Michael Zick | Testimonials',
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
       'Read testimonials from clients of Michael Zick\'s reality alignment coaching program.',
     images: ['/img/mountains_2500.webp'],
   },
-}
+};
 
 export default function Testimonials() {
   return (
@@ -69,9 +70,11 @@ export default function Testimonials() {
               </p>
             </FadeInSection>
             <div className="md:w-1/2 order-1 md:order-2">
-              <img
+              <Image
                 src="/img/eg.webp"
                 alt="Elizabeth D."
+                width={800}
+                height={600}
                 className="w-full h-auto object-cover rounded-lg shadow-md"
               />
             </div>
@@ -79,9 +82,11 @@ export default function Testimonials() {
 
           <div className="flex flex-col md:flex-row md:items-center gap-8">
             <div className="md:w-1/2">
-              <img
+              <Image
                 src="/img/ryan.webp"
                 alt="Ryan I."
+                width={800}
+                height={600}
                 className="w-full h-auto object-cover rounded-lg shadow-md"
               />
             </div>
