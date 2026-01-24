@@ -1,5 +1,6 @@
 import ContactForm from './ContactForm';
 import { FadeInSection } from '../../components/FadeInSection';
+import Image from 'next/image';
 
 export default function ContactContent() {
   return (
@@ -19,10 +20,31 @@ export default function ContactContent() {
       </section>
 
       <section className="bg-default-grey text-white px-4 md:px-8 pt-24 md:pt-32 pb-24 md:pb-32">
-        <FadeInSection className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-8 lg:gap-16">
-          <div className="md:col-span-5 flex flex-col justify-between">
+        <FadeInSection className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-10 lg:gap-12 items-start">
+          {/* Column 1: Image (Left) */}
+          <div className="md:col-span-3 lg:col-span-3 order-1">
+            <div className="relative aspect-[1500/2612] overflow-hidden rounded-xl shadow-2xl ring-1 ring-white/10">
+              <Image
+                src="/img/grey-suit-blue-shirt-2.webp"
+                alt="Michael Zick"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 25vw"
+                priority
+              />
+            </div>
+          </div>
+
+          {/* Column 2: Contact Form (Middle) */}
+          <div className="md:col-span-6 lg:col-span-5 bg-white text-black rounded-xl p-6 sm:p-8 shadow-2xl ring-1 ring-black/5 order-2">
+            <h2 className="text-3xl font-bold mb-8 text-default-grey">Send Me a Message</h2>
+            <ContactForm />
+          </div>
+
+          {/* Column 3: CTA & Social (Right) */}
+          <div className="md:col-span-3 lg:col-span-4 flex flex-col justify-start gap-12 order-3">
             <div className="flex flex-col items-start gap-8">
-              <p className="text-2xl font-light leading-relaxed">
+              <p className="text-xl lg:text-2xl font-light leading-relaxed">
                 The best way to connect with Michael is to schedule a free 45-minute session,
                 where we&apos;ll discuss what&apos;s preventing you from achieving the life you want.
               </p>
@@ -30,13 +52,13 @@ export default function ContactContent() {
                 href="https://calendly.com/michaelzick/45min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn text-xl text-center"
+                className="btn !w-full text-lg lg:text-xl text-center !px-6"
               >
                 Schedule Your Free Session
               </a>
             </div>
 
-            <div className="mt-16 md:mt-0 flex flex-col items-start gap-4">
+            <div className="flex flex-col items-start gap-4">
               <div className="w-full h-px bg-white/20 mb-4 md:hidden" />
               <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-white/60">Social</h2>
               <div className="flex flex-row gap-4">
@@ -45,10 +67,10 @@ export default function ContactContent() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Medium"
-                  className="group inline-flex h-16 w-16 items-center justify-center rounded-lg border border-white/40 transition-all duration-300 hover:bg-white/10 hover:border-white"
+                  className="group inline-flex h-14 w-14 items-center justify-center rounded-lg border border-white/40 transition-all duration-300 hover:bg-white/10 hover:border-white"
                 >
                   <svg
-                    className="w-12 h-12 fill-current opacity-80 group-hover:opacity-100 transition-opacity"
+                    className="w-10 h-10 fill-current opacity-80 group-hover:opacity-100 transition-opacity"
                     viewBox="0 0 64 64"
                     aria-hidden="true"
                   >
@@ -60,10 +82,10 @@ export default function ContactContent() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="group inline-flex h-16 w-16 items-center justify-center rounded-lg border border-white/40 transition-all duration-300 hover:bg-white/10 hover:border-white"
+                  className="group inline-flex h-14 w-14 items-center justify-center rounded-lg border border-white/40 transition-all duration-300 hover:bg-white/10 hover:border-white"
                 >
                   <svg
-                    className="w-9 h-9 fill-current opacity-80 group-hover:opacity-100 transition-opacity"
+                    className="w-8 h-8 fill-current opacity-80 group-hover:opacity-100 transition-opacity"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
                   >
@@ -72,10 +94,6 @@ export default function ContactContent() {
                 </a>
               </div>
             </div>
-          </div>
-          <div className="md:col-span-7 bg-white text-black rounded-xl p-5 sm:p-8 shadow-2xl ring-1 ring-black/5">
-            <h2 className="text-3xl font-bold mb-8 text-default-grey">Send Me a Message</h2>
-            <ContactForm />
           </div>
         </FadeInSection>
       </section>
