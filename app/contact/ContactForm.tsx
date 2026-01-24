@@ -128,7 +128,7 @@ export default function ContactForm() {
           Message <span className="text-red-500 font-bold">*</span>
         </label>
         <textarea
-          className="border border-gray-300 rounded-lg p-4 w-full min-h-[200px] text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none resize-none"
+          className="border border-gray-300 rounded-lg p-4 w-full min-h-[150px] text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none resize-none"
           name="message"
           placeholder="Tell me more about what's on your mind..."
           value={formData.message}
