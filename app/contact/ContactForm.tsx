@@ -70,26 +70,26 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-2">
+    <form onSubmit={handleSubmit} className="space-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="space-y-3">
           <label className="block text-sm font-semibold text-default-grey/70 ml-1">
             First Name
           </label>
           <input
-            className="border border-gray-300 rounded-lg p-3 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
+            className="border border-gray-300 rounded-lg p-4 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
             name="firstName"
             placeholder="Jane"
             value={formData.firstName}
             onChange={handleChange}
           />
         </div>
-        <div className="space-y-2">
+        <div className="space-y-3">
           <label className="block text-sm font-semibold text-default-grey/70 ml-1">
             Last Name
           </label>
           <input
-            className="border border-gray-300 rounded-lg p-3 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
+            className="border border-gray-300 rounded-lg p-4 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
             name="lastName"
             placeholder="Doe"
             value={formData.lastName}
@@ -97,12 +97,12 @@ export default function ContactForm() {
           />
         </div>
       </div>
-      <div className="space-y-2">
+      <div className="space-y-3">
         <label className="block text-sm font-semibold text-default-grey/70 ml-1">
           Email <span className="text-red-500 font-bold">*</span>
         </label>
         <input
-          className="border border-gray-300 rounded-lg p-3 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
+          className="border border-gray-300 rounded-lg p-4 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
           type="email"
           name="email"
           placeholder="jane.doe@example.com"
@@ -111,24 +111,24 @@ export default function ContactForm() {
           required
         />
       </div>
-      <div className="space-y-2">
+      <div className="space-y-3">
         <label className="block text-sm font-semibold text-default-grey/70 ml-1">
           Subject
         </label>
         <input
-          className="border border-gray-300 rounded-lg p-3 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
+          className="border border-gray-300 rounded-lg p-4 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
           name="subject"
           placeholder="How can I help you?"
           value={formData.subject}
           onChange={handleChange}
         />
       </div>
-      <div className="space-y-2">
+      <div className="space-y-3">
         <label className="block text-sm font-semibold text-default-grey/70 ml-1">
           Message <span className="text-red-500 font-bold">*</span>
         </label>
         <textarea
-          className="border border-gray-300 rounded-lg p-3 w-full min-h-[160px] text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none resize-none"
+          className="border border-gray-300 rounded-lg p-4 w-full min-h-[200px] text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none resize-none"
           name="message"
           placeholder="Tell me more about what's on your mind..."
           value={formData.message}
@@ -136,7 +136,7 @@ export default function ContactForm() {
           required
         />
       </div>
-      <div className="space-y-2">
+      <div className="space-y-4">
         <HCaptcha
           sitekey={hCaptchaSiteKey}
           onVerify={(token) => {
@@ -164,13 +164,15 @@ export default function ContactForm() {
           There was an error sending your message. Please try again.
         </div>
       )}
-      <button
-        type="submit"
-        className="btn !w-full md:!w-auto !text-xl !px-12 !py-6 transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-        disabled={status === 'submitting' || !captchaToken}
-      >
-        {status === 'submitting' ? 'Sending...' : 'Send Message'}
-      </button>
+      <div className="pt-4">
+        <button
+          type="submit"
+          className="btn !w-full md:!w-auto !text-xl !px-16 !py-8 transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={status === 'submitting' || !captchaToken}
+        >
+          {status === 'submitting' ? 'Sending...' : 'Send Message'}
+        </button>
+      </div>
     </form>
   );
 }

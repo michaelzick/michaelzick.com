@@ -20,10 +20,10 @@ export default function ContactContent() {
       </section>
 
       <section className="bg-default-grey text-white px-4 md:px-8 pt-24 md:pt-32 pb-24 md:pb-32">
-        <FadeInSection className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-10 lg:gap-12 items-start">
+        <FadeInSection className="max-w-[1400px] mx-auto grid md:grid-cols-12 gap-10 lg:gap-12 items-stretch">
           {/* Column 1: Image (Left) */}
-          <div className="md:col-span-3 lg:col-span-3 order-1">
-            <div className="relative aspect-[1500/2612] overflow-hidden rounded-xl shadow-2xl ring-1 ring-white/10">
+          <div className="hidden md:block md:col-span-3 lg:col-span-3 order-1 h-full">
+            <div className="relative h-full overflow-hidden rounded-xl shadow-2xl ring-1 ring-white/10 min-h-[500px]">
               <Image
                 src="/img/grey-suit-blue-shirt-2.webp"
                 alt="Michael Zick"
@@ -36,7 +36,7 @@ export default function ContactContent() {
           </div>
 
           {/* Column 2: Contact Form (Middle) */}
-          <div className="md:col-span-6 lg:col-span-5 bg-white text-black rounded-xl p-6 sm:p-8 shadow-2xl ring-1 ring-black/5 order-2">
+          <div className="md:col-span-6 lg:col-span-5 bg-white text-black rounded-xl p-6 sm:p-10 lg:p-12 shadow-2xl ring-1 ring-black/5 order-2 h-full flex flex-col justify-center">
             <h2 className="text-3xl font-bold mb-8 text-default-grey">Send Me a Message</h2>
             <ContactForm />
           </div>
