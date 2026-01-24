@@ -35,19 +35,25 @@ export async function POST(req: NextRequest) {
     rateLimitMap.set(ip, userLimit);
 
     // 2. Input Validation
-    if (!firstName || !lastName || !email || !subject || !message) {
-      return NextResponse.json({ success: false, error: 'Missing required fields' }, { status: 400 });
+    if (!email || !message) {
+      return NextResponse.json({ success: false, error: 'Missing required fields (Email and Message)' }, { status: 400 });
     }
 
-    if (firstName.length > 50 || lastName.length > 50 || email.length > 100 || subject.length > 200 || message.length > 5000) {
+    if (
+      (firstName && firstName.length > 50) ||
+      (lastName && lastName.length > 50) ||
+      email.length > 100 ||
+      (subject && subject.length > 200) ||
+      message.length > 5000
+    ) {
       return NextResponse.json({ success: false, error: 'Input exceeds character limits' }, { status: 400 });
     }
 
     console.log('Contact form submission', {
-      firstName,
-      lastName,
+      firstName: firstName || '(not provided)',
+      lastName: lastName || '(not provided)',
       email,
-      subject,
+      subject: subject || '(no subject)',
       messageLength: message?.length,
     });
 
@@ -126,14 +132,17 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    const prefixedSubject = `[michaelzick.com] ${subject}`;
+    const emailSubject = subject || '(No Subject)';
+    const prefixedSubject = `[michaelzick.com] ${emailSubject}`;
+
+    const fullName = [firstName, lastName].filter(Boolean).join(' ') || 'Anonymous User';
 
     await transporter.sendMail({
       from: fromAddress,
       to: toAddress,
       replyTo: email,
       subject: prefixedSubject,
-      text: `Name: ${firstName} ${lastName}\nEmail: ${email}\n\n${message}`,
+      text: `From: ${fullName}\nEmail: ${email}\nSubject: ${emailSubject}\n\n${message}`,
     });
 
     return NextResponse.json({ success: true });
