@@ -74,7 +74,7 @@ export default function ContactContent() {
             </div>
           </div>
           <div className="md:col-span-7 bg-white text-black rounded-xl p-5 sm:p-8 shadow-2xl ring-1 ring-black/5">
-            <h2 className="text-3xl font-bold mb-8 text-default-grey">Send a Message</h2>
+            <h2 className="text-3xl font-bold mb-8 text-default-grey">Send Me a Message</h2>
             <ContactForm />
           </div>
         </FadeInSection>

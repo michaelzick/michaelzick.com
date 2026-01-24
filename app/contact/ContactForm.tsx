@@ -70,50 +70,72 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <label className="block text-sm font-semibold text-default-grey/70 ml-1">
+            First Name
+          </label>
+          <input
+            className="border border-gray-300 rounded-lg p-3 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
+            name="firstName"
+            placeholder="Jane"
+            value={formData.firstName}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="space-y-2">
+          <label className="block text-sm font-semibold text-default-grey/70 ml-1">
+            Last Name
+          </label>
+          <input
+            className="border border-gray-300 rounded-lg p-3 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
+            name="lastName"
+            placeholder="Doe"
+            value={formData.lastName}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+      <div className="space-y-2">
+        <label className="block text-sm font-semibold text-default-grey/70 ml-1">
+          Email <span className="text-red-500 font-bold">*</span>
+        </label>
         <input
-          className="border border-gray-300 rounded p-2 text-black"
-          name="firstName"
-          placeholder="First Name"
-          value={formData.firstName}
-          onChange={handleChange}
-          required
-        />
-        <input
-          className="border border-gray-300 rounded p-2 text-black"
-          name="lastName"
-          placeholder="Last Name"
-          value={formData.lastName}
+          className="border border-gray-300 rounded-lg p-3 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
+          type="email"
+          name="email"
+          placeholder="jane.doe@example.com"
+          value={formData.email}
           onChange={handleChange}
           required
         />
       </div>
-      <input
-        className="border border-gray-300 rounded p-2 w-full text-black"
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={formData.email}
-        onChange={handleChange}
-        required
-      />
-      <input
-        className="border border-gray-300 rounded p-2 w-full text-black"
-        name="subject"
-        placeholder="Subject"
-        value={formData.subject}
-        onChange={handleChange}
-        required
-      />
-      <textarea
-        className="border border-gray-300 rounded p-2 w-full min-h-[120px] text-black"
-        name="message"
-        placeholder="Message"
-        value={formData.message}
-        onChange={handleChange}
-        required
-      />
+      <div className="space-y-2">
+        <label className="block text-sm font-semibold text-default-grey/70 ml-1">
+          Subject
+        </label>
+        <input
+          className="border border-gray-300 rounded-lg p-3 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
+          name="subject"
+          placeholder="How can I help you?"
+          value={formData.subject}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="space-y-2">
+        <label className="block text-sm font-semibold text-default-grey/70 ml-1">
+          Message <span className="text-red-500 font-bold">*</span>
+        </label>
+        <textarea
+          className="border border-gray-300 rounded-lg p-3 w-full min-h-[160px] text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none resize-none"
+          name="message"
+          placeholder="Tell me more about what's on your mind..."
+          value={formData.message}
+          onChange={handleChange}
+          required
+        />
+      </div>
       <div className="space-y-2">
         <HCaptcha
           sitekey={hCaptchaSiteKey}
@@ -132,20 +154,22 @@ export default function ContactForm() {
           }}
           ref={captchaRef}
         />
-        {captchaError && <p className="text-sm text-red-600">{captchaError}</p>}
+        {captchaError && <p className="text-sm text-red-600 font-medium">{captchaError}</p>}
       </div>
       {status === 'success' && (
-        <p className="text-green-600">Your message has been sent. I will get back to you within 48 hours.</p>
+        <p className="text-green-600 font-medium">Your message has been sent. I will get back to you within 48 hours.</p>
       )}
       {status === 'error' && (
-        <p className="text-red-600">There was an error sending your message.</p>
+        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 font-medium">
+          There was an error sending your message. Please try again.
+        </div>
       )}
       <button
         type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded"
+        className="btn !w-full md:!w-auto !text-xl !px-12 !py-6 transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={status === 'submitting' || !captchaToken}
       >
-        {status === 'submitting' ? 'Sending...' : 'Send'}
+        {status === 'submitting' ? 'Sending...' : 'Send Message'}
       </button>
     </form>
   );
