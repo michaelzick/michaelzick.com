@@ -3,7 +3,7 @@ import { Step } from '../../lib/types';
 export const STEPS: Step[] = [
   {
     id: 'intake',
-    title: 'Who are you?',
+    title: 'Tell me about yourself.',
     fields: [
       { name: 'firstName', label: 'First Name', type: 'text', placeholder: 'John', maxLength: 50 },
       { name: 'lastName', label: 'Last Name', type: 'text', placeholder: 'Doe', maxLength: 50 },
