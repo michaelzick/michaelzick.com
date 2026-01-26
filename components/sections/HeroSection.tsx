@@ -13,8 +13,8 @@ export function HeroSection() {
       }}
     >
       <div className="absolute inset-0 bg-black/20" aria-hidden="true"></div>
-      <div className="relative w-full max-w-[1400px] mx-auto p-8 flex flex-col items-end">
-        <h1 className="text-4xl md:text-6xl text-right mb-8">
+      <div className="relative w-full max-w-[1400px] mx-auto p-8 flex flex-col items-start">
+        <h1 className="text-4xl md:text-6xl text-left mb-8">
           You Don&apos;t Need More Information.<br />You Need More Implementation.
         </h1>
         <TrackedCtaLink
