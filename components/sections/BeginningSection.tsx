@@ -3,6 +3,7 @@
 import type { RefObject } from 'react';
 import { FadeInSection } from '../FadeInSection';
 import TrackedCtaLink from '../TrackedCtaLink';
+import QuestionnaireCta from '../QuestionnaireCta';
 import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
 
 interface BeginningSectionProps {
@@ -113,15 +114,7 @@ export function BeginningSection({
             >
               Book a Free Session
             </TrackedCtaLink>
-            <TrackedCtaLink
-              href="/questionnaire"
-              className="rainbow-glass-btn"
-              location="beginning"
-              label="Take the Questionnaire"
-              target="_self"
-            >
-              Take the Questionnaire
-            </TrackedCtaLink>
+            <QuestionnaireCta location="beginning" />
           </div>
         </FadeInSection>
       </section>

@@ -110,6 +110,23 @@ export default function Testimonials() {
               </p>
             </FadeInSection>
           </div>
+
+          <div className="mt-16 flex flex-col items-center justify-center gap-6 md:flex-row">
+            <a
+              href="https://calendly.com/michaelzick/45min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn text-xl"
+            >
+              Book a Free Session
+            </a>
+            <a
+              href="/questionnaire"
+              className="rainbow-glass-btn"
+            >
+              Take the Questionnaire
+            </a>
+          </div>
         </div>
       </section>
 

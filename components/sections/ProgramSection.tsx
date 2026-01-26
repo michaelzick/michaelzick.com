@@ -3,6 +3,7 @@
 import type { ReactNode, RefObject } from 'react';
 import { FadeInSection } from '../FadeInSection';
 import TrackedCtaLink from '../TrackedCtaLink';
+import QuestionnaireCta from '../QuestionnaireCta';
 import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
 
 interface ProgramSectionProps {
@@ -41,9 +42,8 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop }: Progra
                 <li
                   key={index}
                   ref={setDetailRef(index)}
-                  className={`grid grid-cols-[auto_1fr] gap-x-6 border-b border-white/20 py-7 md:py-8 transition-all duration-700 ease-out ${
-                    detailVisible[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                  }`}
+                  className={`grid grid-cols-[auto_1fr] gap-x-6 border-b border-white/20 py-7 md:py-8 transition-all duration-700 ease-out ${detailVisible[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                    }`}
                 >
                   <span className="mt-2 font-mono text-xs font-semibold tracking-[0.35em] text-white/70">
                     {itemNumber}
@@ -53,13 +53,16 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop }: Progra
               );
             })}
           </ul>
-          <TrackedCtaLink
-            href="https://calendly.com/michaelzick/45min"
-            className="btn mt-6 text-xl"
-            location="program"
-          >
-            Book a Free Session
-          </TrackedCtaLink>
+          <div className="mt-6 flex flex-col items-start gap-4 md:flex-row md:items-center">
+            <TrackedCtaLink
+              href="https://calendly.com/michaelzick/45min"
+              className="btn text-xl"
+              location="program"
+            >
+              Book a Free Session
+            </TrackedCtaLink>
+            <QuestionnaireCta location="program" />
+          </div>
         </FadeInSection>
       </div>
     </section>

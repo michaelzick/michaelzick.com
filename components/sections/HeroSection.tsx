@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import TrackedCtaLink from '../TrackedCtaLink';
+import QuestionnaireCta from '../QuestionnaireCta';
 
 
 export function HeroSection() {
@@ -26,15 +27,7 @@ export function HeroSection() {
           >
             Book a Free Session
           </TrackedCtaLink>
-          <TrackedCtaLink
-            href="/questionnaire"
-            className="rainbow-glass-btn"
-            location="hero"
-            label="Take the Questionnaire"
-            target="_self"
-          >
-            Take the Questionnaire
-          </TrackedCtaLink>
+          <QuestionnaireCta location="hero" />
         </div>
       </div>
     </section>
