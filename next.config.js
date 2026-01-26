@@ -1,5 +1,5 @@
 const nextConfig = {
-  images: { domains: ['www.michaelzick.com', 'michaelzick.com'] },
+  images: { domains: ['www.michaelzick.com', 'michaelzick.com', 'miro.medium.com'] },
   async redirects() {
     return [
       {
