@@ -33,33 +33,29 @@ export function BeginningSection({
         <div className="mx-auto max-w-4xl space-y-8 px-6 text-left md:px-8">
           <h2
             ref={setCopyRef(0)}
-            className={`font-headline text-5xl font-bold leading-[1.05] md:text-8xl transition-all duration-700 ease-out ${
-              copyVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-            }`}
+            className={`font-headline text-5xl font-bold leading-[1.05] md:text-8xl transition-all duration-700 ease-out ${copyVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
           >
             Let me guess...
           </h2>
           <h3
             ref={setCopyRef(1)}
-            className={`font-headline text-3xl font-bold leading-tight md:text-5xl transition-all duration-700 ease-out delay-150 ${
-              copyVisible[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-            }`}
+            className={`font-headline text-3xl font-bold leading-tight md:text-5xl transition-all duration-700 ease-out delay-150 ${copyVisible[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
           >
             You know what you need to change but something keeps holding you back.
           </h3>
           <h3
             ref={setCopyRef(2)}
-            className={`font-headline text-3xl font-bold leading-tight md:text-5xl transition-all duration-700 ease-out delay-300 ${
-              copyVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-            }`}
+            className={`font-headline text-3xl font-bold leading-tight md:text-5xl transition-all duration-700 ease-out delay-300 ${copyVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
           >
             You’ve done talk therapy, read self-help books, and maybe even joined support groups, but the same old patterns remain.
           </h3>
           <h2
             ref={setCopyRef(3)}
-            className={`font-headline text-4xl font-bold leading-tight md:text-6xl transition-all duration-700 ease-out delay-500 ${
-              copyVisible[3] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-            }`}
+            className={`font-headline text-4xl font-bold leading-tight md:text-6xl transition-all duration-700 ease-out delay-500 ${copyVisible[3] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
           >
             Here’s the thing...
           </h2>
@@ -81,16 +77,14 @@ export function BeginningSection({
             className="font-headline text-center text-5xl font-bold text-white leading-[1.05] md:text-8xl"
           >
             <span
-              className={`block transition-all duration-700 ease-out ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-              }`}
+              className={`block transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                }`}
             >
               What Keeps You Safe,
             </span>
             <span
-              className={`block transition-all duration-700 ease-out delay-150 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-              }`}
+              className={`block transition-all duration-700 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                }`}
             >
               Keeps You In Place.
             </span>
@@ -111,13 +105,23 @@ export function BeginningSection({
           <h2 className="font-headline text-4xl font-bold tracking-tight leading-tight md:text-5xl lg:text-6xl">
             It&apos;s Time To Get In Touch With Reality.
           </h2>
-          <TrackedCtaLink
-            href="https://calendly.com/michaelzick/45min"
-            className="btn mt-10 inline-block text-xl"
-            location="beginning"
-          >
-            Book a Free Session
-          </TrackedCtaLink>
+          <div className="mt-10 flex flex-col items-center justify-center gap-6 md:flex-row">
+            <TrackedCtaLink
+              href="https://calendly.com/michaelzick/45min"
+              className="btn text-xl"
+              location="beginning"
+            >
+              Book a Free Session
+            </TrackedCtaLink>
+            <TrackedCtaLink
+              href="/questionnaire"
+              className="rainbow-glass-btn"
+              location="beginning"
+              label="Take the Questionnaire"
+            >
+              Take the Questionnaire
+            </TrackedCtaLink>
+          </div>
         </FadeInSection>
       </section>
     </div>
