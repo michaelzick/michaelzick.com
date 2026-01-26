@@ -114,7 +114,6 @@ html {
     padding: 30px 42px;
     font-size: 16px;
     line-height: 16px;
-    border: 2px solid transparent;
   }
 
   .nav-button {
@@ -181,11 +180,14 @@ html {
   }
 
   .rainbow-glass-btn {
-    @apply relative inline-flex items-center justify-center rounded-lg font-bold text-base md:text-xl whitespace-nowrap px-[22px] py-[14px] md:px-[42px] md:py-[30px] transition-all duration-300;
+    @apply relative inline-flex items-center justify-center rounded-lg font-bold text-base md:text-xl whitespace-nowrap transition-all duration-300;
+    padding: 34px 42px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(12px);
     border: 2px solid white;
     color: white;
+    font-size: 16px;
+    line-height: 16px;
     z-index: 1;
   }
 
