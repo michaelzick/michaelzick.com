@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import TrackedCtaLink from '../TrackedCtaLink';
 import QuestionnaireCta from '../QuestionnaireCta';
+import BookingCta from '../BookingCta';
 
 
 export function HeroSection() {
@@ -19,14 +20,7 @@ export function HeroSection() {
           You don&apos;t need more information.<br />You need more <em>implementation.</em>
         </h1>
         <div className="mt-4 flex flex-col items-start gap-4 md:flex-row md:items-center">
-          <TrackedCtaLink
-            href="https://calendly.com/michaelzick/45min"
-            className="btn text-xl"
-            location="hero"
-            label="Book a Free Session"
-          >
-            Book a Free Session
-          </TrackedCtaLink>
+          <BookingCta location="hero" />
           <QuestionnaireCta location="hero" />
         </div>
       </div>
