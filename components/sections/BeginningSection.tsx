@@ -118,6 +118,7 @@ export function BeginningSection({
               className="rainbow-glass-btn"
               location="beginning"
               label="Take the Questionnaire"
+              target="_self"
             >
               Take the Questionnaire
             </TrackedCtaLink>
