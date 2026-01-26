@@ -54,7 +54,7 @@ export default function ContactContent() {
                 rel="noopener noreferrer"
                 className="btn !w-full text-lg lg:text-xl text-center !px-6"
               >
-                Schedule Your Free Session
+                Book a Free Session
               </a>
             </div>
 

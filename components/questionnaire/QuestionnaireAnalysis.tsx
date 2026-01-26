@@ -27,7 +27,7 @@ export default function QuestionnaireAnalysis({ analysis, cardRef }: Questionnai
             rel="noopener noreferrer"
             className="btn text-xl whitespace-nowrap"
           >
-            Schedule Your Free Session
+            Book a Free Session
           </a>
           <Link
             href="/contact"
