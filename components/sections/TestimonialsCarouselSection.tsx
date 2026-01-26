@@ -89,9 +89,8 @@ export function TestimonialsCarouselSection({
     <section
       id="testimonials"
       ref={sectionRef}
-      className={`bg-[rgb(var(--light-grey))] px-6 pt-12 pb-16 text-default-grey md:px-8 md:pt-16 md:pb-24 transition-opacity duration-700 ease-out ${
-        isVisible ? 'opacity-100' : 'opacity-0'
-      }`}
+      className={`bg-[rgb(var(--light-grey))] px-6 pt-12 pb-16 text-default-grey md:px-8 md:pt-16 md:pb-24 transition-opacity duration-700 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'
+        }`}
       style={{ scrollMarginTop }}
     >
       <div className="mx-auto max-w-[1400px] space-y-6">
@@ -102,10 +101,10 @@ export function TestimonialsCarouselSection({
               className={`text-[45px] font-semibold transition-opacity duration-700 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'
                 }`}
             >
-              Client Results
+              Real Clients. Real Results.
             </h2>
             <p className="text-[20px] leading-relaxed">
-              Real words from clients who partnered with me to break patterns, build momentum, and see lasting change.{' '}
+              Real words from clients who partnered with me to break patterns, build momentum, and experience lasting change.{' '}
               <a
                 href="/testimonials"
                 className="text-[18px] font-semibold text-dark-blue underline decoration-dark-blue/60 decoration-2 underline-offset-4 transition hover:text-dark-blue/80"
@@ -141,9 +140,8 @@ export function TestimonialsCarouselSection({
         </div>
 
         <div
-          className={`relative transition-all duration-700 ease-out delay-200 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}
+          className={`relative transition-all duration-700 ease-out delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
         >
           <div
             ref={scrollRef}
