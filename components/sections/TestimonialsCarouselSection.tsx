@@ -152,12 +152,12 @@ export function TestimonialsCarouselSection({
             {testimonials.map((testimonial, index) => (
               <figure
                 key={index}
-                className="snap-start shrink-0 basis-full rounded-lg bg-dark-blue/95 p-6 shadow-md ring-1 ring-white/15 backdrop-blur-md md:basis-[60%] lg:basis-[45%] xl:basis-[32%]"
+                className="snap-start shrink-0 basis-full rounded-lg bg-light-grey p-6 shadow-md ring-1 ring-dark-blue/5 backdrop-blur-md md:basis-[60%] lg:basis-[45%] xl:basis-[32%]"
               >
-                <blockquote className="text-[22px] leading-relaxed text-white">
+                <blockquote className="text-[22px] leading-relaxed text-default-grey">
                   “{testimonial.quote}”
                 </blockquote>
-                <figcaption className="mt-4 text-[18px] font-semibold text-white/80">
+                <figcaption className="mt-4 text-[18px] font-semibold text-default-grey/80">
                   — {testimonial.author}
                 </figcaption>
               </figure>
