@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, type RefObject } from 'react';
 
-export type SectionId = 'beginning' | 'process' | 'specialties' | 'program' | 'testimonials';
+export type SectionId = 'process' | 'specialties' | 'program' | 'testimonials';
 
 export type SectionConfig = {
   id: SectionId;
@@ -68,19 +68,28 @@ export function useScrollTracking(sectionConfig: SectionConfig[]) {
       const nextVisited = [...visitedSectionsRef.current];
 
       sectionConfig.forEach(({ id, sectionRef, titleRef }) => {
-        if (id === 'testimonials') return;
+
         const titleNode = titleRef.current;
         if (!titleNode || !sectionRef.current) return;
 
         const titleTop = titleNode.getBoundingClientRect().top;
         const sectionTop = sectionRef.current.getBoundingClientRect().top;
 
-        const isBeginning = id === 'beginning';
+        const isBeginning = id === 'testimonials';
 
         const threshold = baseThreshold + activationFudge;
+
+        // Calculate specific mobile bounds for the first section (testimonials)
+        // using the same logic that was previously used for beginningWrapperRef
+        let isFirstSectionActiveMobile = false;
+        if (isBeginning && isCurrentlyMobile && sectionRef.current) {
+          const rect = sectionRef.current.getBoundingClientRect();
+          isFirstSectionActiveMobile = rect.top <= beginningEntryLine && rect.bottom >= beginningExitLine;
+        }
+
         const isActive = isBeginning
           ? isCurrentlyMobile
-            ? beginningActiveMobile
+            ? isFirstSectionActiveMobile
             : sectionTop <= threshold
           : titleTop <= threshold;
 

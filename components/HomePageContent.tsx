@@ -28,18 +28,11 @@ export default function HomePageContent() {
   const sectionConfig = useMemo<SectionConfig[]>(
     () => [
       {
-        id: 'testimonials',
-        linkText: 'Testimonials',
-        mobileLabel: 'Testimonials',
-        sectionRef: testimonialsSectionRef,
-        titleRef: testimonialsTitleRef,
-      },
-      {
-        id: 'beginning',
+        id: 'testimonials', // Re-anchored "Beginning" tab to Testimonials section
         linkText: 'Beginning',
         mobileLabel: 'Beginning',
-        sectionRef: beginningSectionRef,
-        titleRef: beginningTitleRef,
+        sectionRef: testimonialsSectionRef,
+        titleRef: testimonialsTitleRef,
       },
       {
         id: 'process',
@@ -70,8 +63,6 @@ export default function HomePageContent() {
       programTitleRef,
       specialtiesSectionRef,
       specialtiesTitleRef,
-      beginningSectionRef,
-      beginningTitleRef,
       testimonialsSectionRef,
       testimonialsTitleRef,
     ],
@@ -134,7 +125,7 @@ export default function HomePageContent() {
         titleRef={beginningTitleRef}
         wrapperRef={beginningWrapperRef}
         scrollMarginTop={scrollMarginTopBeginning}
-        isVisible={visibleTitles.beginning}
+        isVisible={true}
       />
 
       <ProcessSection

@@ -5,7 +5,6 @@ import type { SectionConfig, SectionId } from './useScrollTracking';
 
 export function useTitleVisibility(sectionConfig: SectionConfig[]) {
   const [visibleTitles, setVisibleTitles] = useState<Record<SectionId, boolean>>({
-    beginning: false,
     process: false,
     specialties: false,
     program: false,

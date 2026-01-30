@@ -11,12 +11,10 @@ interface NavigationTabsProps {
 }
 
 export function NavigationTabs({ sectionConfig, activeLinks, activeSection, variant }: NavigationTabsProps) {
-  const filteredConfig = sectionConfig.filter(({ id }) => id !== 'testimonials');
-
   const configs =
     variant === 'desktop'
-      ? filteredConfig.filter(({ id }) => activeLinks.includes(id))
-      : filteredConfig;
+      ? sectionConfig.filter(({ id }) => activeLinks.includes(id))
+      : sectionConfig;
 
   return (
     <>
