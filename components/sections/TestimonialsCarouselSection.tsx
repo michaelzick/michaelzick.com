@@ -89,7 +89,7 @@ export function TestimonialsCarouselSection({
     <section
       id="testimonials"
       ref={sectionRef}
-      className={`bg-[rgb(var(--light-grey))] px-6 pt-12 pb-16 text-default-grey md:px-8 md:pt-16 md:pb-24 transition-opacity duration-700 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'
+      className={`bg-dark-blue px-6 pt-12 pb-16 text-white md:px-8 md:pt-16 md:pb-24 transition-opacity duration-700 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'
         }`}
       style={{ scrollMarginTop }}
     >
@@ -107,7 +107,7 @@ export function TestimonialsCarouselSection({
               Real words from clients who partnered with me to break patterns, build momentum, and experience lasting change.{' '}
               <a
                 href="/testimonials"
-                className="text-[18px] font-semibold text-dark-blue underline decoration-dark-blue/60 decoration-2 underline-offset-4 transition hover:text-dark-blue/80"
+                className="text-[18px] font-semibold text-white/90 underline decoration-white/60 decoration-2 underline-offset-4 transition hover:text-white"
               >
                 View&nbsp;more.
               </a>
@@ -119,7 +119,7 @@ export function TestimonialsCarouselSection({
               aria-label="Previous testimonial"
               disabled={isAtStart}
               onClick={() => handleScroll('left')}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-dark-blue/30 text-white shadow-md ring-1 ring-white/20 backdrop-blur-md transition hover:bg-dark-blue/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-sm"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white shadow-md ring-1 ring-white/20 backdrop-blur-md transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-sm"
             >
               <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -130,7 +130,7 @@ export function TestimonialsCarouselSection({
               aria-label="Next testimonial"
               disabled={isAtEnd}
               onClick={() => handleScroll('right')}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-dark-blue/30 text-white shadow-md ring-1 ring-white/20 backdrop-blur-md transition hover:bg-dark-blue/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-sm"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white shadow-md ring-1 ring-white/20 backdrop-blur-md transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-sm"
             >
               <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -170,7 +170,7 @@ export function TestimonialsCarouselSection({
               aria-label="Previous testimonial"
               disabled={isAtStart}
               onClick={() => handleScroll('left')}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-dark-blue/30 text-white shadow-md ring-1 ring-white/20 backdrop-blur-md transition hover:bg-dark-blue/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-sm"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white shadow-md ring-1 ring-white/20 backdrop-blur-md transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-sm"
             >
               <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -181,7 +181,7 @@ export function TestimonialsCarouselSection({
               aria-label="Next testimonial"
               disabled={isAtEnd}
               onClick={() => handleScroll('right')}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-dark-blue/30 text-white shadow-md ring-1 ring-white/20 backdrop-blur-md transition hover:bg-dark-blue/45 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-sm"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white shadow-md ring-1 ring-white/20 backdrop-blur-md transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-sm"
             >
               <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />

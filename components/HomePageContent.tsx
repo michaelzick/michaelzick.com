@@ -28,6 +28,13 @@ export default function HomePageContent() {
   const sectionConfig = useMemo<SectionConfig[]>(
     () => [
       {
+        id: 'testimonials',
+        linkText: 'Testimonials',
+        mobileLabel: 'Testimonials',
+        sectionRef: testimonialsSectionRef,
+        titleRef: testimonialsTitleRef,
+      },
+      {
         id: 'beginning',
         linkText: 'Beginning',
         mobileLabel: 'Beginning',
@@ -47,13 +54,6 @@ export default function HomePageContent() {
         mobileLabel: 'Specialties',
         sectionRef: specialtiesSectionRef,
         titleRef: specialtiesTitleRef,
-      },
-      {
-        id: 'testimonials',
-        linkText: 'Testimonials',
-        mobileLabel: 'Testimonials',
-        sectionRef: testimonialsSectionRef,
-        titleRef: testimonialsTitleRef,
       },
       {
         id: 'program',
@@ -122,6 +122,13 @@ export default function HomePageContent() {
 
       <HeroSection />
 
+      <TestimonialsCarouselSection
+        sectionRef={testimonialsSectionRef}
+        titleRef={testimonialsTitleRef}
+        scrollMarginTop={scrollMarginTop}
+        isVisible={visibleTitles.testimonials}
+      />
+
       <BeginningSection
         sectionRef={beginningSectionRef}
         titleRef={beginningTitleRef}
@@ -144,12 +151,7 @@ export default function HomePageContent() {
         isVisible={visibleTitles.specialties}
       />
 
-      <TestimonialsCarouselSection
-        sectionRef={testimonialsSectionRef}
-        titleRef={testimonialsTitleRef}
-        scrollMarginTop={scrollMarginTop}
-        isVisible={visibleTitles.testimonials}
-      />
+
 
       <ProgramSection
         sectionRef={programSectionRef}
