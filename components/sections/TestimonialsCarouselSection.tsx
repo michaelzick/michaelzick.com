@@ -143,9 +143,27 @@ export function TestimonialsCarouselSection({
           className={`relative transition-all duration-700 ease-out delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
         >
+          {/* Mobile Stacked View (< 768px) */}
+          <div className="block md:hidden space-y-6">
+            {testimonials.slice(0, 3).map((testimonial, index) => (
+              <figure
+                key={`mobile-${index}`}
+                className="rounded-lg bg-light-grey p-6 shadow-md ring-1 ring-dark-blue/5 backdrop-blur-md"
+              >
+                <blockquote className="text-[22px] leading-relaxed text-default-grey">
+                  “{testimonial.quote}”
+                </blockquote>
+                <figcaption className="mt-4 text-[18px] font-semibold text-default-grey/80">
+                  — {testimonial.author}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          {/* Desktop Carousel View (>= 768px) */}
           <div
             ref={scrollRef}
-            className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4"
+            className="hidden md:flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4"
             role="region"
             aria-label="Client testimonials carousel"
           >
@@ -162,31 +180,6 @@ export function TestimonialsCarouselSection({
                 </figcaption>
               </figure>
             ))}
-          </div>
-
-          <div className="mt-4 flex justify-center gap-3 md:hidden">
-            <button
-              type="button"
-              aria-label="Previous testimonial"
-              disabled={isAtStart}
-              onClick={() => handleScroll('left')}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white shadow-md ring-1 ring-white/20 backdrop-blur-md transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-sm"
-            >
-              <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              type="button"
-              aria-label="Next testimonial"
-              disabled={isAtEnd}
-              onClick={() => handleScroll('right')}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white shadow-md ring-1 ring-white/20 backdrop-blur-md transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-sm"
-            >
-              <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
           </div>
         </div>
       </div>
