@@ -123,6 +123,9 @@ export default function ContactContent() {
         scrollMarginTop={0}
         isVisible={testimonialsVisible}
       />
+
+      {/* Horizontal line between testimonials and footer */}
+      <div className="w-full h-px bg-gray-300"></div>
     </div>
   );
 }
