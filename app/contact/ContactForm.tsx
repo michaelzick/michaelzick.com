@@ -149,12 +149,12 @@ export default function ContactForm() {
           required
         />
       </div>
-      <div className="flex items-start gap-3 rounded-lg border border-gray-200 bg-gray-50 p-4">
+      <div className="flex items-center gap-3 rounded-lg border border-gray-200 bg-gray-50 p-4">
         <input
           id="workbookOptIn"
           name="workbookOptIn"
           type="checkbox"
-          className="mt-1 h-5 w-5 rounded border-gray-300 text-primary-blue focus:ring-primary-blue/30"
+          className="h-5 w-5 rounded border-gray-300 text-primary-blue focus:ring-primary-blue/30"
           checked={formData.workbookOptIn}
           onChange={handleChange}
         />
