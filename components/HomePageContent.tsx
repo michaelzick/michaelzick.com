@@ -153,24 +153,18 @@ export default function HomePageContent() {
 
       <section
         id="home-contact"
-        className="bg-default-grey text-white px-6 py-16 md:px-8 md:py-24"
+        className="bg-default-grey text-white px-6 pt-12 pb-16 md:px-8 md:pt-16 md:pb-24"
       >
-        <div className="mx-auto max-w-[1200px] grid gap-10 lg:grid-cols-[1fr_1.2fr] items-start">
-          <FadeInSection className="space-y-6">
-            <h2 className="text-[48px] font-semibold leading-tight md:text-[56px]">
+        <div className="mx-auto max-w-[1200px] space-y-10">
+          <FadeInSection>
+            <h2 className="text-[48px] font-semibold leading-tight md:text-[56px] text-left">
               Let&apos;s Connect
             </h2>
-            <p className="text-lg text-white/80 leading-relaxed md:text-xl">
-              Share what you&apos;re working through and I&apos;ll respond within 48 hours.
-              If you&apos;re ready, you can also request the free Belief Reprogramming
-              Workbook in the form.
-            </p>
           </FadeInSection>
 
-          <div className="bg-white text-black rounded-xl p-4 sm:p-8 md:p-10 shadow-2xl ring-1 ring-black/5">
-            <h3 className="text-2xl font-bold mb-6 text-default-grey">Send Me a Message</h3>
+          <FadeInSection className="bg-white text-black rounded-xl p-4 sm:p-8 md:p-10 shadow-2xl ring-1 ring-black/5">
             <ContactForm />
-          </div>
+          </FadeInSection>
         </div>
       </section>
     </div>
