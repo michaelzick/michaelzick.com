@@ -16,7 +16,7 @@ export default function NavBar() {
   const [activePath, setActivePath] = useState('');
   const appsMenuRef = useRef<HTMLDivElement | null>(null);
   const isBlogActive = activePath === '/blog' || activePath.startsWith('/blog/');
-  const isLightNav = activePath.startsWith('/blog') || activePath === '/questionnaire';
+  const isLightNav = activePath.startsWith('/blog') || activePath === '/questionnaire' || activePath === '/about';
 
   useEffect(() => {
     const handleScroll = () => {
