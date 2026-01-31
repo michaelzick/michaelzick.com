@@ -45,8 +45,8 @@ export default function Testimonials() {
             </h1>
           </FadeInSection>
           <div className="space-y-24">
-            <div className="flex flex-col md:flex-row md:items-center gap-8">
-              <FadeInSection className="md:w-1/2 order-2 md:order-1 space-y-6">
+            <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
+              <div className="md:w-1/2 order-2 md:order-1 space-y-6">
                 <h3 className="text-[35px] font-medium">Elizabeth D.</h3>
                 <p className="text-[23px]">
                   “I think following that tiny voice in your head is what leads you to the most
@@ -65,7 +65,7 @@ export default function Testimonials() {
                   not just in the dating realm, but all kinds of amazing revelations and changes are
                   happening in other areas of my life, too.”
                 </p>
-              </FadeInSection>
+              </div>
               <div className="md:w-1/2 order-1 md:order-2">
                 <Image
                   src="/img/eg.webp"
@@ -75,9 +75,9 @@ export default function Testimonials() {
                   className="w-full h-auto object-cover rounded-lg shadow-md"
                 />
               </div>
-            </div>
+            </FadeInSection>
 
-            <div className="flex flex-col md:flex-row md:items-center gap-8">
+            <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
               <div className="md:w-1/2">
                 <Image
                   src="/img/ryan.webp"
@@ -87,7 +87,7 @@ export default function Testimonials() {
                   className="w-full h-auto object-cover rounded-lg shadow-md"
                 />
               </div>
-              <FadeInSection className="md:w-1/2 space-y-6">
+              <div className="md:w-1/2 space-y-6">
                 <h3 className="text-[35px] font-medium">Ryan I.</h3>
                 <p className="text-[23px]">
                   “I completed a one-on-one coaching series with Michael Zick and it was an
@@ -105,10 +105,10 @@ export default function Testimonials() {
                   me perspective, feedback, and tools to move through to a place of better clarity
                   and self knowledge.”
                 </p>
-              </FadeInSection>
-            </div>
+              </div>
+            </FadeInSection>
 
-            <div className="mt-16 flex flex-col items-center justify-center gap-6 md:flex-row">
+            <FadeInSection className="mt-16 flex flex-col items-center justify-center gap-6 md:flex-row">
               <a
                 href="https://calendly.com/michaelzick/45min"
                 target="_blank"
@@ -123,26 +123,27 @@ export default function Testimonials() {
               >
                 Take the Questionnaire
               </a>
-            </div>
+            </FadeInSection>
           </div>
         </div>
       </section>
 
       <section className="px-6 md:px-8 pt-12 pb-24 md:pt-16 md:pb-32 bg-[rgb(var(--light-grey))] text-default-grey">
         <div className="max-w-[1400px] mx-auto space-y-12 text-[23px]">
-          <div className="max-w-4xl mx-auto md:mx-0">
+          <FadeInSection className="max-w-4xl mx-auto md:mx-0">
             <h2 className="font-headline text-[45px] font-semibold leading-tight text-center md:text-left">More Testimonials</h2>
-          </div>
-          <div className="space-y-4">
+          </FadeInSection>
+
+          <FadeInSection className="space-y-4">
             <p>
               “This program is exceptional. If you want something different from your life and are
               committed to seeing change, this program will change your life! Every area of my
               life has improved.”
             </p>
             <p className="font-semibold">— Doug S.</p>
-          </div>
+          </FadeInSection>
 
-          <div className="space-y-4">
+          <FadeInSection className="space-y-4">
             <p>
               “When I think about what makes a great coach in any discipline, I think about
               someone that is not only encouraging and knowledgeable in a particular area, but
@@ -160,9 +161,9 @@ export default function Testimonials() {
               help those wanting to uncover their own greatness.”
             </p>
             <p className="font-semibold">— Greg C.</p>
-          </div>
+          </FadeInSection>
 
-          <div className="space-y-4">
+          <FadeInSection className="space-y-4">
             <p>
               “When I came to Michael for coaching, I was brand new to the process. I thought it
               would be more advice driven but it wasn’t. I want to say thank you, Michael! You
@@ -179,9 +180,9 @@ export default function Testimonials() {
               Couldn’t be happier! I highly recommend you and the service you provide.”
             </p>
             <p className="font-semibold">— Earl M.</p>
-          </div>
+          </FadeInSection>
 
-          <div className="space-y-4">
+          <FadeInSection className="space-y-4">
             <p>
               “For me, working with a life coach is rooted in their ability to recognize blindspots
               and obstacles that may be limiting my growth. Michael has that unique ability to help
@@ -196,7 +197,7 @@ export default function Testimonials() {
               exactly what I was seeking.”
             </p>
             <p className="font-semibold">— Howard B.</p>
-          </div>
+          </FadeInSection>
         </div>
       </section>
     </div>

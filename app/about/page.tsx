@@ -52,13 +52,13 @@ export default function About() {
             </h1>
           </FadeInSection>
           <div className="space-y-24 md:space-y-32">
-            <div className="flex flex-col md:flex-row md:items-center gap-8">
-              <FadeInSection className="md:w-1/2 space-y-6 order-2 md:order-1">
+            <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
+              <div className="md:w-1/2 space-y-6 order-2 md:order-1">
                 <h2 className="text-[45px] font-semibold">Get into action.</h2>
                 <div>
                   <div className="space-y-4">
                     <p className="text-[23px]">
-                      He stands by the phrase, &quot;We don&apos;t think our way into right action; we act our
+                      Michael stands by the phrase, &quot;We don&apos;t think our way into right action; we act our
                       way into right thinking.&quot; In other words, replacing worrying with doing is the
                       path to success that Michael encourages, and his clients have the results to show
                       for it.
@@ -82,8 +82,8 @@ export default function About() {
                     Book a Free Session
                   </TrackedCtaLink>
                 </div>
-              </FadeInSection>
-              <FadeInSection className="md:w-1/2 order-1 md:order-2">
+              </div>
+              <div className="md:w-1/2 order-1 md:order-2">
                 <Image
                   src="/img/blue_jacket.webp"
                   alt="Michael wearing a jacket"
@@ -92,8 +92,8 @@ export default function About() {
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="w-full h-auto object-cover rounded-lg shadow-md"
                 />
-              </FadeInSection>
-            </div>
+              </div>
+            </FadeInSection>
             <FadeInSection>
               <ul className="list-none border-t border-default-grey/30 p-0">
                 {credentials.map((item, index) => {
@@ -114,8 +114,8 @@ export default function About() {
                 })}
               </ul>
             </FadeInSection>
-            <div className="flex flex-col md:flex-row md:items-center gap-8">
-              <FadeInSection className="md:w-1/2 space-y-6 order-2 md:order-2">
+            <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
+              <div className="md:w-1/2 space-y-6 order-2 md:order-2">
                 <h2 className="text-[45px] font-semibold">Get outside.</h2>
                 <div>
                   <div className="space-y-4">
@@ -133,8 +133,8 @@ export default function About() {
                     Book a Free Session
                   </TrackedCtaLink>
                 </div>
-              </FadeInSection>
-              <FadeInSection className="md:w-1/2 order-1 md:order-1">
+              </div>
+              <div className="md:w-1/2 order-1 md:order-1">
                 <Image
                   src="/img/pitted.webp"
                   alt="Michael surfing a wave"
@@ -143,16 +143,16 @@ export default function About() {
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="w-full h-auto object-cover rounded-lg shadow-md"
                 />
-              </FadeInSection>
-            </div>
+              </div>
+            </FadeInSection>
           </div>
         </div>
       </section>
 
       <section className="px-6 md:px-8 py-24 md:py-32 bg-gray-100 text-default-grey">
         <div className="max-w-[1400px] mx-auto">
-          <div className="flex flex-col md:flex-row md:items-center gap-8">
-            <FadeInSection className="md:w-1/2 md:order-2">
+          <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
+            <div className="md:w-1/2 md:order-2">
               <Image
                 src="/img/grey_jacket.webp"
                 alt="Michael in suit"
@@ -161,8 +161,8 @@ export default function About() {
                 sizes="(min-width: 768px) 50vw, 100vw"
                 className="w-full h-auto object-cover rounded-lg shadow-md"
               />
-            </FadeInSection>
-            <FadeInSection className="md:w-1/2 space-y-6 md:order-1">
+            </div>
+            <div className="md:w-1/2 space-y-6 md:order-1">
               <h2 className="text-[45px] font-semibold">Let’s talk.</h2>
               <div>
                 <div className="space-y-4">
@@ -180,8 +180,8 @@ export default function About() {
                   Book a Free Session
                 </TrackedCtaLink>
               </div>
-            </FadeInSection>
-          </div>
+            </div>
+          </FadeInSection>
         </div>
       </section>
     </div>
