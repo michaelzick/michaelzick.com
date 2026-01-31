@@ -54,7 +54,7 @@ export default function About() {
           <div className="space-y-24 md:space-y-32">
             <div className="flex flex-col md:flex-row md:items-center gap-8">
               <FadeInSection className="md:w-1/2 space-y-6 order-2 md:order-1">
-                <h2 className="text-[45px] font-semibold">Michael is all about action.</h2>
+                <h2 className="text-[45px] font-semibold">Get into action.</h2>
                 <div>
                   <div className="space-y-4">
                     <p className="text-[23px]">
