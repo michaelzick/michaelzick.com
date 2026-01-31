@@ -145,43 +145,39 @@ export default function About() {
                 />
               </div>
             </FadeInSection>
-          </div>
-        </div>
-      </section>
 
-      <section className="px-6 md:px-8 py-24 md:py-32 bg-gray-100 text-default-grey">
-        <div className="max-w-[1400px] mx-auto">
-          <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
-            <div className="md:w-1/2 md:order-2">
-              <Image
-                src="/img/grey_jacket.webp"
-                alt="Michael in suit"
-                width={2500}
-                height={1667}
-                sizes="(min-width: 768px) 50vw, 100vw"
-                className="w-full h-auto object-cover rounded-lg shadow-md"
-              />
-            </div>
-            <div className="md:w-1/2 space-y-6 md:order-1">
-              <h2 className="text-[45px] font-semibold">Let’s talk.</h2>
-              <div>
-                <div className="space-y-4">
-                  <p className="text-[23px]">
-                    Michael has successfully coached celebrities, entrepreneurs, Nice Guys, and high-functioning adults
-                    to create better goals, careers, and relationships.
-                  </p>
-                  <p className="text-[23px]">Is it time to get in touch with reality?</p>
-                </div>
-                <TrackedCtaLink
-                  href="https://calendly.com/michaelzick/45min"
-                  className="btn mt-6 text-xl"
-                  location="about"
-                >
-                  Book a Free Session
-                </TrackedCtaLink>
+            <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
+              <div className="md:w-1/2 md:order-2">
+                <Image
+                  src="/img/grey_jacket.webp"
+                  alt="Michael in suit"
+                  width={2500}
+                  height={1667}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="w-full h-auto object-cover rounded-lg shadow-md"
+                />
               </div>
-            </div>
-          </FadeInSection>
+              <div className="md:w-1/2 space-y-6 md:order-1">
+                <h2 className="text-[45px] font-semibold">Let’s talk.</h2>
+                <div>
+                  <div className="space-y-4">
+                    <p className="text-[23px]">
+                      Michael has successfully coached celebrities, entrepreneurs, Nice Guys, and high-functioning adults
+                      to create better goals, careers, and relationships.
+                    </p>
+                    <p className="text-[23px]">Is it time to get in touch with reality?</p>
+                  </div>
+                  <TrackedCtaLink
+                    href="https://calendly.com/michaelzick/45min"
+                    className="btn mt-6 text-xl"
+                    location="about"
+                  >
+                    Book a Free Session
+                  </TrackedCtaLink>
+                </div>
+              </div>
+            </FadeInSection>
+          </div>
         </div>
       </section>
     </div>
