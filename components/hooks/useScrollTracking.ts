@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, type RefObject } from 'react';
 
-export type SectionId = 'beginning' | 'process' | 'specialties' | 'program' | 'testimonials';
+export type SectionId = 'process' | 'specialties' | 'program' | 'testimonials';
 
 export type SectionConfig = {
   id: SectionId;

@@ -1,5 +1,20 @@
 const nextConfig = {
-  images: { domains: ['www.michaelzick.com', 'michaelzick.com', 'miro.medium.com'] },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.michaelzick.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'michaelzick.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'miro.medium.com',
+      },
+    ],
+  },
   async redirects() {
     return [
       {

@@ -28,7 +28,7 @@ export default function HomePageContent() {
   const sectionConfig = useMemo<SectionConfig[]>(
     () => [
       {
-        id: 'testimonials', // Re-anchored "Beginning" tab to Testimonials section
+        id: 'testimonials',
         linkText: 'Beginning',
         mobileLabel: 'Beginning',
         sectionRef: testimonialsSectionRef,
@@ -141,8 +141,6 @@ export default function HomePageContent() {
         scrollMarginTop={scrollMarginTop}
         isVisible={visibleTitles.specialties}
       />
-
-
 
       <ProgramSection
         sectionRef={programSectionRef}
