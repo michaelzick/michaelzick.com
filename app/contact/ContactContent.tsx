@@ -1,31 +1,11 @@
 import ContactForm from './ContactForm';
 import { FadeInSection } from '../../components/FadeInSection';
 import Image from 'next/image';
-import BookingCta from '../../components/BookingCta';
-import QuestionnaireCta from '../../components/QuestionnaireCta';
 
 export default function ContactContent() {
   return (
     <div className="flex flex-col">
-      <section
-        className="relative flex h-screen items-end text-white"
-        style={{
-          backgroundImage: "url('/img/lake_reflection_2500.webp')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        <div className="absolute inset-0 bg-black/20" aria-hidden="true"></div>
-        <div className="relative w-full max-w-[1400px] mx-auto p-8 flex flex-col items-start">
-          <h1 className="font-headline text-4xl md:text-6xl text-left mb-8">Contact</h1>
-          <div className="mt-4 flex flex-col items-start gap-4 md:flex-row md:items-center">
-            <BookingCta location="contact-hero" />
-            <QuestionnaireCta location="contact-hero" />
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-default-grey text-white px-4 md:px-8 pt-24 md:pt-32 pb-24 md:pb-32">
+      <section className="bg-default-grey text-white px-4 md:px-8 pt-32 md:pt-48 pb-24 md:pb-32">
         <FadeInSection className="max-w-[1400px] mx-auto grid grid-cols-1 min-[930px]:grid-cols-12 gap-10 lg:gap-12 items-stretch">
           {/* Column 1: Image (Left) */}
           <div className="hidden min-[930px]:block min-[930px]:col-span-3 lg:col-span-3 order-1 h-full">
