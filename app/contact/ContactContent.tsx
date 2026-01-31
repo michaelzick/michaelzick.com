@@ -26,7 +26,7 @@ export default function ContactContent() {
       </section>
 
       <section className="bg-default-grey text-white px-4 md:px-8 pt-24 md:pt-32 pb-24 md:pb-32">
-        <FadeInSection className="max-w-[1400px] mx-auto grid min-[930px]:grid-cols-12 gap-10 lg:gap-12 items-stretch">
+        <FadeInSection className="max-w-[1400px] mx-auto grid grid-cols-1 min-[930px]:grid-cols-12 gap-10 lg:gap-12 items-stretch">
           {/* Column 1: Image (Left) */}
           <div className="hidden min-[930px]:block min-[930px]:col-span-3 lg:col-span-3 order-1 h-full">
             <div className="relative h-full overflow-hidden rounded-xl shadow-2xl ring-1 ring-white/10 min-h-[640px]">
@@ -42,13 +42,13 @@ export default function ContactContent() {
           </div>
 
           {/* Column 2: Contact Form (Middle) */}
-          <div className="col-span-12 min-[930px]:col-span-6 lg:col-span-5 bg-white text-black rounded-xl p-6 sm:p-10 lg:p-12 shadow-2xl ring-1 ring-black/5 order-2 h-full flex flex-col justify-center">
+          <div className="min-[930px]:col-span-6 lg:col-span-5 bg-white text-black rounded-xl p-4 sm:p-10 lg:p-12 shadow-2xl ring-1 ring-black/5 order-2 min-[930px]:h-full flex flex-col justify-center">
             <h2 className="text-3xl font-bold mb-8 text-default-grey">Send Me a Message</h2>
             <ContactForm />
           </div>
 
           {/* Column 3: CTA & Social (Right) */}
-          <div className="col-span-12 min-[930px]:col-span-3 lg:col-span-4 flex flex-col justify-start gap-12 order-3">
+          <div className="min-[930px]:col-span-3 lg:col-span-4 flex flex-col justify-start gap-12 order-3">
             <div className="flex flex-col items-start gap-8">
               <p className="text-xl lg:text-2xl font-light leading-relaxed">
                 The best way to connect with Michael is to schedule a free 45-minute session,

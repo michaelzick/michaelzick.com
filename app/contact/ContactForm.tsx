@@ -136,7 +136,7 @@ export default function ContactForm() {
           required
         />
       </div>
-      <div className="space-y-4 !mt-4">
+      <div className="space-y-4 !mt-4 max-w-full overflow-x-auto">
         <HCaptcha
           sitekey={hCaptchaSiteKey}
           onVerify={(token) => {
@@ -167,7 +167,7 @@ export default function ContactForm() {
       <div className="!mt-4">
         <button
           type="submit"
-          className="btn !w-full md:!w-auto !text-xl !px-16 !py-8 transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="btn !w-full md:!w-auto !text-xl !px-6 md:!px-16 !py-4 md:!py-8 transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
           disabled={status === 'submitting' || !captchaToken}
         >
           {status === 'submitting' ? 'Sending...' : 'Send Message'}
