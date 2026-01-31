@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import type { BlogPost } from '../../lib/blog';
 import BlogFilters from './BlogFilters';
 import BlogPostCard from './BlogPostCard';
+import { FadeInSection } from '../FadeInSection';
 
 type BlogIndexClientProps = {
   posts: BlogPost[];
@@ -54,16 +55,16 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
   return (
     <section className="bg-[rgb(var(--light-grey))] px-6 pb-16 pt-24 text-default-grey md:px-8 md:pb-20 md:pt-28 lg:pt-36 xl:pt-40">
       <div className="mx-auto max-w-[1400px]">
-        <div className="mb-10 text-center md:text-left">
+        <FadeInSection className="mb-10 text-center md:text-left">
           <h1 className="font-headline text-5xl font-semibold leading-tight md:text-6xl">
             Blog
           </h1>
           <p className="mt-8 text-xl text-default-grey/80">
             Perspectives, tools, and stories for reality alignment, relationships, and growth.
           </p>
-        </div>
+        </FadeInSection>
 
-        <div className="grid gap-10 lg:grid-cols-[260px_1fr]">
+        <FadeInSection className="grid gap-10 lg:grid-cols-[260px_1fr]">
           <aside className="hidden lg:block">
             <div className="sticky top-28 mt-10 rounded-lg bg-white p-5 shadow-md ring-1 ring-black/5">
               {hasFilters ? (
@@ -136,7 +137,7 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
               </div>
             )}
           </div>
-        </div>
+        </FadeInSection>
       </div>
     </section>
   );

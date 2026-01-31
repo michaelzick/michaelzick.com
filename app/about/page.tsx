@@ -2,8 +2,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { FadeInSection } from '../../components/FadeInSection';
 import TrackedCtaLink from '../../components/TrackedCtaLink';
-import BookingCta from '../../components/BookingCta';
-import QuestionnaireCta from '../../components/QuestionnaireCta';
 import { siteConfig } from '../../lib/site';
 
 export const metadata: Metadata = {
@@ -46,114 +44,107 @@ export default function About() {
 
   return (
     <div className="flex flex-col">
-      <section
-        className="relative h-screen flex items-end text-white"
-        style={{ backgroundImage: "url('/img/ocean_2500.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }}
-      >
-        <div className="absolute inset-0 bg-black/20" aria-hidden="true"></div>
-        <div className="relative w-full max-w-[1400px] mx-auto p-8 flex flex-col items-start">
-          <h1 className="text-4xl md:text-6xl text-left mb-8">About Michael</h1>
-          <div className="mt-4 flex flex-col items-start gap-4 md:flex-row md:items-center">
-            <BookingCta location="about-hero" />
-            <QuestionnaireCta location="about-hero" />
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 md:px-8 pt-24 md:pt-32 bg-gray-100 text-default-grey">
-        <div className="max-w-[1400px] mx-auto space-y-24 md:space-y-32">
-          <div className="flex flex-col md:flex-row md:items-center gap-8">
-            <FadeInSection className="md:w-1/2 space-y-6 order-2 md:order-1">
-              <h2 className="text-[45px] font-semibold">Michael is all about action.</h2>
-              <div>
-                <div className="space-y-4">
-                  <p className="text-[23px]">
-                    He stands by the phrase, &quot;We don&apos;t think our way into right action; we act our
-                    way into right thinking.&quot; In other words, replacing worrying with doing is the
-                    path to success that Michael encourages, and his clients have the results to show
-                    for it.
-                  </p>
-                  <p className="text-[23px]">
-                    He has worked with the best of the best — from top business and marketing
-                    coaches to world-renowned relationship experts like Dr. Glover and Erwan and
-                    Alicia Davon.
-                  </p>
-                  <p className="text-[23px]">
-                    With his no-BS approach, those who work with Michael will know what it&apos;s like to
-                    replace rumination with action, take ownership of their thoughts, feelings, and
-                    behaviors, stop being a victim, and play well with others without being &quot;nice.&quot;
-                  </p>
-                </div>
-                <TrackedCtaLink
-                  href="https://calendly.com/michaelzick/45min"
-                  className="btn mt-6 text-xl"
-                  location="about"
-                >
-                  Book a Free Session
-                </TrackedCtaLink>
-              </div>
-            </FadeInSection>
-            <FadeInSection className="md:w-1/2 order-1 md:order-2">
-              <Image
-                src="/img/blue_jacket.webp"
-                alt="Michael wearing a jacket"
-                width={2500}
-                height={3124}
-                sizes="(min-width: 768px) 50vw, 100vw"
-                className="w-full h-auto object-cover rounded-lg shadow-md"
-              />
-            </FadeInSection>
-          </div>
-          <FadeInSection>
-            <ul className="list-none border-t border-default-grey/30 p-0">
-              {credentials.map((item, index) => {
-                const itemNumber = String(index + 1).padStart(2, '0');
-                return (
-                  <li
-                    key={item}
-                    className="grid grid-cols-[auto_1fr] gap-x-6 border-b border-default-grey/20 py-7 md:py-8"
-                  >
-                    <span className="mt-2 font-mono text-xs font-semibold tracking-[0.35em] text-default-grey/70">
-                      {itemNumber}
-                    </span>
-                    <p className="text-[26px] font-semibold leading-snug text-default-grey md:text-[30px]">
-                      {item}
-                    </p>
-                  </li>
-                );
-              })}
-            </ul>
+      <section className="px-6 pb-24 pt-24 md:px-8 md:pb-32 md:pt-28 lg:pt-36 xl:pt-40 bg-gray-100 text-default-grey">
+        <div className="max-w-[1400px] mx-auto">
+          <FadeInSection className="mb-10 text-center md:text-left">
+            <h1 className="font-headline text-5xl font-semibold leading-tight md:text-6xl">
+              About Michael
+            </h1>
           </FadeInSection>
-          <div className="flex flex-col md:flex-row md:items-center gap-8">
-            <FadeInSection className="md:w-1/2 space-y-6 order-2 md:order-2">
-              <h2 className="text-[45px] font-semibold">Get outside.</h2>
-              <div>
-                <div className="space-y-4">
-                  <p className="text-[23px]">
-                    As an avid outdoorsman, surfer, and snowboarder, Michael promotes nature-based activities to his
-                    clients. As part of a comprehensive mind-body-emotion practice, connecting with nature is a core
-                    aspect of reality alignment coaching.
-                  </p>
+          <div className="space-y-24 md:space-y-32">
+            <div className="flex flex-col md:flex-row md:items-center gap-8">
+              <FadeInSection className="md:w-1/2 space-y-6 order-2 md:order-1">
+                <h2 className="text-[45px] font-semibold">Michael is all about action.</h2>
+                <div>
+                  <div className="space-y-4">
+                    <p className="text-[23px]">
+                      He stands by the phrase, &quot;We don&apos;t think our way into right action; we act our
+                      way into right thinking.&quot; In other words, replacing worrying with doing is the
+                      path to success that Michael encourages, and his clients have the results to show
+                      for it.
+                    </p>
+                    <p className="text-[23px]">
+                      He has worked with the best of the best — from top business and marketing
+                      coaches to world-renowned relationship experts like Dr. Glover and Erwan and
+                      Alicia Davon.
+                    </p>
+                    <p className="text-[23px]">
+                      With his no-BS approach, those who work with Michael will know what it&apos;s like to
+                      replace rumination with action, take ownership of their thoughts, feelings, and
+                      behaviors, stop being a victim, and play well with others without being &quot;nice.&quot;
+                    </p>
+                  </div>
+                  <TrackedCtaLink
+                    href="https://calendly.com/michaelzick/45min"
+                    className="btn mt-6 text-xl"
+                    location="about"
+                  >
+                    Book a Free Session
+                  </TrackedCtaLink>
                 </div>
-                <TrackedCtaLink
-                  href="https://calendly.com/michaelzick/45min"
-                  className="btn mt-6 text-xl"
-                  location="about"
-                >
-                  Book a Free Session
-                </TrackedCtaLink>
-              </div>
+              </FadeInSection>
+              <FadeInSection className="md:w-1/2 order-1 md:order-2">
+                <Image
+                  src="/img/blue_jacket.webp"
+                  alt="Michael wearing a jacket"
+                  width={2500}
+                  height={3124}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="w-full h-auto object-cover rounded-lg shadow-md"
+                />
+              </FadeInSection>
+            </div>
+            <FadeInSection>
+              <ul className="list-none border-t border-default-grey/30 p-0">
+                {credentials.map((item, index) => {
+                  const itemNumber = String(index + 1).padStart(2, '0');
+                  return (
+                    <li
+                      key={item}
+                      className="grid grid-cols-[auto_1fr] gap-x-6 border-b border-default-grey/20 py-7 md:py-8"
+                    >
+                      <span className="mt-2 font-mono text-xs font-semibold tracking-[0.35em] text-default-grey/70">
+                        {itemNumber}
+                      </span>
+                      <p className="text-[26px] font-semibold leading-snug text-default-grey md:text-[30px]">
+                        {item}
+                      </p>
+                    </li>
+                  );
+                })}
+              </ul>
             </FadeInSection>
-            <FadeInSection className="md:w-1/2 order-1 md:order-1">
-              <Image
-                src="/img/pitted.webp"
-                alt="Michael surfing a wave"
-                width={2000}
-                height={1334}
-                sizes="(min-width: 768px) 50vw, 100vw"
-                className="w-full h-auto object-cover rounded-lg shadow-md"
-              />
-            </FadeInSection>
+            <div className="flex flex-col md:flex-row md:items-center gap-8">
+              <FadeInSection className="md:w-1/2 space-y-6 order-2 md:order-2">
+                <h2 className="text-[45px] font-semibold">Get outside.</h2>
+                <div>
+                  <div className="space-y-4">
+                    <p className="text-[23px]">
+                      As an avid outdoorsman, surfer, and snowboarder, Michael promotes nature-based activities to his
+                      clients. As part of a comprehensive mind-body-emotion practice, connecting with nature is a core
+                      aspect of reality alignment coaching.
+                    </p>
+                  </div>
+                  <TrackedCtaLink
+                    href="https://calendly.com/michaelzick/45min"
+                    className="btn mt-6 text-xl"
+                    location="about"
+                  >
+                    Book a Free Session
+                  </TrackedCtaLink>
+                </div>
+              </FadeInSection>
+              <FadeInSection className="md:w-1/2 order-1 md:order-1">
+                <Image
+                  src="/img/pitted.webp"
+                  alt="Michael surfing a wave"
+                  width={2000}
+                  height={1334}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="w-full h-auto object-cover rounded-lg shadow-md"
+                />
+              </FadeInSection>
+            </div>
           </div>
         </div>
       </section>
