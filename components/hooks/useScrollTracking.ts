@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, type RefObject } from 'react';
 
-export type SectionId = 'process' | 'specialties' | 'program' | 'testimonials';
+export type SectionId = 'beginning' | 'process' | 'specialties' | 'program' | 'testimonials';
 
 export type SectionConfig = {
   id: SectionId;
@@ -52,46 +52,17 @@ export function useScrollTracking(sectionConfig: SectionConfig[]) {
         isCurrentlyMobile ? desiredScrollMargin + 8 : headerHeight + 80,
       );
 
-      const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
-      const mobileTabsBottom = mobileTabsRef.current?.getBoundingClientRect().bottom ?? 0;
-      const beginningEntryLine = Math.max(headerBottom, mobileTabsBottom) + activationFudge;
-      const beginningExitLine = Math.max(headerHeight + 8, 8);
-
-      const beginningRect = beginningWrapperRef.current?.getBoundingClientRect() ?? null;
-      const beginningActiveMobile =
-        isCurrentlyMobile &&
-        beginningRect !== null &&
-        beginningRect.top <= beginningEntryLine &&
-        beginningRect.bottom >= beginningExitLine;
-
       const activeIds: SectionId[] = [];
       const nextVisited = [...visitedSectionsRef.current];
 
       sectionConfig.forEach(({ id, sectionRef, titleRef }) => {
-
         const titleNode = titleRef.current;
         if (!titleNode || !sectionRef.current) return;
 
         const titleTop = titleNode.getBoundingClientRect().top;
-        const sectionTop = sectionRef.current.getBoundingClientRect().top;
-
-        const isBeginning = id === 'testimonials';
-
         const threshold = baseThreshold + activationFudge;
 
-        // Calculate specific mobile bounds for the first section (testimonials)
-        // using the same logic that was previously used for beginningWrapperRef
-        let isFirstSectionActiveMobile = false;
-        if (isBeginning && isCurrentlyMobile && sectionRef.current) {
-          const rect = sectionRef.current.getBoundingClientRect();
-          isFirstSectionActiveMobile = rect.top <= beginningEntryLine && rect.bottom >= beginningExitLine;
-        }
-
-        const isActive = isBeginning
-          ? isCurrentlyMobile
-            ? isFirstSectionActiveMobile
-            : sectionTop <= threshold
-          : titleTop <= threshold;
+        const isActive = titleTop <= threshold;
 
         if (isActive) {
           activeIds.push(id);
