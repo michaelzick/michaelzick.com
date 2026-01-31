@@ -20,7 +20,7 @@ export default function QuestionnairePage() {
             <h1 className="font-headline text-5xl font-semibold leading-tight md:text-6xl text-dark-blue">
               Reality Alignment Questionnaire
             </h1>
-            <p className="mt-8 text-xl text-default-grey/80 max-w-xl mx-auto md:mx-0">
+            <p className="mt-8 text-xl text-default-grey/80 md:max-w-none mx-auto md:mx-0">
               &quot;We don&apos;t think our way into right action; we act our way into right thinking.&quot;
               <br />
               <strong className="block mt-2">Discover your path to alignment.</strong>
