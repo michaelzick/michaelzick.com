@@ -162,7 +162,7 @@ export default function ContactForm() {
           htmlFor="workbookOptIn"
           className="text-sm font-medium text-default-grey/80 leading-relaxed"
         >
-          Send me a free Belief Reprogramming Workbook and add me to your email newsletter.
+          Send me a free Belief Reprogramming Workbook and add me to your email newsletter. Unsubscribe anytime.
         </label>
       </div>
       <div className="space-y-4 !mt-4 max-w-full overflow-x-auto">
