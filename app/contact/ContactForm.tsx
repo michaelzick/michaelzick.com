@@ -9,6 +9,7 @@ interface FormData {
   email: string;
   subject: string;
   message: string;
+  workbookOptIn: boolean;
 }
 
 const hCaptchaSiteKey = process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY;
@@ -20,6 +21,7 @@ export default function ContactForm() {
     email: '',
     subject: '',
     message: '',
+    workbookOptIn: true,
   });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
@@ -29,7 +31,11 @@ export default function ContactForm() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const { name, value } = e.target;
+    const { name } = e.target;
+    const value =
+      e.target instanceof HTMLInputElement && e.target.type === 'checkbox'
+        ? e.target.checked
+        : e.target.value;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -49,7 +55,14 @@ export default function ContactForm() {
       });
       if (!res.ok) throw new Error('Request failed');
       setStatus('success');
-      setFormData({ firstName: '', lastName: '', email: '', subject: '', message: '' });
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        subject: '',
+        message: '',
+        workbookOptIn: true,
+      });
       setCaptchaError(null);
       setCaptchaToken(null);
       captchaRef.current?.resetCaptcha();
@@ -135,6 +148,22 @@ export default function ContactForm() {
           onChange={handleChange}
           required
         />
+      </div>
+      <div className="flex items-start gap-3 rounded-lg border border-gray-200 bg-gray-50 p-4">
+        <input
+          id="workbookOptIn"
+          name="workbookOptIn"
+          type="checkbox"
+          className="mt-1 h-5 w-5 rounded border-gray-300 text-primary-blue focus:ring-primary-blue/30"
+          checked={formData.workbookOptIn}
+          onChange={handleChange}
+        />
+        <label
+          htmlFor="workbookOptIn"
+          className="text-sm font-medium text-default-grey/80 leading-relaxed"
+        >
+          Send me a free Belief Reprogramming Workbook and add me to your email newsletter.
+        </label>
       </div>
       <div className="space-y-4 !mt-4 max-w-full overflow-x-auto">
         <HCaptcha

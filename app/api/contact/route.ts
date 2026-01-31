@@ -14,7 +14,8 @@ const MAX_REQUESTS_PER_WINDOW = 5;
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { firstName, lastName, email, subject, message, captchaToken } = body;
+    const { firstName, lastName, email, subject, message, captchaToken, workbookOptIn } = body;
+    const workbookConsent = typeof workbookOptIn === 'boolean' ? workbookOptIn : false;
 
     // 1. Rate limiting by IP
     const forwarded = req.headers.get('x-forwarded-for');
@@ -55,6 +56,7 @@ export async function POST(req: NextRequest) {
       email,
       subject: subject || '(no subject)',
       messageLength: message?.length,
+      workbookOptIn: workbookConsent,
     });
 
     if (!captchaToken) {
@@ -142,7 +144,14 @@ export async function POST(req: NextRequest) {
       to: toAddress,
       replyTo: email,
       subject: prefixedSubject,
-      text: `From: ${fullName}\nEmail: ${email}\nSubject: ${emailSubject}\n\n${message}`,
+      text: [
+        `From: ${fullName}`,
+        `Email: ${email}`,
+        `Subject: ${emailSubject}`,
+        `Workbook + Email List Consent: ${workbookConsent ? 'Yes' : 'No'}`,
+        '',
+        message,
+      ].join('\n'),
     });
 
     return NextResponse.json({ success: true });

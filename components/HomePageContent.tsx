@@ -10,6 +10,8 @@ import { ProcessSection } from './sections/ProcessSection';
 import { SpecialtiesSection } from './sections/SpecialtiesSection';
 import { ProgramSection } from './sections/ProgramSection';
 import { TestimonialsCarouselSection } from './sections/TestimonialsCarouselSection';
+import { FadeInSection } from './FadeInSection';
+import ContactForm from '../app/contact/ContactForm';
 import type { SectionConfig } from './hooks/useScrollTracking';
 
 export default function HomePageContent() {
@@ -148,6 +150,29 @@ export default function HomePageContent() {
         scrollMarginTop={scrollMarginTop}
         isVisible={visibleTitles.program}
       />
+
+      <section
+        id="home-contact"
+        className="bg-default-grey text-white px-6 py-16 md:px-8 md:py-24"
+      >
+        <div className="mx-auto max-w-[1200px] grid gap-10 lg:grid-cols-[1fr_1.2fr] items-start">
+          <FadeInSection className="space-y-6">
+            <h2 className="text-[48px] font-semibold leading-tight md:text-[56px]">
+              Let&apos;s Connect
+            </h2>
+            <p className="text-lg text-white/80 leading-relaxed md:text-xl">
+              Share what you&apos;re working through and I&apos;ll respond within 48 hours.
+              If you&apos;re ready, you can also request the free Belief Reprogramming
+              Workbook in the form.
+            </p>
+          </FadeInSection>
+
+          <div className="bg-white text-black rounded-xl p-4 sm:p-8 md:p-10 shadow-2xl ring-1 ring-black/5">
+            <h3 className="text-2xl font-bold mb-6 text-default-grey">Send Me a Message</h3>
+            <ContactForm />
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
