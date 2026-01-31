@@ -1,21 +1,27 @@
 import ContactForm from './ContactForm';
 import { FadeInSection } from '../../components/FadeInSection';
 import Image from 'next/image';
+import BookingCta from '../../components/BookingCta';
+import QuestionnaireCta from '../../components/QuestionnaireCta';
 
 export default function ContactContent() {
   return (
     <div className="flex flex-col">
       <section
-        className="relative h-screen flex items-end text-white"
+        className="relative flex h-screen items-end text-white"
         style={{
           backgroundImage: "url('/img/lake_reflection_2500.webp')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
       >
-        <div className="absolute inset-0 bg-black/30" aria-hidden="true"></div>
-        <div className="relative w-full max-w-[1400px] mx-auto p-8">
-          <h1 className="font-headline text-4xl md:text-6xl text-right">Contact</h1>
+        <div className="absolute inset-0 bg-black/20" aria-hidden="true"></div>
+        <div className="relative w-full max-w-[1400px] mx-auto p-8 flex flex-col items-start">
+          <h1 className="font-headline text-4xl md:text-6xl text-left mb-8">Contact</h1>
+          <div className="mt-4 flex flex-col items-start gap-4 md:flex-row md:items-center">
+            <BookingCta location="contact-hero" />
+            <QuestionnaireCta location="contact-hero" />
+          </div>
         </div>
       </section>
 

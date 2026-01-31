@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { FadeInSection } from '../../components/FadeInSection';
+import BookingCta from '../../components/BookingCta';
+import QuestionnaireCta from '../../components/QuestionnaireCta';
 import { siteConfig } from '../../lib/site';
 
 export const metadata: Metadata = {
@@ -38,11 +40,16 @@ export default function Testimonials() {
   return (
     <div className="flex flex-col">
       <section
-        className="relative h-screen flex items-end text-white"
+        className="relative flex h-screen items-end text-white"
         style={{ backgroundImage: "url('/img/mountains_2500.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
-        <div className="relative w-full max-w-[1400px] mx-auto p-8">
-          <h1 className="text-4xl md:text-6xl text-right">Testimonials</h1>
+        <div className="absolute inset-0 bg-black/20" aria-hidden="true"></div>
+        <div className="relative w-full max-w-[1400px] mx-auto p-8 flex flex-col items-start">
+          <h1 className="text-4xl md:text-6xl text-left mb-8">Testimonials</h1>
+          <div className="mt-4 flex flex-col items-start gap-4 md:flex-row md:items-center">
+            <BookingCta location="testimonials-hero" />
+            <QuestionnaireCta location="testimonials-hero" />
+          </div>
         </div>
       </section>
 

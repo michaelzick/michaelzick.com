@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { FadeInSection } from '../../components/FadeInSection';
 import TrackedCtaLink from '../../components/TrackedCtaLink';
+import BookingCta from '../../components/BookingCta';
+import QuestionnaireCta from '../../components/QuestionnaireCta';
 import { siteConfig } from '../../lib/site';
 
 export const metadata: Metadata = {
@@ -48,9 +50,13 @@ export default function About() {
         className="relative h-screen flex items-end text-white"
         style={{ backgroundImage: "url('/img/ocean_2500.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
-        <div className="absolute inset-0 bg-black/30" aria-hidden="true"></div>
-        <div className="relative w-full max-w-[1400px] mx-auto p-8">
-          <h1 className="text-4xl md:text-6xl text-right">About</h1>
+        <div className="absolute inset-0 bg-black/20" aria-hidden="true"></div>
+        <div className="relative w-full max-w-[1400px] mx-auto p-8 flex flex-col items-start">
+          <h1 className="text-4xl md:text-6xl text-left mb-8">About Michael</h1>
+          <div className="mt-4 flex flex-col items-start gap-4 md:flex-row md:items-center">
+            <BookingCta location="about-hero" />
+            <QuestionnaireCta location="about-hero" />
+          </div>
         </div>
       </section>
 

@@ -13,7 +13,7 @@ interface NavigationTabsProps {
 export function NavigationTabs({ sectionConfig, activeLinks, activeSection, variant }: NavigationTabsProps) {
   const configs =
     variant === 'desktop'
-      ? sectionConfig.filter(({ id }) => activeLinks.includes(id))
+      ? sectionConfig.filter(({ id }) => activeLinks.includes(id) || id === 'testimonials')
       : sectionConfig;
 
   return (
