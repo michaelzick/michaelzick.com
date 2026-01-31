@@ -14,7 +14,7 @@ interface SpecialtiesSectionProps {
 
 export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVisible }: SpecialtiesSectionProps) {
   const specialties = [
-    'Restructuring Beliefs',
+    'Nice Guy Syndrome',
     'Healing Self-Sabotage',
     'Somatic Regulation',
     'Nature-Based Modalities',
