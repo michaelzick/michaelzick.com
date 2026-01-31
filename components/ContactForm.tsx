@@ -13,16 +13,17 @@ interface FormData {
 }
 
 const hCaptchaSiteKey = process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY;
+const initialFormData: FormData = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  subject: '',
+  message: '',
+  workbookOptIn: true,
+};
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    subject: '',
-    message: '',
-    workbookOptIn: true,
-  });
+  const [formData, setFormData] = useState<FormData>(initialFormData);
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [captchaError, setCaptchaError] = useState<string | null>(null);
@@ -32,11 +33,15 @@ export default function ContactForm() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name } = e.target;
+    if (!Object.prototype.hasOwnProperty.call(initialFormData, name)) {
+      return;
+    }
+    const key = name as keyof FormData;
     const value =
       e.target instanceof HTMLInputElement && e.target.type === 'checkbox'
         ? e.target.checked
         : e.target.value;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [key]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -55,14 +60,7 @@ export default function ContactForm() {
       });
       if (!res.ok) throw new Error('Request failed');
       setStatus('success');
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        subject: '',
-        message: '',
-        workbookOptIn: true,
-      });
+      setFormData(initialFormData);
       setCaptchaError(null);
       setCaptchaToken(null);
       captchaRef.current?.resetCaptcha();
@@ -86,10 +84,11 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="space-y-3">
-          <label className="block text-sm font-semibold text-default-grey/70 ml-1">
+          <label htmlFor="firstName" className="block text-sm font-semibold text-default-grey/70 ml-1">
             First Name
           </label>
           <input
+            id="firstName"
             className="border border-gray-300 rounded-lg p-4 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
             name="firstName"
             placeholder="Jane"
@@ -98,10 +97,11 @@ export default function ContactForm() {
           />
         </div>
         <div className="space-y-3">
-          <label className="block text-sm font-semibold text-default-grey/70 ml-1">
+          <label htmlFor="lastName" className="block text-sm font-semibold text-default-grey/70 ml-1">
             Last Name
           </label>
           <input
+            id="lastName"
             className="border border-gray-300 rounded-lg p-4 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
             name="lastName"
             placeholder="Doe"
@@ -111,10 +111,11 @@ export default function ContactForm() {
         </div>
       </div>
       <div className="space-y-3">
-        <label className="block text-sm font-semibold text-default-grey/70 ml-1">
+        <label htmlFor="email" className="block text-sm font-semibold text-default-grey/70 ml-1">
           Email <span className="text-red-500 font-bold">*</span>
         </label>
         <input
+          id="email"
           className="border border-gray-300 rounded-lg p-4 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
           type="email"
           name="email"
@@ -125,10 +126,11 @@ export default function ContactForm() {
         />
       </div>
       <div className="space-y-3">
-        <label className="block text-sm font-semibold text-default-grey/70 ml-1">
+        <label htmlFor="subject" className="block text-sm font-semibold text-default-grey/70 ml-1">
           Subject
         </label>
         <input
+          id="subject"
           className="border border-gray-300 rounded-lg p-4 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
           name="subject"
           placeholder="How can I help you?"
@@ -137,10 +139,11 @@ export default function ContactForm() {
         />
       </div>
       <div className="space-y-3">
-        <label className="block text-sm font-semibold text-default-grey/70 ml-1">
+        <label htmlFor="message" className="block text-sm font-semibold text-default-grey/70 ml-1">
           Message <span className="text-red-500 font-bold">*</span>
         </label>
         <textarea
+          id="message"
           className="border border-gray-300 rounded-lg p-4 w-full h-40 text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none resize-none"
           name="message"
           placeholder="Tell me more about what's on your mind..."

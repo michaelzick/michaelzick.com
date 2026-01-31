@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
-import ContactForm from './ContactForm';
+import ContactForm from '../../components/ContactForm';
 import { FadeInSection } from '../../components/FadeInSection';
 import Image from 'next/image';
 import { TestimonialsCarouselSection } from '../../components/sections/TestimonialsCarouselSection';

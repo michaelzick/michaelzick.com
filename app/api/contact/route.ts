@@ -82,6 +82,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (!userName || !toAddress || !fromAddress) {
+      console.error('Brevo SMTP configuration is incomplete', {
+        userName: Boolean(userName),
+        toAddress: Boolean(toAddress),
+        fromAddress: Boolean(fromAddress),
+      });
+      return NextResponse.json(
+        { success: false, error: 'Email service not configured' },
+        { status: 500 },
+      );
+    }
+
     if (!captchaSecret) {
       console.error('HCAPTCHA_SECRET_KEY is not configured');
       return NextResponse.json(

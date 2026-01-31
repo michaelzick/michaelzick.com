@@ -11,7 +11,7 @@ import { SpecialtiesSection } from './sections/SpecialtiesSection';
 import { ProgramSection } from './sections/ProgramSection';
 import { TestimonialsCarouselSection } from './sections/TestimonialsCarouselSection';
 import { FadeInSection } from './FadeInSection';
-import ContactForm from '../app/contact/ContactForm';
+import ContactForm from './ContactForm';
 import type { SectionConfig } from './hooks/useScrollTracking';
 
 export default function HomePageContent() {
