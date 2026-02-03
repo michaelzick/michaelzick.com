@@ -11,7 +11,7 @@ export default function QuestionnaireCta({ location, className }: QuestionnaireC
   return (
     <TrackedCtaLink
       href="/questionnaire"
-      className={className || 'rainbow-glass-btn'}
+      className={className || 'rainbow-glass-btn cta-unified'}
       location={location}
       label="Take the Questionnaire"
       target="_self"

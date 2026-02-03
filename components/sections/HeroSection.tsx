@@ -18,7 +18,7 @@ export function HeroSection() {
         <div className="mt-4 flex flex-col items-start gap-4 md:flex-row md:items-center">
           <TrackedCtaLink
             href="/questionnaire"
-            className="rainbow-glass-btn"
+            className="rainbow-glass-btn cta-unified"
             location="hero"
             label="Start Here"
             target="_self"

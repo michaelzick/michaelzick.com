@@ -223,4 +223,13 @@ html {
     opacity: 1;
     animation: rainbow-border-scroll 2s linear infinite;
   }
+
+  .cta-unified {
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 400;
+    height: 88px;
+    padding: 0 42px;
+    white-space: nowrap;
+  }
 }
