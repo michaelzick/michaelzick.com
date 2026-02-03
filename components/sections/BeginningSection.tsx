@@ -2,7 +2,6 @@
 
 import type { RefObject } from 'react';
 import { FadeInSection } from '../FadeInSection';
-import TrackedCtaLink from '../TrackedCtaLink';
 import QuestionnaireCta from '../QuestionnaireCta';
 import BookingCta from '../BookingCta';
 import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
@@ -48,12 +47,20 @@ export function BeginningSection({
             expecting different results?
           </h3>
           <h2
-            ref={setCopyRef(3)}
-            className={`font-headline text-4xl font-bold leading-tight md:text-6xl transition-all duration-700 ease-out delay-500 ${copyVisible[3] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            ref={setCopyRef(2)}
+            className={`font-headline text-4xl font-bold leading-tight md:text-6xl transition-all duration-700 ease-out delay-500 ${copyVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
           >
             Isn&apos;t that insanity or something?
           </h2>
+          <div
+            ref={setCopyRef(3)}
+            className={`mt-8 flex flex-col items-start gap-4 md:flex-row md:items-center transition-all duration-700 ease-out delay-700 ${copyVisible[3] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
+          >
+            <BookingCta location="beginning-intro" />
+            <QuestionnaireCta location="beginning-intro" />
+          </div>
         </div>
       </section>
 
