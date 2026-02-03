@@ -38,28 +38,21 @@ export function BeginningSection({
             className={`font-headline text-5xl font-bold leading-[1.05] md:text-8xl transition-all duration-700 ease-out ${copyVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
           >
-            Let me guess...
+            How long will you do the same things
           </h2>
           <h3
             ref={setCopyRef(1)}
             className={`font-headline text-3xl font-bold leading-tight md:text-5xl transition-all duration-700 ease-out delay-150 ${copyVisible[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
           >
-            You know what you need to change but something keeps holding you back.
-          </h3>
-          <h3
-            ref={setCopyRef(2)}
-            className={`font-headline text-3xl font-bold leading-tight md:text-5xl transition-all duration-700 ease-out delay-300 ${copyVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-              }`}
-          >
-            You’ve done talk therapy, read self-help books, and maybe even joined support groups, but the same old patterns remain.
+            expecting different results?
           </h3>
           <h2
             ref={setCopyRef(3)}
             className={`font-headline text-4xl font-bold leading-tight md:text-6xl transition-all duration-700 ease-out delay-500 ${copyVisible[3] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
           >
-            Here’s the thing...
+            Isn&apos;t that insanity or something?
           </h2>
         </div>
       </section>
