@@ -19,7 +19,7 @@ const initialFormData: FormData = {
   email: '',
   subject: '',
   message: '',
-  workbookOptIn: true,
+  workbookOptIn: false,
 };
 
 export default function ContactForm() {
