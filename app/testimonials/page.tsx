@@ -119,7 +119,7 @@ export default function Testimonials() {
               </a>
               <a
                 href="/questionnaire"
-                className="rainbow-glass-btn"
+                className="rainbow-glass-btn cta-unified"
               >
                 Take the Questionnaire
               </a>
