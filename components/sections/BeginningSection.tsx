@@ -21,7 +21,7 @@ export function BeginningSection({
   scrollMarginTop,
   isVisible
 }: BeginningSectionProps) {
-  const { setRef: setCopyRef, visibleStates: copyVisible } = useFadeInOnScroll(4, 0.35);
+  const { setRef: setCopyRef, visibleStates: copyVisible } = useFadeInOnScroll(3, 0.35);
 
   return (
     <div id="beginning-section" ref={wrapperRef}>
@@ -53,17 +53,6 @@ export function BeginningSection({
           >
             Isn&apos;t that insanity or something?
           </h2>
-          <div
-            ref={setCopyRef(3)}
-            className={`mt-8 flex flex-col items-start gap-4 md:flex-row md:items-center transition-all duration-700 ease-out delay-700 ${copyVisible[3] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-              }`}
-          >
-            <BookingCta location="beginning-intro" />
-            <QuestionnaireCta
-              location="beginning-intro"
-              className="rainbow-glass-btn !border-default-grey !text-default-grey hover:!text-default-grey"
-            />
-          </div>
         </div>
       </section>
 

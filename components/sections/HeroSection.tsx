@@ -1,8 +1,4 @@
-import Link from 'next/link';
 import TrackedCtaLink from '../TrackedCtaLink';
-import QuestionnaireCta from '../QuestionnaireCta';
-import BookingCta from '../BookingCta';
-
 
 export function HeroSection() {
   return (
@@ -20,8 +16,15 @@ export function HeroSection() {
           You don&apos;t need more information.<br />You need more <em>implementation.</em>
         </h1>
         <div className="mt-4 flex flex-col items-start gap-4 md:flex-row md:items-center">
-          <BookingCta location="hero" />
-          <QuestionnaireCta location="hero" />
+          <TrackedCtaLink
+            href="/questionnaire"
+            className="rainbow-glass-btn"
+            location="hero"
+            label="Start Here"
+            target="_self"
+          >
+            Start Here
+          </TrackedCtaLink>
         </div>
       </div>
     </section>
