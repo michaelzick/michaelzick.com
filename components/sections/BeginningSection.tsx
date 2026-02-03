@@ -59,7 +59,10 @@ export function BeginningSection({
               }`}
           >
             <BookingCta location="beginning-intro" />
-            <QuestionnaireCta location="beginning-intro" />
+            <QuestionnaireCta
+              location="beginning-intro"
+              className="rainbow-glass-btn !border-default-grey !text-default-grey hover:!text-default-grey"
+            />
           </div>
         </div>
       </section>
