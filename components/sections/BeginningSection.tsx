@@ -85,13 +85,13 @@ export function BeginningSection({
               className={`block transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}
             >
-              What Keeps You Safe,
+              Different Results Require
             </span>
             <span
               className={`block transition-all duration-700 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}
             >
-              Keeps You In Place.
+              Different Actions.
             </span>
           </h2>
         </div>
