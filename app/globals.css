@@ -232,4 +232,13 @@ html {
     padding: 0 42px;
     white-space: nowrap;
   }
+
+  .quest-cta-dark {
+    border-color: rgb(var(--default-grey));
+    color: rgb(var(--default-grey));
+  }
+
+  .quest-cta-dark:hover {
+    color: rgb(var(--default-grey));
+  }
 }
