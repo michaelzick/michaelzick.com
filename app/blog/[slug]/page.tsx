@@ -82,6 +82,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const postUrl = `${siteConfig.url}/blog/${post.slug}`;
   const imageUrl = toAbsoluteUrl(post.imageUrl);
+  const schemaLocale = siteConfig.locale.replace('_', '-');
   const [countryCode, regionCode] = siteConfig.region.split('-');
   const contentLocation = {
     '@type': 'Place',
@@ -96,28 +97,36 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const about = post.tags.map((tag) => ({ '@type': 'Thing', name: tag }));
   const wordCount = post.body ? stripHtml(post.body).split(/\s+/).filter(Boolean).length : undefined;
 
-  const isBasedOn = post.canonicalUrl?.startsWith(siteConfig.url) ? post.canonicalUrl : undefined;
   const blogPostingJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
     alternativeHeadline: post.subtitle,
     description: post.excerpt,
+    url: postUrl,
     image: imageUrl,
     author: {
       '@type': 'Person',
       name: post.author,
+      url: siteConfig.url,
     },
     publisher: {
       '@type': 'Organization',
       name: siteConfig.businessName,
       url: siteConfig.url,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteConfig.url}${siteConfig.personImage}`,
+      },
     },
     datePublished: post.datePublished,
     dateModified: post.dateModified ?? post.datePublished,
-    mainEntityOfPage: postUrl,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': postUrl,
+    },
     ...(post.canonicalUrl ? { isBasedOn: post.canonicalUrl } : {}),
-    inLanguage: siteConfig.locale,
+    inLanguage: schemaLocale,
     keywords: post.tags.join(', '),
     articleSection: post.category,
     about,

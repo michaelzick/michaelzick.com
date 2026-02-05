@@ -44,6 +44,7 @@ function toAbsoluteUrl(url: string) {
 export default function BlogPage() {
   const posts = getBlogPosts();
   const filters = getBlogFilters(posts);
+  const schemaLocale = siteConfig.locale.replace('_', '-');
 
   const blogJsonLd = {
     '@context': 'https://schema.org',
@@ -51,7 +52,7 @@ export default function BlogPage() {
     name: blogTitle,
     description: blogDescription,
     url: `${siteConfig.url}/blog`,
-    inLanguage: siteConfig.locale,
+    inLanguage: schemaLocale,
     keywords: siteConfig.keywords.join(', '),
     publisher: {
       '@type': 'Organization',
@@ -59,7 +60,6 @@ export default function BlogPage() {
       url: siteConfig.url,
     },
     blogPost: posts.map((post) => {
-      const isBasedOn = post.canonicalUrl?.startsWith(siteConfig.url) ? post.canonicalUrl : undefined;
       return {
         '@type': 'BlogPosting',
         headline: post.title,
@@ -71,8 +71,8 @@ export default function BlogPage() {
         articleSection: post.category,
         keywords: post.tags.join(', '),
         about: post.tags.map((tag) => ({ '@type': 'Thing', name: tag })),
-        inLanguage: siteConfig.locale,
-        ...(isBasedOn ? { isBasedOn } : {}),
+        inLanguage: schemaLocale,
+        ...(post.canonicalUrl ? { isBasedOn: post.canonicalUrl } : {}),
         url: `${siteConfig.url}/blog/${post.slug}`,
         image: toAbsoluteUrl(post.imageUrl),
         datePublished: post.datePublished,

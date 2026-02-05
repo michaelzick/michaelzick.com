@@ -13,6 +13,7 @@ function getRoutes(dir, route = '') {
     if (entry.isFile() && entry.name === 'page.tsx') {
       routes.push(route || '/');
     } else if (entry.isDirectory()) {
+      if (/^\[.+\]$/.test(entry.name)) continue; // Skip dynamic segment folders.
       routes = routes.concat(
         getRoutes(path.join(dir, entry.name), `${route}/${entry.name}`)
       );
