@@ -293,9 +293,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </p>
                 <Link
                   href="/blog"
-                  className="btn !px-10 !py-4 text-lg inline-flex items-center gap-2"
+                  className="inline-flex items-center gap-2 text-dark-blue font-bold transition-colors group"
                 >
-                  ← Back To Blog
+                  View All Posts
+                  <span className="transition-transform group-hover:translate-x-1">→</span>
                 </Link>
               </div>
             );
