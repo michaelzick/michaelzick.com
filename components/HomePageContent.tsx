@@ -160,6 +160,9 @@ export default function HomePageContent() {
             <h2 className="text-[48px] font-semibold leading-tight md:text-[56px] text-left">
               Let&apos;s Connect
             </h2>
+            <p className="text-[28px] leading-snug text-white md:text-[32px]">
+              Message me and get a free Belief Reprogramming Workbook.
+            </p>
           </FadeInSection>
 
           <FadeInSection className="bg-white text-black rounded-xl p-4 sm:p-8 md:p-10 shadow-2xl ring-1 ring-black/5">
