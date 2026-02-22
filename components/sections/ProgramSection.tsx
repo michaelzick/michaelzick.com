@@ -16,10 +16,10 @@ interface ProgramSectionProps {
 
 export function ProgramSection({ sectionRef, titleRef, scrollMarginTop }: ProgramSectionProps) {
   const valueProps: ReactNode[] = [
-    'Significantly improve your life and relationships.',
-    'Homework assignments to build better habits.',
-    'Emails between sessions for additional support.',
-    '6-month duration to engrain new patterns.',
+    'Stop auditioning for female approval and over-giving.',
+    'Break the cycle of people-pleasing and secret resentment.',
+    'Find the ability to hold boundaries without anger.',
+    'Become the chooser again. Date without losing your frame.',
   ];
   const { setRef: setDetailRef, visibleStates: detailVisible } = useFadeInOnScroll(valueProps.length, 0.3);
 
@@ -34,7 +34,7 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop }: Progra
       <div className="relative mx-auto max-w-[1200px]">
         <FadeInSection className="space-y-6">
           <h2 ref={titleRef} className="text-[56px] font-semibold leading-[1.05] tracking-tight md:text-[72px]">
-            Individual Coaching Program
+            The Approval Exit Protocol
           </h2>
           <ul className="list-none border-t border-white/25 p-0">
             {valueProps.map((item, index) => {

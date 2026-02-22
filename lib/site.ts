@@ -1,8 +1,8 @@
 export const siteConfig = {
   url: 'https://www.michaelzick.com',
-  name: 'Michael Zick | Reality Alignment Coach',
+  name: 'Michael Zick | Nice Guy Recovery Coach',
   shortName: 'Michael Zick',
-  description: 'Helping high-functioning adults separate fear and anxiety from reality.',
+  description: 'Nice Guy recovery is breaking the addiction to female approval. Build self-respect, boundaries, and secure attachment.',
   businessName: 'Michael Zick Coaching',
   locale: 'en_US',
   placename: 'Los Angeles',
@@ -10,6 +10,10 @@ export const siteConfig = {
   defaultImage: '/img/homepage_mountains.webp',
   personImage: '/img/grey-suit-blue-shirt.webp',
   keywords: [
+    'Nice Guy Recovery Coach',
+    'Approval Addiction',
+    'Internal Authority',
+    'Self-Led Masculinity',
     'Reality Alignment Coach',
     'Life coaching',
     'Life coach',

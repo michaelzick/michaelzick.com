@@ -22,7 +22,7 @@ export default function Footer() {
     <footer className="text-white py-8 text-lg bg-dark-blue">
       <div className="max-w-[1400px] mx-auto px-6 md:px-8 grid md:grid-cols-12 gap-8 items-start">
         <div className="md:col-span-5">
-          <p>Michael Zick | Reality Alignment Coach</p>
+          <p>Michael Zick | Nice Guy Recovery Coach</p>
         </div>
         <div className="md:col-span-4 space-y-2">
           <span className="block text-xs uppercase tracking-[0.2em] text-white/70">

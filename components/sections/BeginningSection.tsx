@@ -34,24 +34,24 @@ export function BeginningSection({
         <div className="mx-auto max-w-4xl space-y-8 px-6 text-left md:px-8">
           <h2
             ref={setCopyRef(0)}
-            className={`font-headline text-5xl font-bold leading-[1.05] md:text-8xl transition-all duration-700 ease-out ${copyVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            className={`font-headline text-5xl font-bold leading-[1.05] md:text-7xl transition-all duration-700 ease-out ${copyVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
           >
-            How long will you do the same things
+            Stop trying to earn love by being &quot;good&quot;.
           </h2>
           <h3
             ref={setCopyRef(1)}
-            className={`font-headline text-3xl font-bold leading-tight md:text-5xl transition-all duration-700 ease-out delay-150 ${copyVisible[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            className={`font-headline text-2xl font-semibold leading-tight md:text-4xl text-default-grey/80 transition-all duration-700 ease-out delay-150 ${copyVisible[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
           >
-            expecting different results?
+            Nice Guy patterns look noble. They create resentment and kill attraction.
           </h3>
           <h2
             ref={setCopyRef(2)}
             className={`font-headline text-4xl font-bold leading-tight md:text-6xl transition-all duration-700 ease-out delay-500 ${copyVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
           >
-            Isn&apos;t that insanity or something?
+            Approval isn&apos;t love. It&apos;s a drug.
           </h2>
         </div>
       </section>
@@ -71,16 +71,16 @@ export function BeginningSection({
             className="font-headline text-center text-5xl font-bold text-white leading-[1.05] md:text-8xl"
           >
             <span
-              className={`block transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              className={`block text-3xl md:text-6xl transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}
             >
-              Different Results Require
+              If her mood controls your self-worth,
             </span>
             <span
-              className={`block transition-all duration-700 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              className={`block text-4xl mt-3 md:mt-4 md:text-7xl transition-all duration-700 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}
             >
-              Different Actions.
+              you&apos;re not dating — you&apos;re managing.
             </span>
           </h2>
         </div>
@@ -96,9 +96,12 @@ export function BeginningSection({
 
       <section className="bg-dark-blue pt-20 pb-14 text-white">
         <FadeInSection className="mx-auto max-w-[1400px] px-6 text-center md:px-8">
-          <h2 className="font-headline text-4xl font-bold tracking-tight leading-tight md:text-5xl lg:text-6xl">
+          <h2 className="font-headline mb-4 text-4xl font-bold tracking-tight leading-tight md:text-5xl lg:text-6xl">
             It&apos;s Time To Get In Touch With Reality.
           </h2>
+          <p className="mx-auto max-w-2xl text-lg text-white/80 md:text-xl">
+            This isn&apos;t about becoming an asshole or learning tactics. It&apos;s about becoming self-led.
+          </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-6 md:flex-row">
             <BookingCta location="beginning" />
             <QuestionnaireCta location="beginning" />

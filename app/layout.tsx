@@ -41,7 +41,7 @@ const structuredData = {
       '@type': 'Person',
       '@id': `${siteConfig.url}/#person`,
       name: siteConfig.shortName,
-      jobTitle: 'Reality Alignment Coach',
+      jobTitle: 'Nice Guy Recovery Coach',
       url: siteConfig.url,
       image: `${siteConfig.url}${siteConfig.personImage}`,
       worksFor: {
