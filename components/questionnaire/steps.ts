@@ -3,42 +3,42 @@ import { Step } from '../../lib/types';
 export const STEPS: Step[] = [
   {
     id: 'struggle',
-    title: 'What is your biggest current struggle?',
+    title: 'The Struggle',
     questions: [
       {
         id: 'mainStruggle',
-        text: 'Briefly describe what is currently feeling "out of alignment" in your life (career, relationship, or personal growth).',
+        text: 'Where do you find yourself over-giving, auditioning for approval, or performing in your relationships?',
         type: 'textarea',
         maxLength: 1000,
       },
     ],
   },
   {
-    id: 'action',
-    title: 'Ownership vs. Victimhood',
+    id: 'covert_contracts',
+    title: 'Covert Contracts',
     questions: [
       {
-        id: 'ownership',
-        text: 'On a scale of 1-10, how much ownership are you taking for this situation versus blaming external factors?',
+        id: 'covertContractsScale',
+        text: 'On a scale of 1-10, how often do you do "nice" things with the secret expectation of receiving affection, sex, or validation in return?',
         type: 'range',
         min: 1,
         max: 10,
       },
       {
-        id: 'victimhood',
-        text: 'Where do you feel like a "victim" in your life right now?',
+        id: 'covertContractsExample',
+        text: 'What happens when that secret expectation isn\'t met?',
         type: 'textarea',
         maxLength: 1000,
       },
     ],
   },
   {
-    id: 'thinking',
-    title: 'Thinking vs. Acting',
+    id: 'displeasure_tolerance',
+    title: 'Displeasure Tolerance',
     questions: [
       {
-        id: 'rumination',
-        text: 'Are you trying to "think" your way out of this problem, or are you taking physical steps to change it?',
+        id: 'displeasureReactions',
+        text: 'When your partner (or a woman you are dating) is unhappy, disappointed, or angry, how do you typically react? (e.g., trying to fix it immediately, withdrawing, getting defensive, apologizing excessively)',
         type: 'textarea',
         maxLength: 1000,
       },

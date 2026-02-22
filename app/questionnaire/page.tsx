@@ -4,8 +4,8 @@ import { siteConfig } from '../../lib/site';
 import { FadeInSection } from '../../components/FadeInSection';
 
 export const metadata: Metadata = {
-  title: 'Reality Alignment Questionnaire | Michael Zick',
-  description: 'Take the Reality Alignment Questionnaire to discover where you are misaligned and how action-oriented coaching can help you.',
+  title: 'Nice Guy Recovery Questionnaire | Michael Zick',
+  description: 'Take the Approval Addiction Questionnaire to discover where you are giving your power away, and how to take it back.',
   alternates: {
     canonical: '/questionnaire',
   },
@@ -18,12 +18,12 @@ export default function QuestionnairePage() {
         <div className="mx-auto max-w-[1400px]">
           <FadeInSection className="mb-12 text-center md:text-left" immediate>
             <h1 className="font-headline text-5xl font-semibold leading-tight md:text-6xl text-dark-blue">
-              Reality Alignment Questionnaire
+              The Approval Addiction Questionnaire
             </h1>
             <p className="mt-8 text-xl text-default-grey/80 md:max-w-none mx-auto md:mx-0">
-              &quot;We don&apos;t think our way into right action; we act our way into right thinking.&quot;
+              Discover where you&apos;re giving your power away, and how to take it back.
               <br />
-              <strong className="block mt-2">Discover your path to alignment.</strong>
+              <strong className="block mt-2">Find your path to internal authority.</strong>
             </p>
           </FadeInSection>
           <FadeInSection>
