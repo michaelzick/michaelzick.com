@@ -10,11 +10,6 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     quote:
-      'He was able to really hear in between things I was saying and know what was important to bring up. I’ve seen some amazing changes in my world already, not just in the dating realm, but in other areas of my life, too.',
-    author: 'Elizabeth D.',
-  },
-  {
-    quote:
       'I completed a one-on-one coaching series and it was an overwhelmingly positive experience. He helped me uncover my challenges hiding under the surface — NO cookie cutter solutions.',
     author: 'Ryan I.',
   },
