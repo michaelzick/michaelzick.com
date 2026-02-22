@@ -37,9 +37,9 @@ export const metadata: Metadata = {
 
 export default function About() {
   const credentials = [
-    'Certified by Dr. Robert Glover, author of "No More Mr. Nice Guy" and renowned therapist.',
-    'Certified as a Life & Relationship Coach by Life Purpose Institute.',
-    'Established in the Los Angeles mental health and 12-Step recovery community since 2015.',
+    'Certified by Dr. Robert Glover, author of "No More Mr. Nice Guy"',
+    'Certified as a Life & Relationship Coach by Life Purpose Institute',
+    'Established in the Los Angeles mental health community since 2015',
   ];
 
   return (
