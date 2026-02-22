@@ -17,7 +17,7 @@ interface ProgramSectionProps {
 export function ProgramSection({ sectionRef, titleRef, scrollMarginTop }: ProgramSectionProps) {
   const valueProps: ReactNode[] = [
     'Stop auditioning for female approval and over-giving.',
-    'Break the cycle of people-pleasing and secret resentment.',
+    'Break the cycle of people-pleasing and enmeshment.',
     'Find the ability to hold boundaries without anger.',
     'Become the chooser again. Date without losing your frame.',
   ];

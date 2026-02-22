@@ -14,10 +14,10 @@ interface SpecialtiesSectionProps {
 
 export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVisible }: SpecialtiesSectionProps) {
   const specialties = [
-    { title: 'Pedestal Detox', desc: 'Stop earning, start choosing.' },
-    { title: 'Covert Contract Cleanup', desc: 'Say what you want, own your needs.' },
-    { title: 'Displeasure Tolerance', desc: 'Stay grounded when she\'s unhappy.' },
-    { title: 'Self-Led Standards', desc: 'Boundaries, honesty, congruence.' },
+    { title: 'Examine Parental Relationships', desc: 'Understand how your upbringing influences you.' },
+    { title: 'Identify Your Needs & Values', desc: 'Figure out what you want, need, and value.' },
+    { title: 'Communication & Boundary Setting', desc: 'Communicate your needs and boundaries effectively.' },
+    { title: 'Stay in the Discomfort', desc: 'Expose yourself to discomfort without nuking the relationship.' },
   ];
   const { setRef: setImageRef, visibleStates: imageVisible } = useFadeInOnScroll(1, 0.3);
   const { setRef: setSpecialtyRef, visibleStates: specialtyVisible } = useFadeInOnScroll(specialties.length, 0.3);

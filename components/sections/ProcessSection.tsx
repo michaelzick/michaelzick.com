@@ -43,7 +43,7 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
               sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
               className="w-full rounded-lg object-cover shadow-md aspect-[4/3] max-[767px]:rounded-none"
             />
-            <h3 className="px-2.5 text-3xl font-semibold md:px-0">Spot the Bid</h3>
+            <h3 className="px-2.5 text-3xl font-semibold md:px-0">Spot the Bid for Approval</h3>
             <p className="px-2.5 text-lg md:px-0">Where are you over-explaining, over-giving, or trying to earn safety and validation?</p>
           </div>
           <div
@@ -60,7 +60,7 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
               className="w-full rounded-lg object-cover shadow-md aspect-[4/3] max-[767px]:rounded-none"
             />
             <h3 className="px-2.5 text-3xl font-semibold md:px-0">Cancel the Covert Contract</h3>
-            <p className="px-2.5 text-lg md:px-0">Break the hidden &quot;if I&apos;m good, you&apos;ll love me&quot; deal. Say what you want and own your needs.</p>
+            <p className="px-2.5 text-lg md:px-0">Break the hidden &quot;If I&apos;m good, you&apos;ll love me&quot; deal. Say what you want and own your needs.</p>
           </div>
           <div
             ref={setCardRef(2)}
@@ -76,7 +76,7 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
               className="w-full rounded-lg object-cover shadow-md aspect-[4/3] max-[767px]:rounded-none"
             />
             <h3 className="px-2.5 text-3xl font-semibold md:px-0">Build Displeasure Tolerance</h3>
-            <p className="px-2.5 text-lg md:px-0">Learn to stay grounded and calm when she&apos;s unhappy. This ends the anxiety loop.</p>
+            <p className="px-2.5 text-lg md:px-0">Learn to stay grounded and calm when she&apos;s unhappy, disappointed, or angry. Learn how to handle discomfort.</p>
           </div>
           <div
             ref={setCardRef(3)}

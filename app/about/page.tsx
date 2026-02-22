@@ -160,7 +160,7 @@ export default function About() {
                       Today, my mission is helping high-functioning men who look successful on the outside but are secretly exhausted from auditioning for approval on the inside.
                     </p>
                     <p className="text-[23px]">
-                      I work with men to break their approval addiction, end the cycle of secret resentment, and date, mate, and live with unshakeable internal authority. You don&apos;t have to keep performing.
+                      I work with men to break their approval addiction, end the cycle of enmeshment, and date, mate, and live with unshakeable internal authority. You don&apos;t have to keep performing.
                     </p>
                     <p className="text-[23px]">
                       It&apos;s time to become the chooser again.
