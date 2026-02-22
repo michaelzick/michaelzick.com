@@ -64,7 +64,7 @@ export default function ContactContent() {
               <div className="flex flex-col items-start gap-8">
                 <p className="text-xl lg:text-2xl font-light leading-relaxed">
                   The best way to connect with Michael is to schedule a free 45-minute session,
-                  where we&apos;ll discuss what&apos;s preventing you from achieving the life you want.
+                  where we&apos;ll discuss how to break your approval addiction and reclaim your internal authority.
                 </p>
                 <a
                   href="https://calendly.com/michaelzick/45min"
