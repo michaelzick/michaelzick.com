@@ -7,14 +7,14 @@ import { siteConfig } from '../../lib/site';
 export const metadata: Metadata = {
   title: 'Michael Zick | About',
   description:
-    'Learn about Michael Zick, a reality alignment coach established in the Los Angeles mental health and recovery community since 2015.',
+    'Learn about Michael Zick, a Nice Guy Recovery Coach helping high-functioning men break free from approval addiction, toxic shame, and enmeshment to reclaim internal authority.',
   alternates: {
     canonical: '/about',
   },
   openGraph: {
-    title: 'Michael Zick | About',
+    title: 'Michael Zick | Nice Guy Recovery Coach',
     description:
-      'Learn about Michael Zick, a reality alignment coach established in the Los Angeles mental health and recovery community since 2015.',
+      'I didn\'t just study the Nice Guy trap. I lived it. Learn about my journey through enmeshment, approval addiction, and the ongoing path of recovery.',
     url: `${siteConfig.url}/about`,
     siteName: siteConfig.name,
     images: [
@@ -28,9 +28,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Michael Zick | About',
+    title: 'Michael Zick | Nice Guy Recovery Coach',
     description:
-      'Learn about Michael Zick, a reality alignment coach established in the Los Angeles mental health and recovery community since 2015.',
+      'Learn about Michael Zick, a Nice Guy Recovery Coach helping high-functioning men break free from approval addiction.',
     images: ['/img/ocean_2500.webp'],
   },
 };
@@ -39,7 +39,7 @@ export default function About() {
   const credentials = [
     'Certified by Dr. Robert Glover, author of "No More Mr. Nice Guy" and renowned therapist.',
     'Certified as a Life & Relationship Coach by Life Purpose Institute.',
-    'Established in the Los Angeles mental health and recovery community since 2015.',
+    'Established in the Los Angeles mental health and 12-Step recovery community since 2015.',
   ];
 
   return (
@@ -52,35 +52,24 @@ export default function About() {
             </h1>
           </FadeInSection>
           <div className="space-y-24 md:space-y-32">
+            {/* The Descent */}
             <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
               <div className="md:w-1/2 space-y-6 order-2 md:order-1">
-                <h2 className="text-[45px] font-semibold">Get into action.</h2>
+                <h2 className="text-[45px] font-semibold leading-[1.1] tracking-tight">
+                  I didn&apos;t just study the Nice Guy trap. I lived it.
+                </h2>
                 <div>
                   <div className="space-y-4">
                     <p className="text-[23px]">
-                      Michael stands by the phrase, &quot;We don&apos;t think our way into right action; we act our
-                      way into right thinking.&quot; In other words, replacing worrying with doing is the
-                      path to success that Michael encourages, and his clients have the results to show
-                      for it.
+                      From the age of seven, following my parents&apos; separation, I became my mother&apos;s surrogate spouse. Not physically, but emotionally. I became the &quot;man of the house&quot; and the sponge for her pain and unmet needs.
                     </p>
                     <p className="text-[23px]">
-                      He has worked with the best of the best — from top business and marketing
-                      coaches to world-renowned relationship experts like Dr. Glover and Erwan and
-                      Alicia Davon.
+                      In that environment, acting like a kid wasn&apos;t allowed. Mistakes weren&apos;t tolerated. I learned early that &quot;adult-level performance&quot; was the only safe way to exist. I became an expert at managing other people&apos;s emotions while entirely abandoning my own.
                     </p>
                     <p className="text-[23px]">
-                      With his no-BS approach, those who work with Michael will know what it&apos;s like to
-                      replace rumination with action, take ownership of their thoughts, feelings, and
-                      behaviors, stop being a victim, and play well with others without being &quot;nice.&quot;
+                      This enmeshment built my blueprint for adulthood: love equated to intensity, performance, and doing whatever it took to keep things stable. I grew up believing that my worth was dictated entirely by how deeply I was approved of by women.
                     </p>
                   </div>
-                  <TrackedCtaLink
-                    href="https://calendly.com/michaelzick/45min"
-                    className="btn mt-6 text-xl"
-                    location="about"
-                  >
-                    Book a Free Session
-                  </TrackedCtaLink>
                 </div>
               </div>
               <div className="md:w-1/2 order-1 md:order-2">
@@ -94,6 +83,8 @@ export default function About() {
                 />
               </div>
             </FadeInSection>
+
+            {/* Credentials */}
             <FadeInSection>
               <ul className="list-none border-t border-default-grey/30 p-0">
                 {credentials.map((item, index) => {
@@ -114,24 +105,25 @@ export default function About() {
                 })}
               </ul>
             </FadeInSection>
+
+            {/* The Awakening */}
             <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
               <div className="md:w-1/2 space-y-6 order-2 md:order-2">
-                <h2 className="text-[45px] font-semibold">Get outside.</h2>
+                <h2 className="text-[45px] font-semibold leading-[1.1] tracking-tight">
+                  Anxiety was my drug. Approval was my currency.
+                </h2>
                 <div>
                   <div className="space-y-4">
                     <p className="text-[23px]">
-                      As an avid outdoorsman, surfer, and snowboarder, Michael promotes nature-based activities to his
-                      clients. As part of a comprehensive mind-body-emotion practice, connecting with nature is a core
-                      aspect of reality alignment coaching.
+                      As a man, that enmeshment translated into fierce approval addiction and toxic shame. I jumped from career to career and relationship to relationship, sabotaging success because the anxiety and intensity felt &quot;real,&quot; while stability felt like boredom.
+                    </p>
+                    <p className="text-[23px]">
+                      I was a consummate Nice Guy. I was conflict-avoidant, relied on covert contracts, and treated my interactions like a PR campaign to ensure I was never rejected.
+                    </p>
+                    <p className="text-[23px]">
+                      The turning point came in 2015 when I fully committed to 12-Step recovery, inner child work, and somatic regulation. I had to face the terror of getting in touch with my pain, dropping the mask, and learning to tolerate uncertainty and other people&apos;s displeasure without trying to &quot;fix&quot; it.
                     </p>
                   </div>
-                  <TrackedCtaLink
-                    href="https://calendly.com/michaelzick/45min"
-                    className="btn mt-6 text-xl"
-                    location="about"
-                  >
-                    Book a Free Session
-                  </TrackedCtaLink>
                 </div>
               </div>
               <div className="md:w-1/2 order-1 md:order-1">
@@ -146,6 +138,7 @@ export default function About() {
               </div>
             </FadeInSection>
 
+            {/* The Mission */}
             <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
               <div className="md:w-1/2 md:order-2">
                 <Image
@@ -158,14 +151,20 @@ export default function About() {
                 />
               </div>
               <div className="md:w-1/2 space-y-6 md:order-1">
-                <h2 className="text-[45px] font-semibold">Let’s talk.</h2>
+                <h2 className="text-[45px] font-semibold leading-[1.1] tracking-tight">
+                  Reclaiming Internal Authority.
+                </h2>
                 <div>
                   <div className="space-y-4">
                     <p className="text-[23px]">
-                      Michael has successfully coached celebrities, entrepreneurs, Nice Guys, and high-functioning adults
-                      to create better goals, careers, and relationships.
+                      Today, my mission is helping high-functioning men who look successful on the outside but are secretly exhausted from auditioning for approval on the inside.
                     </p>
-                    <p className="text-[23px]">Is it time to get in touch with reality?</p>
+                    <p className="text-[23px]">
+                      I work with men to break their approval addiction, end the cycle of secret resentment, and date, mate, and live with unshakeable internal authority. You don&apos;t have to keep performing.
+                    </p>
+                    <p className="text-[23px]">
+                      It&apos;s time to become the chooser again.
+                    </p>
                   </div>
                   <TrackedCtaLink
                     href="https://calendly.com/michaelzick/45min"
