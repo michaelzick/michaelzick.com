@@ -143,7 +143,7 @@ export function TestimonialsCarouselSection({
             {testimonials.slice(0, 3).map((testimonial, index) => (
               <figure
                 key={`mobile-${index}`}
-                className="rounded-lg bg-light-grey p-6 shadow-md ring-1 ring-dark-blue/5 backdrop-blur-md"
+                className="rounded-lg bg-gray-100 p-6 shadow-md ring-1 ring-dark-blue/5 backdrop-blur-md"
               >
                 <blockquote className="text-[22px] leading-relaxed text-default-grey">
                   “{testimonial.quote}”
@@ -165,7 +165,7 @@ export function TestimonialsCarouselSection({
             {testimonials.map((testimonial, index) => (
               <figure
                 key={index}
-                className="snap-start shrink-0 basis-full rounded-lg bg-light-grey p-6 shadow-md ring-1 ring-dark-blue/5 backdrop-blur-md md:basis-[60%] lg:basis-[45%] xl:basis-[32%]"
+                className="snap-start shrink-0 basis-full rounded-lg bg-gray-100 p-6 shadow-md ring-1 ring-dark-blue/5 backdrop-blur-md md:basis-[60%] lg:basis-[45%] xl:basis-[32%]"
               >
                 <blockquote className="text-[22px] leading-relaxed text-default-grey">
                   “{testimonial.quote}”

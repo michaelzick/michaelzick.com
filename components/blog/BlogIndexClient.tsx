@@ -53,7 +53,7 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
     filters.authors.length > 0;
 
   return (
-    <section className="bg-[rgb(var(--light-grey))] px-6 pb-16 pt-24 text-default-grey md:px-8 md:pb-20 md:pt-28 lg:pt-36 xl:pt-40">
+    <section className="bg-gray-100 px-6 pb-16 pt-24 text-default-grey md:px-8 md:pb-20 md:pt-28 lg:pt-36 xl:pt-40">
       <div className="mx-auto max-w-[1400px]">
         <FadeInSection className="mb-10 text-center md:text-left" immediate>
           <h1 className="font-headline text-5xl font-semibold leading-tight md:text-6xl">
