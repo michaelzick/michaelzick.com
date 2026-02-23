@@ -42,12 +42,22 @@ const structuredData = {
       '@id': `${siteConfig.url}/#person`,
       name: siteConfig.shortName,
       jobTitle: 'Nice Guy Recovery Coach',
+      description: siteConfig.description,
       url: siteConfig.url,
       image: `${siteConfig.url}${siteConfig.personImage}`,
+      address: organizationAddress,
       worksFor: {
         '@id': `${siteConfig.url}/#organization`,
       },
       sameAs: siteConfig.sameAs,
+    },
+    {
+      '@type': 'Service',
+      '@id': `${siteConfig.url}/#coaching`,
+      name: 'Nice Guy Recovery Coaching',
+      provider: { '@id': `${siteConfig.url}/#person` },
+      areaServed: { '@type': 'City', name: 'Los Angeles' },
+      description: siteConfig.description,
     },
   ],
 };

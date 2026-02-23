@@ -5,7 +5,7 @@ import { siteConfig } from '../../lib/site';
 export const metadata: Metadata = {
   title: 'Michael Zick | Contact',
   description:
-    'Contact Michael Zick to book a free reality alignment coaching session or ask a question.',
+    'Connect with Michael Zick for a free Nice Guy recovery consultation. Start your journey toward self-led masculinity and internal authority.',
   alternates: {
     canonical: '/contact',
   },

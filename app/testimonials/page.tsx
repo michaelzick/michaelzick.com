@@ -6,7 +6,7 @@ import { siteConfig } from '../../lib/site';
 export const metadata: Metadata = {
   title: 'Michael Zick | Testimonials',
   description:
-    "Read testimonials from clients of Michael Zick's reality alignment coaching program.",
+    'Read testimonials from clients who have worked with Michael Zick to break free from approval addiction and reclaim their internal authority.',
   alternates: {
     canonical: '/testimonials',
   },

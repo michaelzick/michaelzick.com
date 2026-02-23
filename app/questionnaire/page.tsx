@@ -5,7 +5,8 @@ import { FadeInSection } from '../../components/FadeInSection';
 
 export const metadata: Metadata = {
   title: 'Nice Guy Recovery Questionnaire | Michael Zick',
-  description: 'Take the Approval Addiction Questionnaire to discover where you are giving your power away, and how to take it back.',
+  description:
+    'Take the Approval Addiction Questionnaire to identify people-pleasing patterns and discover your path to Nice Guy recovery.',
   alternates: {
     canonical: '/questionnaire',
   },

@@ -5,7 +5,7 @@ import { siteConfig } from '../../lib/site';
 
 const blogTitle = `Blog | ${siteConfig.shortName}`;
 const blogDescription =
-  'Perspectives, tools, and stories for reality alignment, relationships, and personal growth.';
+  'Insights, tools, and stories on Nice Guy recovery, approval addiction, and building secure attachment from coach Michael Zick.';
 
 export const metadata: Metadata = {
   title: blogTitle,

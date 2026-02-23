@@ -68,7 +68,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     twitter: {
       card: 'summary_large_image',
       title: post.title,
-      description: post.excerpt,
+      description: siteConfig.description,
       images: [imageUrl],
     },
     keywords: Array.from(new Set([...siteConfig.keywords, ...post.tags])),
