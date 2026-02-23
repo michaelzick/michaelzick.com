@@ -67,6 +67,13 @@ export default function About() {
                       This enmeshment built a toxic blueprint for adulthood: love equated to intensity, performance, and keeping things stable. I grew up completely convinced that my worth as a man was dictated entirely by how deeply I was approved of by women.
                     </p>
                   </div>
+                  <TrackedCtaLink
+                    href="https://calendly.com/michaelzick/45min"
+                    className="btn mt-6 text-xl"
+                    location="about-top"
+                  >
+                    Book a Free Session
+                  </TrackedCtaLink>
                 </div>
               </div>
               <div className="md:w-[37.5%] order-1 md:order-2">
@@ -81,27 +88,7 @@ export default function About() {
               </div>
             </FadeInSection>
 
-            {/* Credentials */}
-            <FadeInSection>
-              <ul className="list-none border-t border-default-grey/30 p-0">
-                {credentials.map((item, index) => {
-                  const itemNumber = String(index + 1).padStart(2, '0');
-                  return (
-                    <li
-                      key={item}
-                      className="grid grid-cols-[auto_1fr] gap-x-6 border-b border-default-grey/20 py-7 md:py-8"
-                    >
-                      <span className="mt-2 font-mono text-xs font-semibold tracking-[0.35em] text-default-grey/70">
-                        {itemNumber}
-                      </span>
-                      <p className="text-[26px] font-semibold leading-snug text-default-grey md:text-[30px]">
-                        {item}
-                      </p>
-                    </li>
-                  );
-                })}
-              </ul>
-            </FadeInSection>
+
 
             {/* The Awakening */}
             <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
@@ -157,14 +144,38 @@ export default function About() {
                       You don&apos;t have to spend the rest of your life performing for validation. It&apos;s time to take control of your ship.
                     </p>
                   </div>
-                  <TrackedCtaLink
-                    href="https://calendly.com/michaelzick/45min"
-                    className="btn mt-6 text-xl"
-                    location="about"
-                  >
-                    Book a Free Session
-                  </TrackedCtaLink>
                 </div>
+              </div>
+            </FadeInSection>
+
+            {/* Credentials & CTA */}
+            <FadeInSection className="space-y-12">
+              <ul className="list-none border-t border-default-grey/30 p-0">
+                {credentials.map((item, index) => {
+                  const itemNumber = String(index + 1).padStart(2, '0');
+                  return (
+                    <li
+                      key={item}
+                      className="grid grid-cols-[auto_1fr] gap-x-6 border-b border-default-grey/20 py-7 md:py-8"
+                    >
+                      <span className="mt-2 font-mono text-xs font-semibold tracking-[0.35em] text-default-grey/70">
+                        {itemNumber}
+                      </span>
+                      <p className="text-[26px] font-semibold leading-snug text-default-grey md:text-[30px]">
+                        {item}
+                      </p>
+                    </li>
+                  );
+                })}
+              </ul>
+              <div className="flex justify-start">
+                <TrackedCtaLink
+                  href="https://calendly.com/michaelzick/45min"
+                  className="btn text-xl"
+                  location="about-bottom"
+                >
+                  Book a Free Session
+                </TrackedCtaLink>
               </div>
             </FadeInSection>
           </div>
