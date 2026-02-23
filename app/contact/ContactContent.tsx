@@ -54,7 +54,7 @@ export default function ContactContent() {
             </div>
 
             {/* Column 2: Contact Form (Middle) */}
-            <div className="min-[930px]:col-span-6 lg:col-span-5 bg-white text-black rounded-xl p-4 sm:p-10 lg:p-12 shadow-2xl ring-1 ring-black/5 order-2 min-[930px]:h-full flex flex-col justify-center">
+            <div className="min-[930px]:col-span-6 lg:col-span-5 bg-gray-100 text-black rounded-xl p-4 sm:p-10 lg:p-12 shadow-2xl ring-1 ring-black/5 order-2 min-[930px]:h-full flex flex-col justify-center">
               <h2 className="text-3xl font-bold mb-8 text-default-grey">Send Me a Message</h2>
               <ContactForm />
             </div>
