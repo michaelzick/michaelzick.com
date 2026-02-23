@@ -154,7 +154,7 @@ export default function About() {
                       Today, my mission is helping high-functioning men who look successful on the outside but are secretly exhausted from auditioning for approval on the inside. I work with men to break their approval addiction, end the cycle of enmeshment, and lead with unshakeable internal authority.
                     </p>
                     <p className="text-[23px]">
-                      You don&apos;t have to spend the rest of your life performing. It&apos;s time to become the chooser again.
+                      You don&apos;t have to spend the rest of your life performing for validation. It&apos;s time to take control of your ship.
                     </p>
                   </div>
                   <TrackedCtaLink
