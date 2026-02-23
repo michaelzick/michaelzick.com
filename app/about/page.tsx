@@ -61,13 +61,10 @@ export default function About() {
                 <div>
                   <div className="space-y-4">
                     <p className="text-[23px]">
-                      From the age of seven, following my parents&apos; separation, I became my mother&apos;s surrogate spouse. Not physically, but emotionally. I became the &quot;man of the house&quot; and the sponge for her pain and unmet needs.
+                      Following my parents&apos; separation when I was seven, I became my mother&apos;s emotional surrogate. In that environment, acting like a kid wasn&apos;t allowed. I learned early that adult-level performance was my only path to safety, becoming an expert at managing others&apos; emotions while entirely abandoning my own.
                     </p>
                     <p className="text-[23px]">
-                      In that environment, acting like a kid wasn&apos;t allowed. Mistakes weren&apos;t tolerated. I learned early that &quot;adult-level performance&quot; was the only safe way to exist. I became an expert at managing other people&apos;s emotions while entirely abandoning my own.
-                    </p>
-                    <p className="text-[23px]">
-                      This enmeshment built my blueprint for adulthood: love equated to intensity, performance, and doing whatever it took to keep things stable. I grew up believing that my worth was dictated entirely by how deeply I was approved of by women.
+                      This enmeshment built a toxic blueprint for adulthood: love equated to intensity, performance, and keeping things stable. I grew up completely convinced that my worth as a man was dictated entirely by how deeply I was approved of by women.
                     </p>
                   </div>
                 </div>
@@ -115,13 +112,10 @@ export default function About() {
                 <div>
                   <div className="space-y-4">
                     <p className="text-[23px]">
-                      As a man, that enmeshment translated into fierce approval addiction and toxic shame. I jumped from career to career and relationship to relationship, sabotaging success because the anxiety and intensity felt &quot;real,&quot; while stability felt like boredom.
+                      That enmeshment translated into fierce approval addiction and toxic shame. I was a consummate Nice Guy—conflict-avoidant, relying on covert contracts, and treating every interaction like a PR campaign to ensure I was never rejected.
                     </p>
                     <p className="text-[23px]">
-                      I was a consummate Nice Guy. I was conflict-avoidant, relied on covert contracts, and treated my interactions like a PR campaign to ensure I was never rejected.
-                    </p>
-                    <p className="text-[23px]">
-                      The turning point came in 2015 when I fully committed to 12-Step recovery, inner child work, and somatic regulation. I had to face the terror of getting in touch with my pain, dropping the mask, and learning to tolerate uncertainty and other people&apos;s displeasure without trying to &quot;fix&quot; it.
+                      My turning point came in 2015 when I fully committed to recovery, inner child work, and somatic regulation. I finally faced the terror of dropping the mask, getting in touch with my pain, and learning to tolerate other people&apos;s displeasure without trying to fix it.
                     </p>
                   </div>
                 </div>
@@ -157,13 +151,10 @@ export default function About() {
                 <div>
                   <div className="space-y-4">
                     <p className="text-[23px]">
-                      Today, my mission is helping high-functioning men who look successful on the outside but are secretly exhausted from auditioning for approval on the inside.
+                      Today, my mission is helping high-functioning men who look successful on the outside but are secretly exhausted from auditioning for approval on the inside. I work with men to break their approval addiction, end the cycle of enmeshment, and lead with unshakeable internal authority.
                     </p>
                     <p className="text-[23px]">
-                      I work with men to break their approval addiction, end the cycle of enmeshment, and date, mate, and live with unshakeable internal authority. You don&apos;t have to keep performing.
-                    </p>
-                    <p className="text-[23px]">
-                      It&apos;s time to become the chooser again.
+                      You don&apos;t have to spend the rest of your life performing. It&apos;s time to become the chooser again.
                     </p>
                   </div>
                   <TrackedCtaLink
