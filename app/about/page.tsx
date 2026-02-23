@@ -102,7 +102,7 @@ export default function About() {
                       That enmeshment translated into fierce approval addiction and toxic shame. I was a consummate Nice Guy—conflict-avoidant, relying on covert contracts, and treating every interaction like a PR campaign to ensure I was never rejected.
                     </p>
                     <p className="text-[23px]">
-                      My turning point came in 2015 when I fully committed to recovery, inner child work, and somatic regulation. I finally faced the terror of dropping the mask, getting in touch with my pain, and learning to tolerate other people&apos;s displeasure without trying to fix it.
+                      My turning point came in 2015 when I fully committed to recovery, mindfulness meditation, Internal Family Systems (IFS), and somatic regulation. I finally faced the terror of dropping the mask, getting in touch with my pain, and learning to tolerate other people&apos;s displeasure without trying to fix it.
                     </p>
                   </div>
                 </div>
