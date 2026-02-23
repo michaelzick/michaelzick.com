@@ -50,8 +50,8 @@ export default function About() {
           </FadeInSection>
           <div className="space-y-24 md:space-y-32">
             {/* The Descent */}
-            <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
-              <div className="md:w-1/2 space-y-6 order-2 md:order-1">
+            <FadeInSection className="flex flex-col md:flex-row md:items-start gap-8">
+              <div className="md:w-[62.5%] space-y-6 order-2 md:order-1">
                 <h2 className="text-[45px] font-semibold leading-[1.1] tracking-tight">
                   I didn&apos;t just study Nice Guy Syndrome.
                 </h2>
@@ -69,7 +69,7 @@ export default function About() {
                   </div>
                 </div>
               </div>
-              <div className="md:w-1/2 order-1 md:order-2">
+              <div className="md:w-[37.5%] order-1 md:order-2">
                 <Image
                   src="/img/gray-suit-headshot-bw.webp"
                   alt="Michael wearing a jacket"
