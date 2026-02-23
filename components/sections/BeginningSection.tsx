@@ -66,23 +66,25 @@ export function BeginningSection({
       >
         <div className="absolute inset-0 bg-black/20" aria-hidden="true"></div>
         <div className="relative w-full mx-auto p-8 mt-[-88px] md:mt-[-112px]">
-          <h2
-            ref={titleRef}
-            className="font-headline text-center text-5xl font-bold text-white leading-[1.05] md:text-8xl"
-          >
-            <span
-              className={`block text-3xl md:text-6xl transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                }`}
+          <FadeInSection>
+            <h2
+              ref={titleRef}
+              className="font-headline text-center text-5xl font-bold text-white leading-[1.05] md:text-8xl"
             >
-              Michael Zick is a certified Nice Guy coach.
-            </span>
-            <span
-              className={`block text-4xl mt-3 md:mt-4 md:text-7xl transition-all duration-700 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                }`}
-            >
-              He&apos;s helped guys just like you.
-            </span>
-          </h2>
+              <span
+                className={`block text-3xl md:text-6xl transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                  }`}
+              >
+                Michael Zick is a certified Nice Guy coach.
+              </span>
+              <span
+                className={`block text-4xl mt-3 md:mt-4 md:text-7xl transition-all duration-700 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                  }`}
+              >
+                He&apos;s helped guys just like you.
+              </span>
+            </h2>
+          </FadeInSection>
         </div>
         <svg
           className="absolute bottom-0 left-0 h-[160px] w-full"
