@@ -53,7 +53,10 @@ export default function About() {
             <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
               <div className="md:w-1/2 space-y-6 order-2 md:order-1">
                 <h2 className="text-[45px] font-semibold leading-[1.1] tracking-tight">
-                  I didn&apos;t just study the Nice Guy trap. I lived it.
+                  I didn&apos;t just study Nice Guy Syndrome.
+                </h2>
+                <h2 className="text-[45px] font-semibold leading-[1.1] tracking-tight">
+                  I lived it.
                 </h2>
                 <div>
                   <div className="space-y-4">
@@ -71,7 +74,7 @@ export default function About() {
               </div>
               <div className="md:w-1/2 order-1 md:order-2">
                 <Image
-                  src="/img/blue_jacket.webp"
+                  src="/img/gray-suit-headshot-bw.webp"
                   alt="Michael wearing a jacket"
                   width={2500}
                   height={3124}
@@ -125,10 +128,10 @@ export default function About() {
               </div>
               <div className="md:w-1/2 order-1 md:order-1">
                 <Image
-                  src="/img/pitted.webp"
-                  alt="Michael surfing a wave"
-                  width={2000}
-                  height={1334}
+                  src="/img/grey_jacket.webp"
+                  alt="Michael in suit"
+                  width={2500}
+                  height={1667}
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="w-full h-auto object-cover rounded-lg shadow-md"
                 />
@@ -139,10 +142,10 @@ export default function About() {
             <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
               <div className="md:w-1/2 md:order-2">
                 <Image
-                  src="/img/grey_jacket.webp"
-                  alt="Michael in suit"
-                  width={2500}
-                  height={1667}
+                  src="/img/gray-suit-dark-laughing.webp"
+                  alt="Michael in grey suit"
+                  width={2000}
+                  height={1334}
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="w-full h-auto object-cover rounded-lg shadow-md"
                 />
