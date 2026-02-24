@@ -165,7 +165,7 @@ export default function HomePageContent() {
             </p>
           </FadeInSection>
 
-          <FadeInSection className="bg-light-grey text-black rounded-xl p-4 sm:p-8 md:p-10 shadow-2xl ring-1 ring-black/5">
+          <FadeInSection className="bg-light-grey text-black rounded-xl p-4 sm:p-8 md:p-10 shadow-2xl ring-1 ring-black/5 max-w-3xl w-full">
             <ContactForm />
           </FadeInSection>
         </div>
