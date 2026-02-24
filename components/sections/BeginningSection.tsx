@@ -59,7 +59,7 @@ export function BeginningSection({
       <section
         className="relative overflow-hidden py-56"
         style={{
-          backgroundImage: "url('/img/lake_reflection_2500.webp')",
+          backgroundImage: "url('/img/mountains_2500.webp')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
