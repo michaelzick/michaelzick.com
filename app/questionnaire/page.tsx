@@ -15,16 +15,16 @@ export const metadata: Metadata = {
 export default function QuestionnairePage() {
   return (
     <div className="flex flex-col">
-      <section className="bg-gray-100 text-default-grey px-6 pb-24 pt-24 md:px-8 md:pb-32 md:pt-28 lg:pt-36 xl:pt-40">
+      <section className="bg-dark-blue text-white px-6 pb-24 pt-24 md:px-8 md:pb-32 md:pt-28 lg:pt-36 xl:pt-40">
         <div className="mx-auto max-w-[1400px]">
           <FadeInSection className="mb-12 text-center md:text-left" immediate>
-            <h1 className="font-headline text-5xl font-semibold leading-tight md:text-6xl text-dark-blue">
+            <h1 className="font-headline text-5xl font-semibold leading-tight md:text-6xl text-white">
               The Approval Addiction Questionnaire
             </h1>
-            <p className="mt-8 text-xl text-default-grey/80 md:max-w-none mx-auto md:mx-0">
+            <p className="mt-8 text-xl text-white/80 md:max-w-none mx-auto md:mx-0">
               Discover where you&apos;re giving your power away, and how to take it back.
               <br />
-              <strong className="block mt-2">Find your path to internal authority.</strong>
+              <strong className="block mt-2 text-white">Find your path to internal authority.</strong>
             </p>
           </FadeInSection>
           <FadeInSection>

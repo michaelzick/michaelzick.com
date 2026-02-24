@@ -40,7 +40,7 @@ export default function QuestionnaireForm({
   return (
     <div ref={containerRef} className="max-w-2xl mx-auto">
       {/* Disclaimer Section */}
-      <aside className="mb-6 p-4 bg-primary-blue/5 border border-primary-blue/10 rounded-lg text-sm text-default-grey/80">
+      <aside className="mb-6 p-4 bg-white/5 border border-white/10 rounded-lg text-sm text-white/80">
         <p className="text-center font-bold mb-3 text-base">Notice</p>
         <div className="space-y-2 text-left">
           <p>
