@@ -78,8 +78,8 @@ export default function About() {
               </div>
               <div className="md:w-[37.5%] order-1 md:order-2">
                 <Image
-                  src="/img/gray-suit-headshot-bw.webp"
-                  alt="Michael wearing a jacket"
+                  src="/img/gray-suit-headshot.webp"
+                  alt="Michael in a grey suit"
                   width={2500}
                   height={3124}
                   sizes="(min-width: 768px) 50vw, 100vw"
@@ -179,8 +179,8 @@ export default function About() {
               </div>
             </FadeInSection>
           </div>
-        </div>
-      </section>
-    </div>
+        </div >
+      </section >
+    </div >
   );
 }
