@@ -5,20 +5,20 @@ import TrackedCtaLink from '../../components/TrackedCtaLink';
 import { siteConfig } from '../../lib/site';
 
 export const metadata: Metadata = {
-  title: 'Michael Zick | About',
-  description: siteConfig.description,
+  title: 'About Michael Zick | Nice Guy Recovery Coach',
+  description: 'Michael Zick is an LA-based Nice Guy Recovery Coach helping men break free from approval addiction, toxic shame, and enmeshment to reclaim internal authority.',
   alternates: {
     canonical: '/about',
   },
   openGraph: {
-    title: 'Michael Zick | Nice Guy Recovery Coach',
-    description: siteConfig.description,
+    title: 'About Michael Zick | Nice Guy Recovery Coach',
+    description: 'Learn how Michael Zick helps high-functioning men break free from approval addiction and reclaim internal authority.',
     url: `${siteConfig.url}/about`,
     siteName: siteConfig.name,
     images: [
       {
-        url: '/img/ocean_2500.webp',
-        alt: 'Ocean shoreline at dusk',
+        url: '/img/gray-suit-headshot.webp',
+        alt: 'Michael Zick in a grey suit',
       },
     ],
     type: 'website',
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Michael Zick | Nice Guy Recovery Coach',
-    description: siteConfig.description,
-    images: ['/img/ocean_2500.webp'],
+    title: 'About Michael Zick | Nice Guy Recovery Coach',
+    description: 'Learn how Michael Zick helps high-functioning men break free from approval addiction and reclaim internal authority.',
+    images: ['/img/gray-suit-headshot.webp'],
   },
 };
 

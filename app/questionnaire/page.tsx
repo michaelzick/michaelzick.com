@@ -10,6 +10,28 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/questionnaire',
   },
+  openGraph: {
+    title: 'Nice Guy Recovery Questionnaire | Michael Zick',
+    description:
+      'Discover where you\'re giving your power away, and how to take it back. Take the Approval Addiction Questionnaire.',
+    url: `${siteConfig.url}/questionnaire`,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.defaultImage,
+        alt: 'Mountain landscape at sunset',
+      },
+    ],
+    type: 'website',
+    locale: siteConfig.locale,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Nice Guy Recovery Questionnaire | Michael Zick',
+    description:
+      'Discover where you\'re giving your power away, and how to take it back. Take the Approval Addiction Questionnaire.',
+    images: [siteConfig.defaultImage],
+  },
 };
 
 export default function QuestionnairePage() {
