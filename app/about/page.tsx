@@ -61,10 +61,10 @@ export default function About() {
                 <div>
                   <div className="space-y-4">
                     <p className="text-[23px]">
-                      Following my parents&apos; separation when I was seven, I became my mother&apos;s emotional surrogate. In that environment, acting like a kid wasn&apos;t allowed. I learned early that adult-level performance was my only path to safety, becoming an expert at managing others&apos; emotions while entirely abandoning my own.
+                      Growing up, acting like a kid wasn&apos;t allowed. I learned early that adult-level performance was my only path to safety, becoming an expert at managing others&apos; emotions while entirely abandoning my own.
                     </p>
                     <p className="text-[23px]">
-                      This enmeshment built a toxic blueprint for adulthood: love equated to intensity, performance, and keeping things stable. I grew up completely convinced that my worth as a man was dictated entirely by how deeply I was approved of by women.
+                      Following my parents&apos; separation when I was seven, I became my mother&apos;s emotional surrogate. That environment built a toxic blueprint for adulthood: love equated to intensity, performance, and keeping things stable. I grew up convinced that my worth as a man was dictated by admiration and winning women&apos;s approval.
                     </p>
                   </div>
                   <TrackedCtaLink
@@ -94,12 +94,12 @@ export default function About() {
             <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
               <div className="md:w-1/2 space-y-6 order-2 md:order-2">
                 <h2 className="text-[45px] font-semibold leading-[1.1] tracking-tight">
-                  Anxiety was my drug. Approval was my currency.
+                  Approval was my drug. Anxiety was the side effect.
                 </h2>
                 <div>
                   <div className="space-y-4">
                     <p className="text-[23px]">
-                      That enmeshment translated into fierce approval addiction and toxic shame. I was a consummate Nice Guy—conflict-avoidant, relying on covert contracts, and treating every interaction like a PR campaign to ensure I was never rejected.
+                      That enmeshment translated into fierce approval addiction and SHAME — Should Have Already Mastered Everything. I was a consummate Nice Guy—conflict-avoidant, relying on covert contracts, and treating every interaction like a PR campaign to ensure I was never rejected.
                     </p>
                     <p className="text-[23px]">
                       My turning point came in 2015 when I fully committed to recovery, mindfulness meditation, Internal Family Systems (IFS), and somatic regulation. I finally faced the terror of dropping the mask, getting in touch with my pain, and learning to tolerate other people&apos;s displeasure without trying to fix it.
