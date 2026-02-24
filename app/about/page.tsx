@@ -41,7 +41,7 @@ export default function About() {
 
   return (
     <div className="flex flex-col">
-      <section className="px-6 pb-24 pt-24 md:px-8 md:pb-32 md:pt-28 lg:pt-36 xl:pt-40 bg-gray-100 text-default-grey">
+      <section className="px-6 pb-24 pt-24 md:px-8 md:pb-32 md:pt-28 lg:pt-36 xl:pt-40 bg-light-grey text-default-grey">
         <div className="max-w-[1400px] mx-auto">
           <FadeInSection className="mb-10 text-center md:text-left" immediate>
             <h1 className="font-headline text-5xl font-semibold leading-tight md:text-6xl">

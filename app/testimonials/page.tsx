@@ -96,7 +96,7 @@ export default function Testimonials() {
         </div>
       </section>
 
-      <section className="px-6 md:px-8 pt-12 pb-24 md:pt-16 md:pb-32 bg-gray-100 text-default-grey">
+      <section className="px-6 md:px-8 pt-12 pb-24 md:pt-16 md:pb-32 bg-light-grey text-default-grey">
         <div className="max-w-[1400px] mx-auto space-y-12 text-[23px]">
           <FadeInSection className="max-w-4xl mx-auto md:mx-0">
             <h2 className="font-headline text-[45px] font-semibold leading-tight text-center md:text-left">More Testimonials</h2>

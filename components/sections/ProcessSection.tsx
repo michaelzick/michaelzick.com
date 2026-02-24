@@ -18,7 +18,7 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
     <section
       id="process"
       ref={sectionRef}
-      className="bg-gray-100 pt-16 pb-0 md:pb-24 text-default-grey"
+      className="bg-light-grey pt-16 pb-0 md:pb-24 text-default-grey"
       style={{ scrollMarginTop }}
     >
       <div className="mx-auto max-w-[1400px]">

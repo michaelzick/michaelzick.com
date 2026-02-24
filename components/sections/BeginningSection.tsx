@@ -28,7 +28,7 @@ export function BeginningSection({
       <section
         id="beginning"
         ref={sectionRef}
-        className="bg-gray-100 pt-12 pb-20 text-default-grey"
+        className="bg-light-grey pt-12 pb-20 text-default-grey"
         style={{ scrollMarginTop }}
       >
         <div className="mx-auto max-w-4xl space-y-8 px-6 text-left md:px-8">
