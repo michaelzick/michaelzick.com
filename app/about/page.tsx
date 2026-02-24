@@ -66,6 +66,9 @@ export default function About() {
                     <p className="text-[23px]">
                       Following my parents&apos; separation when I was seven, I became my mother&apos;s emotional surrogate. That environment built a toxic blueprint for adulthood: love equated to intensity, performance, and keeping things stable. I grew up convinced that my worth as a man was dictated by admiration and winning women&apos;s approval.
                     </p>
+                    <p className="text-[23px]">
+                      If this sounds like you, let&apos;s talk.
+                    </p>
                   </div>
                   <TrackedCtaLink
                     href="https://calendly.com/michaelzick/45min"

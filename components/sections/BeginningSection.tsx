@@ -75,13 +75,13 @@ export function BeginningSection({
                 className={`block text-3xl md:text-6xl transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                   }`}
               >
-                Michael Zick is a certified Nice Guy coach.
+                I&apos;m a certified Nice Guy coach.
               </span>
               <span
                 className={`block text-4xl mt-3 md:mt-4 md:text-7xl transition-all duration-700 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                   }`}
               >
-                He&apos;s helped guys just like you.
+                I&apos;ve helped guys just like you.
               </span>
             </h2>
           </FadeInSection>
@@ -99,7 +99,7 @@ export function BeginningSection({
       <section className="bg-dark-blue pt-20 pb-14 text-white">
         <FadeInSection className="mx-auto max-w-[1400px] px-6 text-center md:px-8">
           <h2 className="font-headline mb-4 text-4xl font-bold tracking-tight leading-tight md:text-5xl lg:text-6xl">
-            Schedule a Free Consultation
+            You Don&apos;t Have To Do This Alone. Let&apos;s Talk.
           </h2>
           <div className="mt-10 flex flex-col items-center justify-center gap-6 md:flex-row">
             <BookingCta location="beginning" />
