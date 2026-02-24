@@ -6,7 +6,7 @@ import { siteConfig } from '../../lib/site';
 export const metadata: Metadata = {
   title: 'Michael Zick | Testimonials',
   description:
-    "Read testimonials from clients of Michael Zick's reality alignment coaching program.",
+    'Read testimonials from clients who have worked with Michael Zick to break free from approval addiction and reclaim their internal authority.',
   alternates: {
     canonical: '/testimonials',
   },
@@ -45,38 +45,6 @@ export default function Testimonials() {
             </h1>
           </FadeInSection>
           <div className="space-y-24">
-            <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
-              <div className="md:w-1/2 order-2 md:order-1 space-y-6">
-                <h3 className="text-[35px] font-medium">Elizabeth D.</h3>
-                <p className="text-[23px]">
-                  “I think following that tiny voice in your head is what leads you to the most
-                  amazing surprises! I was online one day looking at dating blogs, dating apps, and
-                  dating groups when I stumbled onto a group of people at a free zoom meeting that
-                  Michael was offering about dating. I liked what we all talked about, how Michael
-                  responded to everybody, and that I was offered a free 45 minute coaching session
-                  with him. I was really surprised with how in-tuned he was and how much he was able
-                  to help me in that one session. He was able to really hear in between things I was
-                  saying and know what was important to bring up!
-                </p>
-                <p className="text-[23px]">
-                  I went ahead and agreed to some more coaching with him. He really has a gift and
-                  he doesn’t feel like someone that was just in it for the money. I’m super grateful I
-                  stumbled onto Michael Zick! I’ve seen some amazing changes in my world already,
-                  not just in the dating realm, but all kinds of amazing revelations and changes are
-                  happening in other areas of my life, too.”
-                </p>
-              </div>
-              <div className="md:w-1/2 order-1 md:order-2">
-                <Image
-                  src="/img/eg.webp"
-                  alt="Elizabeth D."
-                  width={800}
-                  height={600}
-                  className="w-full h-auto object-cover rounded-lg shadow-md"
-                />
-              </div>
-            </FadeInSection>
-
             <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
               <div className="md:w-1/2">
                 <Image
@@ -128,7 +96,7 @@ export default function Testimonials() {
         </div>
       </section>
 
-      <section className="px-6 md:px-8 pt-12 pb-24 md:pt-16 md:pb-32 bg-[rgb(var(--light-grey))] text-default-grey">
+      <section className="px-6 md:px-8 pt-12 pb-24 md:pt-16 md:pb-32 bg-light-grey text-default-grey">
         <div className="max-w-[1400px] mx-auto space-y-12 text-[23px]">
           <FadeInSection className="max-w-4xl mx-auto md:mx-0">
             <h2 className="font-headline text-[45px] font-semibold leading-tight text-center md:text-left">More Testimonials</h2>

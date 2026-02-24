@@ -21,7 +21,7 @@ export default function QuestionnaireFields({
     <div className="space-y-6">
       {currentStep.fields?.map((field) => (
         <div key={field.name}>
-          <label htmlFor={field.name} className="block text-sm font-medium mb-2 text-dark-blue/80">
+          <label htmlFor={field.name} className="block text-sm font-medium mb-2 text-dark-blue">
             {field.label}
           </label>
           <input
@@ -60,11 +60,11 @@ export default function QuestionnaireFields({
       {currentStep.questions?.map((q) => (
         <div key={q.id}>
           <div className="flex justify-between items-end mb-3">
-            <label htmlFor={q.id} className="block text-lg font-medium text-dark-blue/90">
+            <label htmlFor={q.id} className="block text-lg font-medium text-dark-blue">
               {q.text}
             </label>
             {q.type === 'textarea' && q.maxLength && (
-              <span className={`text-xs font-mono ${(formData.answers[q.id]?.length || 0) >= q.maxLength ? 'text-red-500 font-bold' : 'text-gray-400'}`}>
+              <span className={`text-xs font-mono ${(formData.answers[q.id]?.length || 0) >= q.maxLength ? 'text-red-500 font-bold' : 'text-dark-blue/60'}`}>
                 {formData.answers[q.id]?.length || 0}/{q.maxLength}
               </span>
             )}

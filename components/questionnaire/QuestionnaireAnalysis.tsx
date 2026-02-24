@@ -13,7 +13,7 @@ export default function QuestionnaireAnalysis({ analysis, cardRef }: Questionnai
       ref={cardRef}
       className="max-w-3xl mx-auto p-8 bg-white text-default-grey rounded-xl shadow-md ring-1 ring-black/5 mt-12 animate-fade-in"
     >
-      <h2 className="text-3xl font-bold mb-6 border-b pb-4">Your Reality Alignment Analysis</h2>
+      <h2 className="text-3xl font-bold mb-6 border-b pb-4">Your Recovery Assessment</h2>
       <div className="prose prose-lg max-w-none prose-slate">
         {analysis.split('\n').map((para, i) => (
           <p key={i} className="mb-4">{para}</p>

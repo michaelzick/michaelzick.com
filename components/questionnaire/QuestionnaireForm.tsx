@@ -40,7 +40,7 @@ export default function QuestionnaireForm({
   return (
     <div ref={containerRef} className="max-w-2xl mx-auto">
       {/* Disclaimer Section */}
-      <aside className="mb-6 p-4 bg-primary-blue/5 border border-primary-blue/10 rounded-lg text-sm text-default-grey/80">
+      <aside className="mb-6 p-4 bg-white/5 border border-white/10 rounded-lg text-sm text-white/80">
         <p className="text-center font-bold mb-3 text-base">Notice</p>
         <div className="space-y-2 text-left">
           <p>
@@ -53,7 +53,7 @@ export default function QuestionnaireForm({
 
       <div
         ref={cardRef}
-        className="bg-white text-default-grey rounded-xl shadow-md ring-1 ring-black/5 p-6 sm:p-8"
+        className="bg-light-grey text-default-grey rounded-xl shadow-md ring-1 ring-black/5 p-6 sm:p-8"
       >
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-4">

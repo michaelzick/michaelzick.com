@@ -30,13 +30,6 @@ export default function HomePageContent() {
   const sectionConfig = useMemo<SectionConfig[]>(
     () => [
       {
-        id: 'testimonials',
-        linkText: 'Beginning',
-        mobileLabel: 'Beginning',
-        sectionRef: testimonialsSectionRef,
-        titleRef: testimonialsTitleRef,
-      },
-      {
         id: 'process',
         linkText: 'Process',
         mobileLabel: 'Process',
@@ -45,17 +38,24 @@ export default function HomePageContent() {
       },
       {
         id: 'specialties',
-        linkText: 'Specialties',
-        mobileLabel: 'Specialties',
+        linkText: 'Framework',
+        mobileLabel: 'Framework',
         sectionRef: specialtiesSectionRef,
         titleRef: specialtiesTitleRef,
       },
       {
         id: 'program',
-        linkText: 'Program',
-        mobileLabel: 'Program',
+        linkText: 'Protocol',
+        mobileLabel: 'Protocol',
         sectionRef: programSectionRef,
         titleRef: programTitleRef,
+      },
+      {
+        id: 'testimonials',
+        linkText: 'Reviews',
+        mobileLabel: 'Reviews',
+        sectionRef: testimonialsSectionRef,
+        titleRef: testimonialsTitleRef,
       },
     ],
     [
@@ -115,13 +115,6 @@ export default function HomePageContent() {
 
       <HeroSection />
 
-      <TestimonialsCarouselSection
-        sectionRef={testimonialsSectionRef}
-        titleRef={testimonialsTitleRef}
-        scrollMarginTop={scrollMarginTop}
-        isVisible={visibleTitles.testimonials}
-      />
-
       <BeginningSection
         sectionRef={beginningSectionRef}
         titleRef={beginningTitleRef}
@@ -151,6 +144,13 @@ export default function HomePageContent() {
         isVisible={visibleTitles.program}
       />
 
+      <TestimonialsCarouselSection
+        sectionRef={testimonialsSectionRef}
+        titleRef={testimonialsTitleRef}
+        scrollMarginTop={scrollMarginTop}
+        isVisible={visibleTitles.testimonials}
+      />
+
       <section
         id="home-contact"
         className="bg-default-grey text-white px-6 pt-12 pb-16 md:px-8 md:pt-16 md:pb-24"
@@ -160,9 +160,12 @@ export default function HomePageContent() {
             <h2 className="text-[48px] font-semibold leading-tight md:text-[56px] text-left">
               Let&apos;s Connect
             </h2>
+            <p className="text-[28px] leading-snug text-white md:text-[32px]">
+              Message me and get a free Belief Reprogramming Workbook.
+            </p>
           </FadeInSection>
 
-          <FadeInSection className="bg-white text-black rounded-xl p-4 sm:p-8 md:p-10 shadow-2xl ring-1 ring-black/5">
+          <FadeInSection className="bg-light-grey text-black rounded-xl p-4 sm:p-8 md:p-10 shadow-2xl ring-1 ring-black/5 max-w-3xl w-full">
             <ContactForm />
           </FadeInSection>
         </div>

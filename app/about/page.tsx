@@ -5,22 +5,20 @@ import TrackedCtaLink from '../../components/TrackedCtaLink';
 import { siteConfig } from '../../lib/site';
 
 export const metadata: Metadata = {
-  title: 'Michael Zick | About',
-  description:
-    'Learn about Michael Zick, a reality alignment coach established in the Los Angeles mental health and recovery community since 2015.',
+  title: 'About Michael Zick | Nice Guy Recovery Coach',
+  description: 'Michael Zick is an LA-based Nice Guy Recovery Coach helping men break free from approval addiction, toxic shame, and enmeshment to reclaim internal authority.',
   alternates: {
     canonical: '/about',
   },
   openGraph: {
-    title: 'Michael Zick | About',
-    description:
-      'Learn about Michael Zick, a reality alignment coach established in the Los Angeles mental health and recovery community since 2015.',
+    title: 'About Michael Zick | Nice Guy Recovery Coach',
+    description: 'Learn how Michael Zick helps high-functioning men break free from approval addiction and reclaim internal authority.',
     url: `${siteConfig.url}/about`,
     siteName: siteConfig.name,
     images: [
       {
-        url: '/img/ocean_2500.webp',
-        alt: 'Ocean shoreline at dusk',
+        url: '/img/gray-suit-headshot.webp',
+        alt: 'Michael Zick in a grey suit',
       },
     ],
     type: 'website',
@@ -28,23 +26,22 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Michael Zick | About',
-    description:
-      'Learn about Michael Zick, a reality alignment coach established in the Los Angeles mental health and recovery community since 2015.',
-    images: ['/img/ocean_2500.webp'],
+    title: 'About Michael Zick | Nice Guy Recovery Coach',
+    description: 'Learn how Michael Zick helps high-functioning men break free from approval addiction and reclaim internal authority.',
+    images: ['/img/gray-suit-headshot.webp'],
   },
 };
 
 export default function About() {
   const credentials = [
-    'Certified by Dr. Robert Glover, author of "No More Mr. Nice Guy" and renowned therapist.',
-    'Certified as a Life & Relationship Coach by Life Purpose Institute.',
-    'Established in the Los Angeles mental health and recovery community since 2015.',
+    'Certified by Dr. Robert Glover, author of "No More Mr. Nice Guy"',
+    'Certified as a Life & Relationship Coach by Life Purpose Institute',
+    'Established in the Los Angeles mental health community since 2015',
   ];
 
   return (
     <div className="flex flex-col">
-      <section className="px-6 pb-24 pt-24 md:px-8 md:pb-32 md:pt-28 lg:pt-36 xl:pt-40 bg-gray-100 text-default-grey">
+      <section className="px-6 pb-24 pt-24 md:px-8 md:pb-32 md:pt-28 lg:pt-36 xl:pt-40 bg-light-grey text-default-grey">
         <div className="max-w-[1400px] mx-auto">
           <FadeInSection className="mb-10 text-center md:text-left" immediate>
             <h1 className="font-headline text-5xl font-semibold leading-tight md:text-6xl">
@@ -52,41 +49,40 @@ export default function About() {
             </h1>
           </FadeInSection>
           <div className="space-y-24 md:space-y-32">
+            {/* The Descent */}
             <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
-              <div className="md:w-1/2 space-y-6 order-2 md:order-1">
-                <h2 className="text-[45px] font-semibold">Get into action.</h2>
+              <div className="md:w-[62.5%] space-y-6 order-2 md:order-1">
+                <h2 className="text-[45px] font-semibold leading-[1.1] tracking-tight">
+                  I didn&apos;t just study Nice Guy Syndrome.
+                </h2>
+                <h2 className="text-[45px] font-semibold leading-[1.1] tracking-tight">
+                  I lived it.
+                </h2>
                 <div>
                   <div className="space-y-4">
                     <p className="text-[23px]">
-                      Michael stands by the phrase, &quot;We don&apos;t think our way into right action; we act our
-                      way into right thinking.&quot; In other words, replacing worrying with doing is the
-                      path to success that Michael encourages, and his clients have the results to show
-                      for it.
+                      Growing up, acting like a kid wasn&apos;t allowed. I learned early that adult-level performance was my only path to safety, becoming an expert at managing others&apos; emotions while entirely abandoning my own.
                     </p>
                     <p className="text-[23px]">
-                      He has worked with the best of the best — from top business and marketing
-                      coaches to world-renowned relationship experts like Dr. Glover and Erwan and
-                      Alicia Davon.
+                      Following my parents&apos; separation when I was seven, I became my mother&apos;s emotional surrogate. That environment built a toxic blueprint for adulthood: love equated to intensity, performance, and keeping things stable. I grew up convinced that my worth as a man was dictated by admiration and winning women&apos;s approval.
                     </p>
                     <p className="text-[23px]">
-                      With his no-BS approach, those who work with Michael will know what it&apos;s like to
-                      replace rumination with action, take ownership of their thoughts, feelings, and
-                      behaviors, stop being a victim, and play well with others without being &quot;nice.&quot;
+                      If this sounds like you, let&apos;s talk.
                     </p>
                   </div>
                   <TrackedCtaLink
                     href="https://calendly.com/michaelzick/45min"
                     className="btn mt-6 text-xl"
-                    location="about"
+                    location="about-top"
                   >
                     Book a Free Session
                   </TrackedCtaLink>
                 </div>
               </div>
-              <div className="md:w-1/2 order-1 md:order-2">
+              <div className="md:w-[37.5%] order-1 md:order-2">
                 <Image
-                  src="/img/blue_jacket.webp"
-                  alt="Michael wearing a jacket"
+                  src="/img/gray-suit-headshot.webp"
+                  alt="Michael in a grey suit"
                   width={2500}
                   height={3124}
                   sizes="(min-width: 768px) 50vw, 100vw"
@@ -94,7 +90,69 @@ export default function About() {
                 />
               </div>
             </FadeInSection>
-            <FadeInSection>
+
+
+
+            {/* The Awakening */}
+            <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
+              <div className="md:w-1/2 space-y-6 order-2 md:order-2">
+                <h2 className="text-[45px] font-semibold leading-[1.1] tracking-tight">
+                  Approval was my drug. Anxiety was the side effect.
+                </h2>
+                <div>
+                  <div className="space-y-4">
+                    <p className="text-[23px]">
+                      That enmeshment translated into fierce approval addiction and SHAME — Should Have Already Mastered Everything. I was a consummate Nice Guy—conflict-avoidant, relying on covert contracts, and treating every interaction like a PR campaign to ensure I was never rejected.
+                    </p>
+                    <p className="text-[23px]">
+                      My turning point came in 2015 when I fully committed to recovery, mindfulness meditation, Internal Family Systems (IFS), and somatic regulation. I finally faced the terror of dropping the mask, getting in touch with my pain, and learning to tolerate other people&apos;s displeasure without trying to fix it.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="md:w-1/2 order-1 md:order-1">
+                <Image
+                  src="/img/grey_jacket.webp"
+                  alt="Michael in suit"
+                  width={2500}
+                  height={1667}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="w-full h-auto object-cover rounded-lg shadow-md"
+                />
+              </div>
+            </FadeInSection>
+
+            {/* The Mission */}
+            <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
+              <div className="md:w-1/2 md:order-2">
+                <Image
+                  src="/img/gray-suit-dark-laughing.webp"
+                  alt="Michael in grey suit"
+                  width={2000}
+                  height={1334}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="w-full h-auto object-cover rounded-lg shadow-md"
+                />
+              </div>
+              <div className="md:w-1/2 space-y-6 md:order-1">
+                <h2 className="text-[45px] font-semibold leading-[1.1] tracking-tight">
+                  Reclaiming Internal Authority.
+                </h2>
+                <div>
+                  <div className="space-y-4">
+                    <p className="text-[23px]">
+                      Today, my mission is helping high-functioning men who look successful on the outside but are secretly exhausted from auditioning for approval on the inside. I work with men to break their approval addiction, end the cycle of enmeshment, and lead with unshakeable internal authority.
+                    </p>
+                    <p className="text-[23px]">
+                      You don&apos;t have to spend the rest of your life performing for validation. It&apos;s time to take control of your ship.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </FadeInSection>
+
+            {/* Credentials & CTA */}
+            <FadeInSection className="space-y-12">
               <ul className="list-none border-t border-default-grey/30 p-0">
                 {credentials.map((item, index) => {
                   const itemNumber = String(index + 1).padStart(2, '0');
@@ -113,73 +171,19 @@ export default function About() {
                   );
                 })}
               </ul>
-            </FadeInSection>
-            <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
-              <div className="md:w-1/2 space-y-6 order-2 md:order-2">
-                <h2 className="text-[45px] font-semibold">Get outside.</h2>
-                <div>
-                  <div className="space-y-4">
-                    <p className="text-[23px]">
-                      As an avid outdoorsman, surfer, and snowboarder, Michael promotes nature-based activities to his
-                      clients. As part of a comprehensive mind-body-emotion practice, connecting with nature is a core
-                      aspect of reality alignment coaching.
-                    </p>
-                  </div>
-                  <TrackedCtaLink
-                    href="https://calendly.com/michaelzick/45min"
-                    className="btn mt-6 text-xl"
-                    location="about"
-                  >
-                    Book a Free Session
-                  </TrackedCtaLink>
-                </div>
-              </div>
-              <div className="md:w-1/2 order-1 md:order-1">
-                <Image
-                  src="/img/pitted.webp"
-                  alt="Michael surfing a wave"
-                  width={2000}
-                  height={1334}
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className="w-full h-auto object-cover rounded-lg shadow-md"
-                />
-              </div>
-            </FadeInSection>
-
-            <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
-              <div className="md:w-1/2 md:order-2">
-                <Image
-                  src="/img/grey_jacket.webp"
-                  alt="Michael in suit"
-                  width={2500}
-                  height={1667}
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className="w-full h-auto object-cover rounded-lg shadow-md"
-                />
-              </div>
-              <div className="md:w-1/2 space-y-6 md:order-1">
-                <h2 className="text-[45px] font-semibold">Let’s talk.</h2>
-                <div>
-                  <div className="space-y-4">
-                    <p className="text-[23px]">
-                      Michael has successfully coached celebrities, entrepreneurs, Nice Guys, and high-functioning adults
-                      to create better goals, careers, and relationships.
-                    </p>
-                    <p className="text-[23px]">Is it time to get in touch with reality?</p>
-                  </div>
-                  <TrackedCtaLink
-                    href="https://calendly.com/michaelzick/45min"
-                    className="btn mt-6 text-xl"
-                    location="about"
-                  >
-                    Book a Free Session
-                  </TrackedCtaLink>
-                </div>
+              <div className="flex justify-start">
+                <TrackedCtaLink
+                  href="https://calendly.com/michaelzick/45min"
+                  className="btn text-xl"
+                  location="about-bottom"
+                >
+                  Book a Free Session
+                </TrackedCtaLink>
               </div>
             </FadeInSection>
           </div>
-        </div>
-      </section>
-    </div>
+        </div >
+      </section >
+    </div >
   );
 }

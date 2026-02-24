@@ -14,11 +14,10 @@ interface SpecialtiesSectionProps {
 
 export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVisible }: SpecialtiesSectionProps) {
   const specialties = [
-    'Nice Guy Syndrome',
-    'Healing Self-Sabotage',
-    'Somatic Regulation',
-    'Nature-Based Modalities',
-    'Relationships & Dating',
+    { title: 'Examine Parental Relationships', desc: 'Understand how your upbringing influences you.' },
+    { title: 'Identify Your Needs & Values', desc: 'Figure out what you want, need, and value.' },
+    { title: 'Communication & Boundary Setting', desc: 'Communicate your needs and boundaries effectively.' },
+    { title: 'Stay in the Discomfort', desc: 'Expose yourself to discomfort without nuking the relationship.' },
   ];
   const { setRef: setImageRef, visibleStates: imageVisible } = useFadeInOnScroll(1, 0.3);
   const { setRef: setSpecialtyRef, visibleStates: specialtyVisible } = useFadeInOnScroll(specialties.length, 0.3);
@@ -34,9 +33,8 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
         <div className="grid items-start gap-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
           <div
             ref={setImageRef(0)}
-            className={`order-2 md:order-1 transition-all duration-700 ease-out ${
-              imageVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-            }`}
+            className={`order-2 md:order-1 transition-all duration-700 ease-out ${imageVisible[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
           >
             <div className="relative h-[400px] w-full overflow-hidden rounded-lg shadow-md sm:h-[480px] md:h-[638px]">
               <Image
@@ -58,17 +56,17 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
           <div className="order-1 md:order-2 space-y-6">
             <h2
               ref={titleRef}
-              className={`font-headline text-[55px] font-semibold transition-opacity duration-700 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'
+              className={`font-headline text-[50px] leading-tight md:text-[55px] font-semibold transition-opacity duration-700 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'
                 }`}
             >
-              Specialties:
+              Signature Framework:
             </h2>
             <ul className="list-none border-t border-white/25 p-0">
               {specialties.map((item, index) => {
                 const itemNumber = String(index + 1).padStart(2, '0');
                 return (
                   <li
-                    key={item}
+                    key={item.title}
                     ref={setSpecialtyRef(index)}
                     className={`grid grid-cols-[auto_1fr] gap-x-6 border-b border-white/20 py-7 md:py-8 transition-all duration-700 ease-out ${specialtyVisible[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                       }`}
@@ -76,7 +74,10 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
                     <span className="mt-2 font-mono text-xs font-semibold tracking-[0.35em] text-white/70">
                       {itemNumber}
                     </span>
-                    <p className="text-[26px] font-semibold leading-snug text-white md:text-[30px]">{item}</p>
+                    <div>
+                      <h3 className="text-[26px] font-semibold leading-snug text-white md:text-[30px]">{item.title}</h3>
+                      <p className="mt-2 text-[18px] text-white/80">{item.desc}</p>
+                    </div>
                   </li>
                 );
               })}

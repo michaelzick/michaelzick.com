@@ -10,11 +10,6 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     quote:
-      'He was able to really hear in between things I was saying and know what was important to bring up. I’ve seen some amazing changes in my world already, not just in the dating realm, but in other areas of my life, too.',
-    author: 'Elizabeth D.',
-  },
-  {
-    quote:
       'I completed a one-on-one coaching series and it was an overwhelmingly positive experience. He helped me uncover my challenges hiding under the surface — NO cookie cutter solutions.',
     author: 'Ryan I.',
   },
@@ -104,7 +99,7 @@ export function TestimonialsCarouselSection({
               Real Clients. Real Results.
             </h2>
             <p className="text-[20px] leading-relaxed">
-              Real words from clients who partnered with me to break patterns, build momentum, and experience lasting change.{' '}
+              Real words from men who broke their approval addiction, built momentum, and experienced lasting change.{' '}
               <a
                 href="/testimonials"
                 className="text-[18px] font-semibold text-white/90 underline decoration-white/60 decoration-2 underline-offset-4 transition hover:text-white"

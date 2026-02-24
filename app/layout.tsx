@@ -25,29 +25,52 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'Organization',
+      '@type': 'LocalBusiness',
       '@id': `${siteConfig.url}/#organization`,
       name: siteConfig.businessName,
       url: siteConfig.url,
       description: siteConfig.description,
+      image: `${siteConfig.url}${siteConfig.personImage}`,
       address: organizationAddress,
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 34.0522,
+        longitude: -118.2437,
+      },
       areaServed: {
         '@type': 'City',
         name: siteConfig.placename,
       },
+      priceRange: '$$',
+      telephone: '',
       sameAs: siteConfig.sameAs,
     },
     {
       '@type': 'Person',
       '@id': `${siteConfig.url}/#person`,
       name: siteConfig.shortName,
-      jobTitle: 'Reality Alignment Coach',
+      jobTitle: 'Nice Guy Recovery Coach',
+      description: siteConfig.description,
       url: siteConfig.url,
       image: `${siteConfig.url}${siteConfig.personImage}`,
+      address: organizationAddress,
       worksFor: {
         '@id': `${siteConfig.url}/#organization`,
       },
       sameAs: siteConfig.sameAs,
+    },
+    {
+      '@type': 'Service',
+      '@id': `${siteConfig.url}/#coaching`,
+      name: 'Nice Guy Recovery Coaching',
+      provider: { '@id': `${siteConfig.url}/#person` },
+      areaServed: { '@type': 'City', name: 'Los Angeles' },
+      description: 'Specialized coaching for men to break free from approval addiction, toxic shame, and enmeshment to reclaim internal authority.',
+      serviceType: 'Life Coaching',
+      offers: {
+        '@type': 'Offer',
+        availability: 'https://schema.org/InStock',
+      }
     },
   ],
 };

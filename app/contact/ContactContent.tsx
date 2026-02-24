@@ -54,7 +54,7 @@ export default function ContactContent() {
             </div>
 
             {/* Column 2: Contact Form (Middle) */}
-            <div className="min-[930px]:col-span-6 lg:col-span-5 bg-white text-black rounded-xl p-4 sm:p-10 lg:p-12 shadow-2xl ring-1 ring-black/5 order-2 min-[930px]:h-full flex flex-col justify-center">
+            <div className="min-[930px]:col-span-6 lg:col-span-5 bg-light-grey text-black rounded-xl p-4 sm:p-10 lg:p-12 shadow-2xl ring-1 ring-black/5 order-2 min-[930px]:h-full flex flex-col justify-center">
               <h2 className="text-3xl font-bold mb-8 text-default-grey">Send Me a Message</h2>
               <ContactForm />
             </div>
@@ -64,7 +64,7 @@ export default function ContactContent() {
               <div className="flex flex-col items-start gap-8">
                 <p className="text-xl lg:text-2xl font-light leading-relaxed">
                   The best way to connect with Michael is to schedule a free 45-minute session,
-                  where we&apos;ll discuss what&apos;s preventing you from achieving the life you want.
+                  where we&apos;ll discuss how to break your approval addiction and reclaim your internal authority.
                 </p>
                 <a
                   href="https://calendly.com/michaelzick/45min"

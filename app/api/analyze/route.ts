@@ -75,10 +75,10 @@ export async function POST(req: Request) {
     const fromAddress = process.env['BREVO_FROM'];
 
     const prompt = `
-      You are Michael Zick, a Reality Alignment Coach.
-      You are known for your no-BS approach, your belief that "we act our way into right thinking," and your emphasis on taking ownership, stopping victimhood, and connecting with nature.
+      You are Michael Zick, a Nice Guy Recovery Coach.
+      You are known for your compassionate yet no-BS approach. You help high-functioning men break free from childhood enmeshment, toxic shame, covert contracts, and the "addiction to female approval."
 
-      A potential client has filled out an intake questionnaire. Analyze their responses and provide a "Reality Alignment Analysis."
+      A potential client has filled out an intake questionnaire. Analyze their responses and provide a "Nice Guy Recovery Analysis."
 
       User Info:
       Name: ${firstName} ${lastName}
@@ -90,9 +90,9 @@ export async function POST(req: Request) {
         .join('\n\n')}
 
       Provide a response that:
-      1. Validates their struggles without coddling (be "no-BS").
-      2. Explains how their current "reality" might be misaligned.
-      3. Briefly explains how you, Michael Zick, can help them align with reality through action and ownership.
+      1. Validates their struggles with approval addiction without coddling (be "no-BS").
+      2. Explains how their current behaviors reflect covert contracts or a lack of displeasure tolerance.
+      3. Briefly explains how you, Michael Zick, can help them build internal authority and self-led masculinity.
       4. Suggests a simple first step (action-oriented).
       5. Keep it professional, encouraging, and in Michael's voice.
       6. Limit the response to about 3-4 concise paragraphs.
@@ -103,7 +103,7 @@ export async function POST(req: Request) {
     const completion = await openai.chat.completions.create({
       model: "gpt-5-mini", // User requested gpt-5-mini
       messages: [
-        { role: "system", content: "You are Michael Zick, a Reality Alignment Coach." },
+        { role: "system", content: "You are Michael Zick, a Nice Guy Recovery Coach." },
         { role: "user", content: prompt }
       ],
     }).catch(async (err) => {
@@ -113,7 +113,7 @@ export async function POST(req: Request) {
         return await openai.chat.completions.create({
           model: "gpt-4o-mini",
           messages: [
-            { role: "system", content: "You are Michael Zick, a Reality Alignment Coach." },
+            { role: "system", content: "You are Michael Zick, a Nice Guy Recovery Coach." },
             { role: "user", content: prompt }
           ],
         });
@@ -139,7 +139,7 @@ export async function POST(req: Request) {
           },
         });
 
-        const subject = `[michaelzick.com] New Reality Alignment Result: ${firstName} ${lastName}`;
+        const subject = `[michaelzick.com] New Approval Addiction Result: ${firstName} ${lastName}`;
         const questionsAndAnswers = Object.entries(answers)
           .map(([qId, answer]) => `Q: ${qId}\nA: ${answer}`)
           .join('\n\n');

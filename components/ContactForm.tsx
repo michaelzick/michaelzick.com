@@ -89,7 +89,7 @@ export default function ContactForm() {
           </label>
           <input
             id="firstName"
-            className="border border-gray-300 rounded-lg p-4 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
+            className="border border-gray-300 rounded-lg p-4 w-full bg-white text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
             name="firstName"
             placeholder="Jane"
             value={formData.firstName}
@@ -102,7 +102,7 @@ export default function ContactForm() {
           </label>
           <input
             id="lastName"
-            className="border border-gray-300 rounded-lg p-4 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
+            className="border border-gray-300 rounded-lg p-4 w-full bg-white text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
             name="lastName"
             placeholder="Doe"
             value={formData.lastName}
@@ -116,7 +116,7 @@ export default function ContactForm() {
         </label>
         <input
           id="email"
-          className="border border-gray-300 rounded-lg p-4 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
+          className="border border-gray-300 rounded-lg p-4 w-full bg-white text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
           type="email"
           name="email"
           placeholder="jane.doe@example.com"
@@ -131,7 +131,7 @@ export default function ContactForm() {
         </label>
         <input
           id="subject"
-          className="border border-gray-300 rounded-lg p-4 w-full text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
+          className="border border-gray-300 rounded-lg p-4 w-full bg-white text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
           name="subject"
           placeholder="How can I help you?"
           value={formData.subject}
@@ -144,7 +144,7 @@ export default function ContactForm() {
         </label>
         <textarea
           id="message"
-          className="border border-gray-300 rounded-lg p-4 w-full h-40 text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none resize-none"
+          className="border border-gray-300 rounded-lg p-4 w-full h-40 bg-white text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none resize-none"
           name="message"
           placeholder="Tell me more about what's on your mind..."
           value={formData.message}
