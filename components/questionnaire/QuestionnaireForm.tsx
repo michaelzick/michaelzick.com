@@ -53,7 +53,7 @@ export default function QuestionnaireForm({
 
       <div
         ref={cardRef}
-        className="bg-white text-default-grey rounded-xl shadow-md ring-1 ring-black/5 p-6 sm:p-8"
+        className="bg-light-grey text-default-grey rounded-xl shadow-md ring-1 ring-black/5 p-6 sm:p-8"
       >
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-4">
