@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Michael Zick | Contact',
     description:
-      'Contact Michael Zick to book a free reality alignment coaching session or ask a question.',
+      'Connect with Michael Zick for a free Nice Guy recovery consultation. Start your journey toward self-led masculinity and internal authority.',
     url: `${siteConfig.url}/contact`,
     siteName: siteConfig.name,
     images: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Michael Zick | Contact',
     description:
-      'Contact Michael Zick to book a free reality alignment coaching session or ask a question.',
+      'Connect with Michael Zick for a free Nice Guy recovery consultation. Start your journey toward self-led masculinity and internal authority.',
     images: ['/img/lake_reflection_2500.webp'],
   },
 };

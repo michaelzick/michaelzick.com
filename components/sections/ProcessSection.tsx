@@ -52,7 +52,7 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
               }`}
           >
             <Image
-              src="/img/ocean_2500.webp"
+              src="/img/dark_mountains_2500.webp"
               alt="Cancel covert contract"
               width={2500}
               height={1667}
@@ -68,7 +68,7 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
               }`}
           >
             <Image
-              src="/img/dark_mountains_2500.webp"
+              src="/img/ocean_2500.webp"
               alt="Build displeasure tolerance"
               width={2500}
               height={1668}
@@ -84,7 +84,7 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
               }`}
           >
             <Image
-              src="/img/rear_view_2500.webp"
+              src="/img/waterfall_2500.webp"
               alt="Choose from standards"
               width={2500}
               height={1667}
