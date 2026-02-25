@@ -24,6 +24,7 @@ export function HeroSection() {
             className="rainbow-glass-btn cta-unified"
             location="hero"
             label="Start Here"
+            eventName="questionnaire_click"
             target="_self"
           >
             Start Here

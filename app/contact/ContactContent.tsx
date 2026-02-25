@@ -5,6 +5,8 @@ import ContactForm from '../../components/ContactForm';
 import { FadeInSection } from '../../components/FadeInSection';
 import Image from 'next/image';
 import { TestimonialsCarouselSection } from '../../components/sections/TestimonialsCarouselSection';
+import TrackedCtaLink from '../../components/TrackedCtaLink';
+import { trackLinkClick } from '../../lib/analytics';
 
 export default function ContactContent() {
   const testimonialsSectionRef = useRef<HTMLElement>(null);
@@ -28,6 +30,16 @@ export default function ContactContent() {
 
     return () => observer.disconnect();
   }, []);
+
+  const handleContactLinkClick = (label: string, href: string, section: string) => () => {
+    trackLinkClick({
+      location: 'contact',
+      label,
+      href,
+      section,
+      pagePath: window.location.pathname,
+    });
+  };
 
   return (
     <div className="flex flex-col">
@@ -66,14 +78,15 @@ export default function ContactContent() {
                   The best way to connect with Michael is to schedule a free 45-minute session,
                   where we&apos;ll discuss how to break your approval addiction and reclaim your internal authority.
                 </p>
-                <a
+                <TrackedCtaLink
                   href="https://calendly.com/michaelzick/45min"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="btn !w-full text-lg lg:text-xl text-center !px-6"
+                  location="contact-sidebar"
+                  label="Book a Free Session"
+                  eventName="book_free_session_click"
                 >
                   Book a Free Session
-                </a>
+                </TrackedCtaLink>
               </div>
 
               <div className="flex flex-col items-start gap-4">
@@ -86,6 +99,7 @@ export default function ContactContent() {
                     rel="noopener noreferrer"
                     aria-label="Medium"
                     className="group inline-flex h-14 w-14 items-center justify-center rounded-lg border border-white/40 transition-all duration-300 hover:bg-white/10 hover:border-white"
+                    onClick={handleContactLinkClick('Medium', 'https://michaelzick.medium.com', 'social')}
                   >
                     <svg
                       className="w-10 h-10 fill-current opacity-80 group-hover:opacity-100 transition-opacity"
@@ -101,6 +115,7 @@ export default function ContactContent() {
                     rel="noopener noreferrer"
                     aria-label="Instagram"
                     className="group inline-flex h-14 w-14 items-center justify-center rounded-lg border border-white/40 transition-all duration-300 hover:bg-white/10 hover:border-white"
+                    onClick={handleContactLinkClick('Instagram', 'https://www.instagram.com/michaelzickofficial', 'social')}
                   >
                     <svg
                       className="w-8 h-8 fill-current opacity-80 group-hover:opacity-100 transition-opacity"
@@ -116,6 +131,7 @@ export default function ContactContent() {
                     rel="noopener noreferrer"
                     aria-label="YouTube"
                     className="group inline-flex h-14 w-14 items-center justify-center rounded-lg border border-white/40 transition-all duration-300 hover:bg-white/10 hover:border-white"
+                    onClick={handleContactLinkClick('YouTube', 'https://www.youtube.com/@michaelzick', 'social')}
                   >
                     <svg
                       className="w-9 h-9 fill-current opacity-80 group-hover:opacity-100 transition-opacity"

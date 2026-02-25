@@ -14,6 +14,7 @@ export default function QuestionnaireCta({ location, className }: QuestionnaireC
       className={className || 'rainbow-glass-btn cta-unified'}
       location={location}
       label="Take the Questionnaire"
+      eventName="questionnaire_click"
       target="_self"
     >
       Take the Questionnaire

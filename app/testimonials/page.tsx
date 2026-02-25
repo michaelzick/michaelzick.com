@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { FadeInSection } from '../../components/FadeInSection';
+import TrackedCtaLink from '../../components/TrackedCtaLink';
 import { siteConfig } from '../../lib/site';
 
 export const metadata: Metadata = {
@@ -77,20 +78,25 @@ export default function Testimonials() {
             </FadeInSection>
 
             <FadeInSection className="mt-16 flex flex-col items-center justify-center gap-6 md:flex-row">
-              <a
+              <TrackedCtaLink
                 href="https://calendly.com/michaelzick/45min"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="btn text-xl"
+                location="testimonials-hero"
+                label="Book a Free Session"
+                eventName="book_free_session_click"
               >
                 Book a Free Session
-              </a>
-              <a
+              </TrackedCtaLink>
+              <TrackedCtaLink
                 href="/questionnaire"
                 className="rainbow-glass-btn cta-unified"
+                location="testimonials-hero"
+                label="Take the Questionnaire"
+                eventName="questionnaire_click"
+                target="_self"
               >
                 Take the Questionnaire
-              </a>
+              </TrackedCtaLink>
             </FadeInSection>
           </div>
         </div>

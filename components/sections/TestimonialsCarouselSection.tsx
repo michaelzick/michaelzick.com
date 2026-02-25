@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState, type RefObject } from 'react';
+import Link from 'next/link';
+import { trackLinkClick } from '../../lib/analytics';
 
 interface Testimonial {
   quote: string;
@@ -80,6 +82,16 @@ export function TestimonialsCarouselSection({
     node.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
   };
 
+  const handleViewMoreClick = () => {
+    trackLinkClick({
+      location: 'testimonials-carousel',
+      label: 'View more',
+      href: '/testimonials',
+      section: 'links',
+      pagePath: window.location.pathname,
+    });
+  };
+
   return (
     <section
       id="testimonials"
@@ -100,12 +112,13 @@ export function TestimonialsCarouselSection({
             </h2>
             <p className="text-[20px] leading-relaxed">
               Real words from men who broke their approval addiction, built momentum, and experienced lasting change.{' '}
-              <a
+              <Link
                 href="/testimonials"
                 className="text-[18px] font-semibold text-white/90 underline decoration-white/60 decoration-2 underline-offset-4 transition hover:text-white"
+                onClick={handleViewMoreClick}
               >
                 View&nbsp;more.
-              </a>
+              </Link>
             </p>
           </div>
           <div className="hidden shrink-0 items-center gap-3 md:flex">

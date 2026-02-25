@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import ScrollToTopButton from '../../../components/blog/ScrollToTopButton';
 import BookingCta from '../../../components/BookingCta';
 import QuestionnaireCta from '../../../components/QuestionnaireCta';
+import TrackedLink from '../../../components/TrackedLink';
 import { getBlogPostBySlug, getBlogPosts } from '../../../lib/blog';
 import { siteConfig } from '../../../lib/site';
 
@@ -169,25 +169,39 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       />
       <div className="mx-auto max-w-[1000px]">
         <nav className="text-sm text-default-grey/70">
-          <Link href="/" className="hover:text-default-grey">
+          <TrackedLink
+            href="/"
+            className="hover:text-default-grey"
+            location="blog-post"
+            section="breadcrumb"
+            label="Home"
+          >
             Home
-          </Link>
+          </TrackedLink>
           <span className="mx-2">/</span>
-          <Link href="/blog" className="hover:text-default-grey">
+          <TrackedLink
+            href="/blog"
+            className="hover:text-default-grey"
+            location="blog-post"
+            section="breadcrumb"
+            label="Blog"
+          >
             Blog
-          </Link>
+          </TrackedLink>
         </nav>
         {post.canonicalUrl && post.canonicalSource && (
           <p className="mt-4 text-sm text-default-grey/70">
             Originally published on{' '}
-            <a
+            <TrackedLink
               href={post.canonicalUrl}
               target="_blank"
-              rel="noopener noreferrer"
               className="font-semibold text-dark-blue underline decoration-dark-blue/60 decoration-2 underline-offset-4 transition hover:text-dark-blue/80"
+              location="blog-post"
+              section="canonical"
+              label={post.canonicalSource}
             >
               {post.canonicalSource}
-            </a>
+            </TrackedLink>
             .
           </p>
         )}
@@ -257,10 +271,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   </h2>
                   <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {similarPosts.map((similar) => (
-                      <Link
+                      <TrackedLink
                         key={similar.slug}
                         href={`/blog/${similar.slug}`}
                         className="group flex flex-col space-y-4 rounded-lg bg-white p-4 shadow-sm ring-1 ring-black/5 transition-all hover:-translate-y-1 hover:shadow-md"
+                        location="blog-post"
+                        section="similar-posts"
+                        label={similar.title}
                       >
                         <div className="aspect-video overflow-hidden rounded-lg">
                           <Image
@@ -279,17 +296,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                             {similar.subtitle}
                           </p>
                         </div>
-                      </Link>
+                      </TrackedLink>
                     ))}
                   </div>
                   <div className="mt-12 flex justify-start">
-                    <Link
+                    <TrackedLink
                       href="/blog"
                       className="inline-flex items-center gap-2 text-dark-blue font-bold transition-colors group"
+                      location="blog-post"
+                      section="similar-posts"
+                      label="View All Posts"
                     >
                       View All Posts
                       <span className="transition-transform group-hover:translate-x-1">→</span>
-                    </Link>
+                    </TrackedLink>
                   </div>
                 </div>
               );
@@ -300,13 +320,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <p className="text-lg text-default-grey/60 italic">
                   No similar posts found, but there&apos;s plenty more to explore.
                 </p>
-                <Link
+                <TrackedLink
                   href="/blog"
                   className="inline-flex items-center gap-2 text-dark-blue font-bold transition-colors group"
+                  location="blog-post"
+                  section="similar-posts"
+                  label="View All Posts"
                 >
                   View All Posts
                   <span className="transition-transform group-hover:translate-x-1">→</span>
-                </Link>
+                </TrackedLink>
               </div>
             );
           })()}

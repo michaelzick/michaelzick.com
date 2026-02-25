@@ -1,7 +1,7 @@
 'use client';
 
-import Link from 'next/link';
 import Image from 'next/image';
+import TrackedLink from '../TrackedLink';
 import type { BlogPost } from '../../lib/blog';
 
 interface BlogPostCardProps {
@@ -9,8 +9,16 @@ interface BlogPostCardProps {
 }
 
 export default function BlogPostCard({ post }: BlogPostCardProps) {
+  const href = `/blog/${post.slug}`;
+
   return (
-    <Link href={`/blog/${post.slug}`} className="group block">
+    <TrackedLink
+      href={href}
+      className="group block"
+      location="blog-index"
+      section="post-card"
+      label={post.title}
+    >
       <article className="overflow-hidden rounded-lg bg-white shadow-md transition duration-300 group-hover:-translate-y-1 group-hover:shadow-lg">
         <div className="aspect-[16/9] overflow-hidden">
           <Image
@@ -56,6 +64,6 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
           </div>
         </div>
       </article>
-    </Link>
+    </TrackedLink>
   );
 }

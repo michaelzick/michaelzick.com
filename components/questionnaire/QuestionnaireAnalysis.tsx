@@ -1,6 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import TrackedCtaLink from '../TrackedCtaLink';
+import { trackLinkClick } from '../../lib/analytics';
 
 interface QuestionnaireAnalysisProps {
   analysis: string;
@@ -8,6 +10,16 @@ interface QuestionnaireAnalysisProps {
 }
 
 export default function QuestionnaireAnalysis({ analysis, cardRef }: QuestionnaireAnalysisProps) {
+  const handleAnalysisLinkClick = (label: string, href: string, section: string) => () => {
+    trackLinkClick({
+      location: 'questionnaire-analysis',
+      label,
+      href,
+      section,
+      pagePath: window.location.pathname,
+    });
+  };
+
   return (
     <div
       ref={cardRef}
@@ -21,17 +33,19 @@ export default function QuestionnaireAnalysis({ analysis, cardRef }: Questionnai
       </div>
       <div className="mt-12 p-6 bg-dark-blue/5 rounded-lg">
         <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
-          <a
+          <TrackedCtaLink
             href="https://calendly.com/michaelzick/45min"
-            target="_blank"
-            rel="noopener noreferrer"
             className="btn text-xl whitespace-nowrap"
+            location="questionnaire-analysis"
+            label="Book a Free Session"
+            eventName="book_free_session_click"
           >
             Book a Free Session
-          </a>
+          </TrackedCtaLink>
           <Link
             href="/contact"
             className="inline-flex items-center justify-center rounded-lg border-2 border-primary-blue text-primary-blue transition-all duration-300 hover:bg-primary-blue/10 font-bold text-xl whitespace-nowrap px-[42px] py-[30px]"
+            onClick={handleAnalysisLinkClick('Contact Michael', '/contact', 'cta')}
           >
             Contact Michael
           </Link>

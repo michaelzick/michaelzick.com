@@ -14,6 +14,7 @@ export default function BookingCta({ location, className }: BookingCtaProps) {
       className={className || 'btn cta-unified'}
       location={location}
       label="Book a Free Session"
+      eventName="book_free_session_click"
     >
       Book a Free Session
     </TrackedCtaLink>
