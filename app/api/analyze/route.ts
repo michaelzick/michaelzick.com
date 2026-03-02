@@ -1,7 +1,6 @@
 import OpenAI from 'openai';
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-import { STEPS } from '../../../components/questionnaire/steps';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -13,10 +12,6 @@ export const runtime = 'nodejs';
 const rateLimitMap = new Map<string, { count: number; lastReset: number; }>();
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
 const MAX_REQUESTS_PER_WINDOW = 5;
-const QUESTION_ORDER_INDEX = new Map(
-  STEPS.flatMap((step) => step.questions?.map((question) => question.id) ?? [])
-    .map((questionId, index) => [questionId, index] as const),
-);
 
 export async function POST(req: Request) {
   try {
@@ -58,11 +53,7 @@ export async function POST(req: Request) {
 
     const MAX_ANSWER_LENGTH = 1000;
     const MAX_ANSWERS_COUNT = 10;
-    const answerEntries = Object.entries(answers).sort(([questionA], [questionB]) => {
-      const indexA = QUESTION_ORDER_INDEX.get(questionA) ?? Number.MAX_SAFE_INTEGER;
-      const indexB = QUESTION_ORDER_INDEX.get(questionB) ?? Number.MAX_SAFE_INTEGER;
-      return indexA - indexB;
-    });
+    const answerEntries = Object.entries(answers);
 
     if (answerEntries.length > MAX_ANSWERS_COUNT) {
       return NextResponse.json({ error: 'Too many responses' }, { status: 400 });
