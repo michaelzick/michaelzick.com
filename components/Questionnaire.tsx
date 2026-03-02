@@ -17,14 +17,23 @@ function clampDuration(ms: number) {
   return Math.min(MAX_ANALYSIS_DURATION_MS, Math.max(MIN_ANALYSIS_DURATION_MS, ms));
 }
 
-const DEFAULT_RANGE_ANSWERS = STEPS.reduce<Record<string, string>>((answers, step) => {
-  step.questions?.forEach((question) => {
-    if (question.type === 'range' && typeof question.min === 'number') {
-      answers[question.id] = String(question.min);
+const QUESTION_ORDER = STEPS.flatMap((step) => step.questions ?? []);
+
+function getOrderedAnswersWithDefaults(answers: Record<string, string>) {
+  return QUESTION_ORDER.reduce<Record<string, string>>((ordered, question) => {
+    const answer = answers[question.id];
+    if (answer && answer.trim() !== '') {
+      ordered[question.id] = answer;
+      return ordered;
     }
-  });
-  return answers;
-}, {});
+
+    if (question.type === 'range' && typeof question.min === 'number') {
+      ordered[question.id] = String(question.min);
+    }
+
+    return ordered;
+  }, {});
+}
 
 export default function Questionnaire() {
   const [stepIndex, setStepIndex] = useState(0);
@@ -32,7 +41,7 @@ export default function Questionnaire() {
     firstName: '',
     lastName: '',
     email: '',
-    answers: DEFAULT_RANGE_ANSWERS,
+    answers: {},
   });
   const [honeypot, setHoneypot] = useState('');
   const [consented, setConsented] = useState(false);
@@ -133,6 +142,7 @@ export default function Questionnaire() {
   };
 
   const handleSubmit = async () => {
+    const orderedAnswers = getOrderedAnswersWithDefaults(formData.answers);
     const submitStartedAt = Date.now();
     submitStartedAtRef.current = submitStartedAt;
     setAnalysisProgress(3);
@@ -146,7 +156,7 @@ export default function Questionnaire() {
       const response = await fetch('/api/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, website: honeypot }),
+        body: JSON.stringify({ ...formData, answers: orderedAnswers, website: honeypot }),
       });
 
       const data = await response.json();
