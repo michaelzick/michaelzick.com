@@ -17,13 +17,22 @@ function clampDuration(ms: number) {
   return Math.min(MAX_ANALYSIS_DURATION_MS, Math.max(MIN_ANALYSIS_DURATION_MS, ms));
 }
 
+const DEFAULT_RANGE_ANSWERS = STEPS.reduce<Record<string, string>>((answers, step) => {
+  step.questions?.forEach((question) => {
+    if (question.type === 'range' && typeof question.min === 'number') {
+      answers[question.id] = String(question.min);
+    }
+  });
+  return answers;
+}, {});
+
 export default function Questionnaire() {
   const [stepIndex, setStepIndex] = useState(0);
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
     email: '',
-    answers: {},
+    answers: DEFAULT_RANGE_ANSWERS,
   });
   const [honeypot, setHoneypot] = useState('');
   const [consented, setConsented] = useState(false);
