@@ -12,6 +12,7 @@ import { ProgramSection } from './sections/ProgramSection';
 import { TestimonialsCarouselSection } from './sections/TestimonialsCarouselSection';
 import { FadeInSection } from './FadeInSection';
 import ContactForm from './ContactForm';
+import WorkbookCapture from './WorkbookCapture';
 import type { SectionConfig } from './hooks/useScrollTracking';
 
 export default function HomePageContent() {
@@ -129,6 +130,8 @@ export default function HomePageContent() {
         scrollMarginTop={scrollMarginTop}
         isVisible={visibleTitles.process}
       />
+
+      <WorkbookCapture />
 
       <SpecialtiesSection
         sectionRef={specialtiesSectionRef}

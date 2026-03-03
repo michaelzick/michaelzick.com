@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Script from 'next/script';
 import { Open_Sans } from 'next/font/google';
+import ExitIntentModal from '../components/ExitIntentModal';
 import { siteConfig } from '../lib/site';
 
 const openSans = Open_Sans({
@@ -192,6 +193,7 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
         <NavBar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <ExitIntentModal />
       </body>
     </html>
   );
