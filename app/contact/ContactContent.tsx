@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { TestimonialsCarouselSection } from '../../components/sections/TestimonialsCarouselSection';
 import TrackedCtaLink from '../../components/TrackedCtaLink';
 import { trackLinkClick } from '../../lib/analytics';
+import { TESTIMONIALS_MOBILE_LAYOUT_MODE } from '../../lib/experiments';
 
 export default function ContactContent() {
   const testimonialsSectionRef = useRef<HTMLElement>(null);
@@ -153,6 +154,7 @@ export default function ContactContent() {
         titleRef={testimonialsTitleRef}
         scrollMarginTop={0}
         isVisible={testimonialsVisible}
+        mobileLayoutMode={TESTIMONIALS_MOBILE_LAYOUT_MODE}
       />
 
       {/* Horizontal line between testimonials and footer */}

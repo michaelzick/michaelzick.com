@@ -13,6 +13,7 @@ import { TestimonialsCarouselSection } from './sections/TestimonialsCarouselSect
 import { FadeInSection } from './FadeInSection';
 import ContactForm from './ContactForm';
 import type { SectionConfig } from './hooks/useScrollTracking';
+import { TESTIMONIALS_MOBILE_LAYOUT_MODE } from '../lib/experiments';
 
 export default function HomePageContent() {
   const beginningSectionRef = useRef<HTMLElement>(null);
@@ -149,6 +150,7 @@ export default function HomePageContent() {
         titleRef={testimonialsTitleRef}
         scrollMarginTop={scrollMarginTop}
         isVisible={visibleTitles.testimonials}
+        mobileLayoutMode={TESTIMONIALS_MOBILE_LAYOUT_MODE}
       />
 
       <section

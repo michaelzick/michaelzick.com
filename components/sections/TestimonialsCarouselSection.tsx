@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState, type RefObject } from 'react';
 import Link from 'next/link';
-import { trackLinkClick } from '../../lib/analytics';
+import { trackEvent, trackLinkClick } from '../../lib/analytics';
+import type { TestimonialsMobileLayoutMode } from '../../lib/experiments';
 
 interface Testimonial {
   quote: string;
@@ -37,11 +38,25 @@ const testimonials: Testimonial[] = [
   },
 ];
 
+type TestimonialsMobileLayoutVariant = 'inline' | 'carousel';
+type AssignmentSource = 'mode' | 'query' | 'stored' | 'random';
+
+const TESTIMONIALS_MOBILE_EXPERIMENT_NAME = 'testimonials_mobile_layout_v1';
+const TESTIMONIALS_MOBILE_EXPERIMENT_STORAGE_KEY = 'exp_testimonials_mobile_layout_v1';
+const TESTIMONIALS_MOBILE_EXPERIMENT_QUERY_PARAM = 'testimonials_mobile_layout';
+
+function isTestimonialsMobileLayoutVariant(
+  value: string | null | undefined,
+): value is TestimonialsMobileLayoutVariant {
+  return value === 'inline' || value === 'carousel';
+}
+
 interface TestimonialsCarouselSectionProps {
   sectionRef: RefObject<HTMLElement>;
   titleRef: RefObject<HTMLHeadingElement>;
   scrollMarginTop: number;
   isVisible: boolean;
+  mobileLayoutMode?: TestimonialsMobileLayoutMode;
 }
 
 export function TestimonialsCarouselSection({
@@ -49,10 +64,14 @@ export function TestimonialsCarouselSection({
   titleRef,
   scrollMarginTop,
   isVisible,
+  mobileLayoutMode = 'experiment',
 }: TestimonialsCarouselSectionProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isAtStart, setIsAtStart] = useState(true);
   const [isAtEnd, setIsAtEnd] = useState(false);
+  const [mobileLayoutVariant, setMobileLayoutVariant] = useState<TestimonialsMobileLayoutVariant>('inline');
+  const [assignmentSource, setAssignmentSource] = useState<AssignmentSource>('mode');
+  const [hasResolvedMobileVariant, setHasResolvedMobileVariant] = useState(false);
 
   useEffect(() => {
     const node = scrollRef.current;
@@ -74,6 +93,50 @@ export function TestimonialsCarouselSection({
       window.removeEventListener('resize', updatePositions);
     };
   }, []);
+
+  useEffect(() => {
+    if (mobileLayoutMode === 'inline' || mobileLayoutMode === 'carousel') {
+      setMobileLayoutVariant(mobileLayoutMode);
+      setAssignmentSource('mode');
+      setHasResolvedMobileVariant(true);
+      return;
+    }
+
+    const queryParams = new URLSearchParams(window.location.search);
+    const queryVariant = queryParams.get(TESTIMONIALS_MOBILE_EXPERIMENT_QUERY_PARAM);
+    if (isTestimonialsMobileLayoutVariant(queryVariant)) {
+      window.localStorage.setItem(TESTIMONIALS_MOBILE_EXPERIMENT_STORAGE_KEY, queryVariant);
+      setMobileLayoutVariant(queryVariant);
+      setAssignmentSource('query');
+      setHasResolvedMobileVariant(true);
+      return;
+    }
+
+    const storedVariant = window.localStorage.getItem(TESTIMONIALS_MOBILE_EXPERIMENT_STORAGE_KEY);
+    if (isTestimonialsMobileLayoutVariant(storedVariant)) {
+      setMobileLayoutVariant(storedVariant);
+      setAssignmentSource('stored');
+      setHasResolvedMobileVariant(true);
+      return;
+    }
+
+    const assignedVariant: TestimonialsMobileLayoutVariant = Math.random() < 0.5 ? 'inline' : 'carousel';
+    window.localStorage.setItem(TESTIMONIALS_MOBILE_EXPERIMENT_STORAGE_KEY, assignedVariant);
+    setMobileLayoutVariant(assignedVariant);
+    setAssignmentSource('random');
+    setHasResolvedMobileVariant(true);
+  }, [mobileLayoutMode]);
+
+  useEffect(() => {
+    if (!hasResolvedMobileVariant) return;
+    if (window.innerWidth >= 768) return;
+    trackEvent('testimonials_mobile_layout_exposure', {
+      experiment_name: TESTIMONIALS_MOBILE_EXPERIMENT_NAME,
+      experiment_variant: mobileLayoutVariant,
+      assignment_source: assignmentSource,
+      page_path: window.location.pathname,
+    });
+  }, [mobileLayoutVariant, assignmentSource, hasResolvedMobileVariant]);
 
   const handleScroll = (direction: 'left' | 'right') => {
     const node = scrollRef.current;
@@ -152,21 +215,43 @@ export function TestimonialsCarouselSection({
             }`}
         >
           {/* Mobile Stacked View (< 768px) */}
-          <div className="block md:hidden space-y-6">
-            {testimonials.slice(0, 3).map((testimonial, index) => (
-              <figure
-                key={`mobile-${index}`}
-                className="rounded-lg bg-light-grey p-6 shadow-md ring-1 ring-dark-blue/5 backdrop-blur-md"
-              >
-                <blockquote className="text-[22px] leading-relaxed text-default-grey">
-                  “{testimonial.quote}”
-                </blockquote>
-                <figcaption className="mt-4 text-[18px] font-semibold text-default-grey/80">
-                  — {testimonial.author}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
+          {mobileLayoutVariant === 'inline' ? (
+            <div className="block md:hidden space-y-6">
+              {testimonials.slice(0, 3).map((testimonial, index) => (
+                <figure
+                  key={`mobile-inline-${index}`}
+                  className="rounded-lg bg-light-grey p-6 shadow-md ring-1 ring-dark-blue/5 backdrop-blur-md"
+                >
+                  <blockquote className="text-[22px] leading-relaxed text-default-grey">
+                    “{testimonial.quote}”
+                  </blockquote>
+                  <figcaption className="mt-4 text-[18px] font-semibold text-default-grey/80">
+                    — {testimonial.author}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          ) : (
+            <div
+              className="flex md:hidden snap-x snap-mandatory gap-4 overflow-x-auto pb-4"
+              role="region"
+              aria-label="Client testimonials carousel"
+            >
+              {testimonials.map((testimonial, index) => (
+                <figure
+                  key={`mobile-carousel-${index}`}
+                  className="snap-start shrink-0 basis-[88%] rounded-lg bg-light-grey p-6 shadow-md ring-1 ring-dark-blue/5 backdrop-blur-md"
+                >
+                  <blockquote className="text-[22px] leading-relaxed text-default-grey">
+                    “{testimonial.quote}”
+                  </blockquote>
+                  <figcaption className="mt-4 text-[18px] font-semibold text-default-grey/80">
+                    — {testimonial.author}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
 
           {/* Desktop Carousel View (>= 768px) */}
           <div

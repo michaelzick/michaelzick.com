@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
+import { trackEvent } from '../lib/analytics';
 
 interface FormData {
   firstName: string;
@@ -60,6 +61,9 @@ export default function ContactForm() {
       });
       if (!res.ok) throw new Error('Request failed');
       setStatus('success');
+      trackEvent('contact_submit_success', {
+        page_path: window.location.pathname,
+      });
       setFormData(initialFormData);
       setCaptchaError(null);
       setCaptchaToken(null);
