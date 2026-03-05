@@ -3,7 +3,11 @@
 import { useEffect, useRef, useState, type RefObject } from 'react';
 import Link from 'next/link';
 import { trackEvent, trackLinkClick } from '../../lib/analytics';
-import type { TestimonialsMobileLayoutMode } from '../../lib/experiments';
+import {
+  AMPLITUDE_EXPERIMENT_DEPLOYMENT_KEY,
+  TESTIMONIALS_MOBILE_EXPERIMENT_FLAG_KEY,
+  type TestimonialsMobileLayoutMode,
+} from '../../lib/experiments';
 
 interface Testimonial {
   quote: string;
@@ -39,16 +43,89 @@ const testimonials: Testimonial[] = [
 ];
 
 type TestimonialsMobileLayoutVariant = 'inline' | 'carousel';
-type AssignmentSource = 'mode' | 'query' | 'stored' | 'random';
+type AssignmentSource = 'mode' | 'query' | 'remote' | 'fallback';
 
 const TESTIMONIALS_MOBILE_EXPERIMENT_NAME = 'testimonials_mobile_layout_v1';
-const TESTIMONIALS_MOBILE_EXPERIMENT_STORAGE_KEY = 'exp_testimonials_mobile_layout_v1';
 const TESTIMONIALS_MOBILE_EXPERIMENT_QUERY_PARAM = 'testimonials_mobile_layout';
+const TESTIMONIALS_EXPERIMENT_WAIT_TIMEOUT_MS = 8000;
+const TESTIMONIALS_EXPERIMENT_WAIT_INTERVAL_MS = 100;
+
+interface ExperimentVariantLike {
+  value?: unknown;
+  expKey?: string;
+}
+
+interface ExperimentClientLike {
+  start: () => Promise<void>;
+  variant: (key: string) => ExperimentVariantLike;
+}
+
+interface ExperimentFactoryLike {
+  initializeWithAmplitudeAnalytics: (
+    deploymentKey: string,
+    config?: Record<string, unknown>,
+  ) => ExperimentClientLike;
+}
+
+interface ExperimentWindowLike extends Window {
+  Experiment?: {
+    Experiment?: ExperimentFactoryLike;
+  };
+  __testimonialsExperimentClient?: ExperimentClientLike;
+}
 
 function isTestimonialsMobileLayoutVariant(
   value: string | null | undefined,
 ): value is TestimonialsMobileLayoutVariant {
   return value === 'inline' || value === 'carousel';
+}
+
+async function getOrCreateExperimentClient(
+  deploymentKey: string,
+): Promise<ExperimentClientLike | null> {
+  const expWindow = window as ExperimentWindowLike;
+  if (expWindow.__testimonialsExperimentClient) {
+    return expWindow.__testimonialsExperimentClient;
+  }
+
+  const startedAt = Date.now();
+  while (Date.now() - startedAt < TESTIMONIALS_EXPERIMENT_WAIT_TIMEOUT_MS) {
+    const factory = expWindow.Experiment?.Experiment;
+    if (factory?.initializeWithAmplitudeAnalytics) {
+      const client = factory.initializeWithAmplitudeAnalytics(deploymentKey, {
+        fetchOnStart: true,
+        automaticExposureTracking: false,
+      });
+      expWindow.__testimonialsExperimentClient = client;
+      return client;
+    }
+    await new Promise((resolve) => window.setTimeout(resolve, TESTIMONIALS_EXPERIMENT_WAIT_INTERVAL_MS));
+  }
+
+  return null;
+}
+
+function trackAmplitudeExposure(variant: TestimonialsMobileLayoutVariant, experimentKey?: string) {
+  const payload: Record<string, string> = {
+    flag_key: TESTIMONIALS_MOBILE_EXPERIMENT_FLAG_KEY,
+    variant,
+  };
+  if (experimentKey) {
+    payload.experiment_key = experimentKey;
+  }
+
+  const amplitude = (window as {
+    amplitude?: {
+      track?: (name: string, props?: object) => void;
+      logEvent?: (name: string, props?: object) => void;
+    };
+  }).amplitude;
+
+  if (amplitude?.track) {
+    amplitude.track('$exposure', payload);
+  } else if (amplitude?.logEvent) {
+    amplitude.logEvent('$exposure', payload);
+  }
 }
 
 interface TestimonialsCarouselSectionProps {
@@ -95,36 +172,65 @@ export function TestimonialsCarouselSection({
   }, []);
 
   useEffect(() => {
+    let isCancelled = false;
+
+    const setResolvedVariant = (
+      variant: TestimonialsMobileLayoutVariant,
+      source: AssignmentSource,
+    ) => {
+      if (isCancelled) return;
+      setMobileLayoutVariant(variant);
+      setAssignmentSource(source);
+      setHasResolvedMobileVariant(true);
+    };
+
+    const resolveRemoteVariant = async () => {
+      if (!AMPLITUDE_EXPERIMENT_DEPLOYMENT_KEY) {
+        setResolvedVariant('inline', 'fallback');
+        return;
+      }
+
+      const client = await getOrCreateExperimentClient(AMPLITUDE_EXPERIMENT_DEPLOYMENT_KEY);
+      if (!client) {
+        setResolvedVariant('inline', 'fallback');
+        return;
+      }
+
+      try {
+        await client.start();
+        if (isCancelled) return;
+
+        const remoteVariant = client.variant(TESTIMONIALS_MOBILE_EXPERIMENT_FLAG_KEY);
+        const remoteVariantValue =
+          typeof remoteVariant.value === 'string' ? remoteVariant.value : null;
+
+        if (isTestimonialsMobileLayoutVariant(remoteVariantValue)) {
+          setResolvedVariant(remoteVariantValue, 'remote');
+          trackAmplitudeExposure(remoteVariantValue, remoteVariant.expKey);
+          return;
+        }
+
+        setResolvedVariant('inline', 'fallback');
+      } catch {
+        setResolvedVariant('inline', 'fallback');
+      }
+    };
+
     if (mobileLayoutMode === 'inline' || mobileLayoutMode === 'carousel') {
-      setMobileLayoutVariant(mobileLayoutMode);
-      setAssignmentSource('mode');
-      setHasResolvedMobileVariant(true);
-      return;
+      setResolvedVariant(mobileLayoutMode, 'mode');
+    } else {
+      const queryParams = new URLSearchParams(window.location.search);
+      const queryVariant = queryParams.get(TESTIMONIALS_MOBILE_EXPERIMENT_QUERY_PARAM);
+      if (isTestimonialsMobileLayoutVariant(queryVariant)) {
+        setResolvedVariant(queryVariant, 'query');
+      } else {
+        resolveRemoteVariant();
+      }
     }
 
-    const queryParams = new URLSearchParams(window.location.search);
-    const queryVariant = queryParams.get(TESTIMONIALS_MOBILE_EXPERIMENT_QUERY_PARAM);
-    if (isTestimonialsMobileLayoutVariant(queryVariant)) {
-      window.localStorage.setItem(TESTIMONIALS_MOBILE_EXPERIMENT_STORAGE_KEY, queryVariant);
-      setMobileLayoutVariant(queryVariant);
-      setAssignmentSource('query');
-      setHasResolvedMobileVariant(true);
-      return;
-    }
-
-    const storedVariant = window.localStorage.getItem(TESTIMONIALS_MOBILE_EXPERIMENT_STORAGE_KEY);
-    if (isTestimonialsMobileLayoutVariant(storedVariant)) {
-      setMobileLayoutVariant(storedVariant);
-      setAssignmentSource('stored');
-      setHasResolvedMobileVariant(true);
-      return;
-    }
-
-    const assignedVariant: TestimonialsMobileLayoutVariant = Math.random() < 0.5 ? 'inline' : 'carousel';
-    window.localStorage.setItem(TESTIMONIALS_MOBILE_EXPERIMENT_STORAGE_KEY, assignedVariant);
-    setMobileLayoutVariant(assignedVariant);
-    setAssignmentSource('random');
-    setHasResolvedMobileVariant(true);
+    return () => {
+      isCancelled = true;
+    };
   }, [mobileLayoutMode]);
 
   useEffect(() => {

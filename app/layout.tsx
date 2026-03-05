@@ -143,6 +143,10 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
           strategy="afterInteractive"
           src="https://cdn.amplitude.com/script/46e4589d8bee602239bf1937b465e1d7.js"
         />
+        <Script
+          strategy="afterInteractive"
+          src="https://unpkg.com/@amplitude/experiment-js-client@1.20.3/dist/experiment.umd.js"
+        />
         <Script id="amplitude-init" strategy="afterInteractive">
           {`
             (function () {

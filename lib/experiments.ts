@@ -18,3 +18,9 @@ function normalizeTestimonialsMobileLayoutMode(
 export const TESTIMONIALS_MOBILE_LAYOUT_MODE = normalizeTestimonialsMobileLayoutMode(
   process.env.NEXT_PUBLIC_TESTIMONIALS_MOBILE_LAYOUT_MODE,
 );
+
+export const AMPLITUDE_EXPERIMENT_DEPLOYMENT_KEY =
+  process.env.NEXT_PUBLIC_AMPLITUDE_EXPERIMENT_DEPLOYMENT_KEY;
+
+export const TESTIMONIALS_MOBILE_EXPERIMENT_FLAG_KEY =
+  process.env.NEXT_PUBLIC_TESTIMONIALS_MOBILE_EXPERIMENT_FLAG_KEY || 'testimonials_mobile_layout';
