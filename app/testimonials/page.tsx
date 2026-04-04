@@ -79,23 +79,23 @@ export default function Testimonials() {
 
             <FadeInSection className="mt-16 flex flex-col items-center justify-center gap-6 md:flex-row">
               <TrackedCtaLink
+                href="/questionnaire"
+                className="rainbow-glass-btn cta-unified"
+                location="testimonials-hero"
+                label="Start Here"
+                eventName="questionnaire_click"
+                target="_self"
+              >
+                Start Here
+              </TrackedCtaLink>
+              <TrackedCtaLink
                 href="https://calendly.com/michaelzick/45min"
-                className="btn text-xl"
+                className="btn cta-unified"
                 location="testimonials-hero"
                 label="Book a Free Session"
                 eventName="book_free_session_click"
               >
                 Book a Free Session
-              </TrackedCtaLink>
-              <TrackedCtaLink
-                href="/questionnaire"
-                className="rainbow-glass-btn cta-unified"
-                location="testimonials-hero"
-                label="Take the Questionnaire"
-                eventName="questionnaire_click"
-                target="_self"
-              >
-                Take the Questionnaire
               </TrackedCtaLink>
             </FadeInSection>
           </div>
@@ -175,23 +175,23 @@ export default function Testimonials() {
 
           <FadeInSection className="pt-8 flex flex-col items-center justify-center gap-6 md:flex-row">
             <TrackedCtaLink
+              href="/questionnaire"
+              className="rainbow-glass-btn cta-unified quest-cta-dark"
+              location="testimonials-more"
+              label="Start Here"
+              eventName="questionnaire_click"
+              target="_self"
+            >
+              Start Here
+            </TrackedCtaLink>
+            <TrackedCtaLink
               href="https://calendly.com/michaelzick/45min"
-              className="btn text-xl"
+              className="btn cta-unified"
               location="testimonials-more"
               label="Book a Free Session"
               eventName="book_free_session_click"
             >
               Book a Free Session
-            </TrackedCtaLink>
-            <TrackedCtaLink
-              href="/questionnaire"
-              className="rainbow-glass-btn cta-unified quest-cta-dark"
-              location="testimonials-more"
-              label="Take the Questionnaire"
-              eventName="questionnaire_click"
-              target="_self"
-            >
-              Take the Questionnaire
             </TrackedCtaLink>
           </FadeInSection>
         </div>

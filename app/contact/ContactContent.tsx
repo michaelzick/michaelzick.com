@@ -80,7 +80,7 @@ export default function ContactContent() {
                 </p>
                 <TrackedCtaLink
                   href="https://calendly.com/michaelzick/45min"
-                  className="btn !w-full text-lg lg:text-xl text-center !px-6"
+                  className="btn cta-unified !w-full text-center !px-6"
                   location="contact-sidebar"
                   label="Book a Free Session"
                   eventName="book_free_session_click"

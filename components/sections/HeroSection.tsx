@@ -20,7 +20,6 @@ export function HeroSection() {
           Break the addiction to approval.
         </p>
         <div className="mt-2 flex flex-col items-start gap-4 md:flex-row md:items-center">
-          <BookingCta location="hero" />
           <TrackedCtaLink
             href="/questionnaire"
             className="rainbow-glass-btn cta-unified"
@@ -31,6 +30,7 @@ export function HeroSection() {
           >
             Start Here
           </TrackedCtaLink>
+          <BookingCta location="hero" />
         </div>
       </div>
     </section>

@@ -35,7 +35,7 @@ export default function QuestionnaireAnalysis({ analysis, cardRef }: Questionnai
         <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
           <TrackedCtaLink
             href="https://calendly.com/michaelzick/45min"
-            className="btn text-xl whitespace-nowrap"
+            className="btn cta-unified whitespace-nowrap"
             location="questionnaire-analysis"
             label="Book a Free Session"
             eventName="book_free_session_click"

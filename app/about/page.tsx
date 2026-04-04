@@ -73,7 +73,7 @@ export default function About() {
                   </div>
                   <TrackedCtaLink
                     href="https://calendly.com/michaelzick/45min"
-                    className="btn mt-6 text-xl"
+                    className="btn cta-unified mt-6"
                     location="about-top"
                   >
                     Book a Free Session
@@ -149,17 +149,17 @@ export default function About() {
                     </p>
                   </div>
                   <div className="mt-6 flex flex-col items-start gap-4 md:flex-row md:items-center">
-                    <TrackedCtaLink
-                      href="https://calendly.com/michaelzick/45min"
-                      className="btn text-xl"
-                      location="about-mission"
-                    >
-                      Book a Free Session
-                    </TrackedCtaLink>
                     <QuestionnaireCta
                       location="about-mission"
                       className="rainbow-glass-btn cta-unified quest-cta-dark"
                     />
+                    <TrackedCtaLink
+                      href="https://calendly.com/michaelzick/45min"
+                      className="btn cta-unified"
+                      location="about-mission"
+                    >
+                      Book a Free Session
+                    </TrackedCtaLink>
                   </div>
                 </div>
               </div>
@@ -188,7 +188,7 @@ export default function About() {
               <div className="flex justify-start">
                 <TrackedCtaLink
                   href="https://calendly.com/michaelzick/45min"
-                  className="btn text-xl"
+                  className="btn cta-unified"
                   location="about-bottom"
                 >
                   Book a Free Session

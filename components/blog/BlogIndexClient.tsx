@@ -145,8 +145,8 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
           <p className="text-xl font-semibold text-default-grey md:w-auto w-full">
             Ready to break the pattern?
           </p>
-          <BookingCta location="blog-index" />
           <QuestionnaireCta location="blog-index" className="rainbow-glass-btn cta-unified quest-cta-dark" />
+          <BookingCta location="blog-index" />
         </FadeInSection>
       </div>
     </section>
