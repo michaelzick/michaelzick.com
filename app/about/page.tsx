@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { FadeInSection } from '../../components/FadeInSection';
 import TrackedCtaLink from '../../components/TrackedCtaLink';
+import QuestionnaireCta from '../../components/QuestionnaireCta';
 import { siteConfig } from '../../lib/site';
 
 export const metadata: Metadata = {
@@ -146,6 +147,19 @@ export default function About() {
                     <p className="text-[23px]">
                       You don&apos;t have to spend the rest of your life performing for validation. It&apos;s time to take control of your ship.
                     </p>
+                  </div>
+                  <div className="mt-6 flex flex-col items-start gap-4 md:flex-row md:items-center">
+                    <TrackedCtaLink
+                      href="https://calendly.com/michaelzick/45min"
+                      className="btn text-xl"
+                      location="about-mission"
+                    >
+                      Book a Free Session
+                    </TrackedCtaLink>
+                    <QuestionnaireCta
+                      location="about-mission"
+                      className="rainbow-glass-btn cta-unified quest-cta-dark"
+                    />
                   </div>
                 </div>
               </div>

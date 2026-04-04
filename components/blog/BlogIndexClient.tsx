@@ -5,6 +5,8 @@ import type { BlogPost } from '../../lib/blog';
 import BlogFilters from './BlogFilters';
 import BlogPostCard from './BlogPostCard';
 import { FadeInSection } from '../FadeInSection';
+import BookingCta from '../BookingCta';
+import QuestionnaireCta from '../QuestionnaireCta';
 
 type BlogIndexClientProps = {
   posts: BlogPost[];
@@ -137,6 +139,14 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
               </div>
             )}
           </div>
+        </FadeInSection>
+
+        <FadeInSection className="mt-16 border-t border-default-grey/20 pt-12 flex flex-col items-center gap-6 text-center md:flex-row md:justify-center">
+          <p className="text-xl font-semibold text-default-grey md:w-auto w-full">
+            Ready to break the pattern?
+          </p>
+          <BookingCta location="blog-index" />
+          <QuestionnaireCta location="blog-index" className="rainbow-glass-btn cta-unified quest-cta-dark" />
         </FadeInSection>
       </div>
     </section>

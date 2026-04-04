@@ -1,4 +1,5 @@
 import TrackedCtaLink from '../TrackedCtaLink';
+import BookingCta from '../BookingCta';
 
 export function HeroSection() {
   return (
@@ -19,6 +20,7 @@ export function HeroSection() {
           Break the addiction to approval.
         </p>
         <div className="mt-2 flex flex-col items-start gap-4 md:flex-row md:items-center">
+          <BookingCta location="hero" />
           <TrackedCtaLink
             href="/questionnaire"
             className="rainbow-glass-btn cta-unified"

@@ -103,6 +103,7 @@ export function BeginningSection({
           </h2>
           <div className="mt-10 flex flex-col items-center justify-center gap-6 md:flex-row">
             <BookingCta location="beginning" />
+            <QuestionnaireCta location="beginning" />
           </div>
         </FadeInSection>
       </section>
