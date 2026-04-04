@@ -71,13 +71,19 @@ export default function About() {
                       If this sounds like you, let&apos;s talk.
                     </p>
                   </div>
-                  <TrackedCtaLink
-                    href="https://calendly.com/michaelzick/45min"
-                    className="btn cta-unified mt-6"
-                    location="about-top"
-                  >
-                    Book a Free Session
-                  </TrackedCtaLink>
+                  <div className="mt-6 flex flex-col items-start gap-4 md:flex-row md:items-center">
+                    <QuestionnaireCta
+                      location="about-top"
+                      className="rainbow-glass-btn cta-unified quest-cta-dark"
+                    />
+                    <TrackedCtaLink
+                      href="https://calendly.com/michaelzick/45min"
+                      className="btn cta-unified"
+                      location="about-top"
+                    >
+                      Book a Free Session
+                    </TrackedCtaLink>
+                  </div>
                 </div>
               </div>
               <div className="md:w-[37.5%] order-1 md:order-2">
@@ -185,7 +191,11 @@ export default function About() {
                   );
                 })}
               </ul>
-              <div className="flex justify-start">
+              <div className="flex flex-col items-start gap-4 md:flex-row md:items-center">
+                <QuestionnaireCta
+                  location="about-bottom"
+                  className="rainbow-glass-btn cta-unified quest-cta-dark"
+                />
                 <TrackedCtaLink
                   href="https://calendly.com/michaelzick/45min"
                   className="btn cta-unified"
