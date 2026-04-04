@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { trackEvent } from '../lib/analytics';
-import { Step, FormData } from '../lib/types';
+import { Step, FormData, Question } from '../lib/types';
 import QuestionnaireAnalysis from './questionnaire/QuestionnaireAnalysis';
 import QuestionnaireForm from './questionnaire/QuestionnaireForm';
 import QuestionnaireFields from './questionnaire/QuestionnaireFields';
@@ -103,7 +103,7 @@ export default function Questionnaire() {
 
     // Check all questions in current step
     if (currentStep.questions) {
-      return currentStep.questions.every((q: any) => {
+      return currentStep.questions.every((q: Question) => {
         if (q.type === 'range') return true; // Range always has a value
         const answer = formData.answers[q.id];
         return answer && answer.trim() !== '';
@@ -171,8 +171,8 @@ export default function Questionnaire() {
       setSecondsRemaining(0);
       submissionSucceeded = true;
       setAnalysis(data.analysis);
-    } catch (err: any) {
-      setError(err.message || 'Something went wrong. Please try again.');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {
       if (!submissionSucceeded) {
         setAnalysisProgress(0);

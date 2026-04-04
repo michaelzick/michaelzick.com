@@ -13,11 +13,11 @@ export default function QuestionnaireCta({ location, className }: QuestionnaireC
       href="/questionnaire"
       className={className || 'rainbow-glass-btn cta-unified'}
       location={location}
-      label="Take the Questionnaire"
+      label="Start Here"
       eventName="questionnaire_click"
       target="_self"
     >
-      Take the Questionnaire
+      Start Here
     </TrackedCtaLink>
   );
 }

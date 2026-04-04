@@ -27,48 +27,38 @@ export default function HomePageContent() {
   const programTitleRef = useRef<HTMLHeadingElement>(null);
   const testimonialsTitleRef = useRef<HTMLHeadingElement>(null);
 
-  const sectionConfig = useMemo<SectionConfig[]>(
-    () => [
-      {
-        id: 'process',
-        linkText: 'Process',
-        mobileLabel: 'Process',
-        sectionRef: processSectionRef,
-        titleRef: processTitleRef,
-      },
-      {
-        id: 'specialties',
-        linkText: 'Framework',
-        mobileLabel: 'Framework',
-        sectionRef: specialtiesSectionRef,
-        titleRef: specialtiesTitleRef,
-      },
-      {
-        id: 'program',
-        linkText: 'Protocol',
-        mobileLabel: 'Protocol',
-        sectionRef: programSectionRef,
-        titleRef: programTitleRef,
-      },
-      {
-        id: 'testimonials',
-        linkText: 'Reviews',
-        mobileLabel: 'Reviews',
-        sectionRef: testimonialsSectionRef,
-        titleRef: testimonialsTitleRef,
-      },
-    ],
-    [
-      processSectionRef,
-      processTitleRef,
-      programSectionRef,
-      programTitleRef,
-      specialtiesSectionRef,
-      specialtiesTitleRef,
-      testimonialsSectionRef,
-      testimonialsTitleRef,
-    ],
-  );
+  // Refs are stable across renders, so this array never needs to be rebuilt.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const sectionConfig = useMemo<SectionConfig[]>(() => [
+    {
+      id: 'process',
+      linkText: 'Process',
+      mobileLabel: 'Process',
+      sectionRef: processSectionRef,
+      titleRef: processTitleRef,
+    },
+    {
+      id: 'specialties',
+      linkText: 'Framework',
+      mobileLabel: 'Framework',
+      sectionRef: specialtiesSectionRef,
+      titleRef: specialtiesTitleRef,
+    },
+    {
+      id: 'program',
+      linkText: 'Protocol',
+      mobileLabel: 'Protocol',
+      sectionRef: programSectionRef,
+      titleRef: programTitleRef,
+    },
+    {
+      id: 'testimonials',
+      linkText: 'Reviews',
+      mobileLabel: 'Reviews',
+      sectionRef: testimonialsSectionRef,
+      titleRef: testimonialsTitleRef,
+    },
+  ], []);
 
   const {
     activeLinks,

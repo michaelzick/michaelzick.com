@@ -1,4 +1,5 @@
 import TrackedCtaLink from '../TrackedCtaLink';
+import BookingCta from '../BookingCta';
 
 export function HeroSection() {
   return (
@@ -29,6 +30,7 @@ export function HeroSection() {
           >
             Start Here
           </TrackedCtaLink>
+          <BookingCta location="hero" />
         </div>
       </div>
     </section>

@@ -68,7 +68,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Too many responses' }, { status: 400 });
     }
 
-    const tooLong = answerEntries.some(([_, a]: any) => typeof a === 'string' && a.length > MAX_ANSWER_LENGTH);
+    const tooLong = answerEntries.some(([, a]) => typeof a === 'string' && a.length > MAX_ANSWER_LENGTH);
     if (tooLong) {
       return NextResponse.json({ error: 'Response exceeds character limits' }, { status: 400 });
     }
@@ -166,7 +166,7 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({ analysis: analysisText });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error in analysis API:', error);
     return NextResponse.json({
       error: 'Failed to analyze inputs',

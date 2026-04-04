@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import BlogIndexClient from '../../components/blog/BlogIndexClient';
-import { getBlogFilters, getBlogPosts } from '../../lib/blog';
+import { getBlogFilters, getBlogPosts, toAbsoluteUrl } from '../../lib/blog';
 import { siteConfig } from '../../lib/site';
 
 const blogTitle = `Blog | ${siteConfig.shortName}`;
@@ -35,11 +35,6 @@ export const metadata: Metadata = {
     images: [siteConfig.defaultImage],
   },
 };
-
-function toAbsoluteUrl(url: string) {
-  if (url.startsWith('http')) return url;
-  return `${siteConfig.url}${url}`;
-}
 
 export default function BlogPage() {
   const posts = getBlogPosts();

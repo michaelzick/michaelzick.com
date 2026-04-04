@@ -55,8 +55,8 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop }: Progra
             })}
           </ul>
           <div className="mt-6 flex flex-col items-start gap-4 md:flex-row md:items-center">
-            <BookingCta location="program" />
             <QuestionnaireCta location="program" />
+            <BookingCta location="program" />
           </div>
         </FadeInSection>
       </div>

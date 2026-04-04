@@ -28,7 +28,7 @@ export default function QuestionnaireFields({
             id={field.name}
             type={field.type}
             name={field.name}
-            value={(formData as any)[field.name]}
+            value={(formData as unknown as Record<string, string>)[field.name] ?? ''}
             onChange={handleInputChange}
             placeholder={field.placeholder}
             maxLength={field.maxLength}

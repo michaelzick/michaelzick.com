@@ -1,4 +1,5 @@
 import rawPosts from '../content/blog/posts.json';
+import { siteConfig } from './site';
 
 export type RawBlogPost = {
   title: string;
@@ -37,7 +38,12 @@ function slugify(value: string) {
     .replace(/^-+|-+$/g, '');
 }
 
-function stripHtml(html: string) {
+export function toAbsoluteUrl(url: string) {
+  if (url.startsWith('http')) return url;
+  return `${siteConfig.url}${url}`;
+}
+
+export function stripHtml(html: string) {
   return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
 }
 

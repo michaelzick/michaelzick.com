@@ -96,8 +96,7 @@ export function TestimonialsCarouselSection({
     <section
       id="testimonials"
       ref={sectionRef}
-      className={`bg-dark-blue px-6 pt-12 pb-16 text-white md:px-8 md:pt-16 md:pb-24 transition-opacity duration-700 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'
-        }`}
+      className="bg-dark-blue px-6 pt-12 pb-16 text-white md:px-8 md:pt-16 md:pb-24"
       style={{ scrollMarginTop }}
     >
       <div className="mx-auto max-w-[1400px] space-y-6">
@@ -105,8 +104,7 @@ export function TestimonialsCarouselSection({
           <div className="space-y-2">
             <h2
               ref={titleRef}
-              className={`text-[45px] font-semibold transition-opacity duration-700 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'
-                }`}
+              className="text-[45px] font-semibold"
             >
               Real Clients. Real Results.
             </h2>
