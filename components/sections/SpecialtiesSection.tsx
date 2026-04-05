@@ -16,7 +16,7 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
   const specialties = [
     { title: 'Examine Parental Relationships', desc: 'Understand how your upbringing influences you.' },
     { title: 'Identify Your Needs & Values', desc: 'Figure out what you want, need, and value.' },
-    { title: 'Communication & Boundary Setting', desc: 'Communicate your needs and boundaries effectively.' },
+    { title: 'Communicate & Set Boundaries', desc: 'Communicate your needs and set boundaries effectively.' },
     { title: 'Stay in the Discomfort', desc: 'Expose yourself to discomfort without nuking the relationship.' },
   ];
   const { setRef: setImageRef, visibleStates: imageVisible } = useFadeInOnScroll(1, 0.3);
