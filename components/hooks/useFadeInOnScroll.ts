@@ -5,14 +5,10 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 export function useFadeInOnScroll(count: number, threshold = 0.4) {
   const elementRefs = useRef<(HTMLElement | null)[]>([]);
   const [visibleStates, setVisibleStates] = useState<boolean[]>(() => Array(count).fill(false));
-
-  useEffect(() => {
-    setVisibleStates((prev) => {
-      if (prev.length === count) return prev;
-      const next = Array(count).fill(false);
-      return next.map((_, index) => prev[index] ?? false);
-    });
-  }, [count]);
+  const normalizedVisibleStates = useMemo(
+    () => Array.from({ length: count }, (_, index) => visibleStates[index] ?? false),
+    [count, visibleStates],
+  );
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -63,5 +59,5 @@ export function useFadeInOnScroll(count: number, threshold = 0.4) {
     [refCallbacks],
   );
 
-  return { setRef, visibleStates };
+  return { setRef, visibleStates: normalizedVisibleStates };
 }

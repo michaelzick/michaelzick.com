@@ -59,20 +59,13 @@ export default function Testimonials() {
               <div className="md:w-1/2 space-y-6">
                 <h3 className="text-[35px] font-medium">Ryan I.</h3>
                 <p className="text-[23px]">
-                  "I completed a one-on-one coaching series with Michael Zick and it was an
-                  overwhelmingly positive experience. He provided me with a unique service I
-                  haven't experienced in any therapist or doctors office - NO cookie cutter
-                  solutions.
+                  {`"I completed a one-on-one coaching series with Michael Zick and it was an overwhelmingly positive experience. He provided me with a unique service I haven't experienced in any therapist or doctors office - NO cookie cutter solutions.`}
                 </p>
                 <p className="text-[23px]">
-                  Instead, he helped me uncover my challenges, hiding under the surface, and we
-                  worked at them together. Michael Zick has a deep well of empathy, knowledge and
-                  tools to help virtually anyone. He's done the hard personal work himself.
+                  {`Instead, he helped me uncover my challenges, hiding under the surface, and we worked at them together. Michael Zick has a deep well of empathy, knowledge and tools to help virtually anyone. He's done the hard personal work himself.`}
                 </p>
                 <p className="text-[23px]">
-                  Michael helped and pushed me to discover what it is that I was needing, then gave
-                  me perspective, feedback, and tools to move through to a place of better clarity
-                  and self knowledge."
+                  {`Michael helped and pushed me to discover what it is that I was needing, then gave me perspective, feedback, and tools to move through to a place of better clarity and self knowledge."`}
                 </p>
               </div>
             </FadeInSection>
@@ -110,65 +103,40 @@ export default function Testimonials() {
 
           <FadeInSection className="space-y-4">
             <p>
-              "This program is exceptional. If you want something different from your life and are
-              committed to seeing change, this program will change your life! Every area of my
-              life has improved."
+              {`"This program is exceptional. If you want something different from your life and are committed to seeing change, this program will change your life! Every area of my life has improved."`}
             </p>
             <p className="font-semibold">— Doug S.</p>
           </FadeInSection>
 
           <FadeInSection className="space-y-4">
             <p>
-              "When I think about what makes a great coach in any discipline, I think about
-              someone that is not only encouraging and knowledgeable in a particular area, but
-              someone who helps you to see your own seeds of greatness. The best coaches are
-              experts at finding those seeds in you. They water and nurture them until they take
-              root. As you cultivate your skills and tools, they help you identify and remove the
-              weeds that would inevitably subvert your growth. They are the shepherds of your
-              vision and the guide to uncovering your potential.
+              {`"When I think about what makes a great coach in any discipline, I think about someone that is not only encouraging and knowledgeable in a particular area, but someone who helps you to see your own seeds of greatness. The best coaches are experts at finding those seeds in you. They water and nurture them until they take root. As you cultivate your skills and tools, they help you identify and remove the weeds that would inevitably subvert your growth. They are the shepherds of your vision and the guide to uncovering your potential.`}
             </p>
             <p>
-              As a life coach and mentor, Michael Zick has been a true shepherd and guide. His
-              ability to help me cut through the noise and realize I already have the answers and
-              direction I need is a true gift. I have been truly blessed to have him as a coach, a
-              friend, and that kick in the pants when I needed it. I highly recommend Michael to
-              help those wanting to uncover their own greatness."
+              {`As a life coach and mentor, Michael Zick has been a true shepherd and guide. His ability to help me cut through the noise and realize I already have the answers and direction I need is a true gift. I have been truly blessed to have him as a coach, a friend, and that kick in the pants when I needed it. I highly recommend Michael to help those wanting to uncover their own greatness."`}
             </p>
             <p className="font-semibold">— Greg C.</p>
           </FadeInSection>
 
           <FadeInSection className="space-y-4">
             <p>
-              "When I came to Michael for coaching, I was brand new to the process. I thought it
-              would be more advice driven but it wasn't. I want to say thank you, Michael! You
-              have made a substantial impact on my life, not by telling me what I need to do, but
-              by guiding me to find the answers myself.
+              {`"When I came to Michael for coaching, I was brand new to the process. I thought it would be more advice driven but it wasn't. I want to say thank you, Michael! You have made a substantial impact on my life, not by telling me what I need to do, but by guiding me to find the answers myself.`}
             </p>
             <p>
-              You consistently asked probing questions to get me to seek answers from within, and
-              then continued to drill down to get to the specifics of each issue. This has had a
-              powerful and empowering effect that has given me motivation and excitement to pursue
-              my dreams.
+              {`You consistently asked probing questions to get me to seek answers from within, and then continued to drill down to get to the specifics of each issue. This has had a powerful and empowering effect that has given me motivation and excitement to pursue my dreams.`}
             </p>
             <p>
-              Couldn't be happier! I highly recommend you and the service you provide."
+              {`Couldn't be happier! I highly recommend you and the service you provide."`}
             </p>
             <p className="font-semibold">— Earl M.</p>
           </FadeInSection>
 
           <FadeInSection className="space-y-4">
             <p>
-              "For me, working with a life coach is rooted in their ability to recognize blindspots
-              and obstacles that may be limiting my growth. Michael has that unique ability to help
-              me see the unseen. He brings his complete and total presence to the work and a
-              mindset that encourages looking inward as well as outward to define your growing edge
-              and push beyond it. There are no shortcuts or quick-fixes in his approach.
+              {`"For me, working with a life coach is rooted in their ability to recognize blindspots and obstacles that may be limiting my growth. Michael has that unique ability to help me see the unseen. He brings his complete and total presence to the work and a mindset that encourages looking inward as well as outward to define your growing edge and push beyond it. There are no shortcuts or quick-fixes in his approach.`}
             </p>
             <p>
-              Through Michael's guidance, I established a clear vision for my professional and
-              personal goals, created a tangible plan to work through my challenges, and identified
-              tools to manage the accountability process. That clarity of purpose and direction were
-              exactly what I was seeking."
+              {`Through Michael's guidance, I established a clear vision for my professional and personal goals, created a tangible plan to work through my challenges, and identified tools to manage the accountability process. That clarity of purpose and direction were exactly what I was seeking."`}
             </p>
             <p className="font-semibold">— Howard B.</p>
           </FadeInSection>

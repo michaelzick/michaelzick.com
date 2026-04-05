@@ -27,8 +27,6 @@ export default function HomePageContent() {
   const programTitleRef = useRef<HTMLHeadingElement>(null);
   const testimonialsTitleRef = useRef<HTMLHeadingElement>(null);
 
-  // Refs are stable across renders, so this array never needs to be rebuilt.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const sectionConfig = useMemo<SectionConfig[]>(() => [
     {
       id: 'process',
