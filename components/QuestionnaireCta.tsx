@@ -19,11 +19,11 @@ export default function QuestionnaireCta({ location, className, variant = 'secon
       href="/questionnaire"
       className={className || variantClasses[variant]}
       location={location}
-      label="Take the Self-Assessment"
+      label="Take the Assessment"
       eventName="questionnaire_click"
       target="_self"
     >
-      Take the Self-Assessment
+      Take the Assessment
     </TrackedCtaLink>
   );
 }

@@ -71,7 +71,7 @@ export default function About() {
                       If this sounds like you, let&apos;s talk.
                     </p>
                   </div>
-                  <div className="mt-6 flex flex-col items-start gap-4 md:flex-row md:items-center">
+                  <div className="mt-6 flex flex-col items-start gap-4">
                     <BookingCta location="about-top" />
                     <QuestionnaireCta location="about-top" className="btn-secondary cta-unified btn-secondary-dark" />
                   </div>
@@ -145,7 +145,7 @@ export default function About() {
                       You don&apos;t have to spend the rest of your life performing for validation. It&apos;s time to take control of your ship.
                     </p>
                   </div>
-                  <div className="mt-6 flex flex-col items-start gap-4 md:flex-row md:items-center">
+                  <div className="mt-6 flex flex-col items-start gap-4">
                     <BookingCta location="about-mission" />
                     <QuestionnaireCta location="about-mission" className="btn-secondary cta-unified btn-secondary-dark" />
                   </div>
@@ -173,7 +173,7 @@ export default function About() {
                   );
                 })}
               </ul>
-              <div className="flex flex-col items-start gap-4 md:flex-row md:items-center">
+              <div className="flex flex-col items-start gap-4">
                 <BookingCta location="about-bottom" />
                 <QuestionnaireCta location="about-bottom" className="btn-secondary cta-unified btn-secondary-dark" />
               </div>

@@ -36,7 +36,7 @@ export function LinkTab({ targetId, label, variant, isActive }: LinkTabProps) {
     ? 'bg-dark-blue/70 text-white border-white/35 opacity-95'
     : 'bg-dark-blue/30 text-white border-white/20 opacity-80';
 
-  const desktopWidthClass = isActive ? 'w-[8em]' : 'w-[7em]';
+  const desktopWidthClass = isActive ? 'w-[9em]' : 'w-[8em]';
   const desktopBaseClasses =
     'text-center rounded-lg px-4 py-2 shadow-lg backdrop-blur-md font-semibold transition-all duration-300 border';
   const mobileBaseClasses =

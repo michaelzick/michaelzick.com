@@ -18,7 +18,7 @@ type TrackedCtaLinkProps = {
 
 function resolveEventName(href: string, label: string, eventName?: string) {
   if (eventName) return eventName;
-  if (href.startsWith('/questionnaire') || /questionnaire|start here|self-assessment/i.test(label)) {
+  if (href.startsWith('/questionnaire') || /questionnaire|start here|assessment/i.test(label)) {
     return 'questionnaire_click';
   }
   if (/calendly\.com/i.test(href) || /book (a|your) free/i.test(label)) {
