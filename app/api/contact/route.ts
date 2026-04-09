@@ -72,7 +72,9 @@ export async function POST(req: NextRequest) {
     const userName = process.env['BREVO_USER'];
     const toAddress = process.env['BREVO_TO'];
     const fromAddress = process.env['BREVO_FROM'];
-    const captchaSecret = process.env['HCAPTCHA_SECRET_KEY'];
+    const recaptchaProjectId = process.env['RECAPTCHA_PROJECT_ID'];
+    const recaptchaApiKey = process.env['GOOGLE_API_KEY'];
+    const recaptchaSiteKey = process.env['NEXT_PUBLIC_RECAPTCHA_SITE_KEY'];
 
     if (!password) {
       console.error('BREVO_SMTP_PASSWORD is not configured');
@@ -94,43 +96,66 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (!captchaSecret) {
-      console.error('HCAPTCHA_SECRET_KEY is not configured');
+    if (!recaptchaProjectId || !recaptchaApiKey || !recaptchaSiteKey) {
+      console.error('reCAPTCHA Enterprise configuration is incomplete', {
+        projectId: Boolean(recaptchaProjectId),
+        apiKey: Boolean(recaptchaApiKey),
+        siteKey: Boolean(recaptchaSiteKey),
+      });
       return NextResponse.json(
         { success: false, error: 'Captcha service not configured' },
         { status: 500 },
       );
     }
 
-    const captchaPayload = new URLSearchParams({
-      secret: captchaSecret,
-      response: captchaToken,
-    });
+    const assessmentUrl = `https://recaptchaenterprise.googleapis.com/v1/projects/${recaptchaProjectId}/assessments?key=${recaptchaApiKey}`;
 
-    const forwardedFor = req.headers.get('x-forwarded-for');
-    const clientIp =
-      forwardedFor?.split(',')[0]?.trim() ?? req.headers.get('x-real-ip')?.trim() ?? undefined;
-    if (clientIp) {
-      captchaPayload.append('remoteip', clientIp);
-    }
-
-    const captchaResponse = await fetch('https://hcaptcha.com/siteverify', {
+    const captchaResponse = await fetch(assessmentUrl, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: captchaPayload.toString(),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        event: {
+          token: captchaToken,
+          siteKey: recaptchaSiteKey,
+          expectedAction: 'contact_form',
+        },
+      }),
     });
 
     if (!captchaResponse.ok) {
-      console.error('hCaptcha verification failed to respond', captchaResponse.status);
+      console.error('reCAPTCHA Enterprise assessment request failed', captchaResponse.status);
       return NextResponse.json(
         { success: false, error: 'Captcha verification failed' },
         { status: 400 },
       );
     }
 
-    const captchaResult = await captchaResponse.json();
-    if (!captchaResult.success) {
-      console.error('hCaptcha verification rejected request', captchaResult['error-codes']);
+    const assessment = await captchaResponse.json();
+
+    if (!assessment.tokenProperties?.valid) {
+      console.error('reCAPTCHA token invalid', {
+        invalidReason: assessment.tokenProperties?.invalidReason,
+      });
+      return NextResponse.json(
+        { success: false, error: 'Captcha verification failed' },
+        { status: 400 },
+      );
+    }
+
+    if (assessment.tokenProperties?.action !== 'contact_form') {
+      console.error('reCAPTCHA action mismatch', {
+        expected: 'contact_form',
+        actual: assessment.tokenProperties?.action,
+      });
+      return NextResponse.json(
+        { success: false, error: 'Captcha verification failed' },
+        { status: 400 },
+      );
+    }
+
+    const score = assessment.riskAnalysis?.score ?? 0;
+    if (score < 0.5) {
+      console.warn('reCAPTCHA score below threshold', { score });
       return NextResponse.json(
         { success: false, error: 'Captcha verification failed' },
         { status: 400 },

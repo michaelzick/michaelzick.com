@@ -1,7 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import HCaptcha from '@hcaptcha/react-hcaptcha';
+import { useState } from 'react';
 
 interface FormData {
   firstName: string;
@@ -11,7 +10,7 @@ interface FormData {
   workbookOptIn: boolean;
 }
 
-const hCaptchaSiteKey = process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY;
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 const initialFormData: FormData = {
   firstName: '',
   lastName: '',
@@ -23,11 +22,9 @@ const initialFormData: FormData = {
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [captchaError, setCaptchaError] = useState<string | null>(null);
   const [submittedEmail, setSubmittedEmail] = useState('');
   const [submittedWorkbook, setSubmittedWorkbook] = useState(false);
-  const captchaRef = useRef<HCaptcha>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -46,12 +43,24 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!captchaToken) {
-      setCaptchaError('Please complete the CAPTCHA challenge.');
+    setStatus('submitting');
+    setCaptchaError(null);
+
+    let captchaToken: string;
+    try {
+      await new Promise<void>((resolve) => {
+        window.grecaptcha.enterprise.ready(resolve);
+      });
+      captchaToken = await window.grecaptcha.enterprise.execute(
+        RECAPTCHA_SITE_KEY!,
+        { action: 'contact_form' },
+      );
+    } catch {
+      setCaptchaError('CAPTCHA verification failed. Please refresh the page and try again.');
+      setStatus('idle');
       return;
     }
 
-    setStatus('submitting');
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -64,17 +73,13 @@ export default function ContactForm() {
       setStatus('success');
       setFormData(initialFormData);
       setCaptchaError(null);
-      setCaptchaToken(null);
-      captchaRef.current?.resetCaptcha();
     } catch (err) {
       console.error(err);
       setStatus('error');
-      setCaptchaToken(null);
-      captchaRef.current?.resetCaptcha();
     }
   };
 
-  if (!hCaptchaSiteKey) {
+  if (!RECAPTCHA_SITE_KEY) {
     return (
       <p className="text-red-600">
         Contact form is temporarily unavailable. Please try again later.
@@ -178,26 +183,7 @@ export default function ContactForm() {
           Send me a free Belief Reprogramming Workbook and add me to your email newsletter. Unsubscribe anytime.
         </label>
       </div>
-      <div className="space-y-4 !mt-4 max-w-full overflow-x-auto">
-        <HCaptcha
-          sitekey={hCaptchaSiteKey}
-          onVerify={(token) => {
-            setCaptchaToken(token);
-            setCaptchaError(null);
-          }}
-          onExpire={() => {
-            setCaptchaToken(null);
-            setCaptchaError('The CAPTCHA verification expired. Please try again.');
-          }}
-          onError={(err) => {
-            console.error('hCaptcha error', err);
-            setCaptchaToken(null);
-            setCaptchaError('Captcha failed to load. Please refresh the page and try again.');
-          }}
-          ref={captchaRef}
-        />
-        {captchaError && <p className="text-sm text-red-600 font-medium">{captchaError}</p>}
-      </div>
+      {captchaError && <p className="text-sm text-red-600 font-medium">{captchaError}</p>}
       {status === 'error' && (
         <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-600">
           <p className="font-medium">There was an error sending your message.</p>
@@ -208,7 +194,7 @@ export default function ContactForm() {
         <button
           type="submit"
           className={`btn !w-full md:!w-auto !text-xl !px-6 md:!px-16 !py-4 md:!py-8 transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed ${status === 'submitting' ? 'btn-loading' : ''}`}
-          disabled={status === 'submitting' || !captchaToken}
+          disabled={status === 'submitting'}
         >
           {status === 'submitting'
             ? 'Sending...'
