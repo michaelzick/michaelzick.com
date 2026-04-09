@@ -4,7 +4,7 @@ import QuestionnaireCta from '../QuestionnaireCta';
 
 export function HeroSection() {
   return (
-    <section className="relative flex h-screen items-end text-white">
+    <section className="relative flex min-h-screen items-end text-white">
       <Image
         src="/img/homepage_mountains.webp"
         alt=""
@@ -14,8 +14,8 @@ export function HeroSection() {
         className="object-cover object-center"
       />
       <div className="absolute inset-0 bg-black/20" aria-hidden="true"></div>
-      <div className="relative w-full max-w-[1400px] mx-auto p-8 flex flex-col items-start">
-        <h1 className="text-5xl md:text-7xl text-left mb-6 font-headline font-bold drop-shadow-md">
+      <div className="relative w-full max-w-[1400px] mx-auto px-8 pb-8 pt-40 min-[930px]:pt-8 flex flex-col items-start">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl text-left mb-6 font-headline font-bold drop-shadow-md">
           Stop Performing for Approval.<br />Start Leading Your Life.
         </h1>
         <p className="text-2xl md:text-[36px] text-left mb-10 max-w-[800px] font-medium leading-relaxed drop-shadow-sm text-white/90">
