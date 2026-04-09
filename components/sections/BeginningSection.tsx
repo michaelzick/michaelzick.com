@@ -85,9 +85,6 @@ export function BeginningSection({
                 I&apos;ve helped guys just like you.
               </span>
             </h2>
-            <p className="mt-6 text-center text-sm font-medium tracking-wide text-white/60 uppercase">
-              Certified by Dr. Robert Glover &bull; Coaching men since 2015
-            </p>
           </FadeInSection>
         </div>
         <svg
