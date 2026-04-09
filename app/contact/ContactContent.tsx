@@ -82,10 +82,10 @@ export default function ContactContent() {
                   href="https://calendly.com/michaelzick/45min"
                   className="btn cta-unified !w-full text-center !px-6"
                   location="contact-sidebar"
-                  label="Book a Free Session"
+                  label="Book Your Free 45-Min Session"
                   eventName="book_free_session_click"
                 >
-                  Book a Free Session
+                  Book Your Free 45-Min Session
                 </TrackedCtaLink>
               </div>
 

@@ -7,7 +7,6 @@ interface FormData {
   firstName: string;
   lastName: string;
   email: string;
-  subject: string;
   message: string;
   workbookOptIn: boolean;
 }
@@ -17,9 +16,8 @@ const initialFormData: FormData = {
   firstName: '',
   lastName: '',
   email: '',
-  subject: '',
   message: '',
-  workbookOptIn: false,
+  workbookOptIn: true,
 };
 
 export default function ContactForm() {
@@ -27,6 +25,8 @@ export default function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [captchaError, setCaptchaError] = useState<string | null>(null);
+  const [submittedEmail, setSubmittedEmail] = useState('');
+  const [submittedWorkbook, setSubmittedWorkbook] = useState(false);
   const captchaRef = useRef<HCaptcha>(null);
 
   const handleChange = (
@@ -59,6 +59,8 @@ export default function ContactForm() {
         body: JSON.stringify({ ...formData, captchaToken }),
       });
       if (!res.ok) throw new Error('Request failed');
+      setSubmittedEmail(formData.email);
+      setSubmittedWorkbook(formData.workbookOptIn);
       setStatus('success');
       setFormData(initialFormData);
       setCaptchaError(null);
@@ -77,6 +79,27 @@ export default function ContactForm() {
       <p className="text-red-600">
         Contact form is temporarily unavailable. Please try again later.
       </p>
+    );
+  }
+
+  if (status === 'success') {
+    return (
+      <div className="flex flex-col items-center text-center py-8 space-y-4">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+          <svg className="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 className="text-2xl font-semibold text-default-grey">Message Sent!</h3>
+        <p className="text-lg text-default-grey/80">
+          I&apos;ll get back to you within 48 hours.
+        </p>
+        {submittedWorkbook && (
+          <p className="text-base text-default-grey/60">
+            Your free workbook is on its way to <strong>{submittedEmail}</strong>.
+          </p>
+        )}
+      </div>
     );
   }
 
@@ -123,19 +146,6 @@ export default function ContactForm() {
           value={formData.email}
           onChange={handleChange}
           required
-        />
-      </div>
-      <div className="space-y-3">
-        <label htmlFor="subject" className="block text-sm font-semibold text-default-grey/70 ml-1">
-          Subject
-        </label>
-        <input
-          id="subject"
-          className="border border-gray-300 rounded-lg p-4 w-full bg-white text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
-          name="subject"
-          placeholder="How can I help you?"
-          value={formData.subject}
-          onChange={handleChange}
         />
       </div>
       <div className="space-y-3">
@@ -188,21 +198,23 @@ export default function ContactForm() {
         />
         {captchaError && <p className="text-sm text-red-600 font-medium">{captchaError}</p>}
       </div>
-      {status === 'success' && (
-        <p className="text-green-600 font-medium">Your message has been sent. I will get back to you within 48 hours.</p>
-      )}
       {status === 'error' && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 font-medium">
-          There was an error sending your message. Please try again.
+        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-600">
+          <p className="font-medium">There was an error sending your message.</p>
+          <p className="text-sm mt-1">Please try again, or email me directly at michael@michaelzick.com.</p>
         </div>
       )}
       <div className="!mt-4">
         <button
           type="submit"
-          className="btn !w-full md:!w-auto !text-xl !px-6 md:!px-16 !py-4 md:!py-8 transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+          className={`btn !w-full md:!w-auto !text-xl !px-6 md:!px-16 !py-4 md:!py-8 transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed ${status === 'submitting' ? 'btn-loading' : ''}`}
           disabled={status === 'submitting' || !captchaToken}
         >
-          {status === 'submitting' ? 'Sending...' : 'Send Message'}
+          {status === 'submitting'
+            ? 'Sending...'
+            : formData.workbookOptIn
+              ? 'Get My Free Workbook'
+              : 'Send My Message'}
         </button>
       </div>
     </form>

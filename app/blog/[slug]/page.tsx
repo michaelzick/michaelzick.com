@@ -318,11 +318,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           )}
           <div className="mt-8 flex flex-col items-start gap-4 md:flex-row md:items-center">
-            <QuestionnaireCta
-              location="blog-post-bottom"
-              className="rainbow-glass-btn cta-unified quest-cta-dark"
-            />
             <BookingCta location="blog-post-bottom" />
+            <QuestionnaireCta location="blog-post-bottom" className="btn-secondary cta-unified btn-secondary-dark" />
           </div>
         </div>
       </div>

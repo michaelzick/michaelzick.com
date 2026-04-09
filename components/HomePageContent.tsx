@@ -1,17 +1,19 @@
 'use client';
 
 import { useMemo, useRef } from 'react';
+import Link from 'next/link';
 import { useScrollTracking } from './hooks/useScrollTracking';
 import { useTitleVisibility } from './hooks/useTitleVisibility';
 import { NavigationTabs } from './navigation/NavigationTabs';
 import { HeroSection } from './sections/HeroSection';
 import { BeginningSection } from './sections/BeginningSection';
+import { TrustStripe } from './sections/TrustStripe';
 import { ProcessSection } from './sections/ProcessSection';
 import { SpecialtiesSection } from './sections/SpecialtiesSection';
 import { ProgramSection } from './sections/ProgramSection';
 import { TestimonialsCarouselSection } from './sections/TestimonialsCarouselSection';
 import { FadeInSection } from './FadeInSection';
-import ContactForm from './ContactForm';
+import BookingCta from './BookingCta';
 import type { SectionConfig } from './hooks/useScrollTracking';
 
 export default function HomePageContent() {
@@ -111,6 +113,8 @@ export default function HomePageContent() {
         isVisible={true}
       />
 
+      <TrustStripe />
+
       <ProcessSection
         sectionRef={processSectionRef}
         titleRef={processTitleRef}
@@ -140,21 +144,29 @@ export default function HomePageContent() {
       />
 
       <section
-        id="home-contact"
+        id="home-cta"
         className="bg-default-grey text-white px-6 pt-12 pb-16 md:px-8 md:pt-16 md:pb-24"
       >
-        <div className="mx-auto max-w-[1200px] space-y-10">
+        <div className="mx-auto max-w-[1200px] text-center space-y-8">
           <FadeInSection>
-            <h2 className="text-[48px] font-semibold leading-tight md:text-[56px] text-left">
-              Let&apos;s Connect
+            <h2 className="text-4xl font-semibold leading-tight md:text-6xl">
+              Ready to Break the Cycle?
             </h2>
-            <p className="text-[28px] leading-snug text-white md:text-[32px]">
-              Message me and get a free Belief Reprogramming Workbook.
+            <p className="mt-4 text-xl leading-relaxed text-white/80 md:text-2xl">
+              Book a free 45-minute session and take the first step toward internal authority.
             </p>
           </FadeInSection>
-
-          <FadeInSection className="bg-light-grey text-black rounded-xl p-4 sm:p-8 md:p-10 shadow-2xl ring-1 ring-black/5 max-w-3xl w-full">
-            <ContactForm />
+          <FadeInSection className="flex flex-col items-center gap-4">
+            <BookingCta location="home-bottom" />
+            <p className="text-base text-white/60">
+              Prefer to message me?{' '}
+              <Link
+                href="/contact"
+                className="font-semibold text-white/80 underline decoration-white/40 underline-offset-4 transition hover:text-white"
+              >
+                Contact me here
+              </Link>
+            </p>
           </FadeInSection>
         </div>
       </section>

@@ -1,37 +1,33 @@
-import TrackedCtaLink from '../TrackedCtaLink';
+import Image from 'next/image';
 import BookingCta from '../BookingCta';
+import QuestionnaireCta from '../QuestionnaireCta';
 
 export function HeroSection() {
   return (
-    <section
-      className="relative flex h-screen items-end text-white"
-      style={{
-        backgroundImage: "url('/img/homepage_mountains.webp')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
+    <section className="relative flex h-screen items-end text-white">
+      <Image
+        src="/img/homepage_mountains.webp"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center"
+      />
       <div className="absolute inset-0 bg-black/20" aria-hidden="true"></div>
       <div className="relative w-full max-w-[1400px] mx-auto p-8 flex flex-col items-start">
         <h1 className="text-5xl md:text-7xl text-left mb-6 font-headline font-bold drop-shadow-md">
-          Nice Guy Recovery Coach
+          Stop Performing for Approval.<br />Start Leading Your Life.
         </h1>
         <p className="text-2xl md:text-[36px] text-left mb-10 max-w-[800px] font-medium leading-relaxed drop-shadow-sm text-white/90">
-          Break the addiction to approval.
+          Certified coaching to break the cycle of enmeshment, set real boundaries, and reclaim your internal authority.
         </p>
         <div className="mt-2 flex flex-col items-start gap-4 md:flex-row md:items-center">
-          <TrackedCtaLink
-            href="/questionnaire"
-            className="rainbow-glass-btn cta-unified"
-            location="hero"
-            label="Start Here"
-            eventName="questionnaire_click"
-            target="_self"
-          >
-            Start Here
-          </TrackedCtaLink>
           <BookingCta location="hero" />
+          <QuestionnaireCta location="hero" />
         </div>
+        <p className="mt-6 text-sm font-medium text-white/70 drop-shadow-sm">
+          Certified by Dr. Robert Glover, author of <em>No More Mr. Nice Guy</em>
+        </p>
       </div>
     </section>
   );

@@ -5,19 +5,25 @@ import TrackedCtaLink from './TrackedCtaLink';
 interface QuestionnaireCTAProps {
   location: string;
   className?: string;
+  variant?: 'primary' | 'secondary';
 }
 
-export default function QuestionnaireCta({ location, className }: QuestionnaireCTAProps) {
+const variantClasses = {
+  primary: 'btn cta-unified',
+  secondary: 'btn-secondary cta-unified',
+};
+
+export default function QuestionnaireCta({ location, className, variant = 'secondary' }: QuestionnaireCTAProps) {
   return (
     <TrackedCtaLink
       href="/questionnaire"
-      className={className || 'rainbow-glass-btn cta-unified'}
+      className={className || variantClasses[variant]}
       location={location}
-      label="Start Here"
+      label="Take the Self-Assessment"
       eventName="questionnaire_click"
       target="_self"
     >
-      Start Here
+      Take the Self-Assessment
     </TrackedCtaLink>
   );
 }

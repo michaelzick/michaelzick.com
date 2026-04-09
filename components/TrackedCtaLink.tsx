@@ -18,10 +18,10 @@ type TrackedCtaLinkProps = {
 
 function resolveEventName(href: string, label: string, eventName?: string) {
   if (eventName) return eventName;
-  if (href.startsWith('/questionnaire') || /questionnaire|start here/i.test(label)) {
+  if (href.startsWith('/questionnaire') || /questionnaire|start here|self-assessment/i.test(label)) {
     return 'questionnaire_click';
   }
-  if (/calendly\.com/i.test(href) || /book a free session/i.test(label)) {
+  if (/calendly\.com/i.test(href) || /book (a|your) free/i.test(label)) {
     return 'book_free_session_click';
   }
   return 'cta_click';
@@ -30,7 +30,7 @@ function resolveEventName(href: string, label: string, eventName?: string) {
 export default function TrackedCtaLink({
   href,
   location,
-  label = 'Book a Free Session',
+  label = 'Book Your Free 45-Min Session',
   eventName,
   className,
   target,

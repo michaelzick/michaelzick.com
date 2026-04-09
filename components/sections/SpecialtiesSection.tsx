@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import type { RefObject } from 'react';
-import TrackedCtaLink from '../TrackedCtaLink';
+import BookingCta from '../BookingCta';
+import QuestionnaireCta from '../QuestionnaireCta';
 import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
 
 interface SpecialtiesSectionProps {
@@ -45,13 +46,6 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
                 className="object-cover object-top"
               />
             </div>
-            <TrackedCtaLink
-              href="https://calendly.com/michaelzick/45min"
-              className="btn mt-4 w-full text-base !px-6 !py-3 md:hidden"
-              location="specialties_mobile"
-            >
-              Book a Free Session
-            </TrackedCtaLink>
           </div>
           <div className="order-1 md:order-2 space-y-6">
             <h2
@@ -82,6 +76,10 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
                 );
               })}
             </ul>
+            <div className="mt-8 flex flex-col items-start gap-4 md:flex-row md:items-center">
+              <BookingCta location="specialties" />
+              <QuestionnaireCta location="specialties" />
+            </div>
           </div>
         </div>
       </div>
