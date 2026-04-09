@@ -2,8 +2,6 @@
 
 import Image from 'next/image';
 import type { RefObject } from 'react';
-import BookingCta from '../BookingCta';
-import QuestionnaireCta from '../QuestionnaireCta';
 import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
 
 interface SpecialtiesSectionProps {
@@ -76,10 +74,6 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
                 );
               })}
             </ul>
-            <div className="mt-8 flex flex-col items-start gap-4 md:flex-row md:items-center">
-              <BookingCta location="specialties" />
-              <QuestionnaireCta location="specialties" />
-            </div>
           </div>
         </div>
       </div>

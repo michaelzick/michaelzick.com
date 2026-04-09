@@ -3,8 +3,6 @@
 import Image from 'next/image';
 import type { ReactNode, RefObject } from 'react';
 import { FadeInSection } from '../FadeInSection';
-import BookingCta from '../BookingCta';
-import QuestionnaireCta from '../QuestionnaireCta';
 import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
 
 interface ProgramSectionProps {
@@ -69,10 +67,6 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop }: Progra
               &mdash; Earl M.
             </figcaption>
           </figure>
-          <div className="mt-6 flex flex-col items-start gap-4 md:flex-row md:items-center">
-            <BookingCta location="program" />
-            <QuestionnaireCta location="program" />
-          </div>
         </FadeInSection>
       </div>
     </section>
