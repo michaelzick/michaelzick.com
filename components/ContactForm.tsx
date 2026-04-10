@@ -22,6 +22,7 @@ const initialFormData: FormData = {
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [captchaError, setCaptchaError] = useState<string | null>(null);
   const [submittedEmail, setSubmittedEmail] = useState('');
   const [submittedWorkbook, setSubmittedWorkbook] = useState(false);
@@ -44,6 +45,7 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
+    setErrorMessage(null);
     setCaptchaError(null);
 
     let captchaToken: string;
@@ -72,7 +74,10 @@ export default function ContactForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...formData, captchaToken }),
       });
-      if (!res.ok) throw new Error('Request failed');
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error || 'Request failed');
+      }
       setSubmittedEmail(formData.email);
       setSubmittedWorkbook(formData.workbookOptIn);
       setStatus('success');
@@ -80,6 +85,7 @@ export default function ContactForm() {
       setCaptchaError(null);
     } catch (err) {
       console.error(err);
+      setErrorMessage(err instanceof Error ? err.message : 'Request failed');
       setStatus('error');
     }
   };
@@ -191,7 +197,7 @@ export default function ContactForm() {
       {captchaError && <p className="text-sm text-red-600 font-medium">{captchaError}</p>}
       {status === 'error' && (
         <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-600">
-          <p className="font-medium">There was an error sending your message.</p>
+          <p className="font-medium">{errorMessage || 'There was an error sending your message.'}</p>
           <p className="text-sm mt-1">Please try again, or email me directly at michael@michaelzick.com.</p>
         </div>
       )}

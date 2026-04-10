@@ -64,15 +64,20 @@ export function getContactConfig(env = process.env): ContactConfig | null {
   const recaptchaApiKey = env['GOOGLE_API_KEY'];
   const recaptchaSiteKey = env['NEXT_PUBLIC_RECAPTCHA_SITE_KEY'];
 
-  if (
-    !password ||
-    !userName ||
-    !toAddress ||
-    !fromAddress ||
-    !recaptchaProjectId ||
-    !recaptchaApiKey ||
-    !recaptchaSiteKey
-  ) {
+  const missing = Object.entries({
+    BREVO_SMTP_PASSWORD: password,
+    BREVO_USER: userName,
+    BREVO_TO: toAddress,
+    BREVO_FROM: fromAddress,
+    RECAPTCHA_PROJECT_ID: recaptchaProjectId,
+    GOOGLE_API_KEY: recaptchaApiKey,
+    NEXT_PUBLIC_RECAPTCHA_SITE_KEY: recaptchaSiteKey,
+  })
+    .filter(([, v]) => !v)
+    .map(([k]) => k);
+
+  if (missing.length > 0) {
+    console.error('Contact config missing env vars:', missing.join(', '));
     return null;
   }
 
