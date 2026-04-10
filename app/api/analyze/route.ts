@@ -1,12 +1,8 @@
-import OpenAI from 'openai';
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { STEPS } from '../../../components/questionnaire/steps';
+import { getServerOpenAIClient } from '../../../lib/server/openai';
 import { consumeRateLimit, getClientIp } from '../../../lib/server/rate-limit';
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 export const runtime = 'nodejs';
 
@@ -69,6 +65,13 @@ export async function POST(req: Request) {
 
     if (!process.env.OPENAI_API_KEY) {
       console.error('CRITICAL: OPENAI_API_KEY is not defined in environment variables');
+      return NextResponse.json({ error: 'AI Service Configuration Error' }, { status: 500 });
+    }
+
+    const openai = getServerOpenAIClient();
+
+    if (!openai) {
+      console.error('CRITICAL: OpenAI client could not be initialized');
       return NextResponse.json({ error: 'AI Service Configuration Error' }, { status: 500 });
     }
 

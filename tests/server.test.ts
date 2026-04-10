@@ -5,6 +5,7 @@ import {
   isValidRecaptchaAssessment,
   validateContactSubmission,
 } from '../lib/server/contact';
+import { getServerOpenAIClient } from '../lib/server/openai';
 import { consumeRateLimit } from '../lib/server/rate-limit';
 
 test('consumeRateLimit blocks after the configured maximum and resets after the window', () => {
@@ -74,4 +75,14 @@ test('contact helpers build email content and validate recaptcha state', () => {
     }).valid,
     false,
   );
+});
+
+test('getServerOpenAIClient only initializes when OPENAI_API_KEY is present', () => {
+  assert.equal(getServerOpenAIClient({ OPENAI_API_KEY: '' } as NodeJS.ProcessEnv), null);
+
+  const client = getServerOpenAIClient({
+    OPENAI_API_KEY: 'test-key',
+  } as NodeJS.ProcessEnv);
+
+  assert.ok(client);
 });
