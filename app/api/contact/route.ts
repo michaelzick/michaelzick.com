@@ -75,9 +75,10 @@ export async function POST(req: NextRequest) {
     });
 
     if (!captchaResponse.ok) {
-      console.error('reCAPTCHA Enterprise assessment request failed', captchaResponse.status);
+      const captchaBody = await captchaResponse.text().catch(() => '');
+      console.error('reCAPTCHA Enterprise assessment request failed', captchaResponse.status, captchaBody);
       return NextResponse.json(
-        { success: false, error: 'Captcha verification failed' },
+        { success: false, error: `Captcha assessment request failed (${captchaResponse.status})` },
         { status: 400 },
       );
     }
@@ -92,7 +93,7 @@ export async function POST(req: NextRequest) {
         score: captchaValidation.score,
       });
       return NextResponse.json(
-        { success: false, error: 'Captcha verification failed' },
+        { success: false, error: `Captcha token invalid: ${captchaValidation.invalidReason || 'low score'} (score: ${captchaValidation.score})` },
         { status: 400 },
       );
     }
