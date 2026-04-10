@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import TrackedLink from '../TrackedLink';
-import type { BlogPost } from '../../lib/blog';
+import { formatPostDate, type BlogPost } from '../../lib/blog';
 
 interface BlogPostCardProps {
   post: BlogPost;
@@ -53,14 +53,7 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
           <p className="text-base text-default-grey/80">{post.subtitle}</p>
           <div className="flex flex-wrap items-center justify-between gap-2 text-sm text-default-grey/70">
             <span>By {post.author}</span>
-            {post.datePublished && (
-              <span>
-                {(() => {
-                  const [year, month, day] = post.datePublished.split('-').map(Number);
-                  return new Date(year, month - 1, day).toLocaleDateString('en-US');
-                })()}
-              </span>
-            )}
+            {post.datePublished && <span>{formatPostDate(post.datePublished)}</span>}
           </div>
         </div>
       </article>

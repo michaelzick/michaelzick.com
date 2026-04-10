@@ -48,7 +48,22 @@ npm run dev
 
 # Build for production
 npm run build
+
+# Run the unit test suite
+npm test
 ```
+
+## GitHub Actions
+
+The repository now includes:
+
+- `CI`: runs `npm ci`, lint, tests, and a production build on every pull request and on pushes to `main`.
+- `Deploy`: deploys the `main` branch to Vercel from GitHub Actions once these repository secrets are configured:
+  - `VERCEL_TOKEN`
+  - `VERCEL_ORG_ID`
+  - `VERCEL_PROJECT_ID`
+
+The deploy workflow is intentionally gated by those secrets, so it stays inert until the Vercel project is linked.
 
 ---
 

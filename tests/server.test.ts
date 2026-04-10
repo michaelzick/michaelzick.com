@@ -1,0 +1,77 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {
+  buildContactEmailText,
+  isValidRecaptchaAssessment,
+  validateContactSubmission,
+} from '../lib/server/contact';
+import { consumeRateLimit } from '../lib/server/rate-limit';
+
+test('consumeRateLimit blocks after the configured maximum and resets after the window', () => {
+  const store = new Map<string, { count: number; lastReset: number; }>();
+  const options = {
+    key: '127.0.0.1',
+    store,
+    windowMs: 60_000,
+    maxRequests: 2,
+  };
+
+  assert.equal(consumeRateLimit({ ...options, now: 0 }).allowed, true);
+  assert.equal(consumeRateLimit({ ...options, now: 1 }).allowed, true);
+  assert.equal(consumeRateLimit({ ...options, now: 2 }).allowed, false);
+  assert.equal(consumeRateLimit({ ...options, now: 60_001 }).allowed, true);
+});
+
+test('validateContactSubmission enforces required fields and limits', () => {
+  assert.equal(
+    validateContactSubmission({ email: '', message: 'Hello', captchaToken: 'token' }),
+    'Missing required fields (Email and Message)',
+  );
+  assert.equal(
+    validateContactSubmission({
+      email: 'person@example.com',
+      message: 'Hello',
+      captchaToken: '',
+    }),
+    'Captcha token missing',
+  );
+  assert.equal(
+    validateContactSubmission({
+      email: 'person@example.com',
+      message: 'Hello',
+      captchaToken: 'token',
+      subject: 'x'.repeat(201),
+    }),
+    'Input exceeds character limits',
+  );
+});
+
+test('contact helpers build email content and validate recaptcha state', () => {
+  const email = buildContactEmailText({
+    firstName: 'Michael',
+    lastName: 'Zick',
+    email: 'person@example.com',
+    subject: 'Coaching',
+    message: 'I am ready to talk.',
+    workbookOptIn: true,
+  });
+
+  assert.match(email.subject, /^\[michaelzick\.com\] Coaching$/);
+  assert.match(email.text, /Workbook \+ Email List Consent: Yes/);
+
+  assert.equal(
+    isValidRecaptchaAssessment({
+      tokenProperties: { valid: true, action: 'contact_form' },
+      riskAnalysis: { score: 0.9 },
+    }).valid,
+    true,
+  );
+
+  assert.equal(
+    isValidRecaptchaAssessment({
+      tokenProperties: { valid: true, action: 'wrong_action' },
+      riskAnalysis: { score: 0.9 },
+    }).valid,
+    false,
+  );
+});

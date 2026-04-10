@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start -p $PORT",
     "lint": "eslint .",
-    "test": "echo \"No tests configured\"",
+    "test": "node -e \"require('node:fs').rmSync('.test-dist', { recursive: true, force: true })\" && tsc -p tsconfig.test.json && node --test .test-dist/tests/*.test.js && node -e \"require('node:fs').rmSync('.test-dist', { recursive: true, force: true })\"",
     "sitemap": "node scripts/generate-sitemap.js"
   },
   "dependencies": {

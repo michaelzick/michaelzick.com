@@ -2,6 +2,7 @@ import OpenAI from 'openai';
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { STEPS } from '../../../components/questionnaire/steps';
+import { consumeRateLimit, getClientIp } from '../../../lib/server/rate-limit';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -29,23 +30,16 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'System busy. Please try again later.' }, { status: 400 });
     }
 
-    // 2. Rate limiting by IP
-    const forwarded = req.headers.get('x-forwarded-for');
-    const ip = forwarded ? forwarded.split(',')[0] : 'anonymous';
-    const now = Date.now();
-    const userLimit = rateLimitMap.get(ip) || { count: 0, lastReset: now };
+    const rateLimit = consumeRateLimit({
+      key: getClientIp(req.headers),
+      store: rateLimitMap,
+      windowMs: RATE_LIMIT_WINDOW,
+      maxRequests: MAX_REQUESTS_PER_WINDOW,
+    });
 
-    if (now - userLimit.lastReset > RATE_LIMIT_WINDOW) {
-      userLimit.count = 0;
-      userLimit.lastReset = now;
-    }
-
-    if (userLimit.count >= MAX_REQUESTS_PER_WINDOW) {
+    if (!rateLimit.allowed) {
       return NextResponse.json({ error: 'Too many requests. Please try again in an hour.' }, { status: 429 });
     }
-
-    userLimit.count++;
-    rateLimitMap.set(ip, userLimit);
 
     // 3. Validation & Character Limits
     if (!firstName || !lastName || !email || !answers) {
