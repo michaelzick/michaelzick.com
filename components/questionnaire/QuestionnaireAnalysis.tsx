@@ -37,14 +37,14 @@ export default function QuestionnaireAnalysis({ analysis, cardRef }: Questionnai
             href="https://calendly.com/michaelzick/45min"
             className="btn cta-unified whitespace-nowrap"
             location="questionnaire-analysis"
-            label="Book a Free Session"
+            label="Book Your Free 45-Min Session"
             eventName="book_free_session_click"
           >
-            Book a Free Session
+            Book Your Free 45-Min Session
           </TrackedCtaLink>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-lg border-2 border-primary-blue text-primary-blue transition-all duration-300 hover:bg-primary-blue/10 font-bold text-xl whitespace-nowrap px-[42px] py-[30px]"
+            className="btn-secondary cta-unified"
             onClick={handleAnalysisLinkClick('Contact Michael', '/contact', 'cta')}
           >
             Contact Michael

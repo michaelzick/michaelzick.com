@@ -22,21 +22,66 @@ export function FadeInSection({ children, className = '', threshold = 0.35, imme
     const node = ref.current;
     if (!node) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold },
-    );
+    const isOverlappingViewport = () => {
+      const rect = node.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
 
-    observer.observe(node);
+      if (rect.width === 0 || rect.height === 0) {
+        return false;
+      }
 
-    return () => observer.disconnect();
+      return (
+        rect.bottom > 0 &&
+        rect.right > 0 &&
+        rect.top < viewportHeight &&
+        rect.left < viewportWidth
+      );
+    };
+
+    let animationFrameId = 0;
+    let observer: IntersectionObserver | null = null;
+
+    const reveal = () => {
+      setVisible(true);
+    };
+
+    if (isOverlappingViewport()) {
+      animationFrameId = window.requestAnimationFrame(reveal);
+      return () => {
+        window.cancelAnimationFrame(animationFrameId);
+      };
+    }
+
+    const startObserving = () => {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setVisible(true);
+              observer?.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold },
+      );
+
+      observer.observe(node);
+    };
+
+    animationFrameId = window.requestAnimationFrame(() => {
+      if (isOverlappingViewport()) {
+        reveal();
+        return;
+      }
+
+      startObserving();
+    });
+
+    return () => {
+      window.cancelAnimationFrame(animationFrameId);
+      observer?.disconnect();
+    };
   }, [threshold, immediate]);
 
   return (

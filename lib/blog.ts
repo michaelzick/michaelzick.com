@@ -22,7 +22,7 @@ export type BlogPost = Omit<RawBlogPost, 'slug' | 'tags'> & {
   tags: string[];
 };
 
-type BlogFilters = {
+export type BlogFilters = {
   categories: string[];
   tags: string[];
   authors: string[];
@@ -45,6 +45,16 @@ export function toAbsoluteUrl(url: string) {
 
 export function stripHtml(html: string) {
   return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+export function formatPostDate(dateStr: string) {
+  const [year, month, day] = dateStr.split('-').map(Number);
+  return new Date(year, month - 1, day).toLocaleDateString('en-US');
+}
+
+export function getBlogPostWordCount(body: string) {
+  const plainText = stripHtml(body);
+  return plainText ? plainText.split(/\s+/).filter(Boolean).length : 0;
 }
 
 function buildExcerpt(post: RawBlogPost) {
@@ -106,4 +116,11 @@ export function getBlogFilters(posts: BlogPost[]): BlogFilters {
     tags: Array.from(tags).sort(),
     authors: Array.from(authors).sort(),
   };
+}
+
+export function getSimilarBlogPosts(posts: BlogPost[], currentPost: BlogPost, limit = 3) {
+  return posts
+    .filter((post) => post.slug !== currentPost.slug)
+    .filter((post) => post.tags.some((tag) => currentPost.tags.includes(tag)))
+    .slice(0, limit);
 }

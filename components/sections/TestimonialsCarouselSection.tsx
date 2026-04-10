@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState, type RefObject } from 'react';
 import Link from 'next/link';
 import { trackLinkClick } from '../../lib/analytics';
+import BookingCta from '../BookingCta';
+import QuestionnaireCta from '../QuestionnaireCta';
 
 interface Testimonial {
   quote: string;
@@ -187,6 +189,11 @@ export function TestimonialsCarouselSection({
               </figure>
             ))}
           </div>
+        </div>
+
+        <div className="mt-10 flex flex-col items-center gap-4 md:flex-row md:justify-center">
+          <BookingCta location="testimonials-carousel" />
+          <QuestionnaireCta location="testimonials-carousel" />
         </div>
       </div>
     </section>

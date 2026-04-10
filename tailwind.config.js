@@ -16,6 +16,7 @@ module.exports = {
         'default-grey': 'rgb(var(--default-grey) / <alpha-value>)',
         'light-grey': 'rgb(var(--light-grey) / <alpha-value>)',
         white: 'rgb(var(--white) / <alpha-value>)',
+        'cta-amber': 'rgb(var(--cta-amber) / <alpha-value>)',
       },
     },
   },

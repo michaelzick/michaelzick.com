@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
+import JsonLd from '../../components/JsonLd';
 import BlogIndexClient from '../../components/blog/BlogIndexClient';
-import { getBlogFilters, getBlogPosts, toAbsoluteUrl } from '../../lib/blog';
+import { getBlogFilters, getBlogPosts } from '../../lib/blog';
+import { getBlogIndexStructuredData } from '../../lib/blog-structured-data';
 import { siteConfig } from '../../lib/site';
 
 const blogTitle = `Blog | ${siteConfig.shortName}`;
@@ -39,60 +41,11 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   const posts = getBlogPosts();
   const filters = getBlogFilters(posts);
-  const schemaLocale = siteConfig.locale.replace('_', '-');
-
-  const blogJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Blog',
-    name: blogTitle,
-    description: blogDescription,
-    url: `${siteConfig.url}/blog`,
-    inLanguage: schemaLocale,
-    keywords: siteConfig.keywords.join(', '),
-    publisher: {
-      '@type': 'Organization',
-      name: siteConfig.businessName,
-      url: siteConfig.url,
-    },
-    blogPost: posts.map((post) => {
-      return {
-        '@type': 'BlogPosting',
-        headline: post.title,
-        description: post.excerpt,
-        author: {
-          '@type': 'Person',
-          name: post.author,
-        },
-        articleSection: post.category,
-        keywords: post.tags.join(', '),
-        about: post.tags.map((tag) => ({ '@type': 'Thing', name: tag })),
-        inLanguage: schemaLocale,
-        ...(post.canonicalUrl ? { isBasedOn: post.canonicalUrl } : {}),
-        url: `${siteConfig.url}/blog/${post.slug}`,
-        image: toAbsoluteUrl(post.imageUrl),
-        datePublished: post.datePublished,
-        dateModified: post.dateModified ?? post.datePublished,
-      };
-    }),
-  };
-
-  const itemListJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    itemListElement: posts.map((post, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      url: `${siteConfig.url}/blog/${post.slug}`,
-      name: post.title,
-    })),
-  };
+  const structuredData = getBlogIndexStructuredData(posts);
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify([blogJsonLd, itemListJsonLd]) }}
-      />
+      <JsonLd data={structuredData} />
       <BlogIndexClient posts={posts} filters={filters} />
     </>
   );

@@ -99,7 +99,7 @@ export default function Footer() {
               ZICKONEZERO Creative
             </a>
           </p>
-          <p className="md:text-right">© 2025 Michael Zick Coaching</p>
+          <p className="md:text-right">&copy; {new Date().getFullYear()} Michael Zick Coaching</p>
         </div>
       </div>
     </footer>

@@ -1,9 +1,10 @@
 'use client';
 
+import Image from 'next/image';
 import type { RefObject } from 'react';
 import { FadeInSection } from '../FadeInSection';
-import QuestionnaireCta from '../QuestionnaireCta';
 import BookingCta from '../BookingCta';
+import QuestionnaireCta from '../QuestionnaireCta';
 import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
 
 interface BeginningSectionProps {
@@ -56,14 +57,14 @@ export function BeginningSection({
         </div>
       </section >
 
-      <section
-        className="relative overflow-hidden py-56"
-        style={{
-          backgroundImage: "url('/img/mountains_2500.webp')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
+      <section className="relative overflow-hidden py-56">
+        <Image
+          src="/img/mountains_2500.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
         <div className="absolute inset-0 bg-black/20" aria-hidden="true"></div>
         <div className="relative w-full mx-auto p-8 mt-[-88px] md:mt-[-112px]">
           <FadeInSection>
@@ -98,12 +99,12 @@ export function BeginningSection({
 
       <section className="bg-dark-blue pt-20 pb-14 text-white">
         <FadeInSection className="mx-auto max-w-[1400px] px-6 text-center md:px-8">
-          <h2 className="font-headline mb-4 text-4xl font-bold tracking-tight leading-tight md:text-5xl lg:text-6xl">
+          <h2 className="font-headline mb-4 text-4xl font-bold tracking-tight leading-tight md:text-6xl">
             You Don&apos;t Have To Do This Alone. Let&apos;s Talk.
           </h2>
           <div className="mt-10 flex flex-col items-center justify-center gap-6 md:flex-row">
-            <QuestionnaireCta location="beginning" />
             <BookingCta location="beginning" />
+            <QuestionnaireCta location="beginning" />
           </div>
         </FadeInSection>
       </section>

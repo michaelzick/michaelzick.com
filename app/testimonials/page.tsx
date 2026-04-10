@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { FadeInSection } from '../../components/FadeInSection';
-import TrackedCtaLink from '../../components/TrackedCtaLink';
+import BookingCta from '../../components/BookingCta';
+import QuestionnaireCta from '../../components/QuestionnaireCta';
 import { siteConfig } from '../../lib/site';
 
 export const metadata: Metadata = {
@@ -71,25 +72,8 @@ export default function Testimonials() {
             </FadeInSection>
 
             <FadeInSection className="mt-16 flex flex-col items-center justify-center gap-6 md:flex-row">
-              <TrackedCtaLink
-                href="/questionnaire"
-                className="rainbow-glass-btn cta-unified"
-                location="testimonials-hero"
-                label="Start Here"
-                eventName="questionnaire_click"
-                target="_self"
-              >
-                Start Here
-              </TrackedCtaLink>
-              <TrackedCtaLink
-                href="https://calendly.com/michaelzick/45min"
-                className="btn cta-unified"
-                location="testimonials-hero"
-                label="Book a Free Session"
-                eventName="book_free_session_click"
-              >
-                Book a Free Session
-              </TrackedCtaLink>
+              <BookingCta location="testimonials-hero" />
+              <QuestionnaireCta location="testimonials-hero" />
             </FadeInSection>
           </div>
         </div>
@@ -142,25 +126,8 @@ export default function Testimonials() {
           </FadeInSection>
 
           <FadeInSection className="pt-8 flex flex-col items-center justify-center gap-6 md:flex-row">
-            <TrackedCtaLink
-              href="/questionnaire"
-              className="rainbow-glass-btn cta-unified quest-cta-dark"
-              location="testimonials-more"
-              label="Start Here"
-              eventName="questionnaire_click"
-              target="_self"
-            >
-              Start Here
-            </TrackedCtaLink>
-            <TrackedCtaLink
-              href="https://calendly.com/michaelzick/45min"
-              className="btn cta-unified"
-              location="testimonials-more"
-              label="Book a Free Session"
-              eventName="book_free_session_click"
-            >
-              Book a Free Session
-            </TrackedCtaLink>
+            <BookingCta location="testimonials-more" />
+            <QuestionnaireCta location="testimonials-more" className="btn-secondary cta-unified btn-secondary-dark" />
           </FadeInSection>
         </div>
       </section>

@@ -1,21 +1,20 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import JsonLd from '../../../components/JsonLd';
 import ScrollToTopButton from '../../../components/blog/ScrollToTopButton';
-import BookingCta from '../../../components/BookingCta';
-import QuestionnaireCta from '../../../components/QuestionnaireCta';
-import TrackedLink from '../../../components/TrackedLink';
-import { getBlogPostBySlug, getBlogPosts, stripHtml, toAbsoluteUrl } from '../../../lib/blog';
+import BlogPostBreadcrumbs from '../../../components/blog/BlogPostBreadcrumbs';
+import BlogPostHero from '../../../components/blog/BlogPostHero';
+import SimilarPostsSection from '../../../components/blog/SimilarPostsSection';
+import {
+  getBlogBreadcrumbStructuredData,
+  getBlogPostStructuredData,
+} from '../../../lib/blog-structured-data';
+import { getBlogPostBySlug, getBlogPosts, getSimilarBlogPosts, toAbsoluteUrl } from '../../../lib/blog';
 import { siteConfig } from '../../../lib/site';
 
 type BlogPostPageProps = {
   params: { slug: string; } | Promise<{ slug: string; }>;
 };
-
-function formatPostDate(dateStr: string) {
-  const [year, month, day] = dateStr.split('-').map(Number);
-  return new Date(year, month - 1, day).toLocaleDateString('en-US');
-}
 
 export function generateStaticParams() {
   return getBlogPosts().map((post) => ({ slug: post.slug }));
@@ -76,163 +75,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const post = getBlogPostBySlug(resolvedParams.slug);
   if (!post) notFound();
 
-  const postUrl = `${siteConfig.url}/blog/${post.slug}`;
-  const imageUrl = toAbsoluteUrl(post.imageUrl);
-  const schemaLocale = siteConfig.locale.replace('_', '-');
-  const [countryCode, regionCode] = siteConfig.region.split('-');
-  const contentLocation = {
-    '@type': 'Place',
-    name: siteConfig.placename,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: siteConfig.placename,
-      ...(regionCode ? { addressRegion: regionCode } : {}),
-      ...(countryCode ? { addressCountry: countryCode } : {}),
-    },
-  };
-  const about = post.tags.map((tag) => ({ '@type': 'Thing', name: tag }));
-  const wordCount = post.body ? stripHtml(post.body).split(/\s+/).filter(Boolean).length : undefined;
-
-  const similarPosts = getBlogPosts()
-    .filter((p) => p.slug !== post.slug)
-    .filter((p) => p.tags.some((tag) => post.tags.includes(tag)))
-    .slice(0, 3);
-
-  const blogPostingJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
-    alternativeHeadline: post.subtitle,
-    description: post.excerpt,
-    url: postUrl,
-    image: imageUrl,
-    author: {
-      '@type': 'Person',
-      name: post.author,
-      url: siteConfig.url,
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: siteConfig.businessName,
-      url: siteConfig.url,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${siteConfig.url}${siteConfig.personImage}`,
-      },
-    },
-    datePublished: post.datePublished,
-    dateModified: post.dateModified ?? post.datePublished,
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': postUrl,
-    },
-    ...(post.canonicalUrl ? { isBasedOn: post.canonicalUrl } : {}),
-    inLanguage: schemaLocale,
-    keywords: post.tags.join(', '),
-    articleSection: post.category,
-    about,
-    contentLocation,
-    ...(wordCount ? { wordCount } : {}),
-  };
-
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: siteConfig.url,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Blog',
-        item: `${siteConfig.url}/blog`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: post.title,
-        item: postUrl,
-      },
-    ],
-  };
+  const similarPosts = getSimilarBlogPosts(getBlogPosts(), post);
+  const structuredData = [
+    getBlogPostStructuredData(post),
+    getBlogBreadcrumbStructuredData(post),
+  ];
 
   return (
     <section className="bg-light-grey px-8 pb-16 pt-24 text-default-grey max-[1024px]:px-[35px] max-[929px]:px-[30px] min-[1440px]:px-[70px] md:pb-24 md:pt-28 lg:pt-36 xl:pt-40">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify([blogPostingJsonLd, breadcrumbJsonLd]),
-        }}
-      />
+      <JsonLd data={structuredData} />
       <div className="mx-auto max-w-[1000px]">
-        <nav className="text-sm text-default-grey/70">
-          <TrackedLink
-            href="/"
-            className="hover:text-default-grey"
-            location="blog-post"
-            section="breadcrumb"
-            label="Home"
-          >
-            Home
-          </TrackedLink>
-          <span className="mx-2">/</span>
-          <TrackedLink
-            href="/blog"
-            className="hover:text-default-grey"
-            location="blog-post"
-            section="breadcrumb"
-            label="Blog"
-          >
-            Blog
-          </TrackedLink>
-        </nav>
-        {post.canonicalUrl && post.canonicalSource && (
-          <p className="mt-4 text-sm text-default-grey/70">
-            Originally published on{' '}
-            <TrackedLink
-              href={post.canonicalUrl}
-              target="_blank"
-              className="font-semibold text-dark-blue underline decoration-dark-blue/60 decoration-2 underline-offset-4 transition hover:text-dark-blue/80"
-              location="blog-post"
-              section="canonical"
-              label={post.canonicalSource}
-            >
-              {post.canonicalSource}
-            </TrackedLink>
-            .
-          </p>
-        )}
-        <div className="mt-6 space-y-4">
-          <h1 className="font-headline text-4xl font-semibold leading-tight md:text-5xl">
-            {post.title}
-          </h1>
-          <p className="text-xl text-default-grey/80">{post.subtitle}</p>
-          <div className="flex flex-wrap items-center gap-3 text-sm text-default-grey/70">
-            <span>By {post.author}</span>
-            {post.datePublished && (
-              <span>{formatPostDate(post.datePublished)}</span>
-            )}
-            {post.category && (
-              <span className="rounded-full border border-dark-blue/20 bg-dark-blue/10 px-2 py-0.5 text-xs font-semibold uppercase tracking-[0.2em] text-default-grey">
-                {post.category}
-              </span>
-            )}
-          </div>
-        </div>
-        <div id="blog-post-image" className="mt-8 overflow-hidden rounded-lg shadow-md">
-          <Image
-            src={post.imageUrl}
-            alt={post.title}
-            width={1200}
-            height={630}
-            className="h-full w-full object-cover"
-            priority={true}
-          />
-        </div>
+        <BlogPostBreadcrumbs />
+        <BlogPostHero post={post} />
         <div
           className="blog-content mt-10"
           dangerouslySetInnerHTML={{ __html: post.body }}
@@ -249,82 +103,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             ))}
           </div>
         )}
-
-        {/* Similar Posts Section */}
-        <div className="mt-10 border-t border-dark-blue/10 pt-8">
-          {similarPosts.length > 0 ? (
-            <div className="space-y-10">
-              <h2 className="font-headline text-3xl font-semibold text-dark-blue">
-                Similar Posts
-              </h2>
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {similarPosts.map((similar) => (
-                  <TrackedLink
-                    key={similar.slug}
-                    href={`/blog/${similar.slug}`}
-                    className="group flex flex-col space-y-4 rounded-lg bg-white p-4 shadow-sm ring-1 ring-black/5 transition-all hover:-translate-y-1 hover:shadow-md"
-                    location="blog-post"
-                    section="similar-posts"
-                    label={similar.title}
-                  >
-                    <div className="aspect-video overflow-hidden rounded-lg">
-                      <Image
-                        src={similar.imageUrl}
-                        alt={similar.title}
-                        width={400}
-                        height={225}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <h3 className="font-headline text-xl font-bold leading-tight text-dark-blue">
-                        {similar.title}
-                      </h3>
-                      <p className="line-clamp-2 text-sm text-default-grey/70">
-                        {similar.subtitle}
-                      </p>
-                    </div>
-                  </TrackedLink>
-                ))}
-              </div>
-              <div className="mt-12 flex justify-start">
-                <TrackedLink
-                  href="/blog"
-                  className="inline-flex items-center gap-2 text-dark-blue font-bold transition-colors group"
-                  location="blog-post"
-                  section="similar-posts"
-                  label="View All Posts"
-                >
-                  View All Posts
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
-                </TrackedLink>
-              </div>
-            </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center space-y-6 text-center">
-              <p className="text-lg text-default-grey/60 italic">
-                No similar posts found, but there&apos;s plenty more to explore.
-              </p>
-              <TrackedLink
-                href="/blog"
-                className="inline-flex items-center gap-2 text-dark-blue font-bold transition-colors group"
-                location="blog-post"
-                section="similar-posts"
-                label="View All Posts"
-              >
-                View All Posts
-                <span className="transition-transform group-hover:translate-x-1">→</span>
-              </TrackedLink>
-            </div>
-          )}
-          <div className="mt-8 flex flex-col items-start gap-4 md:flex-row md:items-center">
-            <QuestionnaireCta
-              location="blog-post-bottom"
-              className="rainbow-glass-btn cta-unified quest-cta-dark"
-            />
-            <BookingCta location="blog-post-bottom" />
-          </div>
-        </div>
+        <SimilarPostsSection posts={similarPosts} />
       </div>
       <ScrollToTopButton targetId="blog-post-image" />
     </section>

@@ -1,10 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import type { ReactNode, RefObject } from 'react';
 import { FadeInSection } from '../FadeInSection';
-import TrackedCtaLink from '../TrackedCtaLink';
-import QuestionnaireCta from '../QuestionnaireCta';
-import BookingCta from '../BookingCta';
 import { useFadeInOnScroll } from '../hooks/useFadeInOnScroll';
 
 interface ProgramSectionProps {
@@ -28,12 +26,19 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop }: Progra
       id="program"
       ref={sectionRef}
       className="relative overflow-hidden bg-cover bg-center px-6 pb-16 pt-12 text-white md:px-8 md:pt-16 md:pb-20"
-      style={{ scrollMarginTop, backgroundImage: 'url("/img/waterfall_2500.webp")' }}
+      style={{ scrollMarginTop }}
     >
+      <Image
+        src="/img/waterfall_2500.webp"
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover object-center"
+      />
       <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
       <div className="relative mx-auto max-w-[1200px]">
         <FadeInSection className="space-y-6">
-          <h2 ref={titleRef} className="text-[56px] font-semibold leading-[1.05] tracking-tight md:text-[72px]">
+          <h2 ref={titleRef} className="text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
             The Approval Exit Protocol
           </h2>
           <ul className="list-none border-t border-white/25 p-0">
@@ -54,10 +59,14 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop }: Progra
               );
             })}
           </ul>
-          <div className="mt-6 flex flex-col items-start gap-4 md:flex-row md:items-center">
-            <QuestionnaireCta location="program" />
-            <BookingCta location="program" />
-          </div>
+          <figure className="border-l-2 border-cta-amber/60 pl-6 py-2">
+            <blockquote className="text-lg leading-relaxed text-white/80 italic">
+              &ldquo;You have made a substantial impact on my life, not by telling me what I need to do, but by guiding me to find the answers myself.&rdquo;
+            </blockquote>
+            <figcaption className="mt-2 text-sm font-semibold text-white/50">
+              &mdash; Earl M.
+            </figcaption>
+          </figure>
         </FadeInSection>
       </div>
     </section>

@@ -2,9 +2,11 @@ import './globals.css';
 import type { Metadata } from 'next';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
-import Script from 'next/script';
+import JsonLd from '../components/JsonLd';
+import SiteAnalyticsScripts from '../components/SiteAnalyticsScripts';
 import { Open_Sans } from 'next/font/google';
 import { siteConfig } from '../lib/site';
+import { getSiteStructuredData } from '../lib/site-structured-data';
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -12,68 +14,7 @@ const openSans = Open_Sans({
   variable: '--font-open-sans',
 });
 
-const [countryCode, regionCode] = siteConfig.region.split('-');
-
-const organizationAddress = {
-  '@type': 'PostalAddress',
-  addressLocality: siteConfig.placename,
-  ...(regionCode ? { addressRegion: regionCode } : {}),
-  ...(countryCode ? { addressCountry: countryCode } : {}),
-};
-
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'LocalBusiness',
-      '@id': `${siteConfig.url}/#organization`,
-      name: siteConfig.businessName,
-      url: siteConfig.url,
-      description: siteConfig.description,
-      image: `${siteConfig.url}${siteConfig.personImage}`,
-      address: organizationAddress,
-      geo: {
-        '@type': 'GeoCoordinates',
-        latitude: 34.0522,
-        longitude: -118.2437,
-      },
-      areaServed: {
-        '@type': 'City',
-        name: siteConfig.placename,
-      },
-      priceRange: '$$',
-      telephone: '',
-      sameAs: siteConfig.sameAs,
-    },
-    {
-      '@type': 'Person',
-      '@id': `${siteConfig.url}/#person`,
-      name: siteConfig.shortName,
-      jobTitle: 'Nice Guy Recovery Coach',
-      description: siteConfig.description,
-      url: siteConfig.url,
-      image: `${siteConfig.url}${siteConfig.personImage}`,
-      address: organizationAddress,
-      worksFor: {
-        '@id': `${siteConfig.url}/#organization`,
-      },
-      sameAs: siteConfig.sameAs,
-    },
-    {
-      '@type': 'Service',
-      '@id': `${siteConfig.url}/#coaching`,
-      name: 'Nice Guy Recovery Coaching',
-      provider: { '@id': `${siteConfig.url}/#person` },
-      areaServed: { '@type': 'City', name: 'Los Angeles' },
-      description: 'Specialized coaching for men to break free from approval addiction, toxic shame, and enmeshment to reclaim internal authority.',
-      serviceType: 'Life Coaching',
-      offers: {
-        '@type': 'Offer',
-        availability: 'https://schema.org/InStock',
-      }
-    },
-  ],
-};
+const structuredData = getSiteStructuredData();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -134,59 +75,8 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
   return (
     <html lang={siteConfig.locale.replace('_', '-')} suppressHydrationWarning>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
-        {/* Amplitude Browser SDK + Session Replay */}
-        <Script
-          strategy="afterInteractive"
-          src="https://cdn.amplitude.com/script/46e4589d8bee602239bf1937b465e1d7.js"
-        />
-        <Script id="amplitude-init" strategy="afterInteractive">
-          {`
-            (function () {
-              var start = Date.now();
-              var maxWaitMs = 8000;
-
-              function tryInit() {
-                if (window.__amplitudeInitialized) return;
-                if (!window.amplitude || !window.amplitude.init) {
-                  if (Date.now() - start < maxWaitMs) {
-                    setTimeout(tryInit, 100);
-                  }
-                  return;
-                }
-
-                if (window.sessionReplay && window.sessionReplay.plugin && window.amplitude.add) {
-                  window.amplitude.add(window.sessionReplay.plugin({ sampleRate: 1 }));
-                }
-
-                window.amplitude.init('46e4589d8bee602239bf1937b465e1d7', {
-                  fetchRemoteConfig: true,
-                  autocapture: true,
-                });
-                window.__amplitudeInitialized = true;
-              }
-
-              tryInit();
-            })();
-          `}
-        </Script>
-        {/* Google tag (gtag.js) */}
-        <Script
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-QK4WD4TRZV"
-        />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-QK4WD4TRZV');
-          `}
-        </Script>
+        <JsonLd data={structuredData} />
+        <SiteAnalyticsScripts />
       </head>
       <body className={`${openSans.variable} min-h-screen flex flex-col font-sans`}>
         <NavBar />

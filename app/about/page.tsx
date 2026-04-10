@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { FadeInSection } from '../../components/FadeInSection';
-import TrackedCtaLink from '../../components/TrackedCtaLink';
+import BookingCta from '../../components/BookingCta';
 import QuestionnaireCta from '../../components/QuestionnaireCta';
 import { siteConfig } from '../../lib/site';
 
@@ -71,18 +71,9 @@ export default function About() {
                       If this sounds like you, let&apos;s talk.
                     </p>
                   </div>
-                  <div className="mt-6 flex flex-col items-start gap-4 md:flex-row md:items-center">
-                    <QuestionnaireCta
-                      location="about-top"
-                      className="rainbow-glass-btn cta-unified quest-cta-dark"
-                    />
-                    <TrackedCtaLink
-                      href="https://calendly.com/michaelzick/45min"
-                      className="btn cta-unified"
-                      location="about-top"
-                    >
-                      Book a Free Session
-                    </TrackedCtaLink>
+                  <div className="mt-6 flex flex-col items-start gap-4">
+                    <BookingCta location="about-top" />
+                    <QuestionnaireCta location="about-top" className="btn-secondary cta-unified btn-secondary-dark" />
                   </div>
                 </div>
               </div>
@@ -154,18 +145,9 @@ export default function About() {
                       You don&apos;t have to spend the rest of your life performing for validation. It&apos;s time to take control of your ship.
                     </p>
                   </div>
-                  <div className="mt-6 flex flex-col items-start gap-4 md:flex-row md:items-center">
-                    <QuestionnaireCta
-                      location="about-mission"
-                      className="rainbow-glass-btn cta-unified quest-cta-dark"
-                    />
-                    <TrackedCtaLink
-                      href="https://calendly.com/michaelzick/45min"
-                      className="btn cta-unified"
-                      location="about-mission"
-                    >
-                      Book a Free Session
-                    </TrackedCtaLink>
+                  <div className="mt-6 flex flex-col items-start gap-4">
+                    <BookingCta location="about-mission" />
+                    <QuestionnaireCta location="about-mission" className="btn-secondary cta-unified btn-secondary-dark" />
                   </div>
                 </div>
               </div>
@@ -191,18 +173,9 @@ export default function About() {
                   );
                 })}
               </ul>
-              <div className="flex flex-col items-start gap-4 md:flex-row md:items-center">
-                <QuestionnaireCta
-                  location="about-bottom"
-                  className="rainbow-glass-btn cta-unified quest-cta-dark"
-                />
-                <TrackedCtaLink
-                  href="https://calendly.com/michaelzick/45min"
-                  className="btn cta-unified"
-                  location="about-bottom"
-                >
-                  Book a Free Session
-                </TrackedCtaLink>
+              <div className="flex flex-col items-start gap-4">
+                <BookingCta location="about-bottom" />
+                <QuestionnaireCta location="about-bottom" className="btn-secondary cta-unified btn-secondary-dark" />
               </div>
             </FadeInSection>
           </div>

@@ -8,13 +8,13 @@
   --light-grey: 223 224 225;
   --white: 255 255 255;
   --primary-blue: 0 113 227;
+  --cta-amber: 218 155 20;
 }
 
 body,
 html {
   background-color: rgb(var(--dark-blue));
   color: rgb(var(--white));
-  scroll-behavior: smooth;
 }
 
 @layer base {
@@ -110,14 +110,23 @@ html {
   }
 
   .btn {
-    @apply inline-flex items-center justify-center rounded-lg bg-primary-blue text-white transition-all duration-300 hover:opacity-90;
+    @apply inline-flex items-center justify-center rounded-lg bg-cta-amber text-white font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta-amber/50 focus-visible:ring-offset-2;
     padding: 30px 42px;
     font-size: 16px;
     line-height: 16px;
   }
 
+  .btn:hover {
+    filter: brightness(0.9);
+  }
+
+  .btn:active {
+    transform: scale(0.97);
+    transition-duration: 100ms;
+  }
+
   .nav-button {
-    @apply inline-flex items-center justify-center rounded-lg bg-primary-blue text-white transition-all duration-300 hover:opacity-90 text-base leading-4;
+    @apply inline-flex items-center justify-center rounded-lg bg-cta-amber text-white transition-all duration-300 hover:opacity-90 text-base leading-4;
     padding: 9px 16px 10px;
   }
 
@@ -169,65 +178,37 @@ html {
     @apply my-6 rounded-lg shadow-md;
   }
 
-  @keyframes rainbow-border-scroll {
-    0% {
-      background-position: 0% 50%;
-    }
-
-    100% {
-      background-position: 200% 50%;
-    }
-  }
-
-  .rainbow-glass-btn {
-    @apply relative inline-flex items-center justify-center rounded-lg font-bold text-base md:text-xl whitespace-nowrap transition-all duration-300;
-    padding: 34px 42px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(12px);
-    border: 2px solid white;
-    color: white;
+  .btn-secondary {
+    @apply relative inline-flex items-center justify-center rounded-lg font-semibold whitespace-nowrap transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta-amber/50 focus-visible:ring-offset-2;
+    padding: 30px 42px;
+    background: transparent;
+    border: 2px solid rgb(var(--cta-amber));
+    color: rgb(var(--cta-amber));
     font-size: 16px;
     line-height: 16px;
-    z-index: 1;
   }
 
-  .rainbow-glass-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: transparent;
-    @apply text-white shadow-lg;
+  .btn-secondary:hover {
+    background: rgb(var(--cta-amber) / 0.1);
   }
 
-  .rainbow-glass-btn::after {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    padding: 2px;
-    border-radius: inherit;
-    background: linear-gradient(90deg,
-        #4285F4, #34A853, #FBBC05, #EA4335, #4285F4);
-    background-size: 200% auto;
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
+  .btn-secondary:active {
+    transform: scale(0.97);
+    transition-duration: 100ms;
   }
 
-  .rainbow-glass-btn:hover::after {
-    opacity: 1;
-    animation: rainbow-border-scroll 2s linear infinite;
+  .btn-secondary-dark {
+    border-color: rgb(var(--default-grey));
+    color: rgb(var(--default-grey));
+  }
+
+  .btn-secondary-dark:hover {
+    background: rgb(var(--default-grey) / 0.1);
   }
 
   .cta-unified {
     font-size: 20px;
     line-height: 20px;
-    font-weight: 400;
     height: 88px;
     padding: 0 42px;
     white-space: nowrap;
@@ -242,12 +223,25 @@ html {
     }
   }
 
-  .quest-cta-dark {
-    border-color: rgb(var(--default-grey));
-    color: rgb(var(--default-grey));
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
   }
 
-  .quest-cta-dark:hover {
-    color: rgb(var(--default-grey));
+  .btn-loading {
+    @apply pointer-events-none opacity-80;
+  }
+
+  .btn-loading::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
   }
 }

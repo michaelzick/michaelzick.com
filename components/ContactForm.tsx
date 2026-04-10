@@ -1,33 +1,30 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import HCaptcha from '@hcaptcha/react-hcaptcha';
+import { useState } from 'react';
 
 interface FormData {
   firstName: string;
   lastName: string;
   email: string;
-  subject: string;
   message: string;
   workbookOptIn: boolean;
 }
 
-const hCaptchaSiteKey = process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY;
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 const initialFormData: FormData = {
   firstName: '',
   lastName: '',
   email: '',
-  subject: '',
   message: '',
-  workbookOptIn: false,
+  workbookOptIn: true,
 };
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [captchaError, setCaptchaError] = useState<string | null>(null);
-  const captchaRef = useRef<HCaptcha>(null);
+  const [submittedEmail, setSubmittedEmail] = useState('');
+  const [submittedWorkbook, setSubmittedWorkbook] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -46,12 +43,29 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!captchaToken) {
-      setCaptchaError('Please complete the CAPTCHA challenge.');
+    setStatus('submitting');
+    setCaptchaError(null);
+
+    let captchaToken: string;
+    try {
+      const enterprise = window.grecaptcha?.enterprise;
+      if (!enterprise || typeof enterprise.ready !== 'function' || typeof enterprise.execute !== 'function') {
+        throw new Error('reCAPTCHA Enterprise is not ready');
+      }
+
+      await new Promise<void>((resolve) => {
+        enterprise.ready(resolve);
+      });
+      captchaToken = await enterprise.execute(
+        RECAPTCHA_SITE_KEY!,
+        { action: 'contact_form' },
+      );
+    } catch {
+      setCaptchaError('CAPTCHA verification failed. Please refresh the page and try again.');
+      setStatus('idle');
       return;
     }
 
-    setStatus('submitting');
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -59,24 +73,43 @@ export default function ContactForm() {
         body: JSON.stringify({ ...formData, captchaToken }),
       });
       if (!res.ok) throw new Error('Request failed');
+      setSubmittedEmail(formData.email);
+      setSubmittedWorkbook(formData.workbookOptIn);
       setStatus('success');
       setFormData(initialFormData);
       setCaptchaError(null);
-      setCaptchaToken(null);
-      captchaRef.current?.resetCaptcha();
     } catch (err) {
       console.error(err);
       setStatus('error');
-      setCaptchaToken(null);
-      captchaRef.current?.resetCaptcha();
     }
   };
 
-  if (!hCaptchaSiteKey) {
+  if (!RECAPTCHA_SITE_KEY) {
     return (
       <p className="text-red-600">
         Contact form is temporarily unavailable. Please try again later.
       </p>
+    );
+  }
+
+  if (status === 'success') {
+    return (
+      <div className="flex flex-col items-center text-center py-8 space-y-4">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+          <svg className="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 className="text-2xl font-semibold text-default-grey">Message Sent!</h3>
+        <p className="text-lg text-default-grey/80">
+          I&apos;ll get back to you within 48 hours.
+        </p>
+        {submittedWorkbook && (
+          <p className="text-base text-default-grey/60">
+            Your free workbook is on its way to <strong>{submittedEmail}</strong>.
+          </p>
+        )}
+      </div>
     );
   }
 
@@ -126,19 +159,6 @@ export default function ContactForm() {
         />
       </div>
       <div className="space-y-3">
-        <label htmlFor="subject" className="block text-sm font-semibold text-default-grey/70 ml-1">
-          Subject
-        </label>
-        <input
-          id="subject"
-          className="border border-gray-300 rounded-lg p-4 w-full bg-white text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
-          name="subject"
-          placeholder="How can I help you?"
-          value={formData.subject}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="space-y-3">
         <label htmlFor="message" className="block text-sm font-semibold text-default-grey/70 ml-1">
           Message <span className="text-red-500 font-bold">*</span>
         </label>
@@ -168,41 +188,24 @@ export default function ContactForm() {
           Send me a free Belief Reprogramming Workbook and add me to your email newsletter. Unsubscribe anytime.
         </label>
       </div>
-      <div className="space-y-4 !mt-4 max-w-full overflow-x-auto">
-        <HCaptcha
-          sitekey={hCaptchaSiteKey}
-          onVerify={(token) => {
-            setCaptchaToken(token);
-            setCaptchaError(null);
-          }}
-          onExpire={() => {
-            setCaptchaToken(null);
-            setCaptchaError('The CAPTCHA verification expired. Please try again.');
-          }}
-          onError={(err) => {
-            console.error('hCaptcha error', err);
-            setCaptchaToken(null);
-            setCaptchaError('Captcha failed to load. Please refresh the page and try again.');
-          }}
-          ref={captchaRef}
-        />
-        {captchaError && <p className="text-sm text-red-600 font-medium">{captchaError}</p>}
-      </div>
-      {status === 'success' && (
-        <p className="text-green-600 font-medium">Your message has been sent. I will get back to you within 48 hours.</p>
-      )}
+      {captchaError && <p className="text-sm text-red-600 font-medium">{captchaError}</p>}
       {status === 'error' && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 font-medium">
-          There was an error sending your message. Please try again.
+        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-600">
+          <p className="font-medium">There was an error sending your message.</p>
+          <p className="text-sm mt-1">Please try again, or email me directly at michael@michaelzick.com.</p>
         </div>
       )}
       <div className="!mt-4">
         <button
           type="submit"
-          className="btn !w-full md:!w-auto !text-xl !px-6 md:!px-16 !py-4 md:!py-8 transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-          disabled={status === 'submitting' || !captchaToken}
+          className={`btn !w-full md:!w-auto !text-xl !px-6 md:!px-16 !py-4 md:!py-8 transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed ${status === 'submitting' ? 'btn-loading' : ''}`}
+          disabled={status === 'submitting'}
         >
-          {status === 'submitting' ? 'Sending...' : 'Send Message'}
+          {status === 'submitting'
+            ? 'Sending...'
+            : formData.workbookOptIn
+              ? 'Get My Free Workbook'
+              : 'Send My Message'}
         </button>
       </div>
     </form>
