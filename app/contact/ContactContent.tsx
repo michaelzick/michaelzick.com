@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react';
 import ContactForm from '../../components/ContactForm';
+import ContactRecaptchaLoader from '../../components/ContactRecaptchaLoader';
 import { FadeInSection } from '../../components/FadeInSection';
 import Image from 'next/image';
 import { TestimonialsCarouselSection } from '../../components/sections/TestimonialsCarouselSection';
@@ -43,6 +44,7 @@ export default function ContactContent() {
 
   return (
     <div className="flex flex-col">
+      <ContactRecaptchaLoader />
       <section className="bg-default-grey text-white px-6 pb-24 pt-24 md:px-8 md:pb-32 md:pt-28 lg:pt-36 xl:pt-40">
         <div className="mx-auto max-w-[1400px]">
           <FadeInSection className="mb-10 text-center md:text-left" immediate>

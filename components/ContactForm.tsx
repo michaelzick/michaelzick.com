@@ -48,10 +48,15 @@ export default function ContactForm() {
 
     let captchaToken: string;
     try {
+      const enterprise = window.grecaptcha?.enterprise;
+      if (!enterprise || typeof enterprise.ready !== 'function' || typeof enterprise.execute !== 'function') {
+        throw new Error('reCAPTCHA Enterprise is not ready');
+      }
+
       await new Promise<void>((resolve) => {
-        window.grecaptcha.enterprise.ready(resolve);
+        enterprise.ready(resolve);
       });
-      captchaToken = await window.grecaptcha.enterprise.execute(
+      captchaToken = await enterprise.execute(
         RECAPTCHA_SITE_KEY!,
         { action: 'contact_form' },
       );

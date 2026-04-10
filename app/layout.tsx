@@ -187,11 +187,6 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
             gtag('config', 'G-QK4WD4TRZV');
           `}
         </Script>
-        {/* Google reCAPTCHA Enterprise */}
-        <Script
-          src="https://www.google.com/recaptcha/enterprise.js?render=6LeYba8sAAAAACIdvKTJQhHME6u8LcKzgvUb2Hz6"
-          strategy="afterInteractive"
-        />
       </head>
       <body className={`${openSans.variable} min-h-screen flex flex-col font-sans`}>
         <NavBar />
