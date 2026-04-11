@@ -2,11 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import {
   buildContactEmailText,
-  buildRecaptchaAssessmentUrl,
   CONTACT_RATE_LIMIT_MAX_REQUESTS,
   CONTACT_RATE_LIMIT_WINDOW,
   getContactConfig,
-  isValidRecaptchaAssessment,
+  isValidRecaptchaResponse,
   normalizeContactSubmission,
   validateContactSubmission,
 } from '../../../lib/server/contact';
@@ -62,38 +61,34 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const captchaResponse = await fetch(buildRecaptchaAssessmentUrl(config), {
+    const captchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        event: {
-          token: submission.captchaToken,
-          siteKey: config.recaptchaSiteKey,
-          expectedAction: 'contact_form',
-        },
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        secret: config.recaptchaSecretKey,
+        response: submission.captchaToken!,
       }),
     });
 
     if (!captchaResponse.ok) {
-      const captchaBody = await captchaResponse.text().catch(() => '');
-      console.error('reCAPTCHA Enterprise assessment request failed', captchaResponse.status, captchaBody);
+      console.error('reCAPTCHA siteverify request failed', captchaResponse.status);
       return NextResponse.json(
-        { success: false, error: `Captcha assessment request failed (${captchaResponse.status})` },
+        { success: false, error: `Captcha verification request failed (${captchaResponse.status})` },
         { status: 400 },
       );
     }
 
-    const assessment = await captchaResponse.json();
-    const captchaValidation = isValidRecaptchaAssessment(assessment);
+    const verification = await captchaResponse.json();
+    const captchaValidation = isValidRecaptchaResponse(verification);
 
     if (!captchaValidation.valid) {
       console.error('reCAPTCHA token invalid', {
-        invalidReason: captchaValidation.invalidReason,
+        errorCodes: captchaValidation.errorCodes,
         action: captchaValidation.action,
         score: captchaValidation.score,
       });
       return NextResponse.json(
-        { success: false, error: `Captcha token invalid: ${captchaValidation.invalidReason || 'low score'} (score: ${captchaValidation.score})` },
+        { success: false, error: `Captcha verification failed: ${captchaValidation.errorCodes?.join(', ') || 'low score'} (score: ${captchaValidation.score})` },
         { status: 400 },
       );
     }

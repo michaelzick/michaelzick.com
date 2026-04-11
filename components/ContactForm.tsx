@@ -50,15 +50,15 @@ export default function ContactForm() {
 
     let captchaToken: string;
     try {
-      const enterprise = window.grecaptcha?.enterprise;
-      if (!enterprise || typeof enterprise.ready !== 'function' || typeof enterprise.execute !== 'function') {
-        throw new Error('reCAPTCHA Enterprise is not ready');
+      const recaptcha = window.grecaptcha;
+      if (!recaptcha || typeof recaptcha.ready !== 'function' || typeof recaptcha.execute !== 'function') {
+        throw new Error('reCAPTCHA is not ready');
       }
 
       await new Promise<void>((resolve) => {
-        enterprise.ready(resolve);
+        recaptcha.ready(resolve);
       });
-      captchaToken = await enterprise.execute(
+      captchaToken = await recaptcha.execute(
         RECAPTCHA_SITE_KEY!,
         { action: 'contact_form' },
       );
@@ -198,7 +198,7 @@ export default function ContactForm() {
       {status === 'error' && (
         <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-600">
           <p className="font-medium">{errorMessage || 'There was an error sending your message.'}</p>
-          <p className="text-sm mt-1">Please try again, or email me directly at michael@michaelzick.com.</p>
+          <p className="text-sm mt-1">Please try again later.</p>
         </div>
       )}
       <div className="!mt-4">

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   buildContactEmailText,
-  isValidRecaptchaAssessment,
+  isValidRecaptchaResponse,
   validateContactSubmission,
 } from '../lib/server/contact';
 import { getServerOpenAIClient } from '../lib/server/openai';
@@ -61,17 +61,15 @@ test('contact helpers build email content and validate recaptcha state', () => {
   assert.match(email.text, /Workbook \+ Email List Consent: Yes/);
 
   assert.equal(
-    isValidRecaptchaAssessment({
-      tokenProperties: { valid: true, action: 'contact_form' },
-      riskAnalysis: { score: 0.9 },
+    isValidRecaptchaResponse({
+      success: true, action: 'contact_form', score: 0.9,
     }).valid,
     true,
   );
 
   assert.equal(
-    isValidRecaptchaAssessment({
-      tokenProperties: { valid: true, action: 'wrong_action' },
-      riskAnalysis: { score: 0.9 },
+    isValidRecaptchaResponse({
+      success: true, action: 'wrong_action', score: 0.9,
     }).valid,
     false,
   );

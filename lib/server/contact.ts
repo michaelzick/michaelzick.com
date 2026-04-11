@@ -13,9 +13,7 @@ export type ContactConfig = {
   userName: string;
   toAddress: string;
   fromAddress: string;
-  recaptchaProjectId: string;
-  recaptchaApiKey: string;
-  recaptchaSiteKey: string;
+  recaptchaSecretKey: string;
 };
 
 export const CONTACT_RATE_LIMIT_WINDOW = 60 * 60 * 1000;
@@ -60,18 +58,14 @@ export function getContactConfig(env = process.env): ContactConfig | null {
   const userName = env['BREVO_USER'];
   const toAddress = env['BREVO_TO'];
   const fromAddress = env['BREVO_FROM'];
-  const recaptchaProjectId = env['RECAPTCHA_PROJECT_ID'];
-  const recaptchaApiKey = env['GOOGLE_API_KEY'];
-  const recaptchaSiteKey = env['NEXT_PUBLIC_RECAPTCHA_SITE_KEY'];
+  const recaptchaSecretKey = env['RECAPTCHA_SECRET_KEY'];
 
   const missing = Object.entries({
     BREVO_SMTP_PASSWORD: password,
     BREVO_USER: userName,
     BREVO_TO: toAddress,
     BREVO_FROM: fromAddress,
-    RECAPTCHA_PROJECT_ID: recaptchaProjectId,
-    GOOGLE_API_KEY: recaptchaApiKey,
-    NEXT_PUBLIC_RECAPTCHA_SITE_KEY: recaptchaSiteKey,
+    RECAPTCHA_SECRET_KEY: recaptchaSecretKey,
   })
     .filter(([, v]) => !v)
     .map(([k]) => k);
@@ -86,32 +80,26 @@ export function getContactConfig(env = process.env): ContactConfig | null {
     userName,
     toAddress,
     fromAddress,
-    recaptchaProjectId,
-    recaptchaApiKey,
-    recaptchaSiteKey,
+    recaptchaSecretKey,
   };
 }
 
-export function buildRecaptchaAssessmentUrl(config: ContactConfig) {
-  return `https://recaptchaenterprise.googleapis.com/v1/projects/${config.recaptchaProjectId}/assessments?key=${config.recaptchaApiKey}`;
-}
-
-export function isValidRecaptchaAssessment(
-  assessment: {
-    tokenProperties?: { valid?: boolean; action?: string; invalidReason?: string; };
-    riskAnalysis?: { score?: number; };
+export function isValidRecaptchaResponse(
+  response: {
+    success?: boolean;
+    score?: number;
+    action?: string;
+    'error-codes'?: string[];
   },
   minimumScore = 0.5,
 ) {
-  const isTokenValid = assessment.tokenProperties?.valid;
-  const matchesAction = assessment.tokenProperties?.action === 'contact_form';
-  const score = assessment.riskAnalysis?.score ?? 0;
+  const score = response.score ?? 0;
 
   return {
-    valid: Boolean(isTokenValid && matchesAction && score >= minimumScore),
+    valid: Boolean(response.success && response.action === 'contact_form' && score >= minimumScore),
     score,
-    invalidReason: assessment.tokenProperties?.invalidReason,
-    action: assessment.tokenProperties?.action,
+    action: response.action,
+    errorCodes: response['error-codes'],
   };
 }
 

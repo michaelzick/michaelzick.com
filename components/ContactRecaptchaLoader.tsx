@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-const RECAPTCHA_SCRIPT_ID = 'contact-recaptcha-enterprise-script';
+const RECAPTCHA_SCRIPT_ID = 'contact-recaptcha-script';
 
 function removeRecaptchaArtifacts() {
   document.getElementById(RECAPTCHA_SCRIPT_ID)?.remove();
@@ -22,7 +22,7 @@ export default function ContactRecaptchaLoader() {
     if (!existingScript) {
       const script = document.createElement('script');
       script.id = RECAPTCHA_SCRIPT_ID;
-      script.src = `https://www.google.com/recaptcha/enterprise.js?render=${encodeURIComponent(RECAPTCHA_SITE_KEY)}`;
+      script.src = `https://www.google.com/recaptcha/api.js?render=${encodeURIComponent(RECAPTCHA_SITE_KEY)}`;
       script.async = true;
       document.head.appendChild(script);
     }
