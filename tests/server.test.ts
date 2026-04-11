@@ -76,11 +76,11 @@ test('contact helpers build email content and validate recaptcha state', () => {
 });
 
 test('getServerOpenAIClient only initializes when OPENAI_API_KEY is present', () => {
-  assert.equal(getServerOpenAIClient({ OPENAI_API_KEY: '' } as NodeJS.ProcessEnv), null);
+  assert.equal(getServerOpenAIClient({ OPENAI_API_KEY: '' } as unknown as NodeJS.ProcessEnv), null);
 
   const client = getServerOpenAIClient({
     OPENAI_API_KEY: 'test-key',
-  } as NodeJS.ProcessEnv);
+  } as unknown as NodeJS.ProcessEnv);
 
   assert.ok(client);
 });
