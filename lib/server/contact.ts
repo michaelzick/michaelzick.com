@@ -1,3 +1,5 @@
+import { CONTACT_RECAPTCHA_ACTION, RECAPTCHA_MINIMUM_SCORE } from '../recaptcha';
+
 export type ContactSubmission = {
   firstName?: string;
   lastName?: string;
@@ -91,12 +93,16 @@ export function isValidRecaptchaResponse(
     action?: string;
     'error-codes'?: string[];
   },
-  minimumScore = 0.5,
+  minimumScore = RECAPTCHA_MINIMUM_SCORE,
 ) {
   const score = response.score ?? 0;
 
   return {
-    valid: Boolean(response.success && response.action === 'contact_form' && score >= minimumScore),
+    valid: Boolean(
+      response.success
+        && response.action === CONTACT_RECAPTCHA_ACTION
+        && score >= minimumScore,
+    ),
     score,
     action: response.action,
     errorCodes: response['error-codes'],

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { CONTACT_RECAPTCHA_ACTION } from '../lib/recaptcha';
 
 interface FormData {
   firstName: string;
@@ -60,7 +61,7 @@ export default function ContactForm() {
       });
       captchaToken = await recaptcha.execute(
         RECAPTCHA_SITE_KEY!,
-        { action: 'contact_form' },
+        { action: CONTACT_RECAPTCHA_ACTION },
       );
     } catch {
       setCaptchaError('CAPTCHA verification failed. Please refresh the page and try again.');

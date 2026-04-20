@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { RECAPTCHA_SITE_VERIFY_URL } from '../../../lib/recaptcha';
 import {
   buildContactEmailText,
   CONTACT_RATE_LIMIT_MAX_REQUESTS,
@@ -61,7 +62,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const captchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+    const captchaResponse = await fetch(RECAPTCHA_SITE_VERIFY_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({

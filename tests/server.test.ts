@@ -1,6 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  CONTACT_RECAPTCHA_ACTION,
+  RECAPTCHA_MINIMUM_SCORE,
+} from '../lib/recaptcha';
+import {
   buildContactEmailText,
   isValidRecaptchaResponse,
   validateContactSubmission,
@@ -62,7 +66,7 @@ test('contact helpers build email content and validate recaptcha state', () => {
 
   assert.equal(
     isValidRecaptchaResponse({
-      success: true, action: 'contact_form', score: 0.9,
+      success: true, action: CONTACT_RECAPTCHA_ACTION, score: 0.9,
     }).valid,
     true,
   );
@@ -70,6 +74,15 @@ test('contact helpers build email content and validate recaptcha state', () => {
   assert.equal(
     isValidRecaptchaResponse({
       success: true, action: 'wrong_action', score: 0.9,
+    }).valid,
+    false,
+  );
+
+  assert.equal(
+    isValidRecaptchaResponse({
+      success: true,
+      action: CONTACT_RECAPTCHA_ACTION,
+      score: RECAPTCHA_MINIMUM_SCORE - 0.01,
     }).valid,
     false,
   );
