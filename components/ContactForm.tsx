@@ -107,7 +107,7 @@ export default function ContactForm() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="text-2xl font-semibold text-default-grey">Message Sent!</h3>
+        <h3 className="text-2xl font-semibold text-default-grey">Message Sent</h3>
         <p className="text-lg text-default-grey/80">
           I&apos;ll get back to you within 48 hours.
         </p>
@@ -131,7 +131,7 @@ export default function ContactForm() {
             id="firstName"
             className="border border-gray-300 rounded-lg p-4 w-full bg-white text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
             name="firstName"
-            placeholder="Jane"
+            placeholder="Michael"
             value={formData.firstName}
             onChange={handleChange}
           />
@@ -144,7 +144,7 @@ export default function ContactForm() {
             id="lastName"
             className="border border-gray-300 rounded-lg p-4 w-full bg-white text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
             name="lastName"
-            placeholder="Doe"
+            placeholder="Smith"
             value={formData.lastName}
             onChange={handleChange}
           />
@@ -159,7 +159,7 @@ export default function ContactForm() {
           className="border border-gray-300 rounded-lg p-4 w-full bg-white text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none"
           type="email"
           name="email"
-          placeholder="jane.doe@example.com"
+          placeholder="michael@example.com"
           value={formData.email}
           onChange={handleChange}
           required
@@ -173,7 +173,7 @@ export default function ContactForm() {
           id="message"
           className="border border-gray-300 rounded-lg p-4 w-full h-40 bg-white text-black focus:ring-2 focus:ring-primary-blue/20 focus:border-primary-blue transition-all outline-none resize-none"
           name="message"
-          placeholder="Tell me more about what's on your mind..."
+          placeholder="Tell me where the approval loop is showing up and what you want to change."
           value={formData.message}
           onChange={handleChange}
           required
@@ -192,7 +192,7 @@ export default function ContactForm() {
           htmlFor="workbookOptIn"
           className="text-sm font-medium text-default-grey/80 leading-relaxed"
         >
-          Send me a free Belief Reprogramming Workbook and add me to your email newsletter. Unsubscribe anytime.
+          Send me the free Belief Reprogramming Workbook and add me to your email newsletter. Unsubscribe anytime.
         </label>
       </div>
       {captchaError && <p className="text-sm text-red-600 font-medium">{captchaError}</p>}
@@ -208,11 +208,7 @@ export default function ContactForm() {
           className={`btn !w-full md:!w-auto !text-xl !px-6 md:!px-16 !py-4 md:!py-8 transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed ${status === 'submitting' ? 'btn-loading' : ''}`}
           disabled={status === 'submitting'}
         >
-          {status === 'submitting'
-            ? 'Sending...'
-            : formData.workbookOptIn
-              ? 'Get My Free Workbook'
-              : 'Send My Message'}
+          {status === 'submitting' ? 'Sending...' : 'Send My Message'}
         </button>
       </div>
     </form>

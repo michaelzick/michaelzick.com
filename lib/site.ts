@@ -2,7 +2,7 @@ export const siteConfig = {
   url: 'https://www.michaelzick.com',
   name: 'Michael Zick | Nice Guy Recovery Coach',
   shortName: 'Michael Zick',
-  description: 'Michael Zick is an LA-based Nice Guy Recovery Coach helping high-functioning men break free from approval addiction, toxic shame, and enmeshment to reclaim internal authority.',
+  description: 'Michael Zick is an LA-based Nice Guy Recovery Coach helping high-functioning men break approval-driven relationship patterns, stop over-giving, and reclaim internal authority.',
   businessName: 'Michael Zick Coaching',
   locale: 'en_US',
   placename: 'Los Angeles',
@@ -25,6 +25,8 @@ export const siteConfig = {
     'Los Angeles life coach',
     'Relationship coaching',
     'Somatic regulation',
+    'covert contracts',
+    'boundaries for men',
   ],
   sameAs: [
     'https://michaelzick.medium.com',

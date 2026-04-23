@@ -13,10 +13,10 @@ interface SpecialtiesSectionProps {
 
 export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVisible }: SpecialtiesSectionProps) {
   const specialties = [
-    { title: 'Examine Parental Relationships', desc: 'Understand how your upbringing influences you.' },
-    { title: 'Identify Your Needs & Values', desc: 'Figure out what you want, need, and value.' },
-    { title: 'Communicate & Set Boundaries', desc: 'Communicate your needs and set boundaries effectively.' },
-    { title: 'Stay in the Discomfort', desc: 'Expose yourself to discomfort without nuking the relationship.' },
+    { title: 'Find the Origin Pattern', desc: 'Name how family roles, enmeshment, or early pressure taught you to perform for safety.' },
+    { title: 'Separate Needs From Approval', desc: 'Get clear on what you actually want before you negotiate against yourself.' },
+    { title: 'Say the Clean Truth', desc: 'Communicate needs and boundaries without over-explaining, apologizing, or punishing.' },
+    { title: 'Build Displeasure Tolerance', desc: 'Stay regulated when someone is upset with you, without abandoning yourself or the relationship.' },
   ];
   const { setRef: setImageRef, visibleStates: imageVisible } = useFadeInOnScroll(1, 0.3);
   const { setRef: setSpecialtyRef, visibleStates: specialtyVisible } = useFadeInOnScroll(specialties.length, 0.3);
@@ -51,7 +51,7 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
               className={`font-headline text-[50px] leading-tight md:text-[55px] font-semibold transition-opacity duration-700 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'
                 }`}
             >
-              Signature Framework:
+              The Internal Authority Framework
             </h2>
             <ul className="list-none border-t border-white/25 p-0">
               {specialties.map((item, index) => {

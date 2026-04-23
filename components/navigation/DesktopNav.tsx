@@ -75,7 +75,7 @@ export default function DesktopNav({
           aria-expanded={appsOpen}
           aria-controls="apps-menu"
         >
-          Apps
+          Tools
           <svg
             aria-hidden="true"
             className={`h-4 w-4 transition-transform ${appsOpen ? 'rotate-180' : ''}`}
@@ -94,7 +94,7 @@ export default function DesktopNav({
           className={`absolute left-0 top-full mt-3 w-max rounded-lg bg-white text-default-grey shadow-xl ring-1 ring-black/5 transition-all duration-200 flex flex-col ${appsOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none'
             }`}
           role="menu"
-          aria-label="Apps"
+          aria-label="Tools"
         >
           <Link
             href="/questionnaire"
@@ -106,7 +106,7 @@ export default function DesktopNav({
               setAppsOpen(false);
             }}
           >
-            Questionnaire
+            Approval Pattern Audit
           </Link>
           <a
             href="https://findyourflowstate.michaelzick.com/"

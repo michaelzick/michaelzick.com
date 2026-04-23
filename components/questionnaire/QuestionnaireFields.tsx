@@ -50,7 +50,7 @@ export default function QuestionnaireFields({
             />
             <span className="text-sm text-default-grey/80 leading-snug group-hover:text-default-grey transition-colors">
               I consent to having my responses analyzed by AI and shared with Michael Zick.
-              I agree to be contacted by Michael regarding my results and coaching opportunities.
+              I agree to be contacted by Michael about my results and relevant coaching opportunities.
               Your information is kept confidential and will not be shared with third parties.
             </span>
           </label>
@@ -101,11 +101,11 @@ export default function QuestionnaireFields({
               <div className="flex justify-between text-xs sm:text-sm font-bold text-dark-blue/70">
                 <span className="flex flex-col items-start">
                   <span className="text-dark-blue">{q.min}</span>
-                  <span>Victimhood</span>
+                  <span>Rarely</span>
                 </span>
                 <span className="flex flex-col items-end">
                   <span className="text-dark-blue">{q.max}</span>
-                  <span>Ownership</span>
+                  <span>Constantly</span>
                 </span>
               </div>
             </div>

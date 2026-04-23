@@ -14,10 +14,10 @@ interface ProgramSectionProps {
 
 export function ProgramSection({ sectionRef, titleRef, scrollMarginTop }: ProgramSectionProps) {
   const valueProps: ReactNode[] = [
-    'Stop auditioning for female approval and over-giving.',
-    'Break the cycle of people-pleasing and enmeshment.',
-    'Find the ability to hold boundaries without anger.',
-    'Become the chooser again. Date without losing your frame.',
+    'Stop auditioning for approval and calling it being a good man.',
+    'Break the people-pleasing and enmeshment loop before it becomes resentment.',
+    'Hold boundaries without anger, collapse, or a courtroom-length explanation.',
+    'Become the chooser again. Stay connected without handing over your frame.',
   ];
   const { setRef: setDetailRef, visibleStates: detailVisible } = useFadeInOnScroll(valueProps.length, 0.3);
 
@@ -41,6 +41,9 @@ export function ProgramSection({ sectionRef, titleRef, scrollMarginTop }: Progra
           <h2 ref={titleRef} className="text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
             The Approval Exit Protocol
           </h2>
+          <p className="max-w-3xl text-xl leading-relaxed text-white/80">
+            Coaching for men who are tired of managing everyone else&apos;s emotional weather while pretending they are fine.
+          </p>
           <ul className="list-none border-t border-white/25 p-0">
             {valueProps.map((item, index) => {
               const itemNumber = String(index + 1).padStart(2, '0');

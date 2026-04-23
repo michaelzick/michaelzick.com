@@ -45,14 +45,14 @@ export function BeginningSection({
             className={`font-headline text-2xl font-semibold leading-tight md:text-4xl text-default-grey/80 transition-all duration-700 ease-out delay-150 ${copyVisible[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
           >
-            Nice Guy patterns look noble, but they create resentment and kill attraction.
+            The over-giving looks noble until it turns into anxiety, resentment, and self-abandonment.
           </h3>
           <h2
             ref={setCopyRef(2)}
             className={`font-headline text-4xl font-bold leading-tight md:text-6xl transition-all duration-700 ease-out delay-500 ${copyVisible[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
           >
-            Approval isn&apos;t love.<br />It&apos;s a drug.
+            Approval isn&apos;t love.<br />It&apos;s the loop keeping you stuck.
           </h2>
         </div>
       </section >
@@ -76,13 +76,13 @@ export function BeginningSection({
                 className={`block text-3xl md:text-6xl transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                   }`}
               >
-                I&apos;m a certified Nice Guy coach.
+                I&apos;m a certified Nice Guy Recovery Coach.
               </span>
               <span
                 className={`block text-4xl mt-3 md:mt-4 md:text-7xl transition-all duration-700 ease-out delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                   }`}
               >
-                I&apos;ve helped guys just like you.
+                I lived this pattern before I coached it.
               </span>
             </h2>
           </FadeInSection>
@@ -100,8 +100,11 @@ export function BeginningSection({
       <section className="bg-dark-blue pt-20 pb-14 text-white">
         <FadeInSection className="mx-auto max-w-[1400px] px-6 text-center md:px-8">
           <h2 className="font-headline mb-4 text-4xl font-bold tracking-tight leading-tight md:text-6xl">
-            You Don&apos;t Have To Do This Alone. Let&apos;s Talk.
+            You Don&apos;t Need Another Theory. You Need the Pattern Named.
           </h2>
+          <p className="mx-auto max-w-3xl text-xl leading-relaxed text-white/75">
+            On a free 45-minute session, we will look at where approval is running your relationships and what the next honest move looks like.
+          </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-6 md:flex-row">
             <BookingCta location="beginning" />
             <QuestionnaireCta location="beginning" />

@@ -27,7 +27,7 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
           className={`font-headline mb-12 text-center text-[40px] leading-tight md:text-5xl transition-opacity duration-700 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'
             }`}
         >
-          The Approval Addiction Recovery Loop
+          The Approval Pattern Recovery Loop
         </h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           <div
@@ -43,8 +43,8 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
               sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
               className="w-full rounded-lg object-cover shadow-md aspect-[4/3] max-[767px]:rounded-none"
             />
-            <h3 className="px-2.5 text-3xl font-semibold md:px-0">Spot the Bid for Approval</h3>
-            <p className="px-2.5 text-lg md:px-0">Where are you over-explaining, over-giving, or trying to earn safety and validation?</p>
+            <h3 className="px-2.5 text-3xl font-semibold md:px-0">Spot the Approval Bid</h3>
+            <p className="px-2.5 text-lg md:px-0">Notice where you over-explain, over-give, edit yourself, or try to make her okay so you can feel okay.</p>
           </div>
           <div
             ref={setCardRef(1)}
@@ -60,7 +60,7 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
               className="w-full rounded-lg object-cover shadow-md aspect-[4/3] max-[767px]:rounded-none"
             />
             <h3 className="px-2.5 text-3xl font-semibold md:px-0">Cancel the Covert Contract</h3>
-            <p className="px-2.5 text-lg md:px-0">Break the hidden &quot;If I&apos;m good, you&apos;ll love me&quot; deal. Say what you want and own your needs.</p>
+            <p className="px-2.5 text-lg md:px-0">Break the hidden &quot;if I am good enough, she will approve of me&quot; bargain. Say what you want without turning it into a performance.</p>
           </div>
           <div
             ref={setCardRef(2)}
@@ -76,7 +76,7 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
               className="w-full rounded-lg object-cover shadow-md aspect-[4/3] max-[767px]:rounded-none"
             />
             <h3 className="px-2.5 text-3xl font-semibold md:px-0">Build Displeasure Tolerance</h3>
-            <p className="px-2.5 text-lg md:px-0">Learn to stay grounded and calm when she&apos;s unhappy, disappointed, or angry. Learn how to handle discomfort.</p>
+            <p className="px-2.5 text-lg md:px-0">Stay grounded when she is unhappy, disappointed, or angry, instead of fixing, collapsing, defending, or disappearing.</p>
           </div>
           <div
             ref={setCardRef(3)}
@@ -91,8 +91,8 @@ export function ProcessSection({ sectionRef, titleRef, scrollMarginTop, isVisibl
               sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
               className="w-full rounded-lg object-cover shadow-md aspect-[4/3] max-[767px]:rounded-none"
             />
-            <h3 className="px-2.5 text-3xl font-semibold md:px-0">Choose from Standards</h3>
-            <p className="px-2.5 text-lg md:px-0">Choose from wholeness, not scarcity. Women become an addition, not a regulator of your self-worth.</p>
+            <h3 className="px-2.5 text-3xl font-semibold md:px-0">Choose From Standards</h3>
+            <p className="px-2.5 text-lg md:px-0">Make relationship decisions from self-respect, not scarcity. Women become an addition to your life, not the regulator of your worth.</p>
           </div>
         </div>
       </div>

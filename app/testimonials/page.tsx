@@ -8,14 +8,14 @@ import { siteConfig } from '../../lib/site';
 export const metadata: Metadata = {
   title: 'Michael Zick | Testimonials',
   description:
-    'Read testimonials from clients who have worked with Michael Zick to break free from approval addiction and reclaim their internal authority.',
+    'Read testimonials from men who worked with Michael Zick to find clarity, build self-trust, and break approval-driven patterns.',
   alternates: {
     canonical: '/testimonials',
   },
   openGraph: {
     title: 'Michael Zick | Testimonials',
     description:
-      "Read testimonials from clients of Michael Zick's reality alignment coaching program.",
+      "Read testimonials from clients of Michael Zick's Nice Guy Recovery coaching.",
     url: `${siteConfig.url}/testimonials`,
     siteName: siteConfig.name,
     images: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Michael Zick | Testimonials',
     description:
-      "Read testimonials from clients of Michael Zick's reality alignment coaching program.",
+      "Read testimonials from clients of Michael Zick's Nice Guy Recovery coaching.",
     images: ['/img/mountains_2500.webp'],
   },
 };
@@ -43,8 +43,11 @@ export default function Testimonials() {
         <div className="max-w-[1400px] mx-auto">
           <FadeInSection className="mb-10 text-center md:text-left" immediate>
             <h1 className="font-headline text-5xl font-semibold leading-tight md:text-6xl text-white">
-              Testimonials
+              Men Who Did the Work
             </h1>
+            <p className="mt-6 max-w-3xl text-xl leading-relaxed text-white/75">
+              Coaching is not about being handed a script. It is about cutting through the noise, finding the truth you have been avoiding, and acting from self-trust.
+            </p>
           </FadeInSection>
           <div className="space-y-24">
             <FadeInSection className="flex flex-col md:flex-row md:items-center gap-8">
@@ -82,7 +85,7 @@ export default function Testimonials() {
       <section className="px-6 md:px-8 pt-12 pb-24 md:pt-16 md:pb-32 bg-light-grey text-default-grey">
         <div className="max-w-[1400px] mx-auto space-y-12 text-[23px]">
           <FadeInSection className="max-w-4xl mx-auto md:mx-0">
-            <h2 className="font-headline text-[45px] font-semibold leading-tight text-center md:text-left">More Testimonials</h2>
+            <h2 className="font-headline text-[45px] font-semibold leading-tight text-center md:text-left">More Words From Clients</h2>
           </FadeInSection>
 
           <FadeInSection className="space-y-4">

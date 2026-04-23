@@ -49,7 +49,7 @@ export default function ContactContent() {
         <div className="mx-auto max-w-[1400px]">
           <FadeInSection className="mb-10 text-center md:text-left" immediate>
             <h1 className="font-headline text-5xl font-semibold leading-tight md:text-6xl">
-              Contact Michael
+              Stop Guessing. Let&apos;s Name the Pattern.
             </h1>
           </FadeInSection>
           <FadeInSection className="grid grid-cols-1 min-[930px]:grid-cols-12 gap-10 lg:gap-12 items-stretch">
@@ -69,7 +69,7 @@ export default function ContactContent() {
 
             {/* Column 2: Contact Form (Middle) */}
             <div className="min-[930px]:col-span-6 lg:col-span-5 bg-light-grey text-black rounded-xl p-4 sm:p-10 lg:p-12 shadow-2xl ring-1 ring-black/5 order-2 min-[930px]:h-full flex flex-col justify-center">
-              <h2 className="text-3xl font-bold mb-8 text-default-grey">Send Me a Message</h2>
+              <h2 className="text-3xl font-bold mb-8 text-default-grey">Send a Direct Message</h2>
               <ContactForm />
             </div>
 
@@ -77,8 +77,7 @@ export default function ContactContent() {
             <div className="min-[930px]:col-span-3 lg:col-span-4 flex flex-col justify-start gap-12 order-3">
               <div className="flex flex-col items-start gap-8">
                 <p className="text-xl lg:text-2xl font-light leading-relaxed">
-                  The best way to connect with Michael is to schedule a free 45-minute session,
-                  where we&apos;ll discuss how to break your approval addiction and reclaim your internal authority.
+                  The fastest way to get clarity is a free 45-minute session. We will look at where approval is running the relationship, name the loop, and identify the next honest step.
                 </p>
                 <TrackedCtaLink
                   href="https://calendly.com/michaelzick/45min"
@@ -93,7 +92,7 @@ export default function ContactContent() {
 
               <div className="flex flex-col items-start gap-4">
                 <div className="w-full h-px bg-white/20 mb-4 md:hidden" />
-                <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-white/60">Social</h2>
+                <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-white/60">More From Michael</h2>
                 <div className="flex flex-row gap-4">
                   <a
                     href="https://michaelzick.medium.com"

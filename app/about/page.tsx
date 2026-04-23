@@ -7,13 +7,13 @@ import { siteConfig } from '../../lib/site';
 
 export const metadata: Metadata = {
   title: 'About Michael Zick | Nice Guy Recovery Coach',
-  description: 'Michael Zick is an LA-based Nice Guy Recovery Coach helping men break free from approval addiction, toxic shame, and enmeshment to reclaim internal authority.',
+  description: 'Michael Zick is an LA-based Nice Guy Recovery Coach helping high-functioning men break approval addiction, covert contracts, enmeshment, and self-abandonment.',
   alternates: {
     canonical: '/about',
   },
   openGraph: {
     title: 'About Michael Zick | Nice Guy Recovery Coach',
-    description: 'Learn how Michael Zick helps high-functioning men break free from approval addiction and reclaim internal authority.',
+    description: 'Learn how Michael Zick lived Nice Guy patterns, recovered from approval addiction, and now coaches men back to internal authority.',
     url: `${siteConfig.url}/about`,
     siteName: siteConfig.name,
     images: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'About Michael Zick | Nice Guy Recovery Coach',
-    description: 'Learn how Michael Zick helps high-functioning men break free from approval addiction and reclaim internal authority.',
+    description: 'Learn how Michael Zick lived Nice Guy patterns, recovered from approval addiction, and now coaches men back to internal authority.',
     images: ['/img/gray-suit-headshot.webp'],
   },
 };
@@ -46,7 +46,7 @@ export default function About() {
         <div className="max-w-[1400px] mx-auto">
           <FadeInSection className="mb-10 text-center md:text-left" immediate>
             <h1 className="font-headline text-5xl font-semibold leading-tight md:text-6xl">
-              About Michael
+              I Know This Pattern From the Inside
             </h1>
           </FadeInSection>
           <div className="space-y-24 md:space-y-32">
@@ -62,13 +62,13 @@ export default function About() {
                 <div>
                   <div className="space-y-4">
                     <p className="text-[23px]">
-                      Growing up, acting like a kid wasn&apos;t allowed. I learned early that adult-level performance was my only path to safety, becoming an expert at managing others&apos; emotions while entirely abandoning my own.
+                      Growing up, acting like a kid wasn&apos;t allowed. I learned early that adult-level performance was my path to safety. I became skilled at reading the room, managing other people&apos;s emotions, and abandoning my own truth before anyone could reject it.
                     </p>
                     <p className="text-[23px]">
-                      Following my parents&apos; separation when I was seven, I became my mother&apos;s emotional surrogate. That environment built a toxic blueprint for adulthood: love equated to intensity, performance, and keeping things stable. I grew up convinced that my worth as a man was dictated by admiration and winning women&apos;s approval.
+                      After my parents separated when I was seven, I became my mother&apos;s emotional surrogate. That environment built a blueprint I carried into adulthood: love meant intensity, performance, and keeping things stable. I learned to confuse approval with safety and a woman&apos;s mood with my worth as a man.
                     </p>
                     <p className="text-[23px]">
-                      If this sounds like you, let&apos;s talk.
+                      If you look successful on the outside but feel hijacked by approval on the inside, this is the work I know best.
                     </p>
                   </div>
                   <div className="mt-6 flex flex-col items-start gap-4">
@@ -100,10 +100,10 @@ export default function About() {
                 <div>
                   <div className="space-y-4">
                     <p className="text-[23px]">
-                      That enmeshment translated into fierce approval addiction and SHAME — Should Have Already Mastered Everything. I was a consummate Nice Guy—conflict-avoidant, relying on covert contracts, and treating every interaction like a PR campaign to ensure I was never rejected.
+                      That enmeshment turned into approval addiction and SHAME: Should Have Already Mastered Everything. I became the classic Nice Guy: conflict-avoidant, dependent on covert contracts, and treating every interaction like a PR campaign designed to keep me from being rejected.
                     </p>
                     <p className="text-[23px]">
-                      My turning point came in 2015 when I fully committed to recovery, mindfulness meditation, Internal Family Systems (IFS), and somatic regulation. I finally faced the terror of dropping the mask, getting in touch with my pain, and learning to tolerate other people&apos;s displeasure without trying to fix it.
+                      My turning point came in 2015 when I fully committed to recovery, mindfulness meditation, Internal Family Systems (IFS), and somatic regulation. I had to face the terror of dropping the mask, telling the truth, and tolerating other people&apos;s displeasure without trying to fix it.
                     </p>
                   </div>
                 </div>
@@ -134,15 +134,15 @@ export default function About() {
               </div>
               <div className="md:w-1/2 space-y-6 md:order-1">
                 <h2 className="text-[45px] font-semibold leading-[1.1] tracking-tight">
-                  Reclaiming Internal Authority.
+                  Now I Help Men Stop Abandoning Themselves.
                 </h2>
                 <div>
                   <div className="space-y-4">
                     <p className="text-[23px]">
-                      Today, my mission is helping high-functioning men who look successful on the outside but are secretly exhausted from auditioning for approval on the inside. I work with men to break their approval addiction, end the cycle of enmeshment, and lead with unshakeable internal authority.
+                      Today, I coach high-functioning men who are tired of auditioning for approval in dating, partnership, family, and work. We name the approval loop, expose the covert contracts, build real boundaries, and practice leading from internal authority instead of emotional outsourcing.
                     </p>
                     <p className="text-[23px]">
-                      You don&apos;t have to spend the rest of your life performing for validation. It&apos;s time to take control of your ship.
+                      You do not have to spend the rest of your life being easy to love at the cost of being hard to know. It is time to become honest, grounded, and self-led.
                     </p>
                   </div>
                   <div className="mt-6 flex flex-col items-start gap-4">

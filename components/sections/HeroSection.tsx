@@ -19,14 +19,14 @@ export function HeroSection() {
           Stop Performing for Approval.<br />Start Leading Your Life.
         </h1>
         <p className="text-2xl md:text-[36px] text-left mb-10 max-w-[800px] font-medium leading-relaxed drop-shadow-sm text-white/90">
-          Certified coaching to break the cycle of enmeshment, set real boundaries, and reclaim your internal authority.
+          For high-functioning men who over-give, avoid conflict, and lose themselves trying to keep her happy.
         </p>
         <div className="mt-2 flex flex-col items-start gap-4 md:flex-row md:items-center">
           <BookingCta location="hero" />
           <QuestionnaireCta location="hero" />
         </div>
         <p className="mt-6 text-sm font-medium text-white/70 drop-shadow-sm">
-          Certified by Dr. Robert Glover, author of <em>No More Mr. Nice Guy</em>
+          Certified by Dr. Robert Glover, author of <em>No More Mr. Nice Guy</em>. Built for approval addiction, covert contracts, boundaries, and internal authority.
         </p>
       </div>
     </section>

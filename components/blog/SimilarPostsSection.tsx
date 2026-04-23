@@ -14,7 +14,7 @@ export default function SimilarPostsSection({ posts }: SimilarPostsSectionProps)
       {posts.length > 0 ? (
         <div className="space-y-10">
           <h2 className="font-headline text-3xl font-semibold text-dark-blue">
-            Similar Posts
+            Keep Pulling the Thread
           </h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
@@ -54,7 +54,7 @@ export default function SimilarPostsSection({ posts }: SimilarPostsSectionProps)
               section="similar-posts"
               label="View All Posts"
             >
-              View All Posts
+              View All Essays
               <span className="transition-transform group-hover:translate-x-1">→</span>
             </TrackedLink>
           </div>
@@ -62,7 +62,7 @@ export default function SimilarPostsSection({ posts }: SimilarPostsSectionProps)
       ) : (
         <div className="flex flex-col items-center justify-center space-y-6 text-center">
           <p className="text-lg italic text-default-grey/60">
-            No similar posts found, but there&apos;s plenty more to explore.
+            No similar essays found, but there is plenty more to explore.
           </p>
           <TrackedLink
             href="/blog"
@@ -71,7 +71,7 @@ export default function SimilarPostsSection({ posts }: SimilarPostsSectionProps)
             section="similar-posts"
             label="View All Posts"
           >
-            View All Posts
+            View All Essays
             <span className="transition-transform group-hover:translate-x-1">→</span>
           </TrackedLink>
         </div>

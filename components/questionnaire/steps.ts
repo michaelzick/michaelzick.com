@@ -3,11 +3,11 @@ import { Step } from '../../lib/types';
 export const STEPS: Step[] = [
   {
     id: 'struggle',
-    title: 'The Struggle',
+    title: 'The Pattern You Want to Break',
     questions: [
       {
         id: 'mainStruggle',
-        text: 'Where do you find yourself over-giving, auditioning for approval, or performing in your relationships?',
+        text: 'Where do you notice yourself over-giving, over-explaining, avoiding conflict, or trying to be the "good guy" in a relationship?',
         type: 'textarea',
         maxLength: 1000,
       },
@@ -15,18 +15,18 @@ export const STEPS: Step[] = [
   },
   {
     id: 'covert_contracts',
-    title: 'Covert Contracts',
+    title: 'The Hidden Bargain',
     questions: [
       {
         id: 'covertContractsScale',
-        text: 'On a scale of 1-10, how often do you do "nice" things with the secret expectation of receiving affection, sex, or validation in return?',
+        text: 'On a scale of 1-10, how often do you do "nice" things while secretly hoping they earn affection, sex, validation, or relief from tension?',
         type: 'range',
         min: 1,
         max: 10,
       },
       {
         id: 'covertContractsExample',
-        text: 'What happens when that secret expectation isn\'t met?',
+        text: 'When the approval, affection, or relief does not come, what do you usually do next?',
         type: 'textarea',
         maxLength: 1000,
       },
@@ -34,11 +34,11 @@ export const STEPS: Step[] = [
   },
   {
     id: 'displeasure_tolerance',
-    title: 'Displeasure Tolerance',
+    title: 'When She Is Upset',
     questions: [
       {
         id: 'displeasureReactions',
-        text: 'When your partner (or a woman you are dating) is unhappy, disappointed, or angry, how do you typically react? (e.g., trying to fix it immediately, withdrawing, getting defensive, apologizing excessively)',
+        text: 'When your partner, or a woman you are dating, is unhappy, disappointed, or angry, what happens in your body and behavior? For example: fixing, withdrawing, defending, apologizing, or getting resentful.',
         type: 'textarea',
         maxLength: 1000,
       },
@@ -46,7 +46,7 @@ export const STEPS: Step[] = [
   },
   {
     id: 'intake',
-    title: 'Tell me about yourself.',
+    title: 'Get Your Pattern Audit',
     fields: [
       { name: 'firstName', label: 'First Name', type: 'text', placeholder: 'John', maxLength: 50 },
       { name: 'lastName', label: 'Last Name', type: 'text', placeholder: 'Doe', maxLength: 50 },

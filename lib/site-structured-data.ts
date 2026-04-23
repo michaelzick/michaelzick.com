@@ -68,7 +68,7 @@ export function getSiteStructuredData() {
         provider: { '@id': `${siteConfig.url}/#person` },
         areaServed: { '@type': 'City', name: siteConfig.placename },
         description:
-          'Specialized coaching for men to break free from approval addiction, toxic shame, and enmeshment to reclaim internal authority.',
+          'Nice Guy Recovery coaching for high-functioning men breaking approval addiction, covert contracts, enmeshment, and self-abandonment so they can build boundaries and lead from internal authority.',
         serviceType: 'Life Coaching',
         offers: {
           '@type': 'Offer',

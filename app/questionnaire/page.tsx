@@ -4,16 +4,16 @@ import { siteConfig } from '../../lib/site';
 import { FadeInSection } from '../../components/FadeInSection';
 
 export const metadata: Metadata = {
-  title: 'Nice Guy Recovery Questionnaire | Michael Zick',
+  title: 'Approval Pattern Audit | Michael Zick',
   description:
-    'Take the Approval Addiction Questionnaire to identify people-pleasing patterns and discover your path to Nice Guy recovery.',
+    'Take the Approval Pattern Audit to identify people-pleasing, covert contracts, and approval addiction patterns that keep you stuck.',
   alternates: {
     canonical: '/questionnaire',
   },
   openGraph: {
-    title: 'Nice Guy Recovery Questionnaire | Michael Zick',
+    title: 'Approval Pattern Audit | Michael Zick',
     description:
-      'Discover where you\'re giving your power away, and how to take it back. Take the Approval Addiction Questionnaire.',
+      'Find where you are over-giving, avoiding conflict, and giving your power away in relationships.',
     url: `${siteConfig.url}/questionnaire`,
     siteName: siteConfig.name,
     images: [
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Nice Guy Recovery Questionnaire | Michael Zick',
+    title: 'Approval Pattern Audit | Michael Zick',
     description:
-      'Discover where you\'re giving your power away, and how to take it back. Take the Approval Addiction Questionnaire.',
+      'Find where you are over-giving, avoiding conflict, and giving your power away in relationships.',
     images: [siteConfig.defaultImage],
   },
 };
@@ -41,12 +41,12 @@ export default function QuestionnairePage() {
         <div className="mx-auto max-w-[1400px]">
           <FadeInSection className="mb-12 text-center md:text-left" immediate>
             <h1 className="font-headline text-5xl font-semibold leading-tight md:text-6xl text-white">
-              The Approval Addiction Questionnaire
+              The Approval Pattern Audit
             </h1>
             <p className="mt-8 text-xl text-white/80 md:max-w-none mx-auto md:mx-0">
-              Discover where you&apos;re giving your power away, and how to take it back.
+              Find the places where being the &quot;good guy&quot; is costing you honesty, desire, and self-respect.
               <br />
-              <strong className="block mt-2 text-white">Find your path to internal authority.</strong>
+              <strong className="block mt-2 text-white">Get a personalized read on the approval loop you are ready to break.</strong>
             </p>
           </FadeInSection>
           <FadeInSection>

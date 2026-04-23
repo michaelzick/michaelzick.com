@@ -111,7 +111,7 @@ export function TestimonialsCarouselSection({
               Real Clients. Real Results.
             </h2>
             <p className="text-[20px] leading-relaxed">
-              Real words from men who broke their approval addiction, built momentum, and experienced lasting change.{' '}
+              Real words from men who used coaching to cut through the noise, find their own answers, and build momentum from self-trust.{' '}
               <Link
                 href="/testimonials"
                 className="text-[18px] font-semibold text-white/90 underline decoration-white/60 decoration-2 underline-offset-4 transition hover:text-white"

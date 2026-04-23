@@ -59,10 +59,10 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
       <div className="mx-auto max-w-[1400px]">
         <FadeInSection className="mb-10 text-center md:text-left" immediate>
           <h1 className="font-headline text-5xl font-semibold leading-tight md:text-6xl">
-            Blog
+            Field Notes on Approval, Attachment, and Reality
           </h1>
           <p className="mt-8 text-xl text-default-grey/80">
-            Perspectives, tools, and stories for reality alignment, relationships, and growth.
+            Essays for men who are done outsourcing their worth to reactions, chemistry, and approval.
           </p>
         </FadeInSection>
 
@@ -143,7 +143,7 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
 
         <FadeInSection className="mt-16 border-t border-default-grey/20 pt-12 flex flex-col items-center gap-6 text-center md:flex-row md:justify-center">
           <p className="text-xl font-semibold text-default-grey md:w-auto w-full">
-            Ready to break the pattern?
+            Ready to stop studying the pattern and start changing it?
           </p>
           <BookingCta location="blog-index" />
           <QuestionnaireCta location="blog-index" className="btn-secondary cta-unified btn-secondary-dark" />

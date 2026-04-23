@@ -75,7 +75,7 @@ export default function MobileNav({
       </div>
       <div className="pt-2 flex flex-col items-end space-y-3">
         <span className="text-xs uppercase tracking-[0.2em] text-default-grey/70">
-          Apps
+          Tools
         </span>
         <Link
           href="/questionnaire"
@@ -85,7 +85,7 @@ export default function MobileNav({
             setMenuOpen(false);
           }}
         >
-          Questionnaire
+          Approval Pattern Audit
         </Link>
         <a
           href="https://findyourflowstate.michaelzick.com/"

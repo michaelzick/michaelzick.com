@@ -21,7 +21,7 @@ export function TrustStripe() {
           </figure>
         </div>
         <p className="text-sm font-medium tracking-wide text-white/50 uppercase">
-          Certified by Dr. Robert Glover &bull; Life Purpose Institute Certified Coach &bull; Coaching men since 2020
+          Certified by Dr. Robert Glover &bull; Life Purpose Institute Certified Coach &bull; Approval addiction, boundaries, and internal authority work
         </p>
       </div>
     </section>

@@ -41,11 +41,11 @@ export default function QuestionnaireForm({
     <div ref={containerRef} className="max-w-2xl mx-auto">
       {/* Disclaimer Section */}
       <aside className="mb-6 p-4 bg-white/5 border border-white/10 rounded-lg text-sm text-white/80">
-        <p className="text-center font-bold mb-3 text-base">Notice</p>
+        <p className="text-center font-bold mb-3 text-base">Private Coaching Notice</p>
         <div className="space-y-2 text-left">
           <p>
-            This questionnaire uses AI (OpenAI) to analyze your responses and generate personalized coaching insights.
-            Your responses and contact information will be securely emailed to Michael Zick for review. We value your privacy;
+            This audit uses AI (OpenAI) to analyze your responses and generate personalized coaching insights.
+            Your responses and contact information will be securely emailed to Michael Zick for review. Your privacy matters;
             your data is never shared with third parties and is kept strictly confidential.
           </p>
         </div>
@@ -93,7 +93,7 @@ export default function QuestionnaireForm({
         {isSubmitting && (
           <div className="mt-6 rounded-lg border border-primary-blue/20 bg-primary-blue/5 p-4">
             <div className="mb-2 flex items-center justify-between gap-4 text-sm font-semibold text-dark-blue/80">
-              <span>Generating your AI analysis...</span>
+              <span>Reading your approval pattern...</span>
               <span>{secondsRemaining !== null ? `~${secondsRemaining}s left` : 'Estimating...'}</span>
             </div>
             <div className="h-2 w-full overflow-hidden rounded-full bg-primary-blue/20">
@@ -119,8 +119,8 @@ export default function QuestionnaireForm({
             disabled={isSubmitting || !isStepValid()}
             className="btn !py-4 !px-12 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isSubmitting ? 'Analyzing...' : stepIndex === stepsCount - 1 ? (
-              'Get My Analysis'
+            {isSubmitting ? 'Auditing...' : stepIndex === stepsCount - 1 ? (
+              'Get My Pattern Audit'
             ) : (
               'Next →'
             )}

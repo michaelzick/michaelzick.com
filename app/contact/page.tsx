@@ -3,16 +3,16 @@ import ContactContent from './ContactContent';
 import { siteConfig } from '../../lib/site';
 
 export const metadata: Metadata = {
-  title: 'Michael Zick | Contact',
+  title: 'Book a Free Nice Guy Recovery Session | Michael Zick',
   description:
-    'Connect with Michael Zick for a free Nice Guy recovery consultation. Start your journey toward self-led masculinity and internal authority.',
+    'Book a free 45-minute session with Michael Zick to name the approval loop, identify the next honest move, and explore Nice Guy Recovery coaching.',
   alternates: {
     canonical: '/contact',
   },
   openGraph: {
-    title: 'Michael Zick | Contact',
+    title: 'Book a Free Nice Guy Recovery Session | Michael Zick',
     description:
-      'Connect with Michael Zick for a free Nice Guy recovery consultation. Start your journey toward self-led masculinity and internal authority.',
+      'Book a free 45-minute session with Michael Zick to name the approval loop, identify the next honest move, and explore Nice Guy Recovery coaching.',
     url: `${siteConfig.url}/contact`,
     siteName: siteConfig.name,
     images: [
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Michael Zick | Contact',
+    title: 'Book a Free Nice Guy Recovery Session | Michael Zick',
     description:
-      'Connect with Michael Zick for a free Nice Guy recovery consultation. Start your journey toward self-led masculinity and internal authority.',
+      'Book a free 45-minute session with Michael Zick to name the approval loop, identify the next honest move, and explore Nice Guy Recovery coaching.',
     images: ['/img/lake_reflection_2500.webp'],
   },
 };

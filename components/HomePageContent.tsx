@@ -150,21 +150,21 @@ export default function HomePageContent() {
         <div className="mx-auto max-w-[1200px] text-center space-y-8">
           <FadeInSection>
             <h2 className="text-4xl font-semibold leading-tight md:text-6xl">
-              Ready to Break the Cycle?
+              Ready to Stop Letting Approval Run the Room?
             </h2>
             <p className="mt-4 text-xl leading-relaxed text-white/80 md:text-2xl">
-              Book a free 45-minute session and take the first step toward internal authority.
+              Book a free 45-minute session. We will name the loop, find the next honest move, and see whether this work is a fit.
             </p>
           </FadeInSection>
           <FadeInSection className="flex flex-col items-center gap-4">
             <BookingCta location="home-bottom" />
             <p className="text-base text-white/60">
-              Prefer to message me?{' '}
+              Not ready to book?{' '}
               <Link
                 href="/contact"
                 className="font-semibold text-white/80 underline decoration-white/40 underline-offset-4 transition hover:text-white"
               >
-                Contact me here
+                Send a direct message
               </Link>
             </p>
           </FadeInSection>

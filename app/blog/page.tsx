@@ -7,7 +7,7 @@ import { siteConfig } from '../../lib/site';
 
 const blogTitle = `Blog | ${siteConfig.shortName}`;
 const blogDescription =
-  'Insights, tools, and stories on Nice Guy recovery, approval addiction, and building secure attachment from coach Michael Zick.';
+  'Direct essays on Nice Guy recovery, approval addiction, enmeshment, boundaries, and internal authority from coach Michael Zick.';
 
 export const metadata: Metadata = {
   title: blogTitle,
