@@ -18,8 +18,8 @@ export function HeroSection() {
         <h1 className="text-4xl sm:text-5xl md:text-7xl text-left mb-6 font-headline font-bold drop-shadow-md">
           Stop Performing for Approval.<br />Start Leading Your Life.
         </h1>
-        <p className="text-2xl md:text-[36px] text-left mb-10 max-w-[800px] font-medium leading-relaxed drop-shadow-sm text-white/90">
-          Certified coaching to break the cycle of enmeshment, set real boundaries, and reclaim your internal authority.
+        <p className="text-2xl md:text-[36px] text-left mb-10 max-w-[1000px] font-medium leading-relaxed drop-shadow-sm text-white/90">
+          Certified coaching to reclaim your internal authority.
         </p>
         <div className="mt-2 flex flex-col items-start gap-4 md:flex-row md:items-center">
           <BookingCta location="hero" />
