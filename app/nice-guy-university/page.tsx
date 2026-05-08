@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { OpenInNewWindowIcon } from '@radix-ui/react-icons';
 import type { ReactNode } from 'react';
 import { FadeInSection } from '../../components/FadeInSection';
 import NguCouponSignupForm from '../../components/NguCouponSignupForm';
@@ -124,7 +125,8 @@ function NguExternalCta({
       eventName="ngu_visit_click"
       className={className}
     >
-      {children}
+      <span>{children}</span>
+      <OpenInNewWindowIcon className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
     </TrackedCtaLink>
   );
 }
@@ -155,7 +157,7 @@ export default function NiceGuyUniversityPage() {
               end covert contracts, build boundaries, and date from standards instead of scarcity.
             </p>
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-              <NguExternalCta location="ngu-hero">Browse NGU Courses</NguExternalCta>
+              <NguExternalCta location="ngu-hero">Visit Nice Guy University</NguExternalCta>
               <TrackedCtaLink
                 href="#ngu-coupon-card"
                 location="ngu-hero"
@@ -220,7 +222,7 @@ export default function NiceGuyUniversityPage() {
               weak boundaries, and relationship frame.
             </p>
             <NguExternalCta location="ngu-course-library" className="btn cta-unified">
-              See the Course Catalog
+              Visit Nice Guy University
             </NguExternalCta>
           </FadeInSection>
 

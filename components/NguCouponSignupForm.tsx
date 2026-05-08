@@ -1,6 +1,8 @@
 'use client';
 
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import { OpenInNewWindowIcon } from '@radix-ui/react-icons';
+import { trackEvent } from '../lib/analytics';
 import { loadRecaptchaV2, resetRecaptchaV2Widget } from '../lib/client/recaptcha-v2';
 import TrackedCtaLink from './TrackedCtaLink';
 
@@ -133,6 +135,11 @@ export default function NguCouponSignupForm({
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    trackEvent('ngu_coupon_submit_click', {
+      location: successCtaLocation,
+      label: 'Email me the coupon',
+      page_path: window.location.pathname,
+    });
     setStatus('submitting');
     setErrorMessage(null);
 
@@ -185,7 +192,8 @@ export default function NguCouponSignupForm({
           eventName="ngu_visit_click"
           className={successCtaClassName}
         >
-          Visit Nice Guy University
+          <span>Visit Nice Guy University</span>
+          <OpenInNewWindowIcon className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
         </TrackedCtaLink>
       </div>
     );

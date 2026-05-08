@@ -12,12 +12,46 @@ async function installAnalyticsSpy(page: Page) {
     const win = window as typeof window & {
       __recordAnalyticsEvent: (event: Record<string, unknown>) => void;
       gtag: (...args: unknown[]) => void;
-      amplitude: { track: (name: string, props?: object) => void };
+      amplitude?: Record<string, unknown>;
     };
 
     win.gtag = (...args: unknown[]) => {
       win.__recordAnalyticsEvent({ provider: 'ga4', args });
     };
+
+    const track = (name: string, props?: object) => {
+      win.__recordAnalyticsEvent({ provider: 'amplitude', name, props });
+    };
+    let amplitudeValue: Record<string, unknown> = {
+      ...(win.amplitude ?? {}),
+      track,
+      logEvent: track,
+    };
+
+    Object.defineProperty(win, 'amplitude', {
+      configurable: true,
+      get() {
+        return amplitudeValue;
+      },
+      set(nextValue: Record<string, unknown> | undefined) {
+        amplitudeValue = {
+          ...(nextValue ?? {}),
+          track: (name: string, props?: object) => {
+            if (typeof nextValue?.track === 'function') {
+              (nextValue.track as (name: string, props?: object) => void)(name, props);
+            }
+            win.__recordAnalyticsEvent({ provider: 'amplitude', name, props });
+          },
+          logEvent: (name: string, props?: object) => {
+            if (typeof nextValue?.logEvent === 'function') {
+              (nextValue.logEvent as (name: string, props?: object) => void)(name, props);
+            }
+            win.__recordAnalyticsEvent({ provider: 'amplitude', name, props });
+          },
+        };
+      },
+    });
+
     win.amplitude = {
       track: (name: string, props?: object) => {
         win.__recordAnalyticsEvent({ provider: 'amplitude', name, props });
@@ -148,7 +182,9 @@ test.describe('Nice Guy University landing page', () => {
     await page.goto('/nice-guy-university');
 
     await expect(page.getByRole('heading', { name: 'Nice Guy University', level: 1 })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Browse NGU Courses' })).toHaveAttribute('href', 'https://www.niceguyuniversity.com');
+    const nguExternalCtas = page.getByRole('link', { name: 'Visit Nice Guy University' });
+    await expect(nguExternalCtas.first()).toHaveAttribute('href', 'https://www.niceguyuniversity.com');
+    await expect(nguExternalCtas.first().locator('svg')).toBeVisible();
     await expect(page.getByText(/A self-paced course platform for men ready/i)).toBeVisible();
     await expect(page.getByText('Online Nice Guy Recovery Courses')).toBeVisible();
 
@@ -236,9 +272,91 @@ test.describe('Nice Guy University landing page', () => {
 
     await expect(coupon.getByText(/check your email/i)).toBeVisible();
     await expect(coupon.getByText(/your nice guy university coupon is on its way/i)).toBeVisible();
+    await expect(coupon.getByRole('link', { name: 'Visit Nice Guy University' }).locator('svg')).toBeVisible();
     await expect(page.getByText('NEW-NG-10')).toHaveCount(0);
     await expect.poll(() => page.evaluate(() => (
       window as unknown as { __recaptchaV2ExecuteCount: number; }
     ).__recaptchaV2ExecuteCount)).toBe(1);
+  });
+
+  test('NGU page CTAs track GA4 and Amplitude events', async ({ page }) => {
+    await mockInvisibleRecaptcha(page);
+    await page.addInitScript(() => window.sessionStorage.setItem('nguPromoSeen', 'true'));
+    await page.route('**/api/ngu-coupon', async (route) => {
+      await route.fulfill({
+        contentType: 'application/json',
+        body: JSON.stringify({ success: true }),
+      });
+    });
+
+    await page.goto('/nice-guy-university');
+    const events = await installAnalyticsSpy(page);
+
+    await page.getByRole('link', { name: 'Get the 10% Coupon' }).click();
+    await expect(page).toHaveURL(/#ngu-coupon-card$/);
+
+    await page.getByLabel(/email address/i).fill('student@example.com');
+    await page.getByRole('button', { name: /email me the coupon/i }).click();
+    await expect(page.getByText(/check your email/i)).toBeVisible();
+
+    const heroCta = page.getByRole('link', { name: 'Visit Nice Guy University' }).first();
+    await expect(heroCta).toHaveAttribute('href', 'https://www.niceguyuniversity.com');
+    const popupPromise = page.waitForEvent('popup');
+    await heroCta.click();
+    const popup = await popupPromise;
+    await popup.close();
+
+    expect(events).toContainEqual(expect.objectContaining({
+      provider: 'ga4',
+      args: expect.arrayContaining(['event', 'ngu_coupon_anchor_click']),
+    }));
+    expect(events).toContainEqual(expect.objectContaining({
+      provider: 'amplitude',
+      name: 'ngu_coupon_anchor_click',
+      props: expect.objectContaining({
+        location: 'ngu-hero',
+        label: 'Get the 10% Coupon',
+        href: '#ngu-coupon-card',
+      }),
+    }));
+    expect(events).toContainEqual(expect.objectContaining({
+      provider: 'ga4',
+      args: expect.arrayContaining(['event', 'ngu_coupon_submit_click']),
+    }));
+    expect(events).toContainEqual(expect.objectContaining({
+      provider: 'amplitude',
+      name: 'ngu_coupon_submit_click',
+      props: expect.objectContaining({
+        location: 'ngu-landing-coupon',
+        label: 'Email me the coupon',
+      }),
+    }));
+    expect(events).toContainEqual(expect.objectContaining({
+      provider: 'ga4',
+      args: expect.arrayContaining(['event', 'link_click']),
+    }));
+    expect(events).toContainEqual(expect.objectContaining({
+      provider: 'amplitude',
+      name: 'link_click',
+      props: expect.objectContaining({
+        link_location: 'ngu-hero',
+        link_text: 'Visit Nice Guy University',
+        link_url: 'https://www.niceguyuniversity.com',
+        link_section: 'cta',
+      }),
+    }));
+    expect(events).toContainEqual(expect.objectContaining({
+      provider: 'ga4',
+      args: expect.arrayContaining(['event', 'ngu_visit_click']),
+    }));
+    expect(events).toContainEqual(expect.objectContaining({
+      provider: 'amplitude',
+      name: 'ngu_visit_click',
+      props: expect.objectContaining({
+        location: 'ngu-hero',
+        label: 'Visit Nice Guy University',
+        href: 'https://www.niceguyuniversity.com',
+      }),
+    }));
   });
 });
