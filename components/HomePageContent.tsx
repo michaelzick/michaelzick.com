@@ -64,6 +64,7 @@ export default function HomePageContent() {
     activeLinks,
     activeSection,
     mobileTabsTop,
+    mobileTabsVisible,
     scrollMarginTop,
     scrollMarginTopBeginning,
     mobileTabsRef,
@@ -86,13 +87,15 @@ export default function HomePageContent() {
 
       {/* Mobile Navigation */}
       <div
-        className="pointer-events-none fixed inset-x-4 z-40 hidden max-[929px]:flex"
+        className={`pointer-events-none fixed inset-x-4 z-40 hidden transition-transform duration-300 max-[929px]:inset-x-3 ${
+          mobileTabsVisible ? 'max-[929px]:flex' : ''
+        }`}
         style={{ top: `${mobileTabsTop}px` }}
       >
         <div
           ref={mobileTabsRef}
           data-home-mobile-tabs
-          className="pointer-events-auto flex w-full overflow-hidden rounded-lg border border-dark-blue/20 bg-transparent shadow-lg backdrop-blur"
+          className="pointer-events-auto flex w-full max-w-full gap-1 overflow-x-auto rounded-full border border-white/15 bg-dark-blue/85 p-1 shadow-lg backdrop-blur-md [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           <NavigationTabs
             sectionConfig={sectionConfig}

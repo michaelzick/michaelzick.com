@@ -33,14 +33,14 @@ export function LinkTab({ targetId, label, variant, isActive }: LinkTabProps) {
     : 'bg-dark-blue/30 text-white border-white/25 opacity-80 hover:bg-dark-blue/50';
 
   const mobileStateClasses = isActive
-    ? 'bg-dark-blue/70 text-white border-white/35 opacity-95'
-    : 'bg-dark-blue/30 text-white border-white/20 opacity-80';
+    ? 'border-white bg-white text-dark-blue shadow-sm opacity-100'
+    : 'border-white/10 bg-white/10 text-white opacity-90 hover:bg-white/20 hover:opacity-100';
 
   const desktopWidthClass = isActive ? 'w-[9em]' : 'w-[8em]';
   const desktopBaseClasses =
     'text-center rounded-lg px-4 py-2 shadow-lg backdrop-blur-md font-semibold transition-all duration-300 border';
   const mobileBaseClasses =
-    'flex-1 px-2 pb-[0.475rem] pt-[0.375rem] text-xs font-semibold text-center border transition-all duration-300 backdrop-blur-md first:rounded-l-lg last:rounded-r-lg';
+    'inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-full border px-4 py-2 text-sm font-semibold text-center transition-all duration-300 backdrop-blur-md';
 
   const variantClasses =
     variant === 'desktop'
@@ -58,7 +58,7 @@ export function LinkTab({ targetId, label, variant, isActive }: LinkTabProps) {
     const mobileTabsRect = mobileTabs?.getBoundingClientRect() ?? null;
     const mobileTabsBottom = mobileTabsRect && mobileTabsRect.height > 0 ? mobileTabsRect.bottom : 0;
 
-    const offset = Math.max(headerBottom, mobileTabsBottom);
+    const offset = Math.max(headerBottom, mobileTabsBottom) + 8;
     const targetTop = target.getBoundingClientRect().top + window.scrollY;
 
     window.scrollTo({ top: Math.max(targetTop - offset, 0), behavior: 'smooth' });

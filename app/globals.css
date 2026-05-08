@@ -81,6 +81,22 @@ html {
 }
 
 @layer components {
+  .page-top-offset {
+    padding-top: 11rem;
+  }
+
+  @media (min-width: 930px) {
+    .page-top-offset {
+      padding-top: 12rem;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .page-top-offset {
+      padding-top: 13rem;
+    }
+  }
+
   .nav-link {
     @apply relative flex items-center text-white text-right font-light text-base leading-[28.8px] whitespace-nowrap px-0 py-[1.6px];
   }

@@ -37,10 +37,10 @@ export const metadata: Metadata = {
 export default function QuestionnairePage() {
   return (
     <div className="flex flex-col">
-      <section className="bg-dark-blue text-white px-6 pb-24 pt-24 md:px-8 md:pb-32 md:pt-28 lg:pt-36 xl:pt-40">
+      <section className="page-top-offset overflow-x-clip bg-dark-blue text-white px-6 pb-24 md:px-8 md:pb-32">
         <div className="mx-auto max-w-[1400px]">
           <FadeInSection className="mb-12 text-center md:text-left" immediate>
-            <h1 className="font-headline text-5xl font-semibold leading-tight md:text-6xl text-white">
+            <h1 className="font-headline text-4xl font-semibold leading-tight text-white sm:text-5xl md:text-6xl">
               The Approval Addiction Questionnaire
             </h1>
             <p className="mt-8 text-xl text-white/80 md:max-w-none mx-auto md:mx-0">
