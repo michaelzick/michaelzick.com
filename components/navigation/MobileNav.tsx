@@ -22,6 +22,7 @@ export default function MobileNav({
     <div
       id="mobile-nav"
       aria-hidden={!menuOpen}
+      inert={!menuOpen ? true : undefined}
       className={`fixed inset-0 h-screen bg-white text-default-grey z-40 hidden max-[929px]:flex flex-col items-end justify-start pt-24 space-y-6 p-8 transform transition-transform duration-300 ${menuOpen ? 'translate-x-0' : 'translate-x-full pointer-events-none'
         }`}
     >
@@ -31,7 +32,7 @@ export default function MobileNav({
         </span>
         <Link
           href="/about"
-          className={`nav-link text-2xl text-default-grey ${activePath === '/about' ? 'active' : ''
+          className={`nav-link mobile-nav-link text-2xl text-default-grey ${activePath === '/about' ? 'active' : ''
             }`}
           onClick={() => {
             trackHeaderLink('About', '/about', 'primary', 'mobile');
@@ -42,7 +43,7 @@ export default function MobileNav({
         </Link>
         <Link
           href="/testimonials"
-          className={`nav-link text-2xl text-default-grey ${activePath === '/testimonials' ? 'active' : ''
+          className={`nav-link mobile-nav-link text-2xl text-default-grey ${activePath === '/testimonials' ? 'active' : ''
             }`}
           onClick={() => {
             trackHeaderLink('Testimonials', '/testimonials', 'primary', 'mobile');
@@ -53,7 +54,7 @@ export default function MobileNav({
         </Link>
         <Link
           href="/blog"
-          className={`nav-link text-2xl text-default-grey ${isBlogActive ? 'active' : ''}`}
+          className={`nav-link mobile-nav-link text-2xl text-default-grey ${isBlogActive ? 'active' : ''}`}
           onClick={() => {
             trackHeaderLink('Blog', '/blog', 'primary', 'mobile');
             setMenuOpen(false);
@@ -63,7 +64,7 @@ export default function MobileNav({
         </Link>
         <Link
           href="/contact"
-          className={`nav-link text-2xl text-default-grey ${activePath === '/contact' ? 'active' : ''
+          className={`nav-link mobile-nav-link text-2xl text-default-grey ${activePath === '/contact' ? 'active' : ''
             }`}
           onClick={() => {
             trackHeaderLink('Contact', '/contact', 'primary', 'mobile');
@@ -79,7 +80,7 @@ export default function MobileNav({
         </span>
         <Link
           href="/questionnaire"
-          className={`nav-link text-2xl text-default-grey ${activePath === '/questionnaire' ? 'active' : ''}`}
+          className={`nav-link mobile-nav-link text-2xl text-default-grey ${activePath === '/questionnaire' ? 'active' : ''}`}
           onClick={() => {
             trackHeaderLink('Questionnaire', '/questionnaire', 'apps', 'mobile');
             setMenuOpen(false);
@@ -89,7 +90,7 @@ export default function MobileNav({
         </Link>
         <Link
           href="/nice-guy-university"
-          className={`nav-link text-2xl text-default-grey ${activePath === '/nice-guy-university' ? 'active' : ''}`}
+          className={`nav-link mobile-nav-link text-2xl text-default-grey ${activePath === '/nice-guy-university' ? 'active' : ''}`}
           onClick={() => {
             trackHeaderLink('Nice Guy University', '/nice-guy-university', 'apps', 'mobile');
             setMenuOpen(false);
@@ -101,7 +102,7 @@ export default function MobileNav({
           href="https://findyourflowstate.michaelzick.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="nav-link text-2xl text-default-grey"
+          className="nav-link mobile-nav-link text-2xl text-default-grey"
           onClick={() => {
             trackHeaderLink('Find Your Flow State', 'https://findyourflowstate.michaelzick.com/', 'apps', 'mobile');
             setMenuOpen(false);
@@ -114,7 +115,7 @@ export default function MobileNav({
           href="https://whosincharge.michaelzick.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="nav-link text-2xl text-default-grey"
+          className="nav-link mobile-nav-link text-2xl text-default-grey"
           onClick={() => {
             trackHeaderLink('Who\'s In Charge?', 'https://whosincharge.michaelzick.com/', 'apps', 'mobile');
             setMenuOpen(false);
@@ -126,7 +127,7 @@ export default function MobileNav({
       </div>
       <Link
         href="/nice-guy-university"
-        className="nav-button-outline"
+        className="nav-button-outline min-h-11"
         onClick={() => {
           trackHeaderLink('Nice Guy University', '/nice-guy-university', 'cta', 'mobile');
           setMenuOpen(false);

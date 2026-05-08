@@ -116,7 +116,7 @@ export default function NguPromo() {
           </span>
           <button
             type="button"
-            className="inline-flex min-h-8 shrink-0 items-center justify-center rounded-md bg-[rgb(76_95_120)] px-3 py-1.5 text-xs font-bold leading-none text-white shadow-sm transition hover:bg-[rgb(88_110_139)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-dark-blue min-[930px]:min-h-7 min-[930px]:px-4 min-[930px]:text-sm"
+            className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-md bg-[rgb(76_95_120)] px-3 py-1.5 text-xs font-bold leading-none text-white shadow-sm transition hover:bg-[rgb(88_110_139)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-dark-blue min-[930px]:min-h-7 min-[930px]:px-4 min-[930px]:text-sm"
             onClick={openModal}
           >
             Send me the coupon

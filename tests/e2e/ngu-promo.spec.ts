@@ -2,23 +2,67 @@ import { expect, test, type Page } from '@playwright/test';
 import { mockInvisibleRecaptcha } from './helpers/recaptcha';
 
 async function installAnalyticsSpy(page: Page) {
+  const events: Array<Record<string, unknown>> = [];
+
+  await page.exposeFunction('__recordAnalyticsEvent', (event: Record<string, unknown>) => {
+    events.push(event);
+  });
+
   await page.evaluate(() => {
     const win = window as typeof window & {
-      __analyticsEvents: Array<Record<string, unknown>>;
+      __recordAnalyticsEvent: (event: Record<string, unknown>) => void;
       gtag: (...args: unknown[]) => void;
-      amplitude: { track: (name: string, props?: object) => void };
+      amplitude?: Record<string, unknown>;
     };
 
-    win.__analyticsEvents = [];
     win.gtag = (...args: unknown[]) => {
-      win.__analyticsEvents.push({ provider: 'ga4', args });
+      win.__recordAnalyticsEvent({ provider: 'ga4', args });
     };
+
+    const track = (name: string, props?: object) => {
+      win.__recordAnalyticsEvent({ provider: 'amplitude', name, props });
+    };
+    let amplitudeValue: Record<string, unknown> = {
+      ...(win.amplitude ?? {}),
+      track,
+      logEvent: track,
+    };
+
+    Object.defineProperty(win, 'amplitude', {
+      configurable: true,
+      get() {
+        return amplitudeValue;
+      },
+      set(nextValue: Record<string, unknown> | undefined) {
+        amplitudeValue = {
+          ...(nextValue ?? {}),
+          track: (name: string, props?: object) => {
+            if (typeof nextValue?.track === 'function') {
+              (nextValue.track as (name: string, props?: object) => void)(name, props);
+            }
+            win.__recordAnalyticsEvent({ provider: 'amplitude', name, props });
+          },
+          logEvent: (name: string, props?: object) => {
+            if (typeof nextValue?.logEvent === 'function') {
+              (nextValue.logEvent as (name: string, props?: object) => void)(name, props);
+            }
+            win.__recordAnalyticsEvent({ provider: 'amplitude', name, props });
+          },
+        };
+      },
+    });
+
     win.amplitude = {
       track: (name: string, props?: object) => {
-        win.__analyticsEvents.push({ provider: 'amplitude', name, props });
+        win.__recordAnalyticsEvent({ provider: 'amplitude', name, props });
+      },
+      logEvent: (name: string, props?: object) => {
+        win.__recordAnalyticsEvent({ provider: 'amplitude', name, props });
       },
     };
   });
+
+  return events;
 }
 
 test.describe('NGU promo', () => {
@@ -76,7 +120,7 @@ test.describe('NGU promo', () => {
     await mockInvisibleRecaptcha(page);
     await page.addInitScript(() => window.sessionStorage.setItem('nguPromoSeen', 'true'));
     await page.goto('/');
-    await installAnalyticsSpy(page);
+    const events = await installAnalyticsSpy(page);
 
     const bannerLink = page
       .getByLabel('Nice Guy University promotion')
@@ -85,10 +129,6 @@ test.describe('NGU promo', () => {
     await expect(bannerLink).toHaveAttribute('href', '/nice-guy-university');
     await bannerLink.click();
     await page.waitForURL('**/nice-guy-university');
-
-    const events = await page.evaluate(() => (
-      window as typeof window & { __analyticsEvents: Array<Record<string, unknown>> }
-    ).__analyticsEvents);
 
     expect(events).toContainEqual(expect.objectContaining({
       provider: 'ga4',

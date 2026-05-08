@@ -40,7 +40,7 @@ export function LinkTab({ targetId, label, variant, isActive }: LinkTabProps) {
   const desktopBaseClasses =
     'text-center rounded-lg px-4 py-2 shadow-lg backdrop-blur-md font-semibold transition-all duration-300 border';
   const mobileBaseClasses =
-    'min-w-0 flex-1 px-2 pb-[0.475rem] pt-[0.375rem] text-xs font-semibold text-center border transition-all duration-300 backdrop-blur-md first:rounded-l-lg last:rounded-r-lg';
+    'min-h-10 min-w-0 flex-1 px-2 pb-[0.475rem] pt-[0.375rem] text-xs font-semibold text-center border transition-all duration-300 backdrop-blur-md first:rounded-l-lg last:rounded-r-lg';
 
   const variantClasses =
     variant === 'desktop'

@@ -15,7 +15,7 @@ export default function BurgerButton({ menuOpen, setMenuOpen }: BurgerButtonProp
         type="button"
         aria-label="Toggle menu"
         aria-expanded={menuOpen}
-        className="header-burger-btn burger hidden max-[929px]:block pointer-events-auto"
+        className="header-burger-btn burger pointer-events-auto hidden h-11 w-11 items-center justify-center max-[929px]:inline-flex"
         data-test="header-burger"
         onClick={() => setMenuOpen(!menuOpen)}
       >
