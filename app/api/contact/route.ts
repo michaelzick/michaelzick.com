@@ -85,11 +85,9 @@ export async function POST(req: NextRequest) {
     if (!captchaValidation.valid) {
       console.error('reCAPTCHA token invalid', {
         errorCodes: captchaValidation.errorCodes,
-        action: captchaValidation.action,
-        score: captchaValidation.score,
       });
       return NextResponse.json(
-        { success: false, error: `Captcha verification failed: ${captchaValidation.errorCodes?.join(', ') || 'low score'} (score: ${captchaValidation.score})` },
+        { success: false, error: `Captcha verification failed: ${captchaValidation.errorCodes?.join(', ') || 'invalid token'}` },
         { status: 400 },
       );
     }

@@ -1,72 +1,14 @@
 'use client';
 
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
+import { Cross2Icon } from '@radix-ui/react-icons';
+import { loadRecaptchaV2, resetRecaptchaV2Widget } from '../lib/client/recaptcha-v2';
 
 const NGU_PROMO_SEEN_KEY = 'nguPromoSeen';
 const NGU_PROMO_DELAY_MS = 8000;
-const NGU_RECAPTCHA_SCRIPT_ID = 'ngu-recaptcha-v2-script';
-const NGU_RECAPTCHA_ONLOAD_CALLBACK = '__nguRecaptchaOnload';
 const NGU_RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY_V2;
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
-type NguRecaptchaWindow = Window & typeof globalThis & {
-  __nguRecaptchaOnload?: () => void;
-  __nguRecaptchaV2Ready?: boolean;
-};
-
-let recaptchaScriptPromise: Promise<void> | null = null;
-
-function getRecaptchaWindow() {
-  return window as NguRecaptchaWindow;
-}
-
-function isNguRecaptchaReady() {
-  return Boolean(
-    typeof window !== 'undefined'
-    && getRecaptchaWindow().__nguRecaptchaV2Ready
-    && window.grecaptcha
-    && typeof window.grecaptcha.render === 'function'
-    && typeof window.grecaptcha.execute === 'function'
-    && typeof window.grecaptcha.reset === 'function',
-  );
-}
-
-function loadRecaptchaScript() {
-  if (typeof window === 'undefined') {
-    return Promise.resolve();
-  }
-
-  if (isNguRecaptchaReady()) {
-    return Promise.resolve();
-  }
-
-  if (recaptchaScriptPromise) {
-    return recaptchaScriptPromise;
-  }
-
-  recaptchaScriptPromise = new Promise<void>((resolve, reject) => {
-    const recaptchaWindow = getRecaptchaWindow();
-    const script = document.createElement('script');
-
-    recaptchaWindow.__nguRecaptchaOnload = () => {
-      recaptchaWindow.__nguRecaptchaV2Ready = true;
-      resolve();
-    };
-
-    script.id = NGU_RECAPTCHA_SCRIPT_ID;
-    script.src = `https://www.google.com/recaptcha/api.js?onload=${NGU_RECAPTCHA_ONLOAD_CALLBACK}&render=explicit`;
-    script.async = true;
-    script.defer = true;
-    script.addEventListener('error', () => {
-      recaptchaScriptPromise = null;
-      delete recaptchaWindow.__nguRecaptchaOnload;
-      reject(new Error('Unable to load CAPTCHA'));
-    }, { once: true });
-    document.head.appendChild(script);
-  });
-
-  return recaptchaScriptPromise;
-}
 
 export default function NguPromo() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -99,13 +41,7 @@ export default function NguPromo() {
     captchaRejectRef.current?.(new Error('CAPTCHA was reset.'));
     clearPendingCaptcha();
 
-    if (window.grecaptcha && captchaWidgetIdRef.current !== null) {
-      try {
-        window.grecaptcha.reset(captchaWidgetIdRef.current);
-      } catch {
-        // Ignore reset errors; a new widget can be rendered next time the modal opens.
-      }
-    }
+    resetRecaptchaV2Widget(captchaWidgetIdRef.current);
   }, [clearPendingCaptcha]);
 
   const discardCaptchaWidget = useCallback(() => {
@@ -181,7 +117,7 @@ export default function NguPromo() {
     let cancelled = false;
 
     setCaptchaReady(false);
-    void loadRecaptchaScript()
+    void loadRecaptchaV2()
       .then(() => {
         if (
           cancelled
@@ -287,20 +223,15 @@ export default function NguPromo() {
     <>
       <aside
         aria-label="Nice Guy University promotion"
-        className="fixed left-0 top-0 z-[60] flex h-16 w-full items-center bg-cta-amber px-3 text-white shadow-md min-[930px]:h-11 min-[930px]:px-6"
+        className="fixed left-0 top-0 z-[60] flex h-16 w-full items-center bg-dark-blue px-3 text-white shadow-md min-[930px]:h-11 min-[930px]:px-6"
       >
-        <div className="mx-auto flex w-full max-w-[1200px] items-center justify-center gap-2 text-xs font-semibold min-[930px]:gap-3 min-[930px]:text-sm">
+        <div className="mx-auto flex w-full max-w-[1200px] items-center justify-center gap-2 text-sm font-semibold min-[930px]:gap-3 min-[930px]:text-base">
           <span className="min-w-0 leading-snug">
-            <span className="hidden sm:inline">
-              Nice Guy University: get 10% off courses when you join Michael&apos;s email list.
-            </span>
-            <span className="sm:hidden">
-              NGU: 10% off courses.
-            </span>
+            Get 10% off courses at the new Nice Guy University!
           </span>
           <button
             type="button"
-            className="inline-flex min-h-9 shrink-0 items-center justify-center rounded-md bg-white px-3 py-2 text-xs font-bold leading-none text-default-grey shadow-sm transition hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-cta-amber min-[930px]:min-h-8 min-[930px]:px-4 min-[930px]:text-sm"
+            className="inline-flex min-h-8 shrink-0 items-center justify-center rounded-md bg-[rgb(76_95_120)] px-3 py-1.5 text-xs font-bold leading-none text-white shadow-sm transition hover:bg-[rgb(88_110_139)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-dark-blue min-[930px]:min-h-7 min-[930px]:px-4 min-[930px]:text-sm"
             onClick={openModal}
           >
             Send me the coupon
@@ -338,27 +269,27 @@ export default function NguPromo() {
                 ref={closeButtonRef}
                 type="button"
                 aria-label="Close Nice Guy University signup"
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-default-grey/15 text-2xl leading-none transition hover:bg-default-grey/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta-amber/60"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-default-grey transition hover:bg-default-grey/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta-amber/60"
                 onClick={closeModal}
               >
-                &times;
+                <Cross2Icon className="h-6 w-6" aria-hidden="true" />
               </button>
             </div>
 
             {status === 'success' ? (
-              <div className="mt-8 space-y-4 text-center">
+              <div className="mt-6 flex flex-col items-center text-center">
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-green-100 text-2xl text-green-700">
                   ✓
                 </div>
-                <h3 className="text-2xl font-semibold">Check your email.</h3>
-                <p className="text-default-grey/75">
+                <h3 className="mt-4 text-2xl font-semibold">Check your email.</h3>
+                <p className="mt-2 text-default-grey/75">
                   Your Nice Guy University coupon is on its way.
                 </p>
                 <a
                   href="https://www.niceguyuniversity.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn !mt-2 !px-6 !py-4"
+                  className="btn !mt-5 !px-6 !py-3"
                 >
                   Visit Nice Guy University
                 </a>

@@ -1,4 +1,4 @@
-interface ReCaptchaV3 {
+interface ReCaptcha {
   ready(callback: () => void): void;
   execute(siteKey: string, options: { action: string }): Promise<string>;
   execute(widgetId: number): void;
@@ -18,7 +18,7 @@ interface ReCaptchaV3 {
 
 declare global {
   interface Window {
-    grecaptcha: ReCaptchaV3;
+    grecaptcha: ReCaptcha;
   }
 }
 

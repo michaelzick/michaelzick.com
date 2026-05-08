@@ -55,20 +55,20 @@ npm test
 
 ## Contact Form reCAPTCHA Setup
 
-The contact form uses classic **reCAPTCHA v3**, not reCAPTCHA Enterprise.
+The contact form uses classic **Invisible reCAPTCHA v2**, not reCAPTCHA Enterprise.
 
-- Browser token generation uses `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`.
-- Server-side verification uses `RECAPTCHA_SECRET_KEY` and Google `siteverify`.
+- Browser token generation uses `NEXT_PUBLIC_RECAPTCHA_SITE_KEY_V2`.
+- Server-side verification uses `RECAPTCHA_SECRET_KEY_V2` and Google `siteverify`.
 - This setup does **not** use Google Cloud ADC, `gcloud auth application-default login`, service accounts, or reCAPTCHA Enterprise client libraries.
 
 Required local and deployment environment variables:
 
 ```bash
-NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_v3_site_key
-RECAPTCHA_SECRET_KEY=your_v3_secret_key
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY_V2=your_invisible_v2_site_key
+RECAPTCHA_SECRET_KEY_V2=your_invisible_v2_secret_key
 ```
 
-In the Google reCAPTCHA admin console, make sure the key is a **v3** key and the allowed domains include every origin that can submit the contact form:
+In the Google reCAPTCHA admin console, make sure the key is an **Invisible v2** key and the allowed domains include every origin that can submit the contact form:
 
 - `localhost`
 - the production domain

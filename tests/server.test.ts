@@ -1,11 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  CONTACT_RECAPTCHA_ACTION,
-  RECAPTCHA_MINIMUM_SCORE,
-} from '../lib/recaptcha';
-import {
   buildContactEmailText,
+  getContactConfig,
   isValidRecaptchaResponse,
   validateContactSubmission,
 } from '../lib/server/contact';
@@ -76,25 +73,34 @@ test('contact helpers build email content and validate recaptcha state', () => {
 
   assert.equal(
     isValidRecaptchaResponse({
-      success: true, action: CONTACT_RECAPTCHA_ACTION, score: 0.9,
+      success: true,
     }).valid,
     true,
   );
 
   assert.equal(
     isValidRecaptchaResponse({
-      success: true, action: 'wrong_action', score: 0.9,
+      success: false,
+      'error-codes': ['invalid-input-response'],
     }).valid,
     false,
   );
 
-  assert.equal(
-    isValidRecaptchaResponse({
-      success: true,
-      action: CONTACT_RECAPTCHA_ACTION,
-      score: RECAPTCHA_MINIMUM_SCORE - 0.01,
-    }).valid,
-    false,
+  assert.deepEqual(
+    getContactConfig({
+      BREVO_SMTP_PASSWORD: 'password',
+      BREVO_USER: 'user',
+      BREVO_TO: 'to@example.com',
+      BREVO_FROM: 'from@example.com',
+      RECAPTCHA_SECRET_KEY_V2: 'secret',
+    } as NodeJS.ProcessEnv),
+    {
+      password: 'password',
+      userName: 'user',
+      toAddress: 'to@example.com',
+      fromAddress: 'from@example.com',
+      recaptchaSecretKey: 'secret',
+    },
   );
 });
 
