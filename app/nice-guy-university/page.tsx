@@ -246,8 +246,8 @@ export default function NiceGuyUniversityPage() {
           <FadeInSection>
             <div className="relative aspect-[4/5] overflow-hidden rounded-lg shadow-md">
               <Image
-                src="/img/grey-suit-blue-shirt.webp"
-                alt="Michael Zick in a grey suit and blue shirt"
+                src="/img/gray-suit-smiling-warm.webp"
+                alt="Michael Zick smiling in a gray suit"
                 fill
                 sizes="(min-width: 1024px) 38vw, 100vw"
                 className="object-cover object-top"
