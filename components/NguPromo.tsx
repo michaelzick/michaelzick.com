@@ -5,38 +5,67 @@ import { useCallback, useEffect, useId, useRef, useState } from 'react';
 const NGU_PROMO_SEEN_KEY = 'nguPromoSeen';
 const NGU_PROMO_DELAY_MS = 8000;
 const NGU_RECAPTCHA_SCRIPT_ID = 'ngu-recaptcha-v2-script';
+const NGU_RECAPTCHA_ONLOAD_CALLBACK = '__nguRecaptchaOnload';
 const NGU_RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY_V2;
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
+type NguRecaptchaWindow = Window & typeof globalThis & {
+  __nguRecaptchaOnload?: () => void;
+  __nguRecaptchaV2Ready?: boolean;
+};
+
+let recaptchaScriptPromise: Promise<void> | null = null;
+
+function getRecaptchaWindow() {
+  return window as NguRecaptchaWindow;
+}
+
+function isNguRecaptchaReady() {
+  return Boolean(
+    typeof window !== 'undefined'
+    && getRecaptchaWindow().__nguRecaptchaV2Ready
+    && window.grecaptcha
+    && typeof window.grecaptcha.render === 'function'
+    && typeof window.grecaptcha.execute === 'function'
+    && typeof window.grecaptcha.reset === 'function',
+  );
+}
 
 function loadRecaptchaScript() {
-  return new Promise<void>((resolve, reject) => {
-    if (typeof window === 'undefined') {
-      resolve();
-      return;
-    }
+  if (typeof window === 'undefined') {
+    return Promise.resolve();
+  }
 
-    if (window.grecaptcha && typeof window.grecaptcha.render === 'function') {
-      resolve();
-      return;
-    }
+  if (isNguRecaptchaReady()) {
+    return Promise.resolve();
+  }
 
-    const existingScript = document.getElementById(NGU_RECAPTCHA_SCRIPT_ID) as HTMLScriptElement | null;
-    if (existingScript) {
-      existingScript.addEventListener('load', () => resolve(), { once: true });
-      existingScript.addEventListener('error', () => reject(new Error('Unable to load CAPTCHA')), { once: true });
-      return;
-    }
+  if (recaptchaScriptPromise) {
+    return recaptchaScriptPromise;
+  }
 
+  recaptchaScriptPromise = new Promise<void>((resolve, reject) => {
+    const recaptchaWindow = getRecaptchaWindow();
     const script = document.createElement('script');
+
+    recaptchaWindow.__nguRecaptchaOnload = () => {
+      recaptchaWindow.__nguRecaptchaV2Ready = true;
+      resolve();
+    };
+
     script.id = NGU_RECAPTCHA_SCRIPT_ID;
-    script.src = 'https://www.google.com/recaptcha/api.js?render=explicit';
+    script.src = `https://www.google.com/recaptcha/api.js?onload=${NGU_RECAPTCHA_ONLOAD_CALLBACK}&render=explicit`;
     script.async = true;
     script.defer = true;
-    script.addEventListener('load', () => resolve(), { once: true });
-    script.addEventListener('error', () => reject(new Error('Unable to load CAPTCHA')), { once: true });
+    script.addEventListener('error', () => {
+      recaptchaScriptPromise = null;
+      delete recaptchaWindow.__nguRecaptchaOnload;
+      reject(new Error('Unable to load CAPTCHA'));
+    }, { once: true });
     document.head.appendChild(script);
   });
+
+  return recaptchaScriptPromise;
 }
 
 export default function NguPromo() {
@@ -182,16 +211,16 @@ export default function NguPromo() {
             const rejectCaptcha = captchaRejectRef.current;
             clearPendingCaptcha();
             rejectCaptcha?.(new Error('CAPTCHA failed. Please try again.'));
-            setErrorMessage('CAPTCHA failed to load. Please try again.');
-          },
-        });
-        setCaptchaReady(true);
-      })
-      .catch(() => {
-        if (!cancelled) {
-          setErrorMessage('CAPTCHA failed to load. Please try again.');
-        }
+          setErrorMessage('CAPTCHA verification failed. Please try again.');
+        },
       });
+      setCaptchaReady(true);
+    })
+    .catch(() => {
+      if (!cancelled) {
+        setErrorMessage('CAPTCHA failed to load. Please refresh the page and try again.');
+      }
+    });
 
     return () => {
       cancelled = true;

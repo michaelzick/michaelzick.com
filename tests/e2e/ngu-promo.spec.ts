@@ -1,7 +1,7 @@
 import { expect, type Page, test } from '@playwright/test';
 
 async function mockRecaptcha(page: Page) {
-  await page.route('https://www.google.com/recaptcha/api.js?render=explicit', async (route) => {
+  await page.route('https://www.google.com/recaptcha/api.js?**', async (route) => {
     await route.fulfill({
       contentType: 'application/javascript',
       body: `
@@ -34,6 +34,9 @@ async function mockRecaptcha(page: Page) {
             window.__nguRecaptchaResetCount += 1;
           }
         };
+        if (typeof window.__nguRecaptchaOnload === 'function') {
+          window.__nguRecaptchaOnload();
+        }
       `,
     });
   });
