@@ -107,7 +107,7 @@ export function buildNguCouponNotificationEmail(email: string) {
       `Source: ${NGU_SIGNUP_SOURCE}`,
       `Coupon sent: ${NGU_COUPON_CODE}`,
       '',
-      'Consent: Visitor submitted their email through the Nice Guy University signup modal and agreed to join the email list. They were told they can opt out any time and their email will never be sold to a third party.',
+      'Consent: Visitor submitted their email through the Nice Guy University signup modal and agreed to join the email list.',
     ].join('\n'),
   };
 }

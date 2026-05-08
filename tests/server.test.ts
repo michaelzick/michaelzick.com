@@ -155,6 +155,7 @@ test('NGU coupon emails identify the signup modal source and coupon handling', (
   assert.match(notificationEmail.text, new RegExp(NGU_SIGNUP_SOURCE));
   assert.match(notificationEmail.text, new RegExp(NGU_COUPON_CODE));
   assert.match(notificationEmail.text, /agreed to join the email list/);
+  assert.doesNotMatch(notificationEmail.text, /will never be sold to a third party/);
 });
 
 test('NGU coupon config and recaptcha helpers validate expected state', () => {

@@ -241,7 +241,7 @@ export default function NiceGuyUniversityPage() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-16 text-default-grey md:px-8 md:py-20">
+      <section className="bg-default-grey px-6 py-16 text-white md:px-8 md:py-20">
         <div className="mx-auto grid max-w-[1400px] items-center gap-12 lg:grid-cols-[minmax(320px,0.8fr)_minmax(0,1.2fr)]">
           <FadeInSection>
             <div className="relative aspect-[4/5] overflow-hidden rounded-lg shadow-md">
@@ -263,15 +263,15 @@ export default function NiceGuyUniversityPage() {
                 The three pillars of success:
               </h2>
             </div>
-            <ul className="list-none border-t border-default-grey/25 p-0">
+            <ul className="list-none border-t border-white/25 p-0">
               {frameworkSteps.map((step, index) => (
-                <li key={step.title} className="grid grid-cols-[auto_1fr] gap-x-6 border-b border-default-grey/15 py-7">
-                  <span className="mt-2 font-mono text-xs font-semibold tracking-[0.35em] text-default-grey/60">
+                <li key={step.title} className="grid grid-cols-[auto_1fr] gap-x-6 border-b border-white/15 py-7">
+                  <span className="mt-2 font-mono text-xs font-semibold tracking-[0.35em] text-white/60">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <div>
                     <h3 className="text-2xl font-semibold leading-snug md:text-3xl">{step.title}</h3>
-                    <p className="mt-2 text-lg leading-relaxed text-default-grey/75">{step.description}</p>
+                    <p className="mt-2 text-lg leading-relaxed text-white/75">{step.description}</p>
                   </div>
                 </li>
               ))}
