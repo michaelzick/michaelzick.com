@@ -42,12 +42,15 @@ export function useScrollTracking(sectionConfig: SectionConfig[]) {
       const tabsTop = Math.round(headerBottom + 8);
       const mobileTabs = document.querySelector('[data-home-mobile-tabs]') as HTMLElement | null;
       const mobileTabsRect = mobileTabs?.getBoundingClientRect() ?? null;
-      const mobileTabsHeight = mobileTabsRect && mobileTabsRect.height > 0 ? mobileTabsRect.height : 44;
+      const mobileTabsHeight = mobileTabsRect && mobileTabsRect.height > 0 ? mobileTabsRect.height : 38;
       const hero = document.querySelector('[data-home-hero]');
       const heroBottom = hero?.getBoundingClientRect().bottom ?? 0;
       const viewportHeight = window.innerHeight || 0;
       const heroClearance = Math.min(120, viewportHeight * 0.15);
       const shouldShowMobileTabs = isCurrentlyMobile && (!hero || heroBottom <= headerBottom + heroClearance);
+      const fixedChromeBottom = shouldShowMobileTabs
+        ? Math.round(tabsTop + mobileTabsHeight)
+        : Math.round(headerBottom);
       const overlayOffset = Math.round(
         headerBottom + (shouldShowMobileTabs ? mobileTabsHeight + 16 : 16),
       );
@@ -64,13 +67,17 @@ export function useScrollTracking(sectionConfig: SectionConfig[]) {
       const nextVisited = [...visitedSectionsRef.current];
 
       sectionConfig.forEach(({ id, sectionRef, titleRef }) => {
-        const titleNode = titleRef.current;
-        if (!titleNode || !sectionRef.current) return;
+        if (!sectionRef.current) return;
 
-        const titleTop = titleNode.getBoundingClientRect().top;
-        const threshold = baseThreshold + activationFudge;
+        const activationNode = isCurrentlyMobile ? sectionRef.current : titleRef.current;
+        if (!activationNode) return;
 
-        const isActive = titleTop <= threshold;
+        const activationTop = activationNode.getBoundingClientRect().top;
+        const threshold = isCurrentlyMobile
+          ? fixedChromeBottom + 12
+          : baseThreshold + activationFudge;
+
+        const isActive = activationTop <= threshold;
 
         if (isActive) {
           activeIds.push(id);

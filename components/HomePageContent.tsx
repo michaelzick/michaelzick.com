@@ -87,15 +87,20 @@ export default function HomePageContent() {
 
       {/* Mobile Navigation */}
       <div
-        className={`pointer-events-none fixed inset-x-4 z-40 hidden transition-transform duration-300 max-[929px]:inset-x-3 ${
-          mobileTabsVisible ? 'max-[929px]:flex' : ''
+        data-home-mobile-tabs-shell
+        className={`pointer-events-none fixed inset-x-4 z-40 hidden transition-all duration-300 ease-out max-[929px]:flex ${
+          mobileTabsVisible ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0'
         }`}
+        aria-hidden={!mobileTabsVisible}
+        inert={!mobileTabsVisible ? true : undefined}
         style={{ top: `${mobileTabsTop}px` }}
       >
         <div
           ref={mobileTabsRef}
           data-home-mobile-tabs
-          className="pointer-events-auto flex w-full max-w-full gap-1 overflow-x-auto rounded-full border border-white/15 bg-dark-blue/85 p-1 shadow-lg backdrop-blur-md [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className={`flex w-full overflow-hidden rounded-lg border border-dark-blue/20 bg-transparent shadow-lg backdrop-blur ${
+            mobileTabsVisible ? 'pointer-events-auto' : 'pointer-events-none'
+          }`}
         >
           <NavigationTabs
             sectionConfig={sectionConfig}
