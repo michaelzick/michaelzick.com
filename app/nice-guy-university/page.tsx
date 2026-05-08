@@ -58,7 +58,7 @@ const platformHighlights = [
   {
     title: 'Secure enrollment',
     description:
-      'Nice Guy University handles learner accounts, enrollments, and Stripe-powered checkout so you can start cleanly.',
+      'Nice Guy University handles learner accounts, enrollments, course progress, and Stripe-powered checkout.',
   },
 ];
 
@@ -73,7 +73,7 @@ const courseTracks = [
     title: 'Breaking Self-Limiting Beliefs with Women',
     meta: 'Dating confidence',
     description:
-      'Expose the fear-based scripts and negative predictors that quietly run your love life before real life gets a vote.',
+      'Expose the fear-based scripts and negative predictors that quietly run your love life before reality gets a vote.',
   },
   {
     title: 'How To Understand Women And Handle Conflict',
@@ -259,7 +259,7 @@ export default function NiceGuyUniversityPage() {
                 Core Framework
               </p>
               <h2 className="font-headline text-4xl font-semibold leading-tight md:text-6xl">
-                The same three pillars keep coming back.
+                The three pillars of success:
               </h2>
             </div>
             <ul className="list-none border-t border-default-grey/25 p-0">
