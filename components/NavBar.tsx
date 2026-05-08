@@ -52,6 +52,16 @@ export default function NavBar() {
         page_path: window.location.pathname,
       });
     }
+
+    if (label === 'Nice Guy University' && section === 'cta') {
+      trackEvent('ngu_header_cta_click', {
+        location: 'header',
+        label,
+        href,
+        ...(variant ? { variant } : {}),
+        page_path: window.location.pathname,
+      });
+    }
   };
 
   return (

@@ -1,7 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { Cross2Icon } from '@radix-ui/react-icons';
+import { trackEvent, trackLinkClick } from '../lib/analytics';
 import NguCouponSignupForm from './NguCouponSignupForm';
 
 const NGU_PROMO_SEEN_KEY = 'nguPromoSeen';
@@ -22,6 +24,26 @@ export default function NguPromo() {
 
   const openModal = useCallback(() => {
     setModalOpen(true);
+  }, []);
+
+  const trackBannerLinkClick = useCallback(() => {
+    const label = 'Nice Guy University';
+    const href = '/nice-guy-university';
+
+    trackLinkClick({
+      location: 'ngu_promo_banner',
+      label,
+      href,
+      section: 'promo_banner',
+      pagePath: window.location.pathname,
+    });
+
+    trackEvent('ngu_banner_link_click', {
+      location: 'ngu_promo_banner',
+      label,
+      href,
+      page_path: window.location.pathname,
+    });
   }, []);
 
   const closeModal = useCallback(() => {
@@ -82,7 +104,15 @@ export default function NguPromo() {
       >
         <div className="mx-auto flex w-full max-w-[1200px] items-center justify-center gap-2 text-sm font-semibold min-[930px]:gap-3 min-[930px]:text-base">
           <span className="min-w-0 leading-snug">
-            Get 10% off courses at the new Nice Guy University!
+            Get 10% off courses at the new{' '}
+            <Link
+              href="/nice-guy-university"
+              className="underline decoration-white/70 decoration-2 underline-offset-4 transition hover:text-cta-amber hover:decoration-cta-amber focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-dark-blue"
+              onClick={trackBannerLinkClick}
+            >
+              Nice Guy University
+            </Link>
+            !
           </span>
           <button
             type="button"

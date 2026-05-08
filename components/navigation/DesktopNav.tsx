@@ -152,15 +152,13 @@ export default function DesktopNav({
           </a>
         </div>
       </div>
-      <a
-        href="https://calendly.com/michaelzick/45min"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="nav-button"
-        onClick={() => trackHeaderLink('Book a Free Session', 'https://calendly.com/michaelzick/45min', 'cta')}
+      <Link
+        href="/nice-guy-university"
+        className="nav-button-outline"
+        onClick={() => trackHeaderLink('Nice Guy University', '/nice-guy-university', 'cta')}
       >
-        Book a Free Session
-      </a>
+        Nice Guy University
+      </Link>
     </div>
   );
 }

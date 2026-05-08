@@ -124,18 +124,16 @@ export default function MobileNav({
           <OpenInNewWindowIcon className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
         </a>
       </div>
-      <a
-        href="https://calendly.com/michaelzick/45min"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="nav-button"
+      <Link
+        href="/nice-guy-university"
+        className="nav-button-outline"
         onClick={() => {
-          trackHeaderLink('Book a Free Session', 'https://calendly.com/michaelzick/45min', 'cta', 'mobile');
+          trackHeaderLink('Nice Guy University', '/nice-guy-university', 'cta', 'mobile');
           setMenuOpen(false);
         }}
       >
-        Book a Free Session
-      </a>
+        Nice Guy University
+      </Link>
     </div>
   );
 }
