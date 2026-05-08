@@ -132,7 +132,7 @@ function NguExternalCta({
 export default function NiceGuyUniversityPage() {
   return (
     <div className="flex flex-col" data-testid="ngu-landing-page">
-      <section className="relative overflow-hidden bg-dark-blue px-6 pb-10 pt-36 text-white md:px-8 md:pb-14 min-[1440px]:pt-40">
+      <section className="relative overflow-hidden bg-dark-blue px-6 pb-10 pt-48 text-white md:px-8 md:pb-14 md:pt-52 min-[1440px]:pt-56">
         <Image
           src="/img/homepage_mountains.webp"
           alt=""
@@ -157,12 +157,13 @@ export default function NiceGuyUniversityPage() {
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <NguExternalCta location="ngu-hero">Browse NGU Courses</NguExternalCta>
               <TrackedCtaLink
-                href="#ngu-coupon"
+                href="#ngu-coupon-card"
                 location="ngu-hero"
                 label="Get the 10% Coupon"
                 eventName="ngu_coupon_anchor_click"
                 className="btn-secondary cta-unified border-white text-white hover:bg-white/10 focus-visible:ring-white/60"
                 target="_self"
+                smoothScroll
               >
                 Get the 10% Coupon
               </TrackedCtaLink>
@@ -284,7 +285,10 @@ export default function NiceGuyUniversityPage() {
         aria-label="Nice Guy University email coupon"
         className="bg-light-grey px-6 py-16 text-default-grey md:px-8 md:py-20"
       >
-        <div className="mx-auto grid max-w-[1200px] gap-10 rounded-lg bg-white p-6 shadow-md md:grid-cols-[0.95fr_1.05fr] md:p-8 lg:p-10">
+        <div
+          id="ngu-coupon-card"
+          className="mx-auto grid max-w-[1200px] scroll-mt-48 gap-10 rounded-lg bg-white p-6 shadow-md md:scroll-mt-44 md:grid-cols-[0.95fr_1.05fr] md:p-8 lg:p-10 min-[1440px]:scroll-mt-48"
+        >
           <FadeInSection className="space-y-5">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cta-amber">
               Email Signup

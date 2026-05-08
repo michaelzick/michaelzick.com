@@ -61,25 +61,83 @@ test.describe('Nice Guy University landing page', () => {
     await expect(page.getByRole('heading', { name: 'Nice Guy University', level: 1 })).toBeVisible();
     await expect(page.getByRole('link', { name: 'Browse NGU Courses' })).toHaveAttribute('href', 'https://www.niceguyuniversity.com');
     await expect(page.getByText(/A self-paced course platform for men ready/i)).toBeVisible();
+    await expect(page.getByText('Online Nice Guy Recovery Courses')).toBeVisible();
 
     const layout = await page.evaluate(() => {
-      const h1 = document.querySelector('h1');
+      const eyebrow = document.querySelector('[data-testid="ngu-landing-page"] section p');
       const header = document.querySelector('header');
-      if (!h1 || !header) {
-        throw new Error('Expected heading and header');
+      if (!eyebrow || !header) {
+        throw new Error('Expected eyebrow and header');
       }
 
       return {
-        headingTop: Math.round(h1.getBoundingClientRect().top),
+        eyebrowTop: Math.round(eyebrow.getBoundingClientRect().top),
         headerBottom: Math.round(header.getBoundingClientRect().bottom),
         overflowX: document.documentElement.scrollWidth - document.documentElement.clientWidth,
       };
     });
 
-    expect(layout.headingTop).toBeGreaterThanOrEqual(layout.headerBottom + 8);
+    expect(layout.eyebrowTop).toBeGreaterThanOrEqual(layout.headerBottom + 32);
     expect(layout.overflowX).toBe(0);
 
     const coupon = page.getByRole('region', { name: 'Nice Guy University email coupon' });
+    await page.getByRole('link', { name: 'Get the 10% Coupon' }).click();
+    await expect(page).toHaveURL(/#ngu-coupon-card$/);
+    const couponTarget = await page.evaluate(() => {
+      const couponSection = document.querySelector<HTMLElement>('#ngu-coupon');
+      const couponCard = document.querySelector<HTMLElement>('#ngu-coupon-card');
+      if (!couponSection || !couponCard) {
+        throw new Error('Expected coupon section and card');
+      }
+
+      return {
+        isFirstChild: couponSection.firstElementChild === couponCard,
+        isHashTarget: document.getElementById(window.location.hash.slice(1)) === couponCard,
+      };
+    });
+    expect(couponTarget).toEqual({ isFirstChild: true, isHashTarget: true });
+
+    await expect.poll(async () => page.evaluate(() => {
+      const couponCard = document.querySelector<HTMLElement>('#ngu-coupon-card');
+      if (!couponCard) {
+        throw new Error('Expected coupon card');
+      }
+
+      const scrollMarginTop = Number.parseFloat(getComputedStyle(couponCard).scrollMarginTop);
+      return Math.abs(couponCard.getBoundingClientRect().top - scrollMarginTop);
+    })).toBeLessThanOrEqual(2);
+
+    const scrollLayout = await page.evaluate(() => {
+      const couponSection = document.querySelector<HTMLElement>('#ngu-coupon');
+      const couponCard = document.querySelector<HTMLElement>('#ngu-coupon-card');
+      const header = document.querySelector<HTMLElement>('header');
+      const couponHeading = couponSection?.querySelector<HTMLElement>('h2');
+      const emailInput = couponSection?.querySelector<HTMLInputElement>('input[type="email"]');
+      if (!couponSection || !couponCard || !header || !couponHeading || !emailInput) {
+        throw new Error('Expected coupon section, card, header, heading, and email input');
+      }
+
+      const cardRect = couponCard.getBoundingClientRect();
+      const headingRect = couponHeading.getBoundingClientRect();
+      const inputRect = emailInput.getBoundingClientRect();
+
+      return {
+        cardTop: Math.round(cardRect.top),
+        headerBottom: Math.round(header.getBoundingClientRect().bottom),
+        headingBottom: Math.round(headingRect.bottom),
+        inputTop: Math.round(inputRect.top),
+        inputBottom: Math.round(inputRect.bottom),
+        viewportHeight: window.innerHeight,
+        overflowX: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    });
+
+    expect(scrollLayout.cardTop).toBeGreaterThanOrEqual(scrollLayout.headerBottom + 8);
+    expect(scrollLayout.headingBottom).toBeLessThan(scrollLayout.viewportHeight);
+    expect(scrollLayout.inputTop).toBeGreaterThan(scrollLayout.headerBottom);
+    expect(scrollLayout.inputBottom).toBeGreaterThan(scrollLayout.inputTop);
+    expect(scrollLayout.overflowX).toBe(0);
+
     await expect(coupon.getByRole('heading', { name: /get 10% off your first ngu course/i })).toBeVisible();
     await expect(coupon.getByText(/will never be sold to a third party/i)).toBeVisible();
     await expect(coupon.getByTestId('ngu-recaptcha-widget')).toHaveAttribute('data-mock-size', 'invisible');

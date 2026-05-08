@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import type { ReactNode } from 'react';
+import type { MouseEvent, ReactNode } from 'react';
 import { trackEvent, trackLinkClick } from '../lib/analytics';
 
 type TrackedCtaLinkProps = {
@@ -13,6 +13,7 @@ type TrackedCtaLinkProps = {
   target?: string;
   rel?: string;
   section?: string;
+  smoothScroll?: boolean;
   children: ReactNode;
 };
 
@@ -27,6 +28,18 @@ function resolveEventName(href: string, label: string, eventName?: string) {
   return 'cta_click';
 }
 
+function getHashTargetId(href: string) {
+  if (!href.startsWith('#') || href.length === 1) {
+    return null;
+  }
+
+  try {
+    return decodeURIComponent(href.slice(1));
+  } catch {
+    return href.slice(1);
+  }
+}
+
 export default function TrackedCtaLink({
   href,
   location,
@@ -36,13 +49,14 @@ export default function TrackedCtaLink({
   target,
   rel,
   section = 'cta',
+  smoothScroll = false,
   children,
 }: TrackedCtaLinkProps) {
   const isInternal = href.startsWith('/') && !href.startsWith('//');
   const resolvedTarget = target ?? (isInternal ? '_self' : '_blank');
   const resolvedRel = resolvedTarget === '_blank' ? (rel ?? 'noopener noreferrer') : rel;
 
-  const handleClick = () => {
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     trackLinkClick({
       location,
       label,
@@ -56,6 +70,25 @@ export default function TrackedCtaLink({
       href,
       page_path: window.location.pathname,
     });
+
+    const hashTargetId = getHashTargetId(href);
+    if (
+      smoothScroll
+      && resolvedTarget === '_self'
+      && hashTargetId
+      && event.button === 0
+      && !event.metaKey
+      && !event.ctrlKey
+      && !event.shiftKey
+      && !event.altKey
+    ) {
+      const targetElement = document.getElementById(hashTargetId);
+      if (targetElement) {
+        event.preventDefault();
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.history.pushState(null, '', href);
+      }
+    }
   };
 
   if (isInternal && resolvedTarget === '_self') {
