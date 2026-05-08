@@ -55,8 +55,8 @@ export default function ContactContent() {
             <div className="hidden min-[930px]:block min-[930px]:col-span-3 lg:col-span-3 order-1 h-full">
               <div className="relative h-full overflow-hidden rounded-xl shadow-2xl ring-1 ring-white/10 min-h-[640px]">
                 <Image
-                  src="/img/grey-suit-blue-shirt-2.webp"
-                  alt="Michael Zick"
+                  src="/img/gray-suit-hand-in-pocket-warm-2.webp"
+                  alt="Michael Zick standing in a gray suit"
                   fill
                   className="object-cover"
                   sizes="(max-width: 929px) 100vw, 25vw"
