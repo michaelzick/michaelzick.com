@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import JsonLd from '../components/JsonLd';
 import SiteAnalyticsScripts from '../components/SiteAnalyticsScripts';
+import NguPromo from '../components/NguPromo';
 import { Open_Sans } from 'next/font/google';
 import { siteConfig } from '../lib/site';
 import { getSiteStructuredData } from '../lib/site-structured-data';
@@ -80,6 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
       </head>
       <body className={`${openSans.variable} min-h-screen flex flex-col font-sans`}>
         <NavBar />
+        <NguPromo />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>

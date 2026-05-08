@@ -2,10 +2,11 @@ import { defineConfig } from '@playwright/test';
 
 const port = 3005;
 const reuseExistingServer = !process.env.CI;
-const startCommand = `PORT=${port} npm run start -- --hostname 127.0.0.1`;
+const publicTestEnv = 'NEXT_PUBLIC_RECAPTCHA_SITE_KEY_V2=test-site-key';
+const startCommand = `${publicTestEnv} PORT=${port} npm run start -- --hostname 127.0.0.1`;
 const webServerCommand = process.env.PLAYWRIGHT_SKIP_BUILD
   ? startCommand
-  : `npm run build && ${startCommand}`;
+  : `${publicTestEnv} npm run build && ${startCommand}`;
 
 export default defineConfig({
   testDir: './tests/e2e',
