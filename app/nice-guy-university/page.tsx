@@ -301,7 +301,7 @@ export default function NiceGuyUniversityPage() {
               directly to your inbox. Use it when you are ready to enroll.
             </p>
             <p className="text-base font-semibold text-default-grey">
-              The coupon is delivered by email, just like the sitewide NGU offer.
+              The coupon is delivered by email.
             </p>
           </FadeInSection>
           <FadeInSection>
@@ -321,11 +321,10 @@ export default function NiceGuyUniversityPage() {
         <div className="mx-auto max-w-[1200px] text-center">
           <FadeInSection className="space-y-6">
             <h2 className="font-headline text-4xl font-semibold leading-tight md:text-6xl">
-              Do the work where it is organized.
+              Do the work on your schedule.
             </h2>
             <p className="mx-auto max-w-3xl text-xl leading-relaxed text-white/75">
-              Browse the NGU catalog, pick the course that matches the loop you are ready to break,
-              and start building a life that is not run by approval.
+              Browse the NGU catalog, choose your learning path, and start building a life that&apos;s not run on approval.
             </p>
             <div className="flex justify-center">
               <NguExternalCta location="ngu-bottom">Visit Nice Guy University</NguExternalCta>
