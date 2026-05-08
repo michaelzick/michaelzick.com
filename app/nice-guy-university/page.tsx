@@ -96,7 +96,7 @@ const frameworkSteps = [
       'Stop organizing your life around being acceptable and start telling the truth about what you want, avoid, and resent.',
   },
   {
-    title: 'Release victim identity',
+    title: 'Release the victim identity',
     description:
       'Shift from waiting for people to change first into owning the decisions, standards, and tolerances shaping your life.',
   },
