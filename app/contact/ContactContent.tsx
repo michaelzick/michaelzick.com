@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
+import { OpenInNewWindowIcon } from '@radix-ui/react-icons';
 import ContactForm from '../../components/ContactForm';
 import { FadeInSection } from '../../components/FadeInSection';
 import Image from 'next/image';
@@ -85,7 +86,8 @@ export default function ContactContent() {
                   label="Book Your Free 45-Min Session"
                   eventName="book_free_session_click"
                 >
-                  Book Your Free 45-Min Session
+                  <span>Book Your Free 45-Min Session</span>
+                  <OpenInNewWindowIcon className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
                 </TrackedCtaLink>
               </div>
 

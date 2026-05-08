@@ -52,6 +52,7 @@ export default function Footer() {
             onClick={handleFooterClick('Book a Free Session', 'https://calendly.com/michaelzick/45min', 'links')}
           >
             <strong>Book a Free Session</strong>
+            <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
         <div className="md:col-span-3 space-y-2">

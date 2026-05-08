@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { OpenInNewWindowIcon } from '@radix-ui/react-icons';
 import TrackedCtaLink from '../TrackedCtaLink';
 import { trackLinkClick } from '../../lib/analytics';
 
@@ -40,7 +41,8 @@ export default function QuestionnaireAnalysis({ analysis, cardRef }: Questionnai
             label="Book Your Free 45-Min Session"
             eventName="book_free_session_click"
           >
-            Book Your Free 45-Min Session
+            <span>Book Your Free 45-Min Session</span>
+            <OpenInNewWindowIcon className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
           </TrackedCtaLink>
           <Link
             href="/contact"
