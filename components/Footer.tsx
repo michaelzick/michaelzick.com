@@ -62,6 +62,10 @@ export default function Footer() {
             Questionnaire
           </Link>
           <br />
+          <Link href="/nice-guy-university" className="footer-link" onClick={handleFooterClick('Nice Guy University', '/nice-guy-university', 'apps')}>
+            Nice Guy University
+          </Link>
+          <br />
           <a
             href="https://findyourflowstate.michaelzick.com/"
             target="_blank"

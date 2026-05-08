@@ -11,6 +11,7 @@ const topLevelRoutes = [
   '/testimonials',
   '/contact',
   '/questionnaire',
+  '/nice-guy-university',
   '/blog',
   '/blog/why-your-emotions-control-what-you-see-and-how-to-change-your-reality',
 ];

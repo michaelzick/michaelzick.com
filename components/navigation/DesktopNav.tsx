@@ -108,6 +108,18 @@ export default function DesktopNav({
           >
             Questionnaire
           </Link>
+          <Link
+            href="/nice-guy-university"
+            role="menuitem"
+            tabIndex={appsOpen ? 0 : -1}
+            className="flex items-center gap-2 px-4 py-3 text-base font-medium whitespace-nowrap hover:bg-black/5 transition-colors"
+            onClick={() => {
+              trackHeaderLink('Nice Guy University', '/nice-guy-university', 'apps');
+              setAppsOpen(false);
+            }}
+          >
+            Nice Guy University
+          </Link>
           <a
             href="https://findyourflowstate.michaelzick.com/"
             target="_blank"
