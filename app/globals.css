@@ -81,6 +81,22 @@ html {
 }
 
 @layer components {
+  .page-top-offset {
+    padding-top: 11rem;
+  }
+
+  @media (min-width: 930px) {
+    .page-top-offset {
+      padding-top: 12rem;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .page-top-offset {
+      padding-top: 13rem;
+    }
+  }
+
   .nav-link {
     @apply relative flex items-center text-white text-right font-light text-base leading-[28.8px] whitespace-nowrap px-0 py-[1.6px];
   }
@@ -128,6 +144,20 @@ html {
   .nav-button {
     @apply inline-flex items-center justify-center rounded-lg bg-cta-amber text-white transition-all duration-300 hover:opacity-90 text-base leading-4;
     padding: 9px 16px 10px;
+  }
+
+  .nav-button-outline {
+    @apply inline-flex items-center justify-center rounded-lg border-2 border-cta-amber bg-transparent text-cta-amber font-semibold whitespace-nowrap transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cta-amber/50 focus-visible:ring-offset-2 text-base leading-4;
+    padding: 8px 15px 9px;
+  }
+
+  .nav-button-outline:hover {
+    background: rgb(var(--cta-amber) / 0.1);
+  }
+
+  .nav-button-outline:active {
+    transform: scale(0.97);
+    transition-duration: 100ms;
   }
 
   .blog-content {
@@ -212,14 +242,28 @@ html {
     height: 88px;
     padding: 0 42px;
     white-space: nowrap;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .cta-unified>span {
+    min-width: 0;
   }
 
   @media (max-width: 929px) {
     .cta-unified {
       font-size: 16px;
-      line-height: 16px;
-      height: 54px;
-      padding: 0 24px;
+      line-height: 1.15;
+      min-height: 54px;
+      height: auto;
+      padding: 14px 18px;
+      white-space: normal;
+    }
+
+    .mobile-nav-link {
+      min-height: 44px;
+      padding-top: 0.375rem;
+      padding-bottom: 0.375rem;
     }
   }
 

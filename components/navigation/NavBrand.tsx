@@ -28,12 +28,12 @@ export default function NavBrand({
     >
       <span
         className={`font-headline font-bold transition-all duration-500 ${scrolled ? 'text-[48px] max-[1174px]:text-[40px]' : 'text-[56px] max-[1174px]:text-[44px]'
-          } max-[929px]:text-[40px]`}
+          } max-[929px]:text-[40px] max-[379px]:text-[36px]`}
       >
-        <span className="inline max-[980px]:hidden max-[929px]:inline">
+        <span className="inline max-[980px]:hidden max-[929px]:inline max-[340px]:hidden">
           Michael Zick
         </span>
-        <span className="hidden max-[980px]:inline max-[929px]:hidden">
+        <span className="hidden max-[980px]:inline max-[929px]:hidden max-[340px]:inline">
           MZ
         </span>
       </span>

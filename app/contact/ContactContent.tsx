@@ -1,8 +1,8 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
+import { OpenInNewWindowIcon } from '@radix-ui/react-icons';
 import ContactForm from '../../components/ContactForm';
-import ContactRecaptchaLoader from '../../components/ContactRecaptchaLoader';
 import { FadeInSection } from '../../components/FadeInSection';
 import Image from 'next/image';
 import { TestimonialsCarouselSection } from '../../components/sections/TestimonialsCarouselSection';
@@ -10,6 +10,7 @@ import TrackedCtaLink from '../../components/TrackedCtaLink';
 import { trackLinkClick } from '../../lib/analytics';
 
 export default function ContactContent() {
+  const bookingCtaLabel = 'Book a Strategy Call';
   const testimonialsSectionRef = useRef<HTMLElement>(null);
   const testimonialsTitleRef = useRef<HTMLHeadingElement>(null);
   const [testimonialsVisible, setTestimonialsVisible] = useState(false);
@@ -44,8 +45,7 @@ export default function ContactContent() {
 
   return (
     <div className="flex flex-col">
-      <ContactRecaptchaLoader />
-      <section className="bg-default-grey text-white px-6 pb-24 pt-24 md:px-8 md:pb-32 md:pt-28 lg:pt-36 xl:pt-40">
+      <section className="page-top-offset bg-default-grey text-white px-6 pb-24 md:px-8 md:pb-32">
         <div className="mx-auto max-w-[1400px]">
           <FadeInSection className="mb-10 text-center md:text-left" immediate>
             <h1 className="font-headline text-5xl font-semibold leading-tight md:text-6xl">
@@ -57,8 +57,8 @@ export default function ContactContent() {
             <div className="hidden min-[930px]:block min-[930px]:col-span-3 lg:col-span-3 order-1 h-full">
               <div className="relative h-full overflow-hidden rounded-xl shadow-2xl ring-1 ring-white/10 min-h-[640px]">
                 <Image
-                  src="/img/grey-suit-blue-shirt-2.webp"
-                  alt="Michael Zick"
+                  src="/img/gray-suit-hand-in-pocket-warm-2.webp"
+                  alt="Michael Zick standing in a gray suit"
                   fill
                   className="object-cover"
                   sizes="(max-width: 929px) 100vw, 25vw"
@@ -84,10 +84,11 @@ export default function ContactContent() {
                   href="https://calendly.com/michaelzick/45min"
                   className="btn cta-unified !w-full text-center !px-6"
                   location="contact-sidebar"
-                  label="Book Your Free 45-Min Session"
+                  label={bookingCtaLabel}
                   eventName="book_free_session_click"
                 >
-                  Book Your Free 45-Min Session
+                  <span>{bookingCtaLabel}</span>
+                  <OpenInNewWindowIcon className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
                 </TrackedCtaLink>
               </div>
 

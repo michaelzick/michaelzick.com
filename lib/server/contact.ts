@@ -1,5 +1,3 @@
-import { CONTACT_RECAPTCHA_ACTION, RECAPTCHA_MINIMUM_SCORE } from '../recaptcha';
-
 export type ContactSubmission = {
   firstName?: string;
   lastName?: string;
@@ -60,14 +58,14 @@ export function getContactConfig(env = process.env): ContactConfig | null {
   const userName = env['BREVO_USER'];
   const toAddress = env['BREVO_TO'];
   const fromAddress = env['BREVO_FROM'];
-  const recaptchaSecretKey = env['RECAPTCHA_SECRET_KEY'];
+  const recaptchaSecretKey = env['RECAPTCHA_SECRET_KEY_V2'];
 
   const missing = Object.entries({
     BREVO_SMTP_PASSWORD: password,
     BREVO_USER: userName,
     BREVO_TO: toAddress,
     BREVO_FROM: fromAddress,
-    RECAPTCHA_SECRET_KEY: recaptchaSecretKey,
+    RECAPTCHA_SECRET_KEY_V2: recaptchaSecretKey,
   })
     .filter(([, v]) => !v)
     .map(([k]) => k);
@@ -89,22 +87,11 @@ export function getContactConfig(env = process.env): ContactConfig | null {
 export function isValidRecaptchaResponse(
   response: {
     success?: boolean;
-    score?: number;
-    action?: string;
     'error-codes'?: string[];
   },
-  minimumScore = RECAPTCHA_MINIMUM_SCORE,
 ) {
-  const score = response.score ?? 0;
-
   return {
-    valid: Boolean(
-      response.success
-        && response.action === CONTACT_RECAPTCHA_ACTION
-        && score >= minimumScore,
-    ),
-    score,
-    action: response.action,
+    valid: Boolean(response.success),
     errorCodes: response['error-codes'],
   };
 }

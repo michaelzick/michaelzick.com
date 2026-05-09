@@ -82,7 +82,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   ];
 
   return (
-    <section className="bg-light-grey px-8 pb-16 pt-24 text-default-grey max-[1024px]:px-[35px] max-[929px]:px-[30px] min-[1440px]:px-[70px] md:pb-24 md:pt-28 lg:pt-36 xl:pt-40">
+    <section className="page-top-offset bg-light-grey px-8 pb-16 text-default-grey max-[1024px]:px-[35px] max-[929px]:px-[30px] min-[1440px]:px-[70px] md:pb-24">
       <JsonLd data={structuredData} />
       <div className="mx-auto max-w-[1000px]">
         <BlogPostBreadcrumbs />

@@ -64,6 +64,7 @@ export default function HomePageContent() {
     activeLinks,
     activeSection,
     mobileTabsTop,
+    mobileTabsVisible,
     scrollMarginTop,
     scrollMarginTopBeginning,
     mobileTabsRef,
@@ -86,13 +87,20 @@ export default function HomePageContent() {
 
       {/* Mobile Navigation */}
       <div
-        className="pointer-events-none fixed inset-x-4 z-40 hidden max-[929px]:flex"
+        data-home-mobile-tabs-shell
+        className={`pointer-events-none fixed inset-x-4 z-40 hidden transition-all duration-300 ease-out max-[929px]:flex ${
+          mobileTabsVisible ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0'
+        }`}
+        aria-hidden={!mobileTabsVisible}
+        inert={!mobileTabsVisible ? true : undefined}
         style={{ top: `${mobileTabsTop}px` }}
       >
         <div
           ref={mobileTabsRef}
           data-home-mobile-tabs
-          className="pointer-events-auto flex w-full overflow-hidden rounded-lg border border-dark-blue/20 bg-transparent shadow-lg backdrop-blur"
+          className={`flex w-full overflow-hidden rounded-lg border border-dark-blue/20 bg-transparent shadow-lg backdrop-blur ${
+            mobileTabsVisible ? 'pointer-events-auto' : 'pointer-events-none'
+          }`}
         >
           <NavigationTabs
             sectionConfig={sectionConfig}

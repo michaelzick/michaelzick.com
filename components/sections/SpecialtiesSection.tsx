@@ -37,8 +37,8 @@ export function SpecialtiesSection({ sectionRef, titleRef, scrollMarginTop, isVi
           >
             <div className="relative h-[400px] w-full overflow-hidden rounded-lg shadow-md sm:h-[480px] md:h-[638px]">
               <Image
-                src="/img/grey-suit-blue-shirt.webp"
-                alt="Michael in a grey suit and blue shirt"
+                src="/img/gray-suit-hand-in-pocket-warm.webp"
+                alt="Michael Zick standing in a gray suit"
                 fill
                 sizes="(min-width: 768px) 45vw, 100vw"
                 className="object-cover object-top"

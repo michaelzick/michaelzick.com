@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { CONTACT_RECAPTCHA_ACTION } from '../lib/recaptcha';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { loadRecaptchaV2, resetRecaptchaV2Widget } from '../lib/client/recaptcha-v2';
 
 interface FormData {
   firstName: string;
@@ -11,7 +11,7 @@ interface FormData {
   workbookOptIn: boolean;
 }
 
-const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY_V2;
 const initialFormData: FormData = {
   firstName: '',
   lastName: '',
@@ -25,8 +25,89 @@ export default function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [captchaError, setCaptchaError] = useState<string | null>(null);
+  const [captchaReady, setCaptchaReady] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState('');
   const [submittedWorkbook, setSubmittedWorkbook] = useState(false);
+  const captchaContainerRef = useRef<HTMLDivElement>(null);
+  const captchaWidgetIdRef = useRef<number | null>(null);
+  const captchaResolveRef = useRef<((token: string) => void) | null>(null);
+  const captchaRejectRef = useRef<((error: Error) => void) | null>(null);
+
+  const clearPendingCaptcha = useCallback(() => {
+    captchaResolveRef.current = null;
+    captchaRejectRef.current = null;
+  }, []);
+
+  const resetCaptcha = useCallback(() => {
+    captchaRejectRef.current?.(new Error('CAPTCHA was reset.'));
+    clearPendingCaptcha();
+    resetRecaptchaV2Widget(captchaWidgetIdRef.current);
+  }, [clearPendingCaptcha]);
+
+  const discardCaptchaWidget = useCallback(() => {
+    resetCaptcha();
+    captchaWidgetIdRef.current = null;
+    setCaptchaReady(false);
+  }, [resetCaptcha]);
+
+  useEffect(() => {
+    if (!RECAPTCHA_SITE_KEY || status === 'success') {
+      return;
+    }
+
+    let cancelled = false;
+
+    setCaptchaReady(false);
+    void loadRecaptchaV2()
+      .then(() => {
+        if (
+          cancelled
+          || !window.grecaptcha
+          || !captchaContainerRef.current
+          || captchaWidgetIdRef.current !== null
+        ) {
+          return;
+        }
+
+        captchaWidgetIdRef.current = window.grecaptcha.render(captchaContainerRef.current, {
+          sitekey: RECAPTCHA_SITE_KEY,
+          size: 'invisible',
+          badge: 'inline',
+          callback: (token: string) => {
+            const resolveCaptcha = captchaResolveRef.current;
+            clearPendingCaptcha();
+            resolveCaptcha?.(token);
+            setCaptchaError(null);
+          },
+          'expired-callback': () => {
+            const rejectCaptcha = captchaRejectRef.current;
+            clearPendingCaptcha();
+            rejectCaptcha?.(new Error('CAPTCHA expired. Please try again.'));
+          },
+          'error-callback': () => {
+            const rejectCaptcha = captchaRejectRef.current;
+            clearPendingCaptcha();
+            rejectCaptcha?.(new Error('CAPTCHA verification failed. Please try again.'));
+            setCaptchaError('CAPTCHA verification failed. Please try again.');
+          },
+        });
+        setCaptchaReady(true);
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setCaptchaError('CAPTCHA failed to load. Please refresh the page and try again.');
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [clearPendingCaptcha, status]);
+
+  useEffect(() => () => {
+    resetCaptcha();
+    captchaWidgetIdRef.current = null;
+  }, [resetCaptcha]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -43,33 +124,39 @@ export default function ContactForm() {
     setFormData((prev) => ({ ...prev, [key]: value }));
   };
 
+  const executeCaptcha = useCallback(() => {
+    return new Promise<string>((resolve, reject) => {
+      if (!window.grecaptcha || captchaWidgetIdRef.current === null || !captchaReady) {
+        reject(new Error('CAPTCHA is still loading. Please try again.'));
+        return;
+      }
+
+      captchaResolveRef.current = resolve;
+      captchaRejectRef.current = reject;
+
+      try {
+        window.grecaptcha.execute(captchaWidgetIdRef.current);
+      } catch {
+        clearPendingCaptcha();
+        reject(new Error('CAPTCHA failed. Please try again.'));
+      }
+    });
+  }, [captchaReady, clearPendingCaptcha]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
     setErrorMessage(null);
     setCaptchaError(null);
 
-    let captchaToken: string;
-    try {
-      const recaptcha = window.grecaptcha;
-      if (!recaptcha || typeof recaptcha.ready !== 'function' || typeof recaptcha.execute !== 'function') {
-        throw new Error('reCAPTCHA is not ready');
-      }
-
-      await new Promise<void>((resolve) => {
-        recaptcha.ready(resolve);
-      });
-      captchaToken = await recaptcha.execute(
-        RECAPTCHA_SITE_KEY!,
-        { action: CONTACT_RECAPTCHA_ACTION },
-      );
-    } catch {
-      setCaptchaError('CAPTCHA verification failed. Please refresh the page and try again.');
+    if (!RECAPTCHA_SITE_KEY) {
+      setCaptchaError('Contact form is temporarily unavailable. Please try again later.');
       setStatus('idle');
       return;
     }
 
     try {
+      const captchaToken = await executeCaptcha();
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -84,9 +171,17 @@ export default function ContactForm() {
       setStatus('success');
       setFormData(initialFormData);
       setCaptchaError(null);
+      discardCaptchaWidget();
     } catch (err) {
       console.error(err);
-      setErrorMessage(err instanceof Error ? err.message : 'Request failed');
+      const message = err instanceof Error ? err.message : 'Request failed';
+      resetCaptcha();
+      if (message.toLowerCase().includes('captcha')) {
+        setCaptchaError(message);
+        setStatus('idle');
+        return;
+      }
+      setErrorMessage(message);
       setStatus('error');
     }
   };
@@ -195,6 +290,33 @@ export default function ContactForm() {
           Send me a free Belief Reprogramming Workbook and add me to your email newsletter. Unsubscribe anytime.
         </label>
       </div>
+      <div
+        ref={captchaContainerRef}
+        className="h-0 overflow-hidden"
+        data-testid="contact-recaptcha-widget"
+        aria-hidden="true"
+      />
+      <p className="text-xs leading-relaxed text-default-grey/50">
+        This site is protected by reCAPTCHA and the Google{' '}
+        <a
+          href="https://policies.google.com/privacy"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline decoration-default-grey/30 underline-offset-2 transition hover:text-default-grey"
+        >
+          Privacy Policy
+        </a>{' '}
+        and{' '}
+        <a
+          href="https://policies.google.com/terms"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline decoration-default-grey/30 underline-offset-2 transition hover:text-default-grey"
+        >
+          Terms of Service
+        </a>{' '}
+        apply.
+      </p>
       {captchaError && <p className="text-sm text-red-600 font-medium">{captchaError}</p>}
       {status === 'error' && (
         <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-600">
@@ -206,13 +328,15 @@ export default function ContactForm() {
         <button
           type="submit"
           className={`btn !w-full md:!w-auto !text-xl !px-6 md:!px-16 !py-4 md:!py-8 transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed ${status === 'submitting' ? 'btn-loading' : ''}`}
-          disabled={status === 'submitting'}
+          disabled={status === 'submitting' || !captchaReady}
         >
           {status === 'submitting'
             ? 'Sending...'
-            : formData.workbookOptIn
-              ? 'Get My Free Workbook'
-              : 'Send My Message'}
+            : !captchaReady
+              ? 'Loading security check...'
+              : formData.workbookOptIn
+                ? 'Get My Free Workbook'
+                : 'Send My Message'}
         </button>
       </div>
     </form>

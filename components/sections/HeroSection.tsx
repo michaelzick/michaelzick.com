@@ -4,7 +4,7 @@ import QuestionnaireCta from '../QuestionnaireCta';
 
 export function HeroSection() {
   return (
-    <section className="relative flex min-h-screen items-end text-white">
+    <section data-home-hero className="relative flex min-h-screen items-end text-white">
       <Image
         src="/img/homepage_mountains.webp"
         alt=""

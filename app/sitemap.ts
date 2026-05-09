@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/contact',
     '/testimonials',
     '/questionnaire',
+    '/nice-guy-university',
   ].map((route) => ({
     url: `${siteConfig.url}${route}`,
     lastModified: new Date(),

@@ -8,7 +8,7 @@ export const siteConfig = {
   placename: 'Los Angeles',
   region: 'US-CA',
   defaultImage: '/img/homepage_mountains.webp',
-  personImage: '/img/grey-suit-blue-shirt.webp',
+  personImage: '/img/gray-suit-hand-in-pocket-warm.webp',
   keywords: [
     'Nice Guy Recovery Coach',
     'Approval Addiction',

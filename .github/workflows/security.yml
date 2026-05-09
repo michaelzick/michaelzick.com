@@ -1,0 +1,91 @@
+name: Security Checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  secrets:
+    name: Secret Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Run Gitleaks
+        run: docker run --rm -v "$PWD:/repo" ghcr.io/gitleaks/gitleaks:latest detect --source /repo --redact --verbose
+
+  dependencies:
+    name: Dependency Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.x
+          check-latest: true
+          cache: npm
+
+      - run: npm ci
+      - run: npm audit --audit-level=moderate
+
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
+    steps:
+      - name: Review dependency changes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          gh api \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2026-03-10" \
+            "/repos/${GITHUB_REPOSITORY}/dependency-graph/compare/${BASE_SHA}...${HEAD_SHA}" \
+            > dependency-review.json
+
+          jq -r '
+            [
+              .[]
+              | select(.change_type == "added" or .change_type == "changed")
+              | . as $dependency
+              | (.vulnerabilities // [])[]
+              | select((.severity | ascii_downcase) as $severity | ["moderate", "high", "critical"] | index($severity))
+              | "\($dependency.manifest): \($dependency.name)@\($dependency.version) introduces \(.severity) \(.advisory_ghsa_id): \(.advisory_summary) (\(.advisory_url))"
+            ]
+            | .[]
+          ' dependency-review.json > dependency-review-findings.txt
+
+          if [ -s dependency-review-findings.txt ]; then
+            cat dependency-review-findings.txt
+            exit 1
+          fi
+
+          echo "No moderate or higher vulnerable dependency changes detected."
+
+  codeql:
+    name: CodeQL Scan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: github/codeql-action/init@v4
+        with:
+          languages: javascript-typescript
+
+      - uses: github/codeql-action/autobuild@v4
+
+      - uses: github/codeql-action/analyze@v4
