@@ -19,14 +19,14 @@ Primary flows:
 
 ## 2. Tech stack
 
-- **Framework:** Next.js 16 App Router with React 19 and TypeScript.
+- **Framework:** Next.js 16 App Router with React 19 and TypeScript; the package is currently pinned to the patched 16.3 canary line until the same security fixes land in a stable release.
 - **Styling:** Tailwind CSS 3, global styles in `app/globals.css`, image assets in `public/img/`.
 - **Server routes:** Next route handlers under `app/api/*`, using Node runtime where email/OpenAI APIs are needed.
 - **AI and email:** OpenAI Node SDK for questionnaire analysis; Nodemailer with Brevo SMTP for notifications.
 - **Bot protection:** Classic Invisible reCAPTCHA v2 via `NEXT_PUBLIC_RECAPTCHA_SITE_KEY_V2` and `RECAPTCHA_SECRET_KEY_V2`.
 - **Analytics:** GA4 and Amplitude scripts in `components/SiteAnalyticsScripts.tsx`; tracked events in `lib/analytics.ts`.
 - **Testing:** Node's built-in test runner for compiled unit tests, TypeScript test build via `tsconfig.test.json`, and Playwright for E2E/mobile UI checks.
-- **Tooling:** npm with `package-lock.json`, Node 24, ESLint flat config via `eslint-config-next/core-web-vitals`.
+- **Tooling:** npm with `package-lock.json`, Node 24 LTS, ESLint flat config via `eslint-config-next/core-web-vitals`.
 
 ## 3. Repository layout
 
@@ -114,7 +114,7 @@ npm run agent-briefs:check  # Fail if CLAUDE.md or GEMINI.md drift from AGENTS.m
 npm run check               # Agent brief check + lint + typecheck + unit tests + build
 ```
 
-CI runs the brief sync check, lint, typecheck, unit tests, production build, and Playwright Chromium E2E tests.
+CI runs the brief sync check, lint, typecheck, unit tests, production build, and Playwright Chromium E2E tests on the latest Node 24 patch. The security workflow runs Gitleaks, `npm audit --audit-level=moderate`, pull request dependency review via GitHub's Dependency Review API, and CodeQL.
 
 ## 7. Conventions and coding standards
 
