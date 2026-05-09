@@ -10,6 +10,7 @@ import TrackedCtaLink from '../../components/TrackedCtaLink';
 import { trackLinkClick } from '../../lib/analytics';
 
 export default function ContactContent() {
+  const bookingCtaLabel = 'Book a Strategy Call';
   const testimonialsSectionRef = useRef<HTMLElement>(null);
   const testimonialsTitleRef = useRef<HTMLHeadingElement>(null);
   const [testimonialsVisible, setTestimonialsVisible] = useState(false);
@@ -83,10 +84,10 @@ export default function ContactContent() {
                   href="https://calendly.com/michaelzick/45min"
                   className="btn cta-unified !w-full text-center !px-6"
                   location="contact-sidebar"
-                  label="Book Your Free 45-Min Session"
+                  label={bookingCtaLabel}
                   eventName="book_free_session_click"
                 >
-                  <span>Book Your Free 45-Min Session</span>
+                  <span>{bookingCtaLabel}</span>
                   <OpenInNewWindowIcon className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
                 </TrackedCtaLink>
               </div>

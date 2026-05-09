@@ -5,10 +5,11 @@ import { OpenInNewWindowIcon } from '@radix-ui/react-icons';
 import { trackEvent, trackLinkClick } from '../lib/analytics';
 
 export default function Footer() {
+  const bookingCtaLabel = 'Book a Strategy Call';
   const handleFooterClick = (label: string, href: string, section: string) => () => {
     trackLinkClick({ location: 'footer', label, href, section });
 
-    if (label === 'Book a Free Session') {
+    if (label === bookingCtaLabel) {
       trackEvent('book_free_session_click', {
         location: 'footer',
         label,
@@ -49,9 +50,9 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="footer-link"
-            onClick={handleFooterClick('Book a Free Session', 'https://calendly.com/michaelzick/45min', 'links')}
+            onClick={handleFooterClick(bookingCtaLabel, 'https://calendly.com/michaelzick/45min', 'links')}
           >
-            <strong>Book a Free Session</strong>
+            <strong>{bookingCtaLabel}</strong>
             <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
@@ -61,10 +62,6 @@ export default function Footer() {
           </span>
           <Link href="/questionnaire" className="footer-link" onClick={handleFooterClick('Questionnaire', '/questionnaire', 'apps')}>
             Questionnaire
-          </Link>
-          <br />
-          <Link href="/nice-guy-university" className="footer-link" onClick={handleFooterClick('Nice Guy University', '/nice-guy-university', 'apps')}>
-            Nice Guy University
           </Link>
           <br />
           <a

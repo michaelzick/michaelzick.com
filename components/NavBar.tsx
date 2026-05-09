@@ -43,16 +43,6 @@ export default function NavBar() {
   const trackHeaderLink = (label: string, href: string, section: string, variant?: 'desktop' | 'mobile') => {
     trackLinkClick({ location: 'header', label, href, section, variant });
 
-    if (label === 'Book a Free Session') {
-      trackEvent('book_free_session_click', {
-        location: 'header',
-        label,
-        href,
-        ...(variant ? { variant } : {}),
-        page_path: window.location.pathname,
-      });
-    }
-
     if (label === 'Nice Guy University' && section === 'cta') {
       trackEvent('ngu_header_cta_click', {
         location: 'header',

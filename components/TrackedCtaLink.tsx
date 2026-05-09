@@ -22,7 +22,11 @@ function resolveEventName(href: string, label: string, eventName?: string) {
   if (href.startsWith('/questionnaire') || /questionnaire|start here|assessment/i.test(label)) {
     return 'questionnaire_click';
   }
-  if (/calendly\.com/i.test(href) || /book (a|your) free/i.test(label)) {
+  if (
+    /calendly\.com/i.test(href)
+    || /book (a|your) free/i.test(label)
+    || /strategy call/i.test(label)
+  ) {
     return 'book_free_session_click';
   }
   return 'cta_click';
@@ -43,7 +47,7 @@ function getHashTargetId(href: string) {
 export default function TrackedCtaLink({
   href,
   location,
-  label = 'Book Your Free 45-Min Session',
+  label = 'Book a Strategy Call',
   eventName,
   className,
   target,

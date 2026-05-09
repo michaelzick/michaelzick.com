@@ -11,6 +11,7 @@ interface QuestionnaireAnalysisProps {
 }
 
 export default function QuestionnaireAnalysis({ analysis, cardRef }: QuestionnaireAnalysisProps) {
+  const bookingCtaLabel = 'Book a Strategy Call';
   const handleAnalysisLinkClick = (label: string, href: string, section: string) => () => {
     trackLinkClick({
       location: 'questionnaire-analysis',
@@ -38,10 +39,10 @@ export default function QuestionnaireAnalysis({ analysis, cardRef }: Questionnai
             href="https://calendly.com/michaelzick/45min"
             className="btn cta-unified whitespace-nowrap"
             location="questionnaire-analysis"
-            label="Book Your Free 45-Min Session"
+            label={bookingCtaLabel}
             eventName="book_free_session_click"
           >
-            <span>Book Your Free 45-Min Session</span>
+            <span>{bookingCtaLabel}</span>
             <OpenInNewWindowIcon className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />
           </TrackedCtaLink>
           <Link

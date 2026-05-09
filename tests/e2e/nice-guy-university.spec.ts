@@ -63,7 +63,7 @@ async function installAnalyticsSpy(page: Page) {
 }
 
 test.describe('Nice Guy University landing page', () => {
-  test('desktop Apps menu links to Nice Guy University directly after Questionnaire', async ({ page }) => {
+  test('desktop Apps menu and footer no longer include Nice Guy University', async ({ page }) => {
     await mockInvisibleRecaptcha(page);
     await page.addInitScript(() => window.sessionStorage.setItem('nguPromoSeen', 'true'));
     await page.setViewportSize({ width: 1200, height: 900 });
@@ -77,14 +77,15 @@ test.describe('Nice Guy University landing page', () => {
     const menuItems = await menu.locator('[role="menuitem"]').evaluateAll((items) => (
       items.map((item) => item.textContent?.replace(/\s+/g, ' ').trim() ?? '')
     ));
-    expect(menuItems.indexOf('Nice Guy University')).toBe(menuItems.indexOf('Questionnaire') + 1);
+    expect(menuItems).not.toContain('Nice Guy University');
+    await expect(menu.getByRole('menuitem', { name: 'Nice Guy University' })).toHaveCount(0);
 
-    await menu.getByRole('menuitem', { name: 'Nice Guy University' }).click();
-    await page.waitForURL('**/nice-guy-university');
-    await expect(page.getByRole('heading', { name: 'Nice Guy University', level: 1 })).toBeVisible();
+    const footer = page.getByRole('contentinfo');
+    await expect(footer.getByRole('link', { name: 'Nice Guy University' })).toHaveCount(0);
+    await expect(footer.getByRole('link', { name: 'Book a Strategy Call' })).toHaveCount(1);
   });
 
-  test('mobile nav links to Nice Guy University and closes after navigation', async ({ page }) => {
+  test('mobile nav keeps the Nice Guy University CTA and closes after navigation', async ({ page }) => {
     await mockInvisibleRecaptcha(page);
     await page.addInitScript(() => window.sessionStorage.setItem('nguPromoSeen', 'true'));
     await page.setViewportSize({ width: 345, height: 800 });
@@ -94,7 +95,8 @@ test.describe('Nice Guy University landing page', () => {
     const mobileNav = page.locator('#mobile-nav');
     await expect(mobileNav).toHaveAttribute('aria-hidden', 'false');
 
-    await mobileNav.getByRole('link', { name: 'Nice Guy University' }).first().click();
+    await expect(mobileNav.getByRole('link', { name: 'Nice Guy University' })).toHaveCount(1);
+    await mobileNav.getByRole('link', { name: 'Nice Guy University' }).click();
     await page.waitForURL('**/nice-guy-university');
     await expect(page.getByRole('heading', { name: 'Nice Guy University', level: 1 })).toBeVisible();
     await expect(mobileNav).toHaveAttribute('aria-hidden', 'true');

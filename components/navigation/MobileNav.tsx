@@ -88,16 +88,6 @@ export default function MobileNav({
         >
           Questionnaire
         </Link>
-        <Link
-          href="/nice-guy-university"
-          className={`nav-link mobile-nav-link text-2xl text-default-grey ${activePath === '/nice-guy-university' ? 'active' : ''}`}
-          onClick={() => {
-            trackHeaderLink('Nice Guy University', '/nice-guy-university', 'apps', 'mobile');
-            setMenuOpen(false);
-          }}
-        >
-          Nice Guy University
-        </Link>
         <a
           href="https://findyourflowstate.michaelzick.com/"
           target="_blank"

@@ -29,11 +29,13 @@ test.describe('mobile UI audit', () => {
       await page.setViewportSize(viewport);
       await page.goto('/');
 
+      const heroBookingCta = page.locator('section[data-home-hero]').getByRole('link', { name: 'Book a Strategy Call' });
       const banner = page.getByLabel('Nice Guy University promotion');
       const header = page.locator('header');
       const mobileTabsShell = page.locator('[data-home-mobile-tabs-shell]');
       const mobileTabs = page.locator('[data-home-mobile-tabs]');
 
+      await expect(heroBookingCta).toHaveCount(1);
       await expect(banner).toBeVisible();
       await expect(header).toBeVisible();
 
