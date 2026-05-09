@@ -5,9 +5,21 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   contents: read
+
+env:
+  NODE_ENV: test
+  NEXT_PUBLIC_RECAPTCHA_SITE_KEY_V2: test-site-key
+  RECAPTCHA_SECRET_KEY_V2: test-secret-key
+  OPENAI_API_KEY: test-openai-key
+  BREVO_SMTP_PASSWORD: test-brevo-password
+  BREVO_USER: test-brevo-user
+  BREVO_TO: test-to@example.com
+  BREVO_FROM: test-from@example.com
+  SITE_URL: https://www.michaelzick.com
 
 jobs:
   validate:
@@ -26,8 +38,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Agent brief sync
+        run: npm run agent-briefs:check
+
       - name: Lint
         run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
 
       - name: Test
         run: npm test

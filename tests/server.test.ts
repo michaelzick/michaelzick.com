@@ -93,7 +93,7 @@ test('contact helpers build email content and validate recaptcha state', () => {
       BREVO_TO: 'to@example.com',
       BREVO_FROM: 'from@example.com',
       RECAPTCHA_SECRET_KEY_V2: 'secret',
-    } as NodeJS.ProcessEnv),
+    } as unknown as NodeJS.ProcessEnv),
     {
       password: 'password',
       userName: 'user',
@@ -168,7 +168,7 @@ test('NGU coupon config and recaptcha helpers validate expected state', () => {
       BREVO_TO: 'to@example.com',
       BREVO_FROM: 'from@example.com',
       RECAPTCHA_SECRET_KEY_V2: 'secret',
-    } as NodeJS.ProcessEnv),
+    } as unknown as NodeJS.ProcessEnv),
     {
       password: 'password',
       userName: 'user',

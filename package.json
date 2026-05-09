@@ -10,9 +10,13 @@
     "build": "next build",
     "start": "next start -p $PORT",
     "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
     "test": "node -e \"require('node:fs').rmSync('.test-dist', { recursive: true, force: true })\" && tsc -p tsconfig.test.json && node --test .test-dist/tests/*.test.js && node -e \"require('node:fs').rmSync('.test-dist', { recursive: true, force: true })\"",
     "test:e2e": "playwright test",
-    "sitemap": "node scripts/generate-sitemap.js"
+    "sitemap": "node scripts/generate-sitemap.js",
+    "agent-briefs:sync": "node skills/sync-agent-briefs/scripts/sync-agent-briefs.mjs",
+    "agent-briefs:check": "node skills/sync-agent-briefs/scripts/sync-agent-briefs.mjs --check",
+    "check": "npm run agent-briefs:check && npm run lint && npm run typecheck && npm test && npm run build"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
