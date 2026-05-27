@@ -10,6 +10,7 @@ import {
   normalizeContactSubmission,
   validateContactSubmission,
 } from '../../../lib/server/contact';
+import { syncHubSpotSubscriberSafely } from '../../../lib/server/hubspot-subscriber';
 import { consumeRateLimit, getClientIp } from '../../../lib/server/rate-limit';
 
 // Ensure the route runs in a Node.js environment so Node APIs like
@@ -110,6 +111,14 @@ export async function POST(req: NextRequest) {
       subject: email.subject,
       text: email.text,
     });
+
+    if (submission.workbookOptIn) {
+      await syncHubSpotSubscriberSafely({
+        email: submission.email,
+        firstName: submission.firstName,
+        lastName: submission.lastName,
+      });
+    }
 
     return NextResponse.json({ success: true });
   } catch (err) {
