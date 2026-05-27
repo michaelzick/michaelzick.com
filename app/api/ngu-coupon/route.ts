@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { RECAPTCHA_SITE_VERIFY_URL } from '../../../lib/recaptcha';
+import { syncHubSpotSubscriberSafely } from '../../../lib/server/hubspot-subscriber';
 import { consumeRateLimit, getClientIp } from '../../../lib/server/rate-limit';
 import {
   buildNguCouponNotificationEmail,
@@ -107,6 +108,8 @@ export async function POST(req: NextRequest) {
       subject: notificationEmail.subject,
       text: notificationEmail.text,
     });
+
+    await syncHubSpotSubscriberSafely({ email: submission.email });
 
     return NextResponse.json({ success: true });
   } catch (err) {

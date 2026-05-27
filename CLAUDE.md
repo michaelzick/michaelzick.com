@@ -13,7 +13,7 @@ Sibling files [AGENTS.md](AGENTS.md) (Codex) and [GEMINI.md](GEMINI.md) (Gemini 
 Primary flows:
 - Visitors learn about Michael's coaching model through the home, about, testimonials, contact, and Nice Guy University pages.
 - Visitors submit a multi-step questionnaire and receive an OpenAI-generated coaching analysis.
-- Contact and NGU coupon forms validate Invisible reCAPTCHA v2, rate-limit submissions, and send Brevo SMTP email notifications.
+- Contact and NGU coupon forms validate Invisible reCAPTCHA v2, rate-limit submissions, send Brevo SMTP email notifications, and sync newsletter opt-ins to HubSpot as male subscribers.
 - Blog readers browse JSON-backed posts with category/tag filters and structured data for SEO.
 - CTA and navigation interactions are tracked through a shared analytics wrapper for GA4 and Amplitude.
 
@@ -22,7 +22,7 @@ Primary flows:
 - **Framework:** Next.js 16 App Router with React 19 and TypeScript; the package is currently pinned to the patched 16.3 canary line until the same security fixes land in a stable release.
 - **Styling:** Tailwind CSS 3, global styles in `app/globals.css`, image assets in `public/img/`.
 - **Server routes:** Next route handlers under `app/api/*`, using Node runtime where email/OpenAI APIs are needed.
-- **AI and email:** OpenAI Node SDK for questionnaire analysis; Nodemailer with Brevo SMTP for notifications.
+- **AI, email, and CRM:** OpenAI Node SDK for questionnaire analysis; Nodemailer with Brevo SMTP for notifications; HubSpot CRM API for newsletter subscriber sync.
 - **Bot protection:** Classic Invisible reCAPTCHA v2 via `NEXT_PUBLIC_RECAPTCHA_SITE_KEY_V2` and `RECAPTCHA_SECRET_KEY_V2`.
 - **Analytics:** GA4 and Amplitude scripts in `components/SiteAnalyticsScripts.tsx`; tracked events in `lib/analytics.ts`.
 - **Testing:** Node's built-in test runner for compiled unit tests, TypeScript test build via `tsconfig.test.json`, and Playwright for E2E/mobile UI checks.
@@ -62,9 +62,9 @@ michaelzick.com/
 ### 4.2 API routes
 
 - `app/api/analyze/route.ts` accepts questionnaire submissions, applies honeypot/rate limiting/length checks, calls OpenAI (`gpt-5-mini` with fallback to `gpt-4o-mini`), and optionally emails the result via Brevo SMTP.
-- `app/api/contact/route.ts` validates contact submissions, enforces per-IP rate limits, verifies Invisible reCAPTCHA v2, and sends contact email via Brevo.
-- `app/api/ngu-coupon/route.ts` validates NGU coupon signups, verifies reCAPTCHA, sends the visitor coupon email, and sends the internal notification email.
-- Shared server helpers live in `lib/server/`: contact and NGU normalization/validation/email builders, OpenAI client construction, and in-memory rate limiting.
+- `app/api/contact/route.ts` validates contact submissions, enforces per-IP rate limits, verifies Invisible reCAPTCHA v2, sends contact email via Brevo, and best-effort syncs HubSpot when the workbook/newsletter opt-in is selected.
+- `app/api/ngu-coupon/route.ts` validates NGU coupon signups, verifies reCAPTCHA, sends the visitor coupon email, sends the internal notification email, and best-effort syncs the email to HubSpot.
+- Shared server helpers live in `lib/server/`: contact and NGU normalization/validation/email builders, HubSpot subscriber sync, OpenAI client construction, and in-memory rate limiting.
 
 ### 4.3 Components and client behavior
 
@@ -90,6 +90,9 @@ No committed `.env.example` currently exists. Environment variables used by the 
 
 - `OPENAI_API_KEY` — required for questionnaire analysis.
 - `BREVO_SMTP_PASSWORD`, `BREVO_USER`, `BREVO_TO`, `BREVO_FROM` — required for contact and NGU email routes; optional for questionnaire result notification.
+- `HUBSPOT_SERVICE_KEY` — preferred HubSpot Private App bearer token for newsletter subscriber sync.
+- `HUBSPOT_ACCESS_TOKEN`, `HUBSPOT_PRIVATE_APP_TOKEN` — legacy HubSpot token fallbacks when `HUBSPOT_SERVICE_KEY` is not set.
+- `HUBSPOT_CONTACT_OWNER_ID` — required HubSpot owner ID for newsletter subscriber contacts and notes.
 - `NEXT_PUBLIC_RECAPTCHA_SITE_KEY_V2` — public Invisible reCAPTCHA v2 site key used by browser forms.
 - `RECAPTCHA_SECRET_KEY_V2` — server-side Invisible reCAPTCHA v2 secret used with Google `siteverify`.
 - `SITE_URL` — optional sitemap generation override; defaults to `https://www.michaelzick.com`.
@@ -148,6 +151,7 @@ CI runs the brief sync check, lint, typecheck, unit tests, production build, and
 | [app/api/contact/route.ts](app/api/contact/route.ts) | Contact email + reCAPTCHA route |
 | [app/api/ngu-coupon/route.ts](app/api/ngu-coupon/route.ts) | NGU coupon email + reCAPTCHA route |
 | [lib/server/contact.ts](lib/server/contact.ts) | Contact normalization, validation, config, email text |
+| [lib/server/hubspot-subscriber.ts](lib/server/hubspot-subscriber.ts) | HubSpot CRM contact upsert and subscriber note sync |
 | [lib/server/ngu-coupon.ts](lib/server/ngu-coupon.ts) | NGU coupon normalization, validation, config, email text |
 | [lib/server/rate-limit.ts](lib/server/rate-limit.ts) | In-memory rate limiting helpers |
 | [lib/blog.ts](lib/blog.ts) | Blog post normalization and filters |
