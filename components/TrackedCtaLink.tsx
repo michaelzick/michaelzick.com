@@ -14,6 +14,7 @@ type TrackedCtaLinkProps = {
   rel?: string;
   section?: string;
   smoothScroll?: boolean;
+  onClick?: () => void;
   children: ReactNode;
 };
 
@@ -54,6 +55,7 @@ export default function TrackedCtaLink({
   rel,
   section = 'cta',
   smoothScroll = false,
+  onClick,
   children,
 }: TrackedCtaLinkProps) {
   const isInternal = href.startsWith('/') && !href.startsWith('//');
@@ -74,6 +76,7 @@ export default function TrackedCtaLink({
       href,
       page_path: window.location.pathname,
     });
+    onClick?.();
 
     const hashTargetId = getHashTargetId(href);
     if (

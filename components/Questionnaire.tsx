@@ -35,6 +35,19 @@ function getOrderedAnswersWithDefaults(answers: Record<string, string>) {
   }, {});
 }
 
+function getQuestionnaireFailureReason(message: string) {
+  const lower = message.toLowerCase();
+  if (lower.includes('too many requests')) return 'rate_limited';
+  if (lower.includes('missing required fields')) return 'missing_required_fields';
+  if (lower.includes('input exceeds') || lower.includes('response exceeds') || lower.includes('too many responses')) {
+    return 'input_validation_failed';
+  }
+  if (lower.includes('system busy') || lower.includes('honeypot')) return 'bot_protection_rejected';
+  if (lower.includes('configuration')) return 'service_configuration_error';
+  if (lower.includes('failed to analyze')) return 'analysis_provider_error';
+  return 'unknown';
+}
+
 export default function Questionnaire() {
   const [stepIndex, setStepIndex] = useState(0);
   const [formData, setFormData] = useState<FormData>({
@@ -57,6 +70,13 @@ export default function Questionnaire() {
   const submitStartedAtRef = useRef<number | null>(null);
 
   const currentStep = STEPS[stepIndex];
+
+  useEffect(() => {
+    trackEvent('questionnaire_page_viewed', {
+      location: 'questionnaire-page',
+      page_path: window.location.pathname,
+    });
+  }, []);
 
   useEffect(() => {
     const storedDuration = window.localStorage.getItem(ANALYSIS_DURATION_STORAGE_KEY);
@@ -126,7 +146,17 @@ export default function Questionnaire() {
   };
 
   const nextStep = () => {
-    if (!isStepValid()) return;
+    if (!isStepValid()) {
+      const failureReason = currentStep.id === 'intake'
+        ? (!consented ? 'consent_missing' : 'required_fields_missing')
+        : 'required_answers_missing';
+      trackEvent('questionnaire_submission_blocked', {
+        step_id: currentStep.id,
+        failure_reason: failureReason,
+        page_path: window.location.pathname,
+      });
+      return;
+    }
 
     if (stepIndex < STEPS.length - 1) {
       setStepIndex(stepIndex + 1);
@@ -170,9 +200,19 @@ export default function Questionnaire() {
       setAnalysisProgress(100);
       setSecondsRemaining(0);
       submissionSucceeded = true;
+      trackEvent('questionnaire_analysis_succeeded', {
+        answer_count: Object.keys(orderedAnswers).length,
+        page_path: window.location.pathname,
+      });
       setAnalysis(data.analysis);
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+      const message = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+      trackEvent('questionnaire_analysis_failed', {
+        failure_reason: getQuestionnaireFailureReason(message),
+        error_message: message,
+        page_path: window.location.pathname,
+      });
+      setError(message);
     } finally {
       if (!submissionSucceeded) {
         setAnalysisProgress(0);

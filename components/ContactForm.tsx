@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { trackEvent } from '../lib/analytics';
 import { loadRecaptchaV2, resetRecaptchaV2Widget } from '../lib/client/recaptcha-v2';
 
 interface FormData {
@@ -19,6 +20,16 @@ const initialFormData: FormData = {
   message: '',
   workbookOptIn: true,
 };
+
+function getContactFailureReason(message: string) {
+  const lower = message.toLowerCase();
+  if (lower.includes('too many requests')) return 'rate_limited';
+  if (lower.includes('captcha')) return 'captcha_failed';
+  if (lower.includes('email service not configured')) return 'service_configuration_error';
+  if (lower.includes('failed to send email')) return 'email_delivery_failed';
+  if (lower.includes('request failed')) return 'request_failed';
+  return 'unknown';
+}
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
@@ -145,11 +156,19 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    trackEvent('contact_form_submit_started', {
+      workbook_opt_in: formData.workbookOptIn,
+      page_path: window.location.pathname,
+    });
     setStatus('submitting');
     setErrorMessage(null);
     setCaptchaError(null);
 
     if (!RECAPTCHA_SITE_KEY) {
+      trackEvent('contact_form_submit_failed', {
+        failure_reason: 'captcha_configuration_missing',
+        page_path: window.location.pathname,
+      });
       setCaptchaError('Contact form is temporarily unavailable. Please try again later.');
       setStatus('idle');
       return;
@@ -168,6 +187,10 @@ export default function ContactForm() {
       }
       setSubmittedEmail(formData.email);
       setSubmittedWorkbook(formData.workbookOptIn);
+      trackEvent('contact_form_submit_succeeded', {
+        workbook_opt_in: formData.workbookOptIn,
+        page_path: window.location.pathname,
+      });
       setStatus('success');
       setFormData(initialFormData);
       setCaptchaError(null);
@@ -175,6 +198,11 @@ export default function ContactForm() {
     } catch (err) {
       console.error(err);
       const message = err instanceof Error ? err.message : 'Request failed';
+      trackEvent('contact_form_submit_failed', {
+        failure_reason: getContactFailureReason(message),
+        error_message: message,
+        page_path: window.location.pathname,
+      });
       resetCaptcha();
       if (message.toLowerCase().includes('captcha')) {
         setCaptchaError(message);
