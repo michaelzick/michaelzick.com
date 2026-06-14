@@ -7,6 +7,7 @@ interface BookingCtaProps {
   location: string;
   className?: string;
   variant?: 'primary' | 'secondary';
+  onClick?: () => void;
 }
 
 const variantClasses = {
@@ -16,7 +17,7 @@ const variantClasses = {
 
 const BOOKING_CTA_LABEL = 'Book a Strategy Call';
 
-export default function BookingCta({ location, className, variant = 'primary' }: BookingCtaProps) {
+export default function BookingCta({ location, className, variant = 'primary', onClick }: BookingCtaProps) {
   return (
     <TrackedCtaLink
       href="https://calendly.com/michaelzick/45min"
@@ -24,6 +25,7 @@ export default function BookingCta({ location, className, variant = 'primary' }:
       location={location}
       label={BOOKING_CTA_LABEL}
       eventName="book_free_session_click"
+      onClick={onClick}
     >
       <span>{BOOKING_CTA_LABEL}</span>
       <OpenInNewWindowIcon className="ml-2 h-4 w-4 shrink-0" aria-hidden="true" />

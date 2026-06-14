@@ -6,6 +6,7 @@ interface QuestionnaireCTAProps {
   location: string;
   className?: string;
   variant?: 'primary' | 'secondary';
+  onClick?: () => void;
 }
 
 const variantClasses = {
@@ -13,7 +14,7 @@ const variantClasses = {
   secondary: 'btn-secondary cta-unified',
 };
 
-export default function QuestionnaireCta({ location, className, variant = 'secondary' }: QuestionnaireCTAProps) {
+export default function QuestionnaireCta({ location, className, variant = 'secondary', onClick }: QuestionnaireCTAProps) {
   return (
     <TrackedCtaLink
       href="/questionnaire"
@@ -22,6 +23,7 @@ export default function QuestionnaireCta({ location, className, variant = 'secon
       label="Take the Assessment"
       eventName="questionnaire_click"
       target="_self"
+      onClick={onClick}
     >
       Take the Assessment
     </TrackedCtaLink>

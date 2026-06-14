@@ -4,6 +4,7 @@ import JsonLd from '../../../components/JsonLd';
 import ScrollToTopButton from '../../../components/blog/ScrollToTopButton';
 import BlogPostBreadcrumbs from '../../../components/blog/BlogPostBreadcrumbs';
 import BlogPostHero from '../../../components/blog/BlogPostHero';
+import BlogPostViewTracker from '../../../components/blog/BlogPostViewTracker';
 import SimilarPostsSection from '../../../components/blog/SimilarPostsSection';
 import {
   getBlogBreadcrumbStructuredData,
@@ -86,6 +87,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <JsonLd data={structuredData} />
       <div className="mx-auto max-w-[1000px]">
         <BlogPostBreadcrumbs />
+        <BlogPostViewTracker slug={post.slug} category={post.category} />
         <BlogPostHero post={post} />
         <div
           className="blog-content mt-10"

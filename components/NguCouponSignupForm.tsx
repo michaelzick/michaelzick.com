@@ -21,6 +21,16 @@ type NguCouponSignupFormProps = {
   onSuccess?: () => void;
 };
 
+function getNguCouponFailureReason(message: string) {
+  const lower = message.toLowerCase();
+  if (lower.includes('too many requests')) return 'rate_limited';
+  if (lower.includes('captcha')) return 'captcha_failed';
+  if (lower.includes('not configured')) return 'service_configuration_error';
+  if (lower.includes('failed to send coupon email')) return 'email_delivery_failed';
+  if (lower.includes('request failed')) return 'request_failed';
+  return 'unknown';
+}
+
 export default function NguCouponSignupForm({
   intro,
   formClassName = 'space-y-5',
@@ -144,6 +154,11 @@ export default function NguCouponSignupForm({
     setErrorMessage(null);
 
     if (!NGU_RECAPTCHA_SITE_KEY) {
+      trackEvent('ngu_coupon_signup_failed', {
+        location: successCtaLocation,
+        failure_reason: 'captcha_configuration_missing',
+        page_path: window.location.pathname,
+      });
       setStatus('error');
       setErrorMessage('Signup is temporarily unavailable. Please try again later.');
       return;
@@ -163,14 +178,25 @@ export default function NguCouponSignupForm({
       }
 
       onSuccess?.();
+      trackEvent('ngu_coupon_signup_succeeded', {
+        location: successCtaLocation,
+        page_path: window.location.pathname,
+      });
       setStatus('success');
       setEmail('');
       setErrorMessage(null);
       discardCaptchaWidget();
     } catch (error) {
       console.error(error);
+      const message = error instanceof Error ? error.message : 'Request failed';
+      trackEvent('ngu_coupon_signup_failed', {
+        location: successCtaLocation,
+        failure_reason: getNguCouponFailureReason(message),
+        error_message: message,
+        page_path: window.location.pathname,
+      });
       setStatus('error');
-      setErrorMessage(error instanceof Error ? error.message : 'Request failed');
+      setErrorMessage(message);
       resetCaptcha();
     }
   };

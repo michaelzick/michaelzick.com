@@ -1,7 +1,8 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { BlogPost } from '../../lib/blog';
+import { trackEvent } from '../../lib/analytics';
 import BlogFilters from './BlogFilters';
 import BlogPostCard from './BlogPostCard';
 import { FadeInSection } from '../FadeInSection';
@@ -22,6 +23,9 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
   const [selectedAuthor, setSelectedAuthor] = useState<string>('all');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const hasTrackedFilterChange = useRef(false);
+  const lastNoResultsSignature = useRef<string | null>(null);
+  const hasTrackedEmptyState = useRef(false);
 
   const filteredPosts = useMemo(() => {
     return posts.filter((post) => {
@@ -53,6 +57,61 @@ export default function BlogIndexClient({ posts, filters }: BlogIndexClientProps
     filters.categories.length > 0 ||
     filters.tags.length > 0 ||
     filters.authors.length > 0;
+
+  useEffect(() => {
+    trackEvent('blog_index_viewed', {
+      posts_count: posts.length,
+      page_path: window.location.pathname,
+    });
+  }, [posts.length]);
+
+  useEffect(() => {
+    if (!hasTrackedFilterChange.current) {
+      hasTrackedFilterChange.current = true;
+      return;
+    }
+
+    trackEvent('blog_filters_updated', {
+      selected_category: selectedCategory,
+      selected_author: selectedAuthor,
+      selected_tag_count: selectedTags.length,
+      selected_tags: selectedTags,
+      result_count: filteredPosts.length,
+      page_path: window.location.pathname,
+    });
+  }, [selectedCategory, selectedAuthor, selectedTags, filteredPosts.length]);
+
+  useEffect(() => {
+    if (posts.length === 0) {
+      if (hasTrackedEmptyState.current) return;
+      hasTrackedEmptyState.current = true;
+      trackEvent('blog_index_empty_state_viewed', {
+        page_path: window.location.pathname,
+      });
+      return;
+    }
+
+    hasTrackedEmptyState.current = false;
+
+    if (filteredPosts.length > 0) {
+      lastNoResultsSignature.current = null;
+      return;
+    }
+
+    const signature = `${selectedCategory}|${selectedAuthor}|${selectedTags.slice().sort().join(',')}`;
+    if (signature === lastNoResultsSignature.current) {
+      return;
+    }
+
+    lastNoResultsSignature.current = signature;
+    trackEvent('blog_filter_no_results_viewed', {
+      selected_category: selectedCategory,
+      selected_author: selectedAuthor,
+      selected_tag_count: selectedTags.length,
+      selected_tags: selectedTags,
+      page_path: window.location.pathname,
+    });
+  }, [posts.length, filteredPosts.length, selectedCategory, selectedAuthor, selectedTags]);
 
   return (
     <section className="page-top-offset bg-light-grey px-6 pb-16 text-default-grey md:px-8 md:pb-20">

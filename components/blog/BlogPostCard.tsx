@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import TrackedLink from '../TrackedLink';
+import { trackEvent } from '../../lib/analytics';
 import { formatPostDate, type BlogPost } from '../../lib/blog';
 
 interface BlogPostCardProps {
@@ -18,6 +19,13 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
       location="blog-index"
       section="post-card"
       label={post.title}
+      onClick={() => {
+        trackEvent('blog_post_opened_from_index', {
+          post_slug: post.slug,
+          post_category: post.category,
+          page_path: window.location.pathname,
+        });
+      }}
     >
       <article className="overflow-hidden rounded-lg bg-white shadow-md transition duration-300 group-hover:-translate-y-1 group-hover:shadow-lg">
         <div className="aspect-[16/9] overflow-hidden">

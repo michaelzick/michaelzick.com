@@ -1,5 +1,9 @@
+'use client';
+
 import Image from 'next/image';
+import { useEffect, useRef } from 'react';
 import type { BlogPost } from '../../lib/blog';
+import { trackEvent } from '../../lib/analytics';
 import BookingCta from '../BookingCta';
 import QuestionnaireCta from '../QuestionnaireCta';
 import TrackedLink from '../TrackedLink';
@@ -9,6 +13,29 @@ type SimilarPostsSectionProps = {
 };
 
 export default function SimilarPostsSection({ posts }: SimilarPostsSectionProps) {
+  const hasTrackedEmptyState = useRef(false);
+
+  useEffect(() => {
+    if (posts.length > 0) {
+      hasTrackedEmptyState.current = false;
+      return;
+    }
+
+    if (hasTrackedEmptyState.current) return;
+    hasTrackedEmptyState.current = true;
+    trackEvent('blog_similar_posts_empty_state_viewed', {
+      page_path: window.location.pathname,
+    });
+  }, [posts.length]);
+
+  const trackRecirculationClick = (destination: string, postSlug?: string) => {
+    trackEvent('blog_post_recirculation_clicked', {
+      destination,
+      ...(postSlug ? { post_slug: postSlug } : {}),
+      page_path: window.location.pathname,
+    });
+  };
+
   return (
     <div className="mt-10 border-t border-dark-blue/10 pt-8">
       {posts.length > 0 ? (
@@ -25,6 +52,7 @@ export default function SimilarPostsSection({ posts }: SimilarPostsSectionProps)
                 location="blog-post"
                 section="similar-posts"
                 label={post.title}
+                onClick={() => trackRecirculationClick('similar_post', post.slug)}
               >
                 <div className="aspect-video overflow-hidden rounded-lg">
                   <Image
@@ -53,6 +81,7 @@ export default function SimilarPostsSection({ posts }: SimilarPostsSectionProps)
               location="blog-post"
               section="similar-posts"
               label="View All Posts"
+              onClick={() => trackRecirculationClick('blog_index')}
             >
               View All Posts
               <span className="transition-transform group-hover:translate-x-1">→</span>
@@ -70,6 +99,7 @@ export default function SimilarPostsSection({ posts }: SimilarPostsSectionProps)
             location="blog-post"
             section="similar-posts"
             label="View All Posts"
+            onClick={() => trackRecirculationClick('blog_index')}
           >
             View All Posts
             <span className="transition-transform group-hover:translate-x-1">→</span>
@@ -77,10 +107,14 @@ export default function SimilarPostsSection({ posts }: SimilarPostsSectionProps)
         </div>
       )}
       <div className="mt-8 flex flex-col items-start gap-4 md:flex-row md:items-center">
-        <BookingCta location="blog-post-bottom" />
+        <BookingCta
+          location="blog-post-bottom"
+          onClick={() => trackRecirculationClick('booking_cta')}
+        />
         <QuestionnaireCta
           location="blog-post-bottom"
           className="btn-secondary cta-unified btn-secondary-dark"
+          onClick={() => trackRecirculationClick('questionnaire_cta')}
         />
       </div>
     </div>

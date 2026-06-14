@@ -13,6 +13,7 @@ type TrackedLinkProps = {
   className?: string;
   target?: string;
   rel?: string;
+  onClick?: () => void;
   children: ReactNode;
 };
 
@@ -25,6 +26,7 @@ export default function TrackedLink({
   className,
   target,
   rel,
+  onClick,
   children,
 }: TrackedLinkProps) {
   const isInternal = href.startsWith('/') && !href.startsWith('//');
@@ -39,6 +41,7 @@ export default function TrackedLink({
       variant,
       pagePath: window.location.pathname,
     });
+    onClick?.();
   };
 
   if (isInternal && (!target || target === '_self')) {
