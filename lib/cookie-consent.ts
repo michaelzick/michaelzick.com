@@ -1,7 +1,7 @@
 // The consent bootstrap script in components/SiteAnalyticsScripts.tsx
 // duplicates CONSENT_KEY, CONSENT_VERSION, and the EU timezone heuristic so
-// it can gate Mixpanel before any bundle loads. Keep the literals there in
-// sync with these constants.
+// it can gate Mixpanel and GA4 before any bundle loads. Keep the literals
+// there in sync with these constants.
 export const CONSENT_KEY = 'cookie-consent';
 export const CONSENT_VERSION = 1;
 
@@ -16,6 +16,9 @@ type WindowWithConsent = Window & {
   mixpanel?: {
     opt_out_tracking?: () => void;
   };
+  // Defined by the consent bootstrap script, not by gtag.js, so it is
+  // available even when the Google tag is blocked or still loading.
+  gtag?: (...args: unknown[]) => void;
 };
 
 export const OPEN_COOKIE_PREFERENCES_EVENT = 'open-cookie-preferences';
@@ -102,7 +105,7 @@ export function subscribeToConsentChange(listener: ConsentChangeListener): () =>
   };
 }
 
-// Opt-out model outside GDPR territories: Mixpanel runs by default until the
+// Opt-out model outside GDPR territories: analytics runs by default until the
 // visitor opts out. EU/EEA/UK visitors (timezone heuristic) get an opt-in
 // model instead — nothing runs until they accept.
 export function hasAnalyticsConsent(): boolean {
@@ -115,9 +118,27 @@ export function hasAnalyticsConsent(): boolean {
 
 // Mixpanel can rewrite its cookies and mp_* localStorage state between
 // revocation and the page unload, so the banner also re-sweeps on load
-// whenever consent is denied. AMP_/amp_ stay in the sweep for migration
-// hygiene: visitors from the Amplitude era still carry those cookies.
-const TRACKER_PREFIX = /^(AMP_|amp_|mp_)/;
+// whenever consent is denied. _ga/_gid/_gat cover the Google tag, which keeps
+// its cookies after a consent update to denied. AMP_/amp_ stay in the sweep
+// for migration hygiene: visitors from the Amplitude era still carry those
+// cookies.
+const TRACKER_PREFIX = /^(AMP_|amp_|mp_|_ga|_gid|_gat)/;
+
+// A cookie can only be deleted with the domain it was set on, and the Google
+// tag defaults to the registrable domain (.michaelzick.com) rather than the
+// current host (www.michaelzick.com). Walk every parent domain so both are
+// covered; a domain the browser rejects is simply ignored.
+export function analyticsCookieDomains(hostname: string): string[] {
+  if (!hostname || /^[\d.]+$/.test(hostname)) return [];
+
+  const labels = hostname.split('.').filter(Boolean);
+  const domains: string[] = [];
+  for (let i = 0; i <= Math.max(0, labels.length - 2); i += 1) {
+    const domain = labels.slice(i).join('.');
+    domains.push(domain, `.${domain}`);
+  }
+  return domains;
+}
 
 export function expireAnalyticsCookies() {
   try {
@@ -126,11 +147,15 @@ export function expireAnalyticsCookies() {
       .map((part) => part.split('=')[0].trim())
       .filter((name) => TRACKER_PREFIX.test(name));
 
-    const hostname = window.location.hostname;
-    const domains = ['', `; domain=${hostname}`, `; domain=.${hostname}`];
+    const attributes = [
+      '',
+      ...analyticsCookieDomains(window.location.hostname).map(
+        (domain) => `; domain=${domain}`,
+      ),
+    ];
     for (const name of names) {
-      for (const domain of domains) {
-        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/${domain}`;
+      for (const attribute of attributes) {
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/${attribute}`;
       }
     }
 
@@ -171,6 +196,12 @@ export function setConsent(analytics: boolean): ConsentState {
   consentChangeListeners.forEach((listener) => listener());
 
   const w = window as WindowWithConsent;
+  // GA4 stays loaded either way; Consent Mode decides whether it may store
+  // identifiers. The update applies to the current page without a reload.
+  w.gtag?.('consent', 'update', {
+    analytics_storage: analytics ? 'granted' : 'denied',
+  });
+
   if (analytics) {
     w.__loadMixpanel?.();
   } else if (wasAllowed) {

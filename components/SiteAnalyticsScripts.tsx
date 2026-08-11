@@ -1,23 +1,33 @@
 import Script from 'next/script';
 
+const GA_MEASUREMENT_ID = 'G-QK4WD4TRZV';
+
 export default function SiteAnalyticsScripts() {
   return (
     <>
-      {/* Consent-gated Mixpanel bootstrap. Mixpanel loads by default (opt-out)
-          for visitors outside the EU/EEA/UK, and only after opt-in for
-          visitors there (timezone heuristic). The 'cookie-consent'
+      {/* Consent bootstrap for both trackers. Analytics runs by default
+          (opt-out) for visitors outside the EU/EEA/UK, and only after opt-in
+          for visitors there (timezone heuristic). The 'cookie-consent'
           key/version literals and the EU timezone check are duplicated in
           lib/cookie-consent.ts — keep them in sync.
 
-          __loadMixpanel runs the official embed snippet: it defines a
-          queueing stub at window.mixpanel synchronously, then async-loads
-          the library, so init/track calls never drop — and window.mixpanel
-          never exists pre-consent. The library URL is pinned to https so
-          the snippet's protocol-relative default can't resolve to http on
-          localhost. Regex backslashes below are doubled (\\/, \\.) because
-          this lives in a template literal — single \/ would emit a corrupted
-          regex into the page. */}
-      <Script id="mixpanel-init" strategy="afterInteractive">
+          GA4 is gated with Google Consent Mode v2: the consent default is
+          pushed to dataLayer before the config command, so gtag.js never
+          writes _ga cookies until analytics_storage is granted. Denied is a
+          real state rather than a missing tag — GA still receives cookieless
+          pings, but no identifiers are stored. lib/cookie-consent.ts sends the
+          matching 'consent' 'update' when the visitor changes their choice.
+
+          Mixpanel has no equivalent pre-consent mode, so it is gated by not
+          loading at all. __loadMixpanel runs the official embed snippet: it
+          defines a queueing stub at window.mixpanel synchronously, then
+          async-loads the library, so init/track calls never drop — and
+          window.mixpanel never exists pre-consent. The library URL is pinned
+          to https so the snippet's protocol-relative default can't resolve to
+          http on localhost. Regex backslashes below are doubled (\\/, \\.)
+          because this lives in a template literal — single \/ would emit a
+          corrupted regex into the page. */}
+      <Script id="analytics-consent-init" strategy="afterInteractive">
         {`
           (function () {
             var KEY = 'cookie-consent';
@@ -49,6 +59,27 @@ export default function SiteAnalyticsScripts() {
               } catch (e) { return false; }
             }
 
+            // Opt-out model outside the EU/EEA/UK: analytics runs by default
+            // unless the visitor opted out. EU/EEA/UK visitors (timezone
+            // heuristic) must opt in first.
+            var stored = readConsent();
+            var allowed = stored ? stored.analytics === true : !isEuTimeZone();
+
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+            var gtag = window.gtag;
+
+            // The default must be queued before the config command; the ad_*
+            // signals stay denied because this site runs no advertising.
+            gtag('consent', 'default', {
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+              analytics_storage: allowed ? 'granted' : 'denied'
+            });
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+
             var loaded = false;
             window.__loadMixpanel = function () {
               if (loaded) return;
@@ -76,11 +107,6 @@ export default function SiteAnalyticsScripts() {
             });
             };
 
-            // Opt-out model outside the EU/EEA/UK: Mixpanel runs by default
-            // unless the visitor opted out. EU/EEA/UK visitors (timezone
-            // heuristic) must opt in first.
-            var stored = readConsent();
-            var allowed = stored ? stored.analytics === true : !isEuTimeZone();
             if (allowed) {
               window.__loadMixpanel();
             }
@@ -89,17 +115,8 @@ export default function SiteAnalyticsScripts() {
       </Script>
       <Script
         strategy="afterInteractive"
-        src="https://www.googletagmanager.com/gtag/js?id=G-QK4WD4TRZV"
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
       />
-      <Script id="gtag-init" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'G-QK4WD4TRZV');
-        `}
-      </Script>
     </>
   );
 }

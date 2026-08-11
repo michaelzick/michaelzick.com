@@ -24,7 +24,7 @@ Primary flows:
 - **Server routes:** Next route handlers under `app/api/*`, using Node runtime where email/OpenAI APIs are needed.
 - **AI, email, and CRM:** OpenAI Node SDK for questionnaire analysis; Nodemailer with Brevo SMTP for notifications; HubSpot CRM API for newsletter subscriber sync.
 - **Bot protection:** Classic Invisible reCAPTCHA v2 via `NEXT_PUBLIC_RECAPTCHA_SITE_KEY_V2` and `RECAPTCHA_SECRET_KEY_V2`.
-- **Analytics:** GA4 and Mixpanel scripts in `components/SiteAnalyticsScripts.tsx` (Mixpanel autocapture, session replay, and heatmaps; page text visible, inputs masked); tracked events in `lib/analytics.ts`. Mixpanel is consent-gated by a cookie banner: opt-out by default outside the EU/EEA/UK, opt-in within (timezone heuristic); GA4 is not gated.
+- **Analytics:** GA4 and Mixpanel scripts in `components/SiteAnalyticsScripts.tsx` (Mixpanel autocapture, session replay, and heatmaps; page text visible, inputs masked); tracked events in `lib/analytics.ts`. Both are consent-gated by a cookie banner: opt-out by default outside the EU/EEA/UK, opt-in within (timezone heuristic). Mixpanel is gated by not loading pre-consent; GA4 is gated with Google Consent Mode v2 (`analytics_storage`, with the ad_* signals always denied).
 - **Testing:** Node's built-in test runner for compiled unit tests, TypeScript test build via `tsconfig.test.json`, and Playwright for E2E/mobile UI checks.
 - **Tooling:** npm with `package-lock.json`, Node 24 LTS, ESLint flat config via `eslint-config-next/core-web-vitals`.
 
@@ -75,7 +75,7 @@ michaelzick.com/
 - `components/blog/` contains blog filters, cards, hero, breadcrumbs, similar posts, and scroll-to-top behavior.
 - `components/ContactForm.tsx` and `components/NguCouponSignupForm.tsx` load and execute Invisible reCAPTCHA v2 before posting to API routes.
 - `components/TrackedLink.tsx` and `components/TrackedCtaLink.tsx` centralize CTA/link tracking.
-- `components/CookieConsentBanner.tsx` renders the analytics consent banner (reopenable from the footer); `lib/cookie-consent.ts` stores the choice and gates Mixpanel loading and opt-out.
+- `components/CookieConsentBanner.tsx` renders the analytics consent banner (reopenable from the footer); `lib/cookie-consent.ts` stores the choice, gates Mixpanel loading/opt-out, and sends the GA Consent Mode update.
 - `components/hooks/` contains UI hooks for scroll tracking, fade-in behavior, and title visibility.
 
 ### 4.4 Content, SEO, and analytics
@@ -84,7 +84,7 @@ michaelzick.com/
 - Site-wide brand/SEO constants live in `lib/site.ts`.
 - Structured data helpers live in `lib/site-structured-data.ts` and `lib/blog-structured-data.ts`.
 - `scripts/generate-sitemap.js` writes `public/sitemap.xml`; use `SITE_URL` to override the production base URL.
-- Analytics scripts are hardcoded in `components/SiteAnalyticsScripts.tsx`; event dispatch lives in `lib/analytics.ts`. The Mixpanel bootstrap there duplicates the consent key/version and EU timezone heuristic from `lib/cookie-consent.ts` — keep them in sync.
+- Analytics scripts are hardcoded in `components/SiteAnalyticsScripts.tsx`; event dispatch lives in `lib/analytics.ts`. The consent bootstrap there duplicates the consent key/version and EU timezone heuristic from `lib/cookie-consent.ts` — keep them in sync. It must push the GA `consent` `default` command before `config`.
 
 ## 5. Environment
 
@@ -159,7 +159,7 @@ CI runs the brief sync check, lint, typecheck, unit tests, production build, and
 | [lib/blog.ts](lib/blog.ts) | Blog post normalization and filters |
 | [lib/site.ts](lib/site.ts) | Site and brand constants |
 | [lib/analytics.ts](lib/analytics.ts) | GA4/Mixpanel event helpers |
-| [lib/cookie-consent.ts](lib/cookie-consent.ts) | Analytics consent storage, EU heuristic, Mixpanel gating |
+| [lib/cookie-consent.ts](lib/cookie-consent.ts) | Analytics consent storage, EU heuristic, Mixpanel and GA gating |
 | [components/CookieConsentBanner.tsx](components/CookieConsentBanner.tsx) | Cookie consent banner UI |
 | [scripts/generate-sitemap.js](scripts/generate-sitemap.js) | Static sitemap generation |
 | [playwright.config.ts](playwright.config.ts) | Playwright web server and reporter configuration |

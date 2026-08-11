@@ -111,12 +111,14 @@ export default function PrivacyPolicy() {
               </li>
             </ul>
             <p className={body}>
-              Mixpanel is governed by our cookie consent banner: it runs by default for visitors
-              outside the EU/EEA/UK and you can opt out anytime, while visitors in those regions
-              (detected by device timezone) are asked to opt in before it loads. Opting out stops
-              Mixpanel collection and removes its cookies and local storage on a best-effort
-              basis. You can change your choice anytime with the Cookie Preferences link in the
-              footer, or by{' '}
+              Both are governed by our cookie consent banner: analytics runs by default for
+              visitors outside the EU/EEA/UK and you can opt out anytime, while visitors in those
+              regions (detected by device timezone) are asked to opt in first. Opting out stops
+              Mixpanel from loading at all, switches Google Analytics to Google&apos;s
+              &ldquo;denied&rdquo; consent mode so it stores no cookies or identifiers, and removes
+              analytics cookies and local storage on a best-effort basis. We never enable Google&apos;s
+              advertising signals. You can change your choice anytime with the Cookie Preferences
+              link in the footer, or by{' '}
               <OpenCookiePreferencesButton className={inlineLink}>
                 opening Cookie Preferences right here
               </OpenCookiePreferencesButton>
