@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import {
   OPEN_COOKIE_PREFERENCES_EVENT,
@@ -58,7 +59,14 @@ export default function CookieConsentBanner() {
         <p className="text-sm leading-snug text-white/90">
           This site uses analytics cookies, including session replay, to understand
           how it&apos;s used and make coaching content better. Your information is
-          never sold, and you can change your choice anytime from the footer.
+          never sold, and you can change your choice anytime from the footer. See our{' '}
+          <Link
+            href="/privacy-policy"
+            className="underline decoration-white/70 underline-offset-4 transition hover:text-cta-amber hover:decoration-cta-amber"
+          >
+            Privacy Policy
+          </Link>{' '}
+          for details.
         </p>
         <div className="flex shrink-0 flex-wrap items-center gap-2">
           <button

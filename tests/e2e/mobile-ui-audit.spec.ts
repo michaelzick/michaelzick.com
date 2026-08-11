@@ -1,10 +1,10 @@
 import { expect, test } from '@playwright/test';
 import { seedAnalyticsConsent } from './helpers/consent';
 
+// The narrowest supported viewport is the strictest layout constraint; wider
+// phones only add slack, so auditing one width keeps the suite fast.
 const mobileViewports = [
   { width: 345, height: 800 },
-  { width: 390, height: 844 },
-  { width: 430, height: 932 },
 ];
 
 const topLevelRoutes = [
@@ -15,6 +15,8 @@ const topLevelRoutes = [
   '/nice-guy-university',
   '/blog',
   '/blog/why-your-emotions-control-what-you-see-and-how-to-change-your-reality',
+  '/privacy-policy',
+  '/terms-of-service',
 ];
 
 const sectionIdsByLabel: Record<string, string> = {

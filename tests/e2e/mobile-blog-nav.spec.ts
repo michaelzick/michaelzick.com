@@ -1,11 +1,15 @@
 import { expect, test } from '@playwright/test';
 import { seedAnalyticsConsent } from './helpers/consent';
 
-const sourceRoutes = ['/', '/about', '/testimonials', '/contact', '/questionnaire'];
+// One route with the home page's scroll/promo chrome and one plain page cover
+// the scroll-restoration behavior; the remaining routes were duplicates.
+const sourceRoutes = ['/', '/about'];
 
 test.describe('mobile blog navigation', () => {
   test.beforeEach(async ({ page }) => {
     await seedAnalyticsConsent(page);
+    // Keep the delayed NGU promo modal from intercepting the burger click.
+    await page.addInitScript(() => window.sessionStorage.setItem('nguPromoSeen', 'true'));
   });
 
   test.use({

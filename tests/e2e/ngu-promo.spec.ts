@@ -63,12 +63,14 @@ test.describe('NGU promo', () => {
 
   test('shows delayed modal once per browser session and persists close state', async ({ page }) => {
     await mockInvisibleRecaptcha(page);
+    // Fake the clock so the promo's 8s delay costs no wall time.
+    await page.clock.install();
     await page.goto('/');
 
     await expect(page.getByText('Get 10% off courses at the new Nice Guy University!')).toBeVisible();
     await expect(page.getByRole('dialog', { name: /get 10% off your first course/i })).toBeHidden();
 
-    await page.waitForTimeout(8500);
+    await page.clock.fastForward(8500);
     await expect(page.getByRole('dialog', { name: /get 10% off your first course/i })).toBeVisible();
     await expect(page.getByText(/this site is protected by recaptcha/i)).toBeVisible();
     await expect(page.getByTestId('ngu-recaptcha-widget')).toHaveAttribute('data-mock-size', 'invisible');
@@ -79,7 +81,7 @@ test.describe('NGU promo', () => {
     await expect(page.getByRole('dialog', { name: /get 10% off your first course/i })).toBeHidden();
 
     await page.reload();
-    await page.waitForTimeout(8500);
+    await page.clock.fastForward(8500);
     await expect(page.getByRole('dialog', { name: /get 10% off your first course/i })).toBeHidden();
   });
 

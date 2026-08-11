@@ -102,9 +102,17 @@ export default function Footer() {
               ZICKONEZERO Creative
             </a>
           </p>
-          <button type="button" className="footer-link self-start" onClick={openCookiePreferences}>
-            Cookie Preferences
-          </button>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <Link href="/privacy-policy" className="footer-link" onClick={handleFooterClick('Privacy Policy', '/privacy-policy', 'legal')}>
+              Privacy Policy
+            </Link>
+            <Link href="/terms-of-service" className="footer-link" onClick={handleFooterClick('Terms of Service', '/terms-of-service', 'legal')}>
+              Terms of Service
+            </Link>
+            <button type="button" className="footer-link" onClick={openCookiePreferences}>
+              Cookie Preferences
+            </button>
+          </div>
           <p className="md:text-right">&copy; {new Date().getFullYear()} Michael Zick Coaching</p>
         </div>
       </div>

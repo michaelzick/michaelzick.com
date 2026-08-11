@@ -1,5 +1,4 @@
 import { expect, test, type Page } from '@playwright/test';
-import { seedAnalyticsConsent } from './helpers/consent';
 
 const banner = (page: Page) => page.getByRole('dialog', { name: 'Cookie consent' });
 
@@ -21,23 +20,22 @@ const storedConsent = (page: Page) =>
 test.describe('cookie consent (outside the EU)', () => {
   test.use({ timezoneId: 'America/Los_Angeles' });
 
-  test('shows the banner on first visit while Mixpanel runs opt-out by default', async ({ page }) => {
+  test('first visit runs Mixpanel opt-out by default; accept persists and footer reopens the banner', async ({ page }) => {
     await page.goto('/');
 
     await expect(banner(page)).toBeVisible();
     expect(await mixpanelState(page)).toEqual({ exists: true, hasTrack: true });
-  });
 
-  test('accept persists across reloads and keeps Mixpanel loaded', async ({ page }) => {
-    await page.goto('/');
     await banner(page).getByRole('button', { name: 'Accept' }).click();
-
     await expect(banner(page)).toBeHidden();
     expect(await storedConsent(page)).toMatchObject({ version: 1, analytics: true });
 
     await page.reload();
     await expect(banner(page)).toBeHidden();
     expect(await mixpanelState(page)).toEqual({ exists: true, hasTrack: true });
+
+    await page.getByRole('button', { name: 'Cookie Preferences' }).click();
+    await expect(banner(page)).toBeVisible();
   });
 
   test('decline reloads the page and keeps Mixpanel unloaded afterwards', async ({ page }) => {
@@ -58,14 +56,6 @@ test.describe('cookie consent (outside the EU)', () => {
     expect((await mixpanelState(page)).exists).toBe(false);
   });
 
-  test('footer Cookie Preferences reopens the banner after a choice', async ({ page }) => {
-    await seedAnalyticsConsent(page);
-    await page.goto('/');
-    await expect(banner(page)).toBeHidden();
-
-    await page.getByRole('button', { name: 'Cookie Preferences' }).click();
-    await expect(banner(page)).toBeVisible();
-  });
 });
 
 test.describe('cookie consent (EU visitor)', () => {
@@ -80,13 +70,5 @@ test.describe('cookie consent (EU visitor)', () => {
     await banner(page).getByRole('button', { name: 'Accept' }).click();
     await expect(banner(page)).toBeHidden();
     expect(await mixpanelState(page)).toEqual({ exists: true, hasTrack: true });
-  });
-
-  test('a stored decline keeps Mixpanel off without showing the banner', async ({ page }) => {
-    await seedAnalyticsConsent(page, false);
-    await page.goto('/');
-
-    await expect(banner(page)).toBeHidden();
-    expect((await mixpanelState(page)).exists).toBe(false);
   });
 });

@@ -61,28 +61,6 @@ test.describe('Nice Guy University landing page', () => {
     await seedAnalyticsConsent(page);
   });
 
-  test('desktop Apps menu and footer no longer include Nice Guy University', async ({ page }) => {
-    await mockInvisibleRecaptcha(page);
-    await page.addInitScript(() => window.sessionStorage.setItem('nguPromoSeen', 'true'));
-    await page.setViewportSize({ width: 1200, height: 900 });
-    await page.goto('/');
-
-    await page.getByRole('button', { name: 'Apps' }).hover();
-
-    const menu = page.getByRole('menu', { name: 'Apps' });
-    await expect(menu).toHaveClass(/opacity-100/);
-
-    const menuItems = await menu.locator('[role="menuitem"]').evaluateAll((items) => (
-      items.map((item) => item.textContent?.replace(/\s+/g, ' ').trim() ?? '')
-    ));
-    expect(menuItems).not.toContain('Nice Guy University');
-    await expect(menu.getByRole('menuitem', { name: 'Nice Guy University' })).toHaveCount(0);
-
-    const footer = page.getByRole('contentinfo');
-    await expect(footer.getByRole('link', { name: 'Nice Guy University' })).toHaveCount(0);
-    await expect(footer.getByRole('link', { name: 'Book a Strategy Call' })).toHaveCount(1);
-  });
-
   test('mobile nav keeps the Nice Guy University CTA and closes after navigation', async ({ page }) => {
     await mockInvisibleRecaptcha(page);
     await page.addInitScript(() => window.sessionStorage.setItem('nguPromoSeen', 'true'));
@@ -93,8 +71,10 @@ test.describe('Nice Guy University landing page', () => {
     const mobileNav = page.locator('#mobile-nav');
     await expect(mobileNav).toHaveAttribute('aria-hidden', 'false');
 
-    await expect(mobileNav.getByRole('link', { name: 'Nice Guy University' })).toHaveCount(1);
-    await mobileNav.getByRole('link', { name: 'Nice Guy University' }).click();
+    const mobileCta = mobileNav.getByRole('link', { name: 'Nice Guy University' });
+    await expect(mobileCta).toHaveCount(1);
+    await expect(mobileCta).toHaveAttribute('href', '/nice-guy-university');
+    await mobileCta.click();
     await page.waitForURL('**/nice-guy-university');
     await expect(page.getByRole('heading', { name: 'Nice Guy University', level: 1 })).toBeVisible();
     await expect(mobileNav).toHaveAttribute('aria-hidden', 'true');
@@ -106,6 +86,15 @@ test.describe('Nice Guy University landing page', () => {
     await page.setViewportSize({ width: 1200, height: 900 });
     await page.goto('/');
     const events = await installAnalyticsSpy(page);
+
+    await page.getByRole('button', { name: 'Apps' }).hover();
+    const menu = page.getByRole('menu', { name: 'Apps' });
+    await expect(menu).toHaveClass(/opacity-100/);
+    await expect(menu.getByRole('menuitem', { name: 'Nice Guy University' })).toHaveCount(0);
+
+    const footer = page.getByRole('contentinfo');
+    await expect(footer.getByRole('link', { name: 'Nice Guy University' })).toHaveCount(0);
+    await expect(footer.getByRole('link', { name: 'Book a Strategy Call' })).toHaveCount(1);
 
     const headerCta = page.locator('header').getByRole('link', { name: 'Nice Guy University' });
     await expect(headerCta).toHaveAttribute('href', '/nice-guy-university');
@@ -141,25 +130,6 @@ test.describe('Nice Guy University landing page', () => {
         href: '/nice-guy-university',
       }),
     }));
-  });
-
-  test('mobile header CTA links to Nice Guy University and closes after navigation', async ({ page }) => {
-    await mockInvisibleRecaptcha(page);
-    await page.addInitScript(() => window.sessionStorage.setItem('nguPromoSeen', 'true'));
-    await page.setViewportSize({ width: 345, height: 800 });
-    await page.goto('/');
-
-    await page.getByRole('button', { name: 'Toggle menu' }).click();
-    const mobileNav = page.locator('#mobile-nav');
-    await expect(mobileNav).toHaveAttribute('aria-hidden', 'false');
-
-    const mobileCta = mobileNav.getByRole('link', { name: 'Nice Guy University' }).last();
-    await expect(mobileCta).toHaveAttribute('href', '/nice-guy-university');
-
-    await mobileCta.click();
-    await page.waitForURL('**/nice-guy-university');
-    await expect(page.getByRole('heading', { name: 'Nice Guy University', level: 1 })).toBeVisible();
-    await expect(mobileNav).toHaveAttribute('aria-hidden', 'true');
   });
 
   test('landing page renders CTAs, coupon signup, and mobile layout without horizontal overflow', async ({ page }) => {
@@ -282,6 +252,11 @@ test.describe('Nice Guy University landing page', () => {
   test('NGU page CTAs track GA4 and Mixpanel events', async ({ page }) => {
     await mockInvisibleRecaptcha(page);
     await page.addInitScript(() => window.sessionStorage.setItem('nguPromoSeen', 'true'));
+    // Stub the external NGU site so the popup never loads it for real.
+    await page.context().route('https://www.niceguyuniversity.com/**', (route) => route.fulfill({
+      contentType: 'text/html',
+      body: '<!doctype html><title>stub</title>',
+    }));
     await page.route('**/api/ngu-coupon', async (route) => {
       await route.fulfill({
         contentType: 'application/json',

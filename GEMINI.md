@@ -53,6 +53,7 @@ michaelzick.com/
 - `app/layout.tsx` defines global metadata, JSON-LD, analytics scripts, nav, NGU promo, footer, and Open Sans.
 - `app/page.tsx` renders the home page through `components/HomePageContent.tsx`.
 - `app/about/page.tsx`, `app/testimonials/page.tsx`, and `app/contact/page.tsx` are static marketing/conversion pages.
+- `app/privacy-policy/page.tsx` and `app/terms-of-service/page.tsx` are static legal pages; the privacy policy documents the analytics/consent model and must stay accurate when analytics or form integrations change.
 - `app/contact/ContactContent.tsx` provides the contact page client experience.
 - `app/questionnaire/page.tsx` renders the questionnaire flow.
 - `app/nice-guy-university/page.tsx` renders the NGU promotional page and outbound CTAs.
