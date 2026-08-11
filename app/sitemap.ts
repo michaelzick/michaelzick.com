@@ -20,6 +20,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/testimonials',
     '/questionnaire',
     '/nice-guy-university',
+    '/privacy-policy',
+    '/terms-of-service',
   ].map((route) => ({
     url: `${siteConfig.url}${route}`,
     lastModified: new Date(),

@@ -1,8 +1,7 @@
 type WindowWithAnalytics = Window & {
   gtag?: (...args: unknown[]) => void;
-  amplitude?: {
+  mixpanel?: {
     track?: (name: string, props?: object) => void;
-    logEvent?: (name: string, props?: object) => void;
   };
 };
 
@@ -35,10 +34,8 @@ export function trackLinkClick({ location, label, href, section, variant, pagePa
   if (typeof w.gtag === 'function') {
     w.gtag('event', 'link_click', { ...payload, transport_type: 'beacon' });
   }
-  if (w.amplitude?.track) {
-    w.amplitude.track('link_click', payload);
-  } else if (w.amplitude?.logEvent) {
-    w.amplitude.logEvent('link_click', payload);
+  if (w.mixpanel?.track) {
+    w.mixpanel.track('link_click', payload);
   }
 }
 
@@ -49,9 +46,7 @@ export function trackEvent(name: string, payload: AnalyticsEventPayload = {}) {
   if (typeof w.gtag === 'function') {
     w.gtag('event', name, { ...payload, transport_type: 'beacon' });
   }
-  if (w.amplitude?.track) {
-    w.amplitude.track(name, payload);
-  } else if (w.amplitude?.logEvent) {
-    w.amplitude.logEvent(name, payload);
+  if (w.mixpanel?.track) {
+    w.mixpanel.track(name, payload);
   }
 }

@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import { seedAnalyticsConsent } from './helpers/consent';
 import { mockInvisibleRecaptcha } from './helpers/recaptcha';
 
 async function installAnalyticsSpy(page: Page) {
@@ -12,7 +13,7 @@ async function installAnalyticsSpy(page: Page) {
     const win = window as typeof window & {
       __recordAnalyticsEvent: (event: Record<string, unknown>) => void;
       gtag: (...args: unknown[]) => void;
-      amplitude?: Record<string, unknown>;
+      mixpanel?: Record<string, unknown>;
     };
 
     win.gtag = (...args: unknown[]) => {
@@ -20,44 +21,34 @@ async function installAnalyticsSpy(page: Page) {
     };
 
     const track = (name: string, props?: object) => {
-      win.__recordAnalyticsEvent({ provider: 'amplitude', name, props });
+      win.__recordAnalyticsEvent({ provider: 'mixpanel', name, props });
     };
-    let amplitudeValue: Record<string, unknown> = {
-      ...(win.amplitude ?? {}),
+    let mixpanelValue: Record<string, unknown> = {
+      ...(win.mixpanel ?? {}),
       track,
-      logEvent: track,
     };
 
-    Object.defineProperty(win, 'amplitude', {
+    Object.defineProperty(win, 'mixpanel', {
       configurable: true,
       get() {
-        return amplitudeValue;
+        return mixpanelValue;
       },
       set(nextValue: Record<string, unknown> | undefined) {
-        amplitudeValue = {
+        mixpanelValue = {
           ...(nextValue ?? {}),
           track: (name: string, props?: object) => {
             if (typeof nextValue?.track === 'function') {
               (nextValue.track as (name: string, props?: object) => void)(name, props);
             }
-            win.__recordAnalyticsEvent({ provider: 'amplitude', name, props });
-          },
-          logEvent: (name: string, props?: object) => {
-            if (typeof nextValue?.logEvent === 'function') {
-              (nextValue.logEvent as (name: string, props?: object) => void)(name, props);
-            }
-            win.__recordAnalyticsEvent({ provider: 'amplitude', name, props });
+            win.__recordAnalyticsEvent({ provider: 'mixpanel', name, props });
           },
         };
       },
     });
 
-    win.amplitude = {
+    win.mixpanel = {
       track: (name: string, props?: object) => {
-        win.__recordAnalyticsEvent({ provider: 'amplitude', name, props });
-      },
-      logEvent: (name: string, props?: object) => {
-        win.__recordAnalyticsEvent({ provider: 'amplitude', name, props });
+        win.__recordAnalyticsEvent({ provider: 'mixpanel', name, props });
       },
     };
   });
@@ -66,14 +57,20 @@ async function installAnalyticsSpy(page: Page) {
 }
 
 test.describe('NGU promo', () => {
+  test.beforeEach(async ({ page }) => {
+    await seedAnalyticsConsent(page);
+  });
+
   test('shows delayed modal once per browser session and persists close state', async ({ page }) => {
     await mockInvisibleRecaptcha(page);
+    // Fake the clock so the promo's 8s delay costs no wall time.
+    await page.clock.install();
     await page.goto('/');
 
     await expect(page.getByText('Get 10% off courses at the new Nice Guy University!')).toBeVisible();
     await expect(page.getByRole('dialog', { name: /get 10% off your first course/i })).toBeHidden();
 
-    await page.waitForTimeout(8500);
+    await page.clock.fastForward(8500);
     await expect(page.getByRole('dialog', { name: /get 10% off your first course/i })).toBeVisible();
     await expect(page.getByText(/this site is protected by recaptcha/i)).toBeVisible();
     await expect(page.getByTestId('ngu-recaptcha-widget')).toHaveAttribute('data-mock-size', 'invisible');
@@ -84,7 +81,7 @@ test.describe('NGU promo', () => {
     await expect(page.getByRole('dialog', { name: /get 10% off your first course/i })).toBeHidden();
 
     await page.reload();
-    await page.waitForTimeout(8500);
+    await page.clock.fastForward(8500);
     await expect(page.getByRole('dialog', { name: /get 10% off your first course/i })).toBeHidden();
   });
 
@@ -116,7 +113,7 @@ test.describe('NGU promo', () => {
     await expect(page.getByRole('dialog', { name: /get 10% off your first course/i })).toBeVisible();
   });
 
-  test('banner Nice Guy University link tracks GA4 and Amplitude events', async ({ page }) => {
+  test('banner Nice Guy University link tracks GA4 and Mixpanel events', async ({ page }) => {
     await mockInvisibleRecaptcha(page);
     await page.addInitScript(() => window.sessionStorage.setItem('nguPromoSeen', 'true'));
     await page.goto('/');
@@ -135,7 +132,7 @@ test.describe('NGU promo', () => {
       args: expect.arrayContaining(['event', 'link_click']),
     }));
     expect(events).toContainEqual(expect.objectContaining({
-      provider: 'amplitude',
+      provider: 'mixpanel',
       name: 'link_click',
       props: expect.objectContaining({
         link_location: 'ngu_promo_banner',
@@ -149,7 +146,7 @@ test.describe('NGU promo', () => {
       args: expect.arrayContaining(['event', 'ngu_banner_link_click']),
     }));
     expect(events).toContainEqual(expect.objectContaining({
-      provider: 'amplitude',
+      provider: 'mixpanel',
       name: 'ngu_banner_link_click',
       props: expect.objectContaining({
         location: 'ngu_promo_banner',
