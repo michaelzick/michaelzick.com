@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { seedAnalyticsConsent } from './helpers/consent';
 
 const mobileViewports = [
   { width: 345, height: 800 },
@@ -24,6 +25,10 @@ const sectionIdsByLabel: Record<string, string> = {
 };
 
 test.describe('mobile UI audit', () => {
+  test.beforeEach(async ({ page }) => {
+    await seedAnalyticsConsent(page);
+  });
+
   for (const viewport of mobileViewports) {
     test(`home fixed chrome and section tabs do not overlap at ${viewport.width}px`, async ({ page }) => {
       await page.setViewportSize(viewport);

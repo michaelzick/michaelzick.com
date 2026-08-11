@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import { seedAnalyticsConsent } from './helpers/consent';
 import { mockInvisibleRecaptcha } from './helpers/recaptcha';
 
 async function installAnalyticsSpy(page: Page) {
@@ -56,6 +57,10 @@ async function installAnalyticsSpy(page: Page) {
 }
 
 test.describe('NGU promo', () => {
+  test.beforeEach(async ({ page }) => {
+    await seedAnalyticsConsent(page);
+  });
+
   test('shows delayed modal once per browser session and persists close state', async ({ page }) => {
     await mockInvisibleRecaptcha(page);
     await page.goto('/');

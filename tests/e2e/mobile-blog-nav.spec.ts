@@ -1,8 +1,13 @@
 import { expect, test } from '@playwright/test';
+import { seedAnalyticsConsent } from './helpers/consent';
 
 const sourceRoutes = ['/', '/about', '/testimonials', '/contact', '/questionnaire'];
 
 test.describe('mobile blog navigation', () => {
+  test.beforeEach(async ({ page }) => {
+    await seedAnalyticsConsent(page);
+  });
+
   test.use({
     viewport: { width: 345, height: 800 },
     isMobile: true,

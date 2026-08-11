@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import JsonLd from '../components/JsonLd';
 import SiteAnalyticsScripts from '../components/SiteAnalyticsScripts';
 import NguPromo from '../components/NguPromo';
+import CookieConsentBanner from '../components/CookieConsentBanner';
 import { Open_Sans } from 'next/font/google';
 import { siteConfig } from '../lib/site';
 import { getSiteStructuredData } from '../lib/site-structured-data';
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
         <NguPromo />
         <main className="flex-1">{children}</main>
         <Footer />
+        <CookieConsentBanner />
       </body>
     </html>
   );

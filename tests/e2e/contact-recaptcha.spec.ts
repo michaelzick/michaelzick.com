@@ -1,7 +1,12 @@
 import { expect, test } from '@playwright/test';
+import { seedAnalyticsConsent } from './helpers/consent';
 import { mockInvisibleRecaptcha } from './helpers/recaptcha';
 
 test.describe('contact form invisible reCAPTCHA', () => {
+  test.beforeEach(async ({ page }) => {
+    await seedAnalyticsConsent(page);
+  });
+
   test('renders invisible v2 disclosure and submits callback token', async ({ page }) => {
     await mockInvisibleRecaptcha(page);
     await page.route('**/api/contact', async (route) => {

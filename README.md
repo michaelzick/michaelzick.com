@@ -29,6 +29,7 @@ The site is engineered for data-driven growth, featuring a unified analytics imp
 - **Google Analytics 4 (GA4)**: Tracking high-level traffic patterns and user acquisition.
 - **Mixpanel**: Deep event-level tracking to analyze user behavior within the questionnaire and conversion funnels, plus session replay and heatmaps (page text visible, input fields masked).
 - **Custom Event Engine**: A centralized `analytics.ts` library ensures consistent event schema across GA4 and Mixpanel, tracking everything from CTA clicks to questionnaire completions.
+- **Consent Banner**: Mixpanel is gated by a cookie consent banner — on by default outside the EU/EEA/UK with an opt-out, and off until opt-in for EU visitors.
 
 ## 🧠 AI-Driven Development (AIDD)
 

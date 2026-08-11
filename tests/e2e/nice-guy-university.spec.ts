@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import { seedAnalyticsConsent } from './helpers/consent';
 import { mockInvisibleRecaptcha } from './helpers/recaptcha';
 
 async function installAnalyticsSpy(page: Page) {
@@ -56,6 +57,10 @@ async function installAnalyticsSpy(page: Page) {
 }
 
 test.describe('Nice Guy University landing page', () => {
+  test.beforeEach(async ({ page }) => {
+    await seedAnalyticsConsent(page);
+  });
+
   test('desktop Apps menu and footer no longer include Nice Guy University', async ({ page }) => {
     await mockInvisibleRecaptcha(page);
     await page.addInitScript(() => window.sessionStorage.setItem('nguPromoSeen', 'true'));

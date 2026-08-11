@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { OpenInNewWindowIcon } from '@radix-ui/react-icons';
 import { trackEvent, trackLinkClick } from '../lib/analytics';
+import { openCookiePreferences } from '../lib/cookie-consent';
 
 export default function Footer() {
   const bookingCtaLabel = 'Book a Strategy Call';
@@ -101,6 +102,9 @@ export default function Footer() {
               ZICKONEZERO Creative
             </a>
           </p>
+          <button type="button" className="footer-link self-start" onClick={openCookiePreferences}>
+            Cookie Preferences
+          </button>
           <p className="md:text-right">&copy; {new Date().getFullYear()} Michael Zick Coaching</p>
         </div>
       </div>
