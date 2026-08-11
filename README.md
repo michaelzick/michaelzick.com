@@ -27,8 +27,8 @@ Built with a focus on speed, accessibility, and maintainability.
 The site is engineered for data-driven growth, featuring a unified analytics implementation:
 
 - **Google Analytics 4 (GA4)**: Tracking high-level traffic patterns and user acquisition.
-- **Amplitude**: Deep event-level tracking to analyze user behavior within the questionnaire and conversion funnels.
-- **Custom Event Engine**: A centralized `analytics.ts` library ensures consistent event schema across GA4 and Amplitude, tracking everything from CTA clicks to questionnaire completions.
+- **Mixpanel**: Deep event-level tracking to analyze user behavior within the questionnaire and conversion funnels, plus session replay and heatmaps (page text visible, input fields masked).
+- **Custom Event Engine**: A centralized `analytics.ts` library ensures consistent event schema across GA4 and Mixpanel, tracking everything from CTA clicks to questionnaire completions.
 
 ## 🧠 AI-Driven Development (AIDD)
 

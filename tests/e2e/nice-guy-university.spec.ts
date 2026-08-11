@@ -12,7 +12,7 @@ async function installAnalyticsSpy(page: Page) {
     const win = window as typeof window & {
       __recordAnalyticsEvent: (event: Record<string, unknown>) => void;
       gtag: (...args: unknown[]) => void;
-      amplitude?: Record<string, unknown>;
+      mixpanel?: Record<string, unknown>;
     };
 
     win.gtag = (...args: unknown[]) => {
@@ -20,41 +20,34 @@ async function installAnalyticsSpy(page: Page) {
     };
 
     const track = (name: string, props?: object) => {
-      win.__recordAnalyticsEvent({ provider: 'amplitude', name, props });
+      win.__recordAnalyticsEvent({ provider: 'mixpanel', name, props });
     };
-    let amplitudeValue: Record<string, unknown> = {
-      ...(win.amplitude ?? {}),
+    let mixpanelValue: Record<string, unknown> = {
+      ...(win.mixpanel ?? {}),
       track,
-      logEvent: track,
     };
 
-    Object.defineProperty(win, 'amplitude', {
+    Object.defineProperty(win, 'mixpanel', {
       configurable: true,
       get() {
-        return amplitudeValue;
+        return mixpanelValue;
       },
       set(nextValue: Record<string, unknown> | undefined) {
-        amplitudeValue = {
+        mixpanelValue = {
           ...(nextValue ?? {}),
           track: (name: string, props?: object) => {
             if (typeof nextValue?.track === 'function') {
               (nextValue.track as (name: string, props?: object) => void)(name, props);
             }
-            win.__recordAnalyticsEvent({ provider: 'amplitude', name, props });
-          },
-          logEvent: (name: string, props?: object) => {
-            if (typeof nextValue?.logEvent === 'function') {
-              (nextValue.logEvent as (name: string, props?: object) => void)(name, props);
-            }
-            win.__recordAnalyticsEvent({ provider: 'amplitude', name, props });
+            win.__recordAnalyticsEvent({ provider: 'mixpanel', name, props });
           },
         };
       },
     });
 
-    win.amplitude = {
+    win.mixpanel = {
       track: (name: string, props?: object) => {
-        win.__recordAnalyticsEvent({ provider: 'amplitude', name, props });
+        win.__recordAnalyticsEvent({ provider: 'mixpanel', name, props });
       },
     };
   });
@@ -102,7 +95,7 @@ test.describe('Nice Guy University landing page', () => {
     await expect(mobileNav).toHaveAttribute('aria-hidden', 'true');
   });
 
-  test('header CTA links to Nice Guy University and tracks GA4 and Amplitude events', async ({ page }) => {
+  test('header CTA links to Nice Guy University and tracks GA4 and Mixpanel events', async ({ page }) => {
     await mockInvisibleRecaptcha(page);
     await page.addInitScript(() => window.sessionStorage.setItem('nguPromoSeen', 'true'));
     await page.setViewportSize({ width: 1200, height: 900 });
@@ -121,7 +114,7 @@ test.describe('Nice Guy University landing page', () => {
       args: expect.arrayContaining(['event', 'link_click']),
     }));
     expect(events).toContainEqual(expect.objectContaining({
-      provider: 'amplitude',
+      provider: 'mixpanel',
       name: 'link_click',
       props: expect.objectContaining({
         link_location: 'header',
@@ -135,7 +128,7 @@ test.describe('Nice Guy University landing page', () => {
       args: expect.arrayContaining(['event', 'ngu_header_cta_click']),
     }));
     expect(events).toContainEqual(expect.objectContaining({
-      provider: 'amplitude',
+      provider: 'mixpanel',
       name: 'ngu_header_cta_click',
       props: expect.objectContaining({
         location: 'header',
@@ -281,7 +274,7 @@ test.describe('Nice Guy University landing page', () => {
     ).__recaptchaV2ExecuteCount)).toBe(1);
   });
 
-  test('NGU page CTAs track GA4 and Amplitude events', async ({ page }) => {
+  test('NGU page CTAs track GA4 and Mixpanel events', async ({ page }) => {
     await mockInvisibleRecaptcha(page);
     await page.addInitScript(() => window.sessionStorage.setItem('nguPromoSeen', 'true'));
     await page.route('**/api/ngu-coupon', async (route) => {
@@ -313,7 +306,7 @@ test.describe('Nice Guy University landing page', () => {
       args: expect.arrayContaining(['event', 'ngu_coupon_anchor_click']),
     }));
     expect(events).toContainEqual(expect.objectContaining({
-      provider: 'amplitude',
+      provider: 'mixpanel',
       name: 'ngu_coupon_anchor_click',
       props: expect.objectContaining({
         location: 'ngu-hero',
@@ -326,7 +319,7 @@ test.describe('Nice Guy University landing page', () => {
       args: expect.arrayContaining(['event', 'ngu_coupon_submit_click']),
     }));
     expect(events).toContainEqual(expect.objectContaining({
-      provider: 'amplitude',
+      provider: 'mixpanel',
       name: 'ngu_coupon_submit_click',
       props: expect.objectContaining({
         location: 'ngu-landing-coupon',
@@ -338,7 +331,7 @@ test.describe('Nice Guy University landing page', () => {
       args: expect.arrayContaining(['event', 'link_click']),
     }));
     expect(events).toContainEqual(expect.objectContaining({
-      provider: 'amplitude',
+      provider: 'mixpanel',
       name: 'link_click',
       props: expect.objectContaining({
         link_location: 'ngu-hero',
@@ -352,7 +345,7 @@ test.describe('Nice Guy University landing page', () => {
       args: expect.arrayContaining(['event', 'ngu_visit_click']),
     }));
     expect(events).toContainEqual(expect.objectContaining({
-      provider: 'amplitude',
+      provider: 'mixpanel',
       name: 'ngu_visit_click',
       props: expect.objectContaining({
         location: 'ngu-hero',

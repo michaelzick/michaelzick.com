@@ -15,7 +15,7 @@ Primary flows:
 - Visitors submit a multi-step questionnaire and receive an OpenAI-generated coaching analysis.
 - Contact and NGU coupon forms validate Invisible reCAPTCHA v2, rate-limit submissions, send Brevo SMTP email notifications, and sync newsletter opt-ins to HubSpot as male subscribers.
 - Blog readers browse JSON-backed posts with category/tag filters and structured data for SEO.
-- CTA and navigation interactions are tracked through a shared analytics wrapper for GA4 and Amplitude.
+- CTA and navigation interactions are tracked through a shared analytics wrapper for GA4 and Mixpanel.
 
 ## 2. Tech stack
 
@@ -24,7 +24,7 @@ Primary flows:
 - **Server routes:** Next route handlers under `app/api/*`, using Node runtime where email/OpenAI APIs are needed.
 - **AI, email, and CRM:** OpenAI Node SDK for questionnaire analysis; Nodemailer with Brevo SMTP for notifications; HubSpot CRM API for newsletter subscriber sync.
 - **Bot protection:** Classic Invisible reCAPTCHA v2 via `NEXT_PUBLIC_RECAPTCHA_SITE_KEY_V2` and `RECAPTCHA_SECRET_KEY_V2`.
-- **Analytics:** GA4 and Amplitude scripts in `components/SiteAnalyticsScripts.tsx`; tracked events in `lib/analytics.ts`.
+- **Analytics:** GA4 and Mixpanel scripts in `components/SiteAnalyticsScripts.tsx` (Mixpanel autocapture, session replay, and heatmaps; page text visible, inputs masked); tracked events in `lib/analytics.ts`.
 - **Testing:** Node's built-in test runner for compiled unit tests, TypeScript test build via `tsconfig.test.json`, and Playwright for E2E/mobile UI checks.
 - **Tooling:** npm with `package-lock.json`, Node 24 LTS, ESLint flat config via `eslint-config-next/core-web-vitals`.
 
@@ -128,7 +128,7 @@ CI runs the brief sync check, lint, typecheck, unit tests, production build, and
 - **Next boundaries:** keep browser-only code behind client components/hooks and server-only APIs in route handlers or `lib/server/*`.
 - **API routes:** validate untrusted request bodies before use, enforce rate limits on public write routes, avoid logging secrets or full sensitive submissions, and return stable JSON errors.
 - **Forms:** contact and NGU submissions must keep Invisible reCAPTCHA v2 verification and accessible failure states.
-- **Analytics:** send events through `lib/analytics.ts` or tracked link components so GA4 and Amplitude payloads stay aligned.
+- **Analytics:** send events through `lib/analytics.ts` or tracked link components so GA4 and Mixpanel payloads stay aligned.
 - **SEO:** update metadata, structured data, sitemap generation, and canonical URLs when adding durable public pages or blog behavior.
 - **Styling:** use Tailwind utility patterns already present in nearby components; keep pages responsive and verify mobile layouts when touching nav, hero, forms, CTAs, or promotional modals.
 - **Testing:** unit-test pure helpers in `tests/*.test.ts`; use Playwright for routed UI behavior, mobile layout, reCAPTCHA flow mocks, and conversion-critical interactions.
@@ -156,7 +156,7 @@ CI runs the brief sync check, lint, typecheck, unit tests, production build, and
 | [lib/server/rate-limit.ts](lib/server/rate-limit.ts) | In-memory rate limiting helpers |
 | [lib/blog.ts](lib/blog.ts) | Blog post normalization and filters |
 | [lib/site.ts](lib/site.ts) | Site and brand constants |
-| [lib/analytics.ts](lib/analytics.ts) | GA4/Amplitude event helpers |
+| [lib/analytics.ts](lib/analytics.ts) | GA4/Mixpanel event helpers |
 | [scripts/generate-sitemap.js](scripts/generate-sitemap.js) | Static sitemap generation |
 | [playwright.config.ts](playwright.config.ts) | Playwright web server and reporter configuration |
 | [skills/coding-standards/SKILL.md](skills/coding-standards/SKILL.md) | Repo-local production coding standards |

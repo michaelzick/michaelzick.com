@@ -45,7 +45,7 @@ This guide defines production standards for `michaelzick.com`: a Next.js App Rou
 
 ## Analytics and SEO
 
-- Track links and CTA clicks through `TrackedLink`, `TrackedCtaLink`, or `lib/analytics.ts` so GA4 and Amplitude stay aligned.
+- Track links and CTA clicks through `TrackedLink`, `TrackedCtaLink`, or `lib/analytics.ts` so GA4 and Mixpanel stay aligned.
 - Keep analytics payloads stable and privacy-aware. Do not send free-form questionnaire answers, full contact messages, captcha tokens, SMTP data, or secrets.
 - Update `lib/site.ts`, metadata, structured data helpers, and sitemap generation when public page structure or brand facts change.
 - Blog changes should preserve slug normalization, duplicate-slug handling, excerpts, canonical URLs, dates, tags, and structured data tests.
@@ -63,7 +63,7 @@ This guide defines production standards for `michaelzick.com`: a Next.js App Rou
 
 - Unit-test pure helpers in `tests/*.test.ts` with Node's built-in test runner.
 - Add or update Playwright tests for routed UI behavior, mobile layout, modal/dialog flows, reCAPTCHA execution, and conversion-critical form behavior.
-- Mock network providers at the route/page boundary in tests. Do not call real OpenAI, Google reCAPTCHA, Brevo SMTP, GA4, or Amplitude from tests.
+- Mock network providers at the route/page boundary in tests. Do not call real OpenAI, Google reCAPTCHA, Brevo SMTP, GA4, or Mixpanel from tests.
 - Run `npm run lint`, `npm run typecheck`, and the relevant tests before marking work done. For PR-ready changes, run `npm run check`; include `npm run test:e2e` when UI behavior changed.
 
 ## Review checklist
