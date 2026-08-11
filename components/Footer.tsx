@@ -22,11 +22,11 @@ export default function Footer() {
 
   return (
     <footer className="text-white py-8 text-lg bg-dark-blue">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-8 grid md:grid-cols-12 gap-8 items-start">
-        <div className="md:col-span-5">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-8 grid md:grid-cols-2 xl:grid-cols-[1.8fr_1fr_1fr_1fr] gap-8 items-start">
+        <div>
           <p>Michael Zick | Nice Guy Recovery Coach</p>
         </div>
-        <div className="md:col-span-4 space-y-2">
+        <div className="space-y-2">
           <span className="block text-xs uppercase tracking-[0.2em] text-white/70">
             Links
           </span>
@@ -57,7 +57,7 @@ export default function Footer() {
             <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
-        <div className="md:col-span-3 space-y-2">
+        <div className="space-y-2">
           <span className="block text-xs uppercase tracking-[0.2em] text-white/70">
             Apps
           </span>
@@ -87,6 +87,22 @@ export default function Footer() {
             <OpenInNewWindowIcon className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
+        <div className="space-y-2">
+          <span className="block text-xs uppercase tracking-[0.2em] text-white/70">
+            Legal
+          </span>
+          <Link href="/privacy-policy" className="footer-link" onClick={handleFooterClick('Privacy Policy', '/privacy-policy', 'legal')}>
+            Privacy Policy
+          </Link>
+          <br />
+          <Link href="/terms-of-service" className="footer-link" onClick={handleFooterClick('Terms of Service', '/terms-of-service', 'legal')}>
+            Terms of Service
+          </Link>
+          <br />
+          <button type="button" className="footer-link" onClick={openCookiePreferences}>
+            Cookie Preferences
+          </button>
+        </div>
       </div>
       <div className="mt-8 border-t border-white/20 pt-4 text-sm">
         <div className="px-6 md:px-8 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
@@ -102,17 +118,6 @@ export default function Footer() {
               ZICKONEZERO Creative
             </a>
           </p>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            <Link href="/privacy-policy" className="footer-link" onClick={handleFooterClick('Privacy Policy', '/privacy-policy', 'legal')}>
-              Privacy Policy
-            </Link>
-            <Link href="/terms-of-service" className="footer-link" onClick={handleFooterClick('Terms of Service', '/terms-of-service', 'legal')}>
-              Terms of Service
-            </Link>
-            <button type="button" className="footer-link" onClick={openCookiePreferences}>
-              Cookie Preferences
-            </button>
-          </div>
           <p className="md:text-right">&copy; {new Date().getFullYear()} Michael Zick Coaching</p>
         </div>
       </div>
