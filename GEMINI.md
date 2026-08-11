@@ -19,7 +19,7 @@ Primary flows:
 
 ## 2. Tech stack
 
-- **Framework:** Next.js 16 App Router with React 19 and TypeScript; the package is currently pinned to the patched 16.3 canary line until the same security fixes land in a stable release.
+- **Framework:** Next.js 16 App Router with React 19 and TypeScript, on stable 16.3.x — the earlier canary pin is no longer needed now that the security fixes have shipped in a stable release.
 - **Styling:** Tailwind CSS 3, global styles in `app/globals.css`, image assets in `public/img/`.
 - **Server routes:** Next route handlers under `app/api/*`, using Node runtime where email/OpenAI APIs are needed.
 - **AI, email, and CRM:** OpenAI Node SDK for questionnaire analysis; Nodemailer with Brevo SMTP for notifications; HubSpot CRM API for newsletter subscriber sync.
